@@ -1,0 +1,181 @@
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #d2d6de !important;
+    border-radius: 0 !important;
+    height: 100% !important;
+}
+
+.bootstrap-tagsinput {
+    width: 100% !important;
+}
+/**********************************
+Name: cmxform Styles
+***********************************/
+form.cmxform {
+    width: 370px;
+    font-size: 1.0em;
+    color: #333;
+}
+
+form.cmxform legend {
+    padding-left: 0;
+}
+
+form.cmxform legend, form.cmxform label {
+    color: #333;
+}
+
+form.cmxform fieldset {
+    border: none;
+    border-top: 1px solid #C9DCA6;
+    background: url(../images/cmxform-fieldset.gif) left bottom repeat-x;
+    background-color: #F8FDEF;
+}
+
+form.cmxform fieldset fieldset {
+    background: none;
+}
+
+form.cmxform fieldset p, form.cmxform fieldset fieldset {
+    padding: 5px 10px 7px;
+    background: url(../images/cmxform-divider.gif) left bottom repeat-x;
+}
+
+form.cmxform label.error, label.error {
+    /* remove the next line when you have trouble in IE6 with labels in list */
+    color: red;
+    font-style: italic
+}
+div.error { display: none; }
+input {	border: 1px solid black; }
+input.checkbox { border: none }
+input:focus { border: 1px dotted black; }
+input.error { border: 1px dotted red; }
+form.cmxform .gray * { color: gray; }
+/**********************************
+Use: cmxform template
+***********************************/
+form.cmxform fieldset {
+    margin-bottom: 10px;
+}
+
+form.cmxform legend {
+    padding: 0 2px;
+    font-weight: bold;
+    _margin: 0 -7px; /* IE Win */
+}
+
+form.cmxform label {
+    display: inline-block;
+    line-height: 1.8;
+    vertical-align: top;
+    cursor: hand;
+}
+
+form.cmxform fieldset p {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+form.cmxform fieldset fieldset {
+    border: none;
+    margin: 3px 0 0;
+}
+
+form.cmxform fieldset fieldset legend {
+    padding: 0 0 5px;
+    font-weight: normal;
+}
+
+form.cmxform fieldset fieldset label {
+    display: block;
+    width: auto;
+}
+
+form.cmxform label { width: 100px; } /* Width of labels */
+form.cmxform fieldset fieldset label { margin-left: 103px; } /* Width plus 3 (html space) */
+form.cmxform label.error {
+    margin-left: 103px;
+    width: 220px;
+}
+
+form.cmxform input.submit {
+    margin-left: 103px;
+}
+
+.break-word { word-break: break-word;}
+.contract-file-icon { font-size: 36px;}
+
+/*\*//*/ form.cmxform legend { display: inline-block; } /* IE Mac legend fix */
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+    color: #dedada !important;
+}
+
+.main-fee-options-wrapper .col-md-6 .form-group input[type=checkbox] {
+    transform: scale(1.2);
+}
+
+@media (min-width: 1000px)/* The minimum width of the display area, such as a browser window*/
+{
+    #modalArticleDetail .modal-dialog, #modalArticleDetail .modal-dialog .modal-content {
+        width: 1000px;
+        top: 40px;
+        margin: 0 auto;
+    }
+}
+
+#article-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#article-summary {
+    font-weight: bold;
+    color: #ccc;
+}
+
+.attachment-block {
+    margin: 10px;
+    width: 48%;
+}
+#div-content-button-load-more {
+    max-width: 100px;
+    margin: 0 auto;
+}
+.attachment-block .attachment-img {
+    max-height: 65px;
+}
+#contain-product-image img {
+    width: 150px;
+    height: 100px;
+}
+.thumb-image {
+    width: 150px;
+    height: 100px;
+}
+.call-red, .call-green {
+    color: #ffffff;
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.call-red {
+    background-color: #f6c277;
+}
+.call-green {
+    background-color: #78e870;
+}
+.change-status {
+    cursor: pointer;
+}
+#table-detail-member-advisor tbody tr td:first-child {
+    font-weight: bold;
+}
+#table-detail-member-advisor td {
+    border: none !important;
+}
+.content-wrapper .tab-content {
+    overflow: hidden;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ViewBox</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../viewbox.css">
+	<style>
+		pre.prettyprint.prettyprinted{
+			padding: 10px 20px;
+			border: 1px solid #ccc;
+			margin:0 0 40px;
+		}
+		dl{
+			display: block;
+			margin: 5px 0 20px;
+			overflow: hidden;
+		}
+		dl > dt{
+			display: block;
+			clear:left;
+			float:left;
+			min-width: 160px;
+		}
+		dl > dd{
+			display: block;
+			float:left;
+			margin: 0 0 20px 10px;
+		}
+	</style>
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<header class="page-header">
+			<h1><span class="glyphicon glyphicon-picture"></span> ViewBox Demo</h1>
+		</header>
+		<main>
+			<p>Viewbox is a jQuery plugin for displaying images and other HTML content. &nbsp; <a href="https://github.com/pgooood/viewbox" target="_blank"><span class="glyphicon glyphicon-cloud-download"></span> Download on GitHub</a></p>
+			<div class="row">
+				<div class="col-xs-6 col-md-3">
+					<a href="images/i1.jpg" class="thumbnail" title="San Francisco">
+						<img src="images/i1-thumb.jpg" alt="">
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a href="images/i2.jpg" class="thumbnail" title="Rotterdam">
+						<img src="images/i2-thumb.jpg" alt="">
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a href="images/i3.jpg" class="thumbnail" title="New York">
+						<img src="images/i3-thumb.jpg" alt="">
+					</a>
+				</div>
+				<div class="col-xs-6 col-md-3">
+					<a href="images/i4.jpg" class="thumbnail" title="Istanbul">
+						<img src="images/i4-thumb.jpg" alt="">
+					</a>
+				</div>
+			</div>
+			<p><a href="images/i5.jpg" class="thumbnail-2">
+				<img src="images/i5-thumb.jpg" alt="" class="img-responsive">
+			</a></p>
+			<p>&nbsp;</p>
+			
+			<p>Start by including the ViewBox CSS and Javascript</p>
+			<pre class="prettyprint">
+&lt;link rel="stylesheet" href="viewbox.css"&gt;
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.viewbox.min.js"&gt;&lt;/script&gt;</pre>
+			
+			<h2>Viewbox as Image Viewer</h2>
+			<p>Optional: Add a title attribute if you want to show a caption.</p>
+			<pre class="prettyprint">
+&lt;a href="images/i1.jpg" class="image-link"&gt;
+	&lt;img src="images/i1-thumb.jpg" alt=""&gt;
+&lt;/a&gt;
+&lt;a href="images/i2.jpg" class="image-link" title="Image Title"&gt;
+	&lt;img src="images/i2-thumb.jpg" alt=""&gt;
+&lt;/a&gt;
+&lt;a href="images/i3.jpg" class="image-link"&gt;
+	&lt;img src="images/i3-thumb.jpg" alt=""&gt;
+&lt;/a&gt;</pre>
+			
+			<p>Apply <code>viewbox()</code> method to a set of image links.</p>
+			<pre class="prettyprint">
+$(function(){
+	$('.image-link').viewbox();
+});</pre>
+			<h2>Viewbox and Custom HTML Content</h2>
+			<p>Make an anchor link which points to content element.</p>
+			<div>
+				<div id="popup" style="min-width:300px; min-height:300px;">
+					<h3>Popup Window</h3>
+					<p><button type="button" class="btn btn-default close-button">Close</button></p>
+				</div>
+			</div>
+			<pre class="prettyprint lang-html">
+&lt;p&gt;&lt;a href="#popup" class="popup-link">Open popup window&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;button type="button" class="popup-open-button">Open popup window&lt;/button&gt;&lt;/p&gt;
+
+&lt;!-- Use invisible wraper to hide popup window content --&gt;
+&lt;div style="display:none;"&gt;
+	&lt;div id="popup"&gt;
+		&lt;h3&gt;Popup content&lt;/h3&gt;
+		&lt;p&gt;Some text for popup window.&lt;/p&gt;
+		&lt;p&gt;&lt;button type="button" class="close-button"&gt;Close&lt;/button&gt;&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+			<p>Apply <code>viewbox()</code> method to an anchor link which points to content element.</p>
+			<pre class="prettyprint">
+$(function(){
+	var vb = $('.popup-link').viewbox();
+	
+	//optional: custom close button
+	$('.close-button').click(function(){
+		vb.trigger('viewbox.close');
+	});
+});</pre>
+			<p>Or apply <code>viewbox()</code> method to a content element.</p>
+			<pre class="prettyprint">
+$(function(){
+	var vb = $('#popup').viewbox();
+	
+	$('.popup-open-button').click(function(){
+		vb.trigger('viewbox.open');
+	});
+});</pre>
+			<h3>Demo</h3>
+			<p><a href="#popup" class="popup-link"><span class="glyphicon glyphicon-info-sign"></span> Open popup window</a></p>
+			<p><button type="button" class="btn btn-default popup-open-button">Open popup window</button></p>
+			<p>&nbsp;</p>
+			
+			<h2>Options</h2>
+			<p>These options are default.</p>
+			<pre class="prettyprint">
+$(function(){
+	$('.image-link').viewbox({
+		setTitle: true,
+		margin: 20,
+		resizeDuration: 300,
+		openDuration: 200,
+		closeDuration: 200,
+		closeButton: true,
+		navButtons: true,
+		closeOnSideClick: true,
+		nextOnContentClick: false,
+		useGestures: true
+	});
+});</pre>
+			
+			<h2>Custom events</h2>
+			<p>There are some of custom events you can use to control Viewbox. To trigger these custom events, simply target the object created by the plugin.</p>
+			<dl>
+				<dt>viewbox.open</dt>
+				<dd>Opens Viewbox (if it is not already opened)<br>
+					Example: <code>var&nbsp;vb&nbsp;=&nbsp;$('a.viewbox').viewbox();<br>
+						vb.trigger('viewbox.open',[<em>index</em>]);</code><br>
+					<em>index</em> - index of item to show (0 default)</dd>
+				<dt>viewbox.close</dt>
+				<dd>Closes Viewbox (if it is not already closed)<br>
+					Example: <code>var&nbsp;vb&nbsp;=&nbsp;$('a.viewbox').viewbox();<br>
+						$('.button-close').click(function(){<br>
+						&nbsp;&nbsp;vb.trigger('viewbox.close');
+						<br>});</code></dd>
+				<dt>viewbox.next</dt>
+				<dd>Shows next image in the set.<br>
+					Example: <code>var&nbsp;vb&nbsp;=&nbsp;$('a.viewbox').viewbox();<br>
+						vb.trigger('viewbox.next');</code></dd>
+				<dt>viewbox.prev</dt>
+				<dd>Shows previous image in the set. <br>
+					Example: <code>var&nbsp;vb&nbsp;=&nbsp;$('a.viewbox').viewbox();<br>
+						vb.trigger('viewbox.prev');</code></dd>
+			</dl>
+		</main>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<script src="../jquery.viewbox.min.js"></script>
+	<script>
+		$(function(){
+			
+			$('.thumbnail').viewbox();
+			$('.thumbnail-2').viewbox();
+
+			(function(){
+				var vb = $('.popup-link').viewbox();
+				$('.popup-open-button').click(function(){
+					vb.trigger('viewbox.open');
+				});
+				$('.close-button').click(function(){
+					vb.trigger('viewbox.close');
+				});
+			})();
+			
+		});
+	</script>
+</body>
+</html>
