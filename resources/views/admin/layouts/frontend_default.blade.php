@@ -26,7 +26,7 @@
 <div id="main">
     <div class="layout">
         <div class="layout--header">
-            @component('components.header')@endcomponent
+            @component('admin.components.header')@endcomponent
         </div>
         <div class="layout--container">
             @yield('content')

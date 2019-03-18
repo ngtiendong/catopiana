@@ -97,10 +97,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition skin-yellow sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-            @component('components.admin_header')@endcomponent
+            @component('admin.components.admin_header')@endcomponent
         </header>
         <aside class="main-sidebar">
-            @component('components.admin_main_sidebar')@endcomponent
+            @component('admin.components.admin_main_sidebar')@endcomponent
         </aside>
 
 
@@ -119,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
         <footer class="main-footer">
-            @component('components.admin_footer')@endcomponent
+            @component('admin.components.admin_footer')@endcomponent
         </footer>
         <aside class="control-sidebar control-sidebar-dark">
 
