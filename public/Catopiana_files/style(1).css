@@ -417,33 +417,33 @@ img {
 
 @font-face {
   font-family: 'comic';
-  src: url("fonts/comic.ttf") format("truetype"); }
+  src: url("/fonts/comic.ttf") format("truetype"); }
 
 @font-face {
   font-family: 'Capri';
-  src: url("fonts/CapricaScriptPersonalUse.ttf") format("truetype");
+  src: url("/fonts/CapricaScriptPersonalUse.ttf") format("truetype");
   font-weight: bold; }
 
 @font-face {
   font-family: 'CapriUpright';
-  src: url("fonts/CapricaScriptUprightPersonalUse.ttf") format("truetype"); }
+  src: url("/fonts/CapricaScriptUprightPersonalUse.ttf") format("truetype"); }
 
 @font-face {
   font-family: 'Hobo';
-  src: url("fonts/HoboStdMedium.ttf") format("truetype");
+  src: url("/fonts/HoboStdMedium.ttf") format("truetype");
   font-weight: bold; }
 
 @font-face {
   font-family: 'iCiel';
-  src: url("fonts/iCielPanton-Light.otf") format("opentype"); }
+  src: url("/fonts/iCielPanton-Light.otf") format("opentype"); }
 
 @font-face {
   font-family: 'Times New Roman';
-  src: url("fonts/TIMES.TTF") format("truetype"); }
+  src: url("/fonts/TIMES.TTF") format("truetype"); }
 
 @font-face {
   font-family: 'Tw Cen MT Condensed Extra Bold';
-  src: url("fonts/Tw Cen MT Condensed Extra Bold.TTF") format("truetype"); }
+  src: url("/fonts/Tw Cen MT Condensed Extra Bold.TTF") format("truetype"); }
 
 @-webkit-keyframes name {
   0% { }
@@ -545,7 +545,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  background: url(images/2x/navbg@2x.png) top center/100% fixed no-repeat;
+  background: url(/Catopiana_files/images/navbg@2x.png) top center/100% fixed no-repeat;
   height: 180px; }
 
 .d-nav {
@@ -746,7 +746,7 @@ footer {
   -ms-flex-pack: center;
   justify-content: center;
   z-index: 6;
-  background-image: url(images/footer-bg.png);
+  background-image: url(/Catopiana_files/images/footer-bg.png);
   background-size: 100% 100%; }
 
 footer .col {
@@ -1074,7 +1074,7 @@ footer .col {
 }
 
 #id2 .container .bigwhale .bg {
-  background: url(images/wave.png) no-repeat;
+  background: url(/Catopiana_files/images/wave.png) no-repeat;
   background-position: -50px bottom;
   height: 300px;
   width: calc(100% - 42px);
@@ -1240,7 +1240,7 @@ footer .col {
 }
 
 .test-template-page button {
-  background-image: url(images/gradient.png);
+  background-image: url(/Catopiana_files/images/gradient.png);
   width: 200px;
   height: 60px;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -1342,12 +1342,12 @@ footer .col {
 
 .slick-next {
   right: -20px;
-  background-image: url("images/next-button.png")
+  background-image: url("/Catopiana_files/images/next-button.png")
 }
 
 .slick-prev {
   left: -20px;
-  background-image: url("images/prev-button.png")
+  background-image: url("/Catopiana_files/images/prev-button.png")
 }
 
 .slick-dots {
@@ -1372,11 +1372,11 @@ footer .col {
   width: 13px;
   height: 13px;
   text-indent: -9999px;
-  background: url("images/dot-normal.png") center center/contain no-repeat
+  background: url("/Catopiana_files/images/dot-normal.png") center center/contain no-repeat
 }
 
 .slick-dots li.slick-active button {
-  background: url("images/dot-active.png") center center/contain no-repeat
+  background: url("/Catopiana_files/images/dot-active.png") center center/contain no-repeat
 }
 
 .for-parent-title {
@@ -1413,7 +1413,7 @@ footer .col {
 
 .tailieu,
 .testnow {
-  background-image: url("images/gradient.png");
+  background-image: url("/Catopiana_files/images/gradient.png");
   width: 245px;
   height: 72px;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -1446,7 +1446,7 @@ footer .col {
 }
 
 .trynow-btn-wr button {
-  background-image: url("images/trynow-bg.png");
+  background-image: url("/Catopiana_files/images/trynow-bg.png");
   width: 294px;
   height: 86px;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -1934,11 +1934,11 @@ footer .col {
 
 .slick-next {
   right: -20px;
-  background-image: url("images/next-button.png"); }
+  background-image: url("/Catopiana_files/images/next-button.png"); }
 
 .slick-prev {
   left: -20px;
-  background-image: url("images/prev-button.png"); }
+  background-image: url("/Catopiana_files/images/prev-button.png"); }
 
 .slick-dots {
   list-style-type: none;
@@ -1960,10 +1960,10 @@ footer .col {
   width: 13px;
   height: 13px;
   text-indent: -9999px;
-  background: url("images/dot-normal.png") center center/contain no-repeat; }
+  background: url("/Catopiana_files/images/dot-normal.png") center center/contain no-repeat; }
 
 .slick-dots li.slick-active button {
-  background: url("images/dot-active.png") center center/contain no-repeat; }
+  background: url("/Catopiana_files/images/dot-active.png") center center/contain no-repeat; }
 
 /*end slide articles*/
 .for-parent-title {
@@ -1998,7 +1998,7 @@ footer .col {
 
 .testnow,
 .tailieu {
-  background-image: url("images/gradient.png");
+  background-image: url("/Catopiana_files/images/gradient.png");
   width: 245px;
   height: 72px;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -2028,7 +2028,7 @@ footer .col {
   margin: 60px auto 30px auto; }
 
 .trynow-btn-wr button {
-  background-image: url("images/trynow-bg.png");
+  background-image: url("/Catopiana_files/images/trynow-bg.png");
   width: 294px;
   height: 86px;
   border: 1px solid rgba(0, 0, 0, 0);

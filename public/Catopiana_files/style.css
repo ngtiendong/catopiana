@@ -545,7 +545,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 10;
-  background: url(images/2x/navbg@2x.png) top center/100% fixed no-repeat;
+  background: {{ asset("./Catopiana_files/navbg@2x.png")}} top center/100% fixed no-repeat;
   height: 180px; }
 
 .d-nav {

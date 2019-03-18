@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/slick.css')}}">
-	<link href="{{asset('./Catopiana_files/style.css')}}" rel="stylesheet">
 
 	{{-- <link rel="dns-prefetch" href="http://s.w.org/"> --}}
 	
@@ -24,7 +23,6 @@
 			padding: 0 !important;
 		}
 	</style>
-	<link rel="stylesheet" id="wp-block-library-css" href="{{asset('./Catopiana_files/style.min.css')}}" type="text/css" media="all">
 	<link rel="stylesheet" id="catopiana-style-css" href="{{asset('./Catopiana_files/style(1).css')}}" type="text/css" media="all">
 	{{-- <link rel="https://api.w.org/" href="http://catopiana.com/wp-json/"> --}}
 	{{-- <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://catopiana.com/xmlrpc.php?rsd"> --}}

@@ -4,7 +4,7 @@
 	@include('frontend::layouts.head')
 	<body class="home blog">
 		<div class="wrap">
-			<img src="{{asset('./Catopiana_files/bg-02.png')}}" alt="">
+			<img src="{{asset('./Catopiana_files/images/bg-02.png')}}" alt="">
 			@include('frontend::layouts.header')
 			<div id="signin" class="signWindow">
 				<a>X</a>

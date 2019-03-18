@@ -4,7 +4,7 @@
 <section class="psy-section" id="id1">
     <div class="container">
 		<div class="board">					
-			<img id="bb" src="{{asset('./Catopiana_files/bh.png')}}" alt="">
+			<img id="bb" src="{{asset('./Catopiana_files/images/bh.png')}}" alt="">
     		<div class="row">
               	<div class="col-lg-5 item">
                 	<h1>CAT</h1>
@@ -13,9 +13,9 @@
                 	<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In aliquam dolore pariatur odit repellendus perspiciatis corrupti dolorem, porro est voluptatibus quo, eum unde rerum enim et animi nisi temporibus necessitatibus debitis! Quis molestias sint quaerat.</p>
               	</div>
 			</div>		
-			<img id="sub1" src="{{asset('./Catopiana_files/sub1.png')}}" alt="">
-			<img id="sub2" src="{{asset('./Catopiana_files/sub2.png')}}" alt="">
-			<img id="sub3" src="{{asset('./Catopiana_files/sub3.png')}}" alt="">
+			<img id="sub1" src="{{asset('./Catopiana_files/images/sub1.png')}}" alt="">
+			<img id="sub2" src="{{asset('./Catopiana_files/images/sub2.png')}}" alt="">
+			<img id="sub3" src="{{asset('./Catopiana_files/images/sub3.png')}}" alt="">
       	</div>	
       	<div class="cta">
             <div class="item-cta">
@@ -26,14 +26,14 @@
 			</div>
       	</div>	
 	</div>	
-	<img class="f1 fish" src="{{asset('./Catopiana_files/f1.svg')}}" alt="">
-	<img class="f3 fish" src="{{asset('./Catopiana_files/f3.svg')}}" alt="">
-	<img class="f4 fish" src="{{asset('./Catopiana_files/f3.svg')}}" alt="">
-	<img class="f5 fish" src="{{asset('./Catopiana_files/f5.svg')}}" alt="">
-	<img class="b1 bubble" src="{{asset('./Catopiana_files/b1.svg')}}" alt="">
-	<img class="b2 bubble" src="{{asset('./Catopiana_files/b1.svg')}}" alt="">
-	<img class="b3 bubble" src="{{asset('./Catopiana_files/b1.svg')}}" alt="">
-	<img class="b4 bubble" src="{{asset('./Catopiana_files/b1.svg')}}" alt="">
+	<img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+	<img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+	<img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+	<img class="f5 fish" src="{{asset('./Catopiana_files/images/f5.svg')}}" alt="">
+	<img class="b1 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+	<img class="b2 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+	<img class="b3 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+	<img class="b4 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
 </section>
 <section class="psy-section" id="id2">
 	<div class="container">
@@ -44,15 +44,15 @@
 			<div class="col-lg-12">
 	  			<div class="bigwhale">
 					<a class="test-now">
-						<img src="{{asset('./Catopiana_files/whale.png')}}">
+						<img src="{{asset('./Catopiana_files/images/whale.png')}}">
 					</a>
 	    			<div class="bg"></div>
 	  			</div>
 			</div>
 			</div>
-		<img class="girl" src="{{asset('./Catopiana_files/girl.png')}}" alt="">
-		<img class="boy" src="{{asset('./Catopiana_files/boy.png')}}" alt="">
-		<img class="whale" src="{{asset('./Catopiana_files/wavebg.png')}}" alt="">
+		<img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
+		<img class="boy" src="{{asset('./Catopiana_files/images/boy.png')}}" alt="">
+		<img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
 	</div>
 	<div class="container list-test">
 			<div class="row">
@@ -85,10 +85,10 @@
 				</a>
 			</div>
 			</div>
-		<img class="f6" src="{{asset('./Catopiana_files/f6.svg')}}" alt="">
-		<img class="f7" src="{{asset('./Catopiana_files/f7.svg')}}" alt="">
+		<img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
+		<img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
 	</div>
-	<img id="island" src="{{asset('./Catopiana_files/island.png')}}" alt="">
+	<img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
 	<div class="container-fluid">
@@ -96,345 +96,182 @@
 	</div>
 </section>
 <section id="for-parent">
-<div class="container">
-	<div class="for-parent-title">
-		<img src="{{asset('./Catopiana_files/for-parent.png')}}" alt="">
-	</div>
-	<div class="for-parent-content">
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-			veniam consequatur provident laudantium voluptates ad blanditiis
-			illo doloremque optio, consectetur veritatis officiis deleniti.
-			Magni impedit, totam odio non exercitationem ut!
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed,
-			vero aut amet quae inventore fugiat in praesentium natus cumque
-			quidem.
-		</p>
-	</div>
+	<div class="container">
+		<div class="for-parent-title">
+			<img src="{{asset('./Catopiana_files/images/for-parent.png')}}" alt="">
+		</div>
+		<div class="for-parent-content">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
+				veniam consequatur provident laudantium voluptates ad blanditiis
+				illo doloremque optio, consectetur veritatis officiis deleniti.
+				Magni impedit, totam odio non exercitationem ut!
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed,
+				vero aut amet quae inventore fugiat in praesentium natus cumque
+				quidem.
+			</p>
+		</div>
+			<!-- utilities -->
+		<div class="ultilities-wr">
+			<div class="ult-slide">
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon3.png')}}" alt="">
+					</div>
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- utilities -->
-	<div class="ultilities-wr">
-		<div class="ult-slide slick-initialized slick-slider slick-dotted"><button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">Previous</button>
-			<div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4550px; transform: translate3d(-1050px, 0px, 0px);"><div class="one-ult slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon3.png')}}" alt="">
-				</div>
 
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon2.png')}}" alt="">
-				</div>
+		<div class="testnow-tailieu-wr">
+			<button class="testnow">Test now</button>
+			<button class="tailieu">Tai Lieu</button>
+		</div>
 
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon1.png')}}" alt="">
-				</div>
+		<div class="above-trynow">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex in
+				itaque qui tempore minus ducimus magni, quam et consequatur cum
+				sed exercitationem fugit iusto a quasi culpa, enim necessitatibus.
+				Molestiae fuga, placeat quasi eum. Corporis, adipisci facilis in
+				quod.
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Reiciendis, soluta.
+			</p>
+		</div>	
 
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon1.png')}}" alt="">
-				</div>
+		<div class="trynow-btn-wr">
+			<button>Try now</button>
+		</div>
 
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
+		<div class="article-slide-wr">
+			<div class="article-slide">
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt="">
+						</a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
 				</div>
-			</div><div class="one-ult slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide01" aria-describedby="slick-slide-control01">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon2.png')}}" alt="">
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
 				</div>
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
+				</div>
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
+				</div>
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
+				</div>
+				<div class="one-article">
+					<div class="img-slide-wr">
+						<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/images/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
+					</div>
+					<a href="#" onclick="return false;" tabindex="-1">
+						<p class="slide-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Ratione porro quia facere commodi laboriosam eius est
+							obcaecati, incidunt nemo, atque aliquid fugiat delectus,
+							accusantium quas.
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
 
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide02" aria-describedby="slick-slide-control02">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon3.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide" data-slick-index="3" aria-hidden="true" style="width: 350px;" tabindex="-1" role="tabpanel" id="slick-slide03" aria-describedby="slick-slide-control03">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon2.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide" data-slick-index="4" aria-hidden="true" style="width: 350px;" tabindex="-1" role="tabpanel" id="slick-slide04" aria-describedby="slick-slide-control04">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon1.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon1.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon2.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon3.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon2.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div><div class="one-ult slick-slide slick-cloned" data-slick-index="9" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-ult-wr">
-					<img src="{{asset('./Catopiana_files/icon1.png')}}" alt="">
-				</div>
-
-				<div class="ult-content">
-					<p>Lorem ipsum dolor sit amet.</p>
-				</div>
-			</div></div></div>
-			
-			
-			
-			
-		<button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next</button><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 2" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 2" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 2" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 2" tabindex="-1">4</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 2" tabindex="-1">5</button></li></ul></div>
 	</div>
-
-	<!-- utilities -->
-
-	<div class="testnow-tailieu-wr">
-		<button class="testnow">Test now</button>
-		<button class="tailieu">Tai Lieu</button>
-	</div>
-
-	<div class="above-trynow">
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex in
-			itaque qui tempore minus ducimus magni, quam et consequatur cum
-			sed exercitationem fugit iusto a quasi culpa, enim necessitatibus.
-			Molestiae fuga, placeat quasi eum. Corporis, adipisci facilis in
-			quod.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-			Reiciendis, soluta.
-		</p>
-	</div>	
-
-	<div class="trynow-btn-wr">
-		<button>Try now</button>
-	</div>
-
-	<div class="article-slide-wr">
-		<div class="article-slide slick-initialized slick-slider slick-dotted"><button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="">Previous</button>
-			<div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4550px; transform: translate3d(-1050px, 0px, 0px);"><div class="one-article slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="0"><img id="img-1" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="0">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide11" aria-describedby="slick-slide-control11">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="0"><img id="img-1" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="0">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 350px;" tabindex="0" role="tabpanel" id="slick-slide12" aria-describedby="slick-slide-control12">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="0"><img id="img-1" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="0">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide" data-slick-index="3" aria-hidden="true" style="width: 350px;" tabindex="-1" role="tabpanel" id="slick-slide13" aria-describedby="slick-slide-control13">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="img-1" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide" data-slick-index="4" aria-hidden="true" style="width: 350px;" tabindex="-1" role="tabpanel" id="slick-slide14" aria-describedby="slick-slide-control14">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="img-1" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div><div class="one-article slick-slide slick-cloned" data-slick-index="9" aria-hidden="true" style="width: 350px;" tabindex="-1">
-				<div class="img-slide-wr">
-					<a href="#" onclick="return false;" tabindex="-1"><img id="" src="{{asset('./Catopiana_files/Random-Pictures-of-Conceptual-and-Creative-Ideas-02.jpg')}}" alt=""></a>
-				</div>
-
-				<a href="#" onclick="return false;" tabindex="-1">
-					<p class="slide-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Ratione porro quia facere commodi laboriosam eius est
-						obcaecati, incidunt nemo, atque aliquid fugiat delectus,
-						accusantium quas.
-					</p>
-				</a>
-			</div></div></div>
-
-			
-
-			
-
-			
-
-			
-		<button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next</button><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control10" aria-controls="slick-slide10" aria-label="1 of 2" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control11" aria-controls="slick-slide11" aria-label="2 of 2" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control12" aria-controls="slick-slide12" aria-label="3 of 2" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control13" aria-controls="slick-slide13" aria-label="4 of 2" tabindex="-1">4</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control14" aria-controls="slick-slide14" aria-label="5 of 2" tabindex="-1">5</button></li></ul></div>
-	</div>
-</div>
 </section>
 @endsection
