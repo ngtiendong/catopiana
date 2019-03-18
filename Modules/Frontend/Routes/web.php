@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('frontend')->group(function() {
+Route::group([], function() {
     Route::get('/', 'FrontendController@index');
 });
