@@ -43,10 +43,10 @@
 			</div>
 			<div class="col-lg-12">
 	  			<div class="bigwhale">
-					<a class="test-now">
+					<a class="test-now" href="#list-test">
 						<img src="{{asset('./Catopiana_files/images/whale.png')}}">
 					</a>
-	    			<div class="bg"></div>
+	    			<div class="bg" id="list-test"></div>
 	  			</div>
 			</div>
 			</div>
@@ -54,6 +54,7 @@
 		<img class="boy" src="{{asset('./Catopiana_files/images/boy.png')}}" alt="">
 		<img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
 	</div>
+	<div ></div>
 	<div class="container list-test">
 			<div class="row">
 			<div class="top">
@@ -88,6 +89,7 @@
 		<img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
 		<img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
 	</div>
+
 	<img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
@@ -98,7 +100,7 @@
 <section id="for-parent">
 	<div class="container">
 		<div class="for-parent-title">
-			<img src="{{asset('./Catopiana_files/images/for-parent.png')}}" alt="">
+{{--			<img src="{{asset('./Catopiana_files/images/for-parent.png')}}" alt="">--}}
 		</div>
 		<div class="for-parent-content">
 			<p>
@@ -113,55 +115,7 @@
 				quidem.
 			</p>
 		</div>
-			<!-- utilities -->
-		<div class="ultilities-wr">
-			<div class="ult-slide">
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon3.png')}}" alt="">
-					</div>
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
-					</div>
 
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<!-- utilities -->
 
@@ -271,6 +225,57 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- utilities -->
+		<div class="ultilities-wr">
+			<div class="ult-slide">
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon3.png')}}" alt="">
+					</div>
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 	</div>
 </section>

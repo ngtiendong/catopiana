@@ -39,7 +39,7 @@
 			@include('frontend::layouts.footer')
 		</div>
 		@include('frontend::layouts.script')
-	
+
 
 		<div id="lbdictex_find_popup" class="lbexpopup hidden" style="position: absolute; top: 0px; left: 0px;">
 			<div class="lbexpopup_top">

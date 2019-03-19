@@ -1109,6 +1109,14 @@ footer .col {
   width: 100%
 }
 
+#id2 .container .test-item {
+  display: block;
+  width: 100px;
+  margin: 0 50px 40px;
+  position: relative;
+  z-index: 5;
+}
+
 #id2 .test-item {
   display: block;
   width: 100px;
@@ -1930,7 +1938,7 @@ footer .col {
 
 .ultilities-wr .slick-next,
 .ultilities-wr .slick-prev {
-  top: var(--imageheight2); }
+  /*top: var(--imageheight2); }*/
 
 .slick-next {
   right: -20px;
