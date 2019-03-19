@@ -116,7 +116,7 @@ jQuery(function($) {
 
 	UI.init();
 
-	// animation 
+	// animation
 	tn = new TimelineMax({ repeat: -1, yoyo: true });
 	tn.fromTo('.test-now', 4, {skewY:"-1deg", transformOrigin:"50% 50%", x:-20, ease:Power0.easeNone}, {skewY:"1deg", transformOrigin:"50% 50%", x:20, ease:Power0.easeNone}, 0.1)
 	wave = new TimelineMax({ repeat: -1, yoyo: false });
@@ -147,15 +147,15 @@ jQuery(function($) {
 	f51 = new TimelineMax({ repeat: -1, yoyo: true });
 	f51.fromTo('.f5', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
-	f6 = new TimelineMax({ repeat: -1, yoyo: false });
-	f6.fromTo('.f6', 40, {css:{'left':'100%'}}, {css:{'left':'-200px'}}, 0)
-	f61 = new TimelineMax({ repeat: -1, yoyo: true });
-	f61.fromTo('.f6' , 1, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
-
-	f7 = new TimelineMax({ repeat: -1, yoyo: false });
-	f7.fromTo('.f7', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
-	f71 = new TimelineMax({ repeat: -1, yoyo: true });
-	f71.fromTo('.f7', 1, {skewY:"-12deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-15deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	// f6 = new TimelineMax({ repeat: -1, yoyo: false });
+	// f6.fromTo('.f6', 40, {css:{'left':'100%'}}, {css:{'left':'-200px'}}, 0)
+	// f61 = new TimelineMax({ repeat: -1, yoyo: true });
+	// f61.fromTo('.f6' , 1, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	//
+	// f7 = new TimelineMax({ repeat: -1, yoyo: false });
+	// f7.fromTo('.f7', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
+	// f71 = new TimelineMax({ repeat: -1, yoyo: true });
+	// f71.fromTo('.f7', 1, {skewY:"-12deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-15deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	// submarine
 	s1 = new TimelineMax({ repeat: -1, yoyo: true });
@@ -188,25 +188,25 @@ jQuery(function($) {
 	b4 = new TimelineMax({ repeat: -1 });
 	b4.from('.b4', 0.5, {y:150, opacity: 0}, 1)
 		.to('.b4', 5, {y:-50, opacity: 1}, 1)
-		
+
 
 	var tl, tl2;
-	// $('.test-now').hover(function() {
-	// 	tl = new TimelineMax({ repeat: -1, yoyo: true });
-	// 	tl.staggerTo('.test-item', 0.3, {scale: 1.3}, 0.1);
-	// }, function() {
-	// 	tl.restart();
-	// 	tl.pause();
-	// });
-	//
-	// tl2 = new TimelineMax({ repeat: -1, yoyo: true });
-	// 	tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.1);
-	// $('.science').hover(function() {
-	// 	tl2.play();
-	// }, function() {
-	// 	tl2.restart();
-	// 	tl2.pause();
-	// });
+	$('.test-now').hover(function() {
+		tl = new TimelineMax({ repeat: -1, yoyo: true });
+		tl.staggerTo('.test-item', 0.3, {scale: 1.3}, 0.1);
+	}, function() {
+		tl.restart();
+		tl.pause();
+	});
+
+	tl2 = new TimelineMax({ repeat: -1, yoyo: true });
+		tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.1);
+	$('.science').hover(function() {
+		tl2.play();
+	}, function() {
+		tl2.restart();
+		tl2.pause();
+	});
 
 	$($('.test-item')).hover(function() {
 		tlgt = new TimelineMax();
@@ -222,7 +222,7 @@ jQuery(function($) {
 
 	// end animation
 
-	
+
 	var ii = 0;
 	$('.test-now').click(function() {
 		ii++;
@@ -252,7 +252,7 @@ jQuery(function($) {
 
 	// 	var possibleName = "0123456789";
 	// 	var possiblePass = "AaBbCcDdEeFfJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-		
+
 	// 	for (var i = 0; i < 5; i++) {
 	// 		uname += possibleName.charAt(Math.floor(Math.random() * possibleName.length));
 	// 		upass += possiblePass.charAt(Math.floor(Math.random() * possiblePass.length));
@@ -291,7 +291,7 @@ jQuery(function($) {
 // 		};
 // // 		var url = "http://localhost/cat/create-user.php";
 // 		var url = "http://catopiana.com/create-user.php";
-	
+
 // 		$.post(url, data, function (json) {});
 // 	});
 })

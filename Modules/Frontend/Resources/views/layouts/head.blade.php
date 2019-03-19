@@ -6,7 +6,9 @@
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/slick.css')}}">
-
+	<link rel="stylesheet" href="{{asset('/Catopiana_files/style.css')}}"/>
+	<link rel="stylesheet" href="{{asset('/Catopiana_files/jquery-ui.min.css')}}"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
 	{{-- <link rel="dns-prefetch" href="http://s.w.org/"> --}}
 	
 	<style type="text/css">

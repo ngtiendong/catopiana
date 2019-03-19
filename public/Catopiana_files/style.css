@@ -33,6 +33,10 @@ footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   font-weight: inherit;
   font-style: inherit; }
 
+html {
+  scroll-behavior: smooth;
+}
+
 b, strong, th {
   font-weight: bold; }
 
