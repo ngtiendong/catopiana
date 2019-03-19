@@ -88,6 +88,7 @@
 		<img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
 		<img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
 	</div>
+
 	<img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
@@ -112,55 +113,6 @@
 				vero aut amet quae inventore fugiat in praesentium natus cumque
 				quidem.
 			</p>
-		</div>
-			<!-- utilities -->
-		<div class="ultilities-wr">
-			<div class="ult-slide">
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon3.png')}}" alt="">
-					</div>
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-				<div class="one-ult">
-					<div class="img-ult-wr">
-						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
-					</div>
-
-					<div class="ult-content">
-						<p>Lorem ipsum dolor sit amet.</p>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!-- utilities -->
@@ -271,6 +223,57 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- utilities -->
+		<div class="ultilities-wr">
+			<div class="ult-slide">
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon3.png')}}" alt="">
+					</div>
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon2.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+				<div class="one-ult">
+					<div class="img-ult-wr">
+						<img src="{{asset('./Catopiana_files/images/icon1.png')}}" alt="">
+					</div>
+
+					<div class="ult-content">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 	</div>
 </section>

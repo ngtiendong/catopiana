@@ -191,28 +191,28 @@ jQuery(function($) {
 		
 
 	var tl, tl2;
-	$('.test-now').hover(function() {
-		tl = new TimelineMax({ repeat: -1, yoyo: true });
-		tl.staggerTo('.test-item', 0.3, {scale: 1.3}, 0.1);
-	}, function() {
-		tl.restart();
-		tl.pause();
-	});
-
-	tl2 = new TimelineMax({ repeat: -1, yoyo: true });
-		tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.1);
-	$('.science').hover(function() {
-		tl2.play();
-	}, function() {
-		tl2.restart();
-		tl2.pause();
-	});
+	// $('.test-now').hover(function() {
+	// 	tl = new TimelineMax({ repeat: -1, yoyo: true });
+	// 	tl.staggerTo('.test-item', 0.3, {scale: 1.3}, 0.1);
+	// }, function() {
+	// 	tl.restart();
+	// 	tl.pause();
+	// });
+	//
+	// tl2 = new TimelineMax({ repeat: -1, yoyo: true });
+	// 	tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.1);
+	// $('.science').hover(function() {
+	// 	tl2.play();
+	// }, function() {
+	// 	tl2.restart();
+	// 	tl2.pause();
+	// });
 
 	$($('.test-item')).hover(function() {
 		tlgt = new TimelineMax();
-		tlgt.to($(this), 0.3, {scale: 1.3}, 0.1);
+		tlgt.to($(this), 0.05, {scale: 1.3}, 0.1);
 		tlgt1 = new TimelineMax({ repeat: -1, yoyo: true });
-		tlgt1.fromTo($(this), 0.3, {rotation:-10, transformOrigin:"50% 50%"}, {rotation:10, transformOrigin:"50% 50%"}, 0.1);
+		tlgt1.fromTo($(this), 0.05, {rotation:-10, transformOrigin:"50% 50%"}, {rotation:10, transformOrigin:"50% 50%"}, 0.1);
 	}, function() {
 		tlgt.restart();
 		tlgt.pause();

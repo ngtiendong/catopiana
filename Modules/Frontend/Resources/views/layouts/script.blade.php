@@ -1,12 +1,12 @@
-<script src="{{asset('./Catopiana_files/jquery.js')}}"></script>
-<script src="{{asset('./Catopiana_files/gsap.min.js')}}"></script>
-<script src="{{asset('./Catopiana_files/scrollMagic.min.js')}}"></script>
-<script src="{{asset('./Catopiana_files/animation.gsap.min.js')}}"></script>
-<script src="{{asset('./Catopiana_files/slick.min.js')}}"></script>
-<script src="{{asset('./Catopiana_files/user.js')}}"></script>
-<script src="{{asset('./Catopiana_files/script.js')}}"></script>
-<script src="{{asset('./Catopiana_files/calculation.js')}}"></script>
-<script type="text/javascript" src="{{asset('./Catopiana_files/wp-embed.min.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/jquery.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/gsap.min.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/scrollMagic.min.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/animation.gsap.min.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/slick.min.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/user.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/script.js')}}"></script>
+<script src="{{asset('./Catopiana_files/js/calculation.js')}}"></script>
+<script type="text/javascript" src="{{asset('./Catopiana_files/js/wp-embed.min.js')}}"></script>
 <script>
 	$('.d-nav').hc_menu({
 			open: '.open-mnav',
