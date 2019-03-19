@@ -588,12 +588,13 @@ header {
         transform: translateY(-50%); }
         .d-nav .psy-pane li a.active {
           color: #fd6c1e; }
-      .d-nav .psy-pane li.home a {
-        left: 70px; }
-      .d-nav .psy-pane li.contact a {
-        left: 60px; }
-      .d-nav .psy-pane li:nth-child(3) a {
-        left: 50px; }
+      /*.d-nav .psy-pane li.home a {*/
+        /*left: 70px; }*/
+      /*.d-nav .psy-pane li.contact a {*/
+        /*left: 60px; */
+      /*}*/
+      /*.d-nav .psy-pane li:nth-child(3) a {*/
+        /*left: 50px; }*/
       .d-nav .psy-pane li:hover a {
         color: #fd6c1e; }
   .d-nav .top-right-menu {
