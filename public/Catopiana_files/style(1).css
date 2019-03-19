@@ -1061,15 +1061,15 @@ footer .col {
   align-items: center
 }
 
-.page-template #id2 .container .whale {
+.section-test#id2 .container .whale {
   position: relative;
 }
 
-.page-template #id2 .container .row.tn {
+.section-test#id2 .container .row.tn {
   position: absolute;
 }
 
-.page-template #id2 .container .bigwhale {
+.section-test#id2 .container .bigwhale {
   margin-bottom: 50px;
 }
 
@@ -1546,7 +1546,7 @@ footer .col {
   position: relative;
   z-index: 5; }
 
-.page-template #id2 {
+.section-test#id2 {
   margin-top: 70px; }
 
 .testOverlay {
@@ -1587,7 +1587,7 @@ footer .col {
   transition: all ease-in-out 0.5s;
 }
 
-.page-template .tab {
+.section-test .tab {
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1599,18 +1599,18 @@ footer .col {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
-  .page-template .tab > img, .page-template .question > img {
+  .section-test .tab > img, .section-test .question > img {
     width: 200px; }
-  .page-template .question {
+  .section-test .question {
     cursor: pointer;
     position: relative;
   }
-  .page-template .question i, .page-template .tab .answer label i {
+  .section-test .question i, .section-test .tab .answer label i {
     position: absolute;
     bottom: 10px;
     left: 10px;
   }
-  .page-template .tab .answer {
+  .section-test .tab .answer {
     margin-top: 50px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1622,7 +1622,7 @@ footer .col {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; }
-    .page-template .tab .answer label {
+    .section-test .tab .answer label {
       transition: all linear 0.3s;
       position: relative;
       display: -webkit-box;
@@ -1635,16 +1635,16 @@ footer .col {
       -ms-flex-align: center;
       align-items: center;
       cursor: pointer; }
-      .page-template .tab .answer label:hover span:before {
+      .section-test .tab .answer label:hover span:before {
         opacity: .3; }
-      .page-template .tab .answer label img {
+      .section-test .tab .answer label img {
         width: 100px; }
-      .page-template .tab .answer label input {
+      .section-test .tab .answer label input {
         position: absolute;
         opacity: 0; }
-        .page-template .tab .answer label input:checked ~ span:before {
+        .section-test .tab .answer label input:checked ~ span:before {
           opacity: 1; }
-      .page-template .tab .answer label span {
+      .section-test .tab .answer label span {
         position: absolute;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -1664,13 +1664,13 @@ footer .col {
         font: normal normal normal 14px/1 FontAwesome;
         font-size: 18px;
         color: #D68657; }
-        .page-template .tab .answer label span:before {
+        .section-test .tab .answer label span:before {
           position: absolute;
           top: 0;
           left: 0;
           content: "\f00c";
           opacity: 0; }
-.page-template .tab .question {
+.section-test .tab .question {
   margin-top: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1682,7 +1682,7 @@ footer .col {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
-  .page-template .tab .question label {
+  .section-test .tab .question label {
     transition: all linear 0.3s;
     position: relative;
     display: -webkit-box;
@@ -1695,16 +1695,16 @@ footer .col {
     -ms-flex-align: center;
     align-items: center;
     cursor: pointer; }
-    .page-template .tab .question label:hover span:before {
+    .section-test .tab .question label:hover span:before {
       opacity: .3; }
-    .page-template .tab .question label img {
+    .section-test .tab .question label img {
       width: 100px; }
-    .page-template .tab .question label input {
+    .section-test .tab .question label input {
       position: absolute;
       opacity: 0; }
-      .page-template .tab .question label input:checked ~ span:before {
+      .section-test .tab .question label input:checked ~ span:before {
         opacity: 1; }
-    .page-template .tab .question label span {
+    .section-test .tab .question label span {
       position: absolute;
       display: -webkit-box;
       display: -ms-flexbox;
@@ -1724,14 +1724,14 @@ footer .col {
       font: normal normal normal 14px/1 FontAwesome;
       font-size: 18px;
       color: #D68657; }
-      .page-template .tab .question label span:before {
+      .section-test .tab .question label span:before {
         position: absolute;
         top: 0;
         left: 0;
         content: "\f00c";
         opacity: 0; }
 
-.page-template .btn {
+.section-test .btn {
   position: absolute;
   top: 50%;
   width: 100%;
@@ -1742,7 +1742,7 @@ footer .col {
   -ms-flex-pack: distribute;
   justify-content: space-between; }
 
-.page-template .btn button {
+.section-test .btn button {
   position: absolute;
   top: 0;
   background: orange;
@@ -1766,11 +1766,11 @@ footer .col {
 #nextBtn {
   right: -70px;
 }
-.page-template button:hover {
+.section-test button:hover {
   margin-top: 5px;
   box-shadow: 0 0 0; }
 
-.page-template .dot {
+.section-test .dot {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -1778,7 +1778,7 @@ footer .col {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
-.page-template .step {
+.section-test .step {
   height: 15px;
   width: 15px;
   margin: 0 2px;
@@ -1788,11 +1788,11 @@ footer .col {
   display: inline-block;
   opacity: 0.5; }
 
-.page-template .step.active {
+.section-test .step.active {
   opacity: 1;
   background: #D68657; }
 
-.page-template .step.finish {
+.section-test .step.finish {
   background-color: #D68657; }
 
 .acd-drop:after {

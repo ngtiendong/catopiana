@@ -15,7 +15,15 @@ class FrontendController extends Controller
     public function index()
     {
         return view('frontend::home');
-        // return view('frontend::index');
+    }
+
+    /**
+     * Display a creative page
+     * @return Response
+     */
+    public function test()
+    {
+        return view('frontend::test');
     }
 
     /**
