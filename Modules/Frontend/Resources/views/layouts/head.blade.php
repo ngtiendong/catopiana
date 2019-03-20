@@ -31,4 +31,6 @@
 	{{-- <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://catopiana.com/wp-includes/wlwmanifest.xml">  --}}
 	{{-- <meta name="generator" content="WordPress 5.1.1"> --}}
 
+	<link rel="stylesheet" href="{{asset('./Catopiana_files/sweetalert2.min.css')}}">
+
 </head>

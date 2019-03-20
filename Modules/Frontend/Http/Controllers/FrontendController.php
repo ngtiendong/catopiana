@@ -26,6 +26,15 @@ class FrontendController extends Controller
         return view('frontend::test');
     }
 
+     /**
+     * Display a music page
+     * @return Response
+     */
+    public function music()
+    {
+        return view('frontend::music');
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -85,4 +94,37 @@ class FrontendController extends Controller
     {
         //
     }
+
+    public function getQA(Request $request)
+    {
+        $level = $request->level;
+        $questionAnswer = [
+            'question' => asset('/test/images/'.$level.'age/'. $request->num.'A.png'),
+            'answers' => [
+                asset('/test/images/'.$level.'age/'. $request->num.'A.png'),
+                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
+                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
+                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
+            ],
+            'correct' => 0
+        ];
+        return response()->json($questionAnswer,200);
+    }
+
+    public function getQAAudio(Request $request)
+    {
+        $questionAnswer = [
+            'question' => asset('/test/audios/cau'. $request->num.'/question.mov'),
+            'answers' => [
+                asset('/test/audios/cau'. $request->num.'/A.mov'),
+                asset('/test/audios/cau'. $request->num.'/B.mov'),
+                asset('/test/audios/cau'. $request->num.'/C.mov'),
+            ],
+            'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+            'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
+            'correct' => 0
+        ];
+        return response()->json($questionAnswer,200);
+    }
+
 }

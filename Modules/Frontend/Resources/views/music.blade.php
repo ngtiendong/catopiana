@@ -19,28 +19,6 @@
                 <div class="testOverlay">
                     <a class="startBtn">Click To Start!</a>
                     <form id="testForm">
-                    	{{-- <div class="tab" style="display: flex;">
-                            <img class="question" src="{{asset('./Catopiana_files/images/test/3.jpg')}}" alt="">
-                            <div class="answer">
-                                <label class="col-6">
-	                                <input type="radio" name="Q3" value="A">
-	                                <img src="{{asset('./Catopiana_files/images/test/3a.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="B">
-	                                <img src="{{asset('./Catopiana_files/images/test/3b.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="C">
-	                                <img src="{{asset('./Catopiana_files/images/test/3c.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="D">
-	                                </audio>
-	                                <img src="{{asset('./Catopiana_files/images/test/3d.jpg')}}" alt="">
-	                            </label>
-                        	</div>
-                        </div> --}}
                         <div class="btn button-np">
                             <button type="button" id="prevBtn" onclick="prev()">Previous</button>
                             <button type="button" id="nextBtn" onclick="next()">Next</button>
@@ -196,7 +174,6 @@
 	    console.log(currentTab);
 	});
 </script> --}}
-
-<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/test.js')}}"></script>
+<script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
+<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>
 @endpush
