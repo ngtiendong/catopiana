@@ -13,4 +13,12 @@
 
 Route::group([], function() {
     Route::get('/', 'FrontendController@index');
+    Route::get('/creative', 'FrontendController@test')->name('creative');
+    Route::get('/id', 'FrontendController@test')->name('id');
+    Route::get('/music', 'FrontendController@test')->name('music');
+    Route::get('/common', 'FrontendController@test')->name('common');
+    Route::get('/difference', 'FrontendController@test')->name('difference');
+    Route::get('/memory', 'FrontendController@test')->name('memory');
+    Route::get('/language', 'FrontendController@test')->name('language');
+    Route::get('/position', 'FrontendController@test')->name('position');
 });

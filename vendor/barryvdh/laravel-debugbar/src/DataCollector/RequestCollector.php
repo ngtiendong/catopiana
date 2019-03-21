@@ -5,8 +5,6 @@ namespace Barryvdh\Debugbar\DataCollector;
 use DebugBar\DataCollector\DataCollector;
 use DebugBar\DataCollector\DataCollectorInterface;
 use DebugBar\DataCollector\Renderable;
-use Laravel\Telescope\IncomingEntry;
-use Laravel\Telescope\Telescope;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -22,8 +20,6 @@ class RequestCollector extends DataCollector implements DataCollectorInterface, 
     protected $response;
     /** @var  \Symfony\Component\HttpFoundation\Session\SessionInterface $session */
     protected $session;
-    /** @var string|null */
-    protected $currentRequestId;
 
     /**
      * Create a new SymfonyRequestCollector
@@ -32,12 +28,11 @@ class RequestCollector extends DataCollector implements DataCollectorInterface, 
      * @param \Symfony\Component\HttpFoundation\Request $response
      * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
      */
-    public function __construct($request, $response, $session = null, $currentRequestId = null)
+    public function __construct($request, $response, $session = null)
     {
         $this->request = $request;
         $this->response = $response;
         $this->session = $session;
-        $this->currentRequestId = $currentRequestId;
     }
 
     /**
@@ -56,7 +51,7 @@ class RequestCollector extends DataCollector implements DataCollectorInterface, 
         return [
             "request" => [
                 "icon" => "tags",
-                "widget" => "PhpDebugBar.Widgets.HtmlVariableListWidget",
+                "widget" => "PhpDebugBar.Widgets.VariableListWidget",
                 "map" => "request",
                 "default" => "{}"
             ]
@@ -91,19 +86,19 @@ class RequestCollector extends DataCollector implements DataCollectorInterface, 
         $statusCode = $response->getStatusCode();
 
         $data = [
-            'path_info' => $request->getPathInfo(),
-            'status_code' => $statusCode,
-            'status_text' => isset(Response::$statusTexts[$statusCode]) ? Response::$statusTexts[$statusCode] : '',
             'format' => $request->getRequestFormat(),
             'content_type' => $response->headers->get('Content-Type') ? $response->headers->get(
                 'Content-Type'
             ) : 'text/html',
+            'status_text' => isset(Response::$statusTexts[$statusCode]) ? Response::$statusTexts[$statusCode] : '',
+            'status_code' => $statusCode,
             'request_query' => $request->query->all(),
             'request_request' => $request->request->all(),
             'request_headers' => $request->headers->all(),
             'request_server' => $request->server->all(),
             'request_cookies' => $request->cookies->all(),
             'response_headers' => $responseHeaders,
+            'path_info' => $request->getPathInfo(),
         ];
 
         if ($this->session) {
@@ -128,28 +123,14 @@ class RequestCollector extends DataCollector implements DataCollectorInterface, 
         if (isset($data['request_server']['PHP_AUTH_PW'])) {
             $data['request_server']['PHP_AUTH_PW'] = '******';
         }
-       ;
 
         foreach ($data as $key => $var) {
             if (!is_string($data[$key])) {
-                $data[$key] = DataCollector::getDefaultVarDumper()->renderVar($var);
-            } else {
-                $data[$key] = e($data[$key]);
+                $data[$key] = $this->formatVar($var);
             }
-
         }
 
-        $htmlData = [];
-        if (class_exists(Telescope::class)) {
-            $entry = IncomingEntry::make([
-                'requestId' => $this->currentRequestId,
-            ])->type('debugbar');
-            Telescope::$entriesQueue[] = $entry;
-            $url = route('debugbar.telescope', [$entry->uuid]);
-            $htmlData['telescope'] = '<a href="'.$url.'" target="_blank">View in Telescope</a>';
-        }
-
-        return $htmlData + $data;
+        return $data;
     }
 
     private function getCookieHeader($name, $value, $expires, $path, $domain, $secure, $httponly)

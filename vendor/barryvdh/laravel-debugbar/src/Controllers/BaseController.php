@@ -3,7 +3,6 @@
 use Barryvdh\Debugbar\LaravelDebugbar;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Laravel\Telescope\Telescope;
 
 if (class_exists('Illuminate\Routing\Controller')) {
 
@@ -18,13 +17,6 @@ if (class_exists('Illuminate\Routing\Controller')) {
             if ($request->hasSession()){
                 $request->session()->reflash();
             }
-
-            $this->middleware(function ($request, $next) {
-                if (class_exists(Telescope::class)) {
-                    Telescope::stopRecording();
-                }
-                return $next($request);
-            });
         }
     }
 
