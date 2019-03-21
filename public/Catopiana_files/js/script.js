@@ -239,12 +239,12 @@ jQuery(function($) {
 		console.log('logged in')
 	}
 
-	$('.startBtn').click(function(){
-		$(this).css('opacity','0').css('z-index','-1');
-		setTimeout(function(){
-			$('#testForm').css('display','block').css('opacity','1')
-		}, 700)
-	});
+	// $('.startBtn').click(function(){
+	// 	$(this).css('opacity','0').css('z-index','-1');
+	// 	setTimeout(function(){
+	// 		$('#testForm').css('display','block').css('opacity','1')
+	// 	}, 700)
+	// });
 
 	// $(document).on('click', '.submitName', function(){
 	// 	var uname = "",
