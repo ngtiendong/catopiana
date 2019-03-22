@@ -5,6 +5,8 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Routing\Route;
+use Modules\Frontend\Entities\Question;
 
 class FrontendController extends Controller
 {
@@ -23,7 +25,8 @@ class FrontendController extends Controller
      */
     public function test()
     {
-        return view('frontend::test');
+        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::test', compact('type'));
     }
 
      /**
@@ -32,7 +35,8 @@ class FrontendController extends Controller
      */
     public function music()
     {
-        return view('frontend::music');
+        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::music', compact('type'));
     }
 
     /**
@@ -44,55 +48,28 @@ class FrontendController extends Controller
         return view('frontend::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function getListQuestion(Request $request)
     {
-        //
-    }
+        $params = $request->all();
+        if (!empty($params['type']) || !empty($params['level'])) {
+            if ($params['type'] == "1"){
+                //Audio
+                $raw_data = Question::getListQuestionAudio($params['type'], $params['level']);
+            }else {
+                $raw_data = Question::getListQuestion($params['type'], $params['level']);
+            }
+//            dd($raw_data);
+            return [
+                'status' => 1,
+                'question_data' => $raw_data
+            ];
+        } else {
+            return [
+                'status' => 0
+            ];
+        }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('frontend::show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('frontend::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function getQA(Request $request)
@@ -127,4 +104,38 @@ class FrontendController extends Controller
         return response()->json($questionAnswer,200);
     }
 
+    public function getTypeId($name)
+    {
+        switch ($name) {
+            case 'music':
+                return 1;
+                break;
+            case 'iq':
+                return 2;
+                break;
+            case 'creative':
+                return 3;
+                break;
+            case 'difference':
+                return 4;
+                break;
+            case 'common':
+                return 5;
+                break;
+            case 'memory':
+                return 6;
+                break;
+            case 'language':
+                return 7;
+                break;
+            case 'position':
+                return 8;
+                break;
+            default:
+                return 0;
+                break;
+        }
+
+
+    }
 }

@@ -12,7 +12,7 @@ var music_image = '<svg id="play"  viewBox="0 0 163 163" version="1.1" xmlns="ht
 			'        </g>'+
 			'    </g>'+
 			'</svg>';
-	
+
 
 	$('.startBtn').click(async function(){
 		  $(this).css('opacity','0').css('z-index','-1');
@@ -107,7 +107,7 @@ var music_image = '<svg id="play"  viewBox="0 0 163 163" version="1.1" xmlns="ht
 		    currentTab = currentTab + 1;
 		    getQASound( currentTab + 1)
 	    }
-	    
+
 	}
 
 	function prev() {
@@ -117,17 +117,17 @@ var music_image = '<svg id="play"  viewBox="0 0 163 163" version="1.1" xmlns="ht
 	    // reder html
 	    currentTab = currentTab - 1;
 	    showTab(currentTab);
-	    
+
 	}
 
 	function render(question, answers, question_image, answer_image){
 		var answerHTML = "";
 		answers.forEach(function(el) {
-				answerHTML += "<label class='col-6'>" +
+				answerHTML += "<label class='col-4'>" +
                                 "<input type='radio' name='' value='A'>" +
                                 "<img class='audio-image' src='" + answer_image +"' alt=''>" +
                                 "<audio src='"+ el+"' class='audio'></audio>" +
-                            "</label>" 
+                            "</label>"
 
 			});
 	    var content = "<div class='tab' style='display: none;'>" +

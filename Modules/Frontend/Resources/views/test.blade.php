@@ -17,38 +17,22 @@
             </div>
             <div class="col-lg-12">
                 <div class="testOverlay">
+                    <input id="type" value="{{$type}}" hidden>
                     <a class="startBtn">Click To Start!</a>
                     <form id="testForm">
-                    	{{-- <div class="tab" style="display: flex;">
-                            <img class="question" src="{{asset('./Catopiana_files/images/test/3.jpg')}}" alt="">
-                            <div class="answer">
-                                <label class="col-6">
-	                                <input type="radio" name="Q3" value="A">
-	                                <img src="{{asset('./Catopiana_files/images/test/3a.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="B">
-	                                <img src="{{asset('./Catopiana_files/images/test/3b.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="C">
-	                                <img src="{{asset('./Catopiana_files/images/test/3c.jpg')}}" alt="">
-	                            </label>
-	                            <label class="col-6">
-	                                <input type="radio" name="Q3" value="D">
-	                                </audio>
-	                                <img src="{{asset('./Catopiana_files/images/test/3d.jpg')}}" alt="">
-	                            </label>
-                        	</div>
-                        </div> --}}
+
                         <div class="btn button-np">
                             <button type="button" id="prevBtn" onclick="prev()">Previous</button>
                             <button type="button" id="nextBtn" onclick="next()">Next</button>
+                            <button type="submit" id="submitBtn" style="display: none">Submit</button>
                         </div>
                         <div class="dot">
-                           {{--  <span class="step active" onclick="currentQ(0)"></span>
-                            <span class="step" onclick="currentQ(1)"></span>
-                            <span class="step" onclick="currentQ(2)"></span> --}}
+                            <span class="badge badge-pill badge-primary"></span>
+
+
+                            {{--<span class="step active" onclick="currentQ(0)"></span>--}}
+                            {{--<span class="step" onclick="currentQ(1)"></span>--}}
+                            {{--<span class="step" onclick="currentQ(2)"></span>--}}
                         </div>
                     </form>
                 </div>
@@ -59,7 +43,7 @@
     </div>
     <div class="container list-test">
         <div class="row">
-        
+
         </div>
     </div>
 </section>
@@ -73,7 +57,7 @@
 
 @push('js')
 
-
+<script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/test.js')}}"></script>
+<script src="{{asset('/js/temp.js')}}"></script>
 @endpush
