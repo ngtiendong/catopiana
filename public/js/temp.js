@@ -6,7 +6,7 @@ var type = $('#type').val()
 
 var this_question
 var position_this_question
-
+var buttonMemoryChecked = true;
 
 var style = '';
 var timeout = 5;
@@ -43,6 +43,7 @@ $('.startBtn').click(async function () {
                     cache: false,
 
                 }).then(function (response) {
+                    console.log(type, response)
                     if (response.status === 1) {
                         //Save local storage
                         testing_data = {
@@ -81,7 +82,9 @@ $('.startBtn').click(async function () {
                                 clearTimeout(timerId);
                                 timeout = 5;
                             }
+                            buttonMemoryChecked = false;
                             hideQuestion(currentTab);
+
                         }
 
                     }
@@ -143,8 +146,8 @@ function generateUnfinishedTest(current_data) {
     if (type == '1'){
         //Audio
         for (var i = 0; i<length_answered; i++) {
-            html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt=""><div class="answer">'+
-                '<audio src="'+ current_data.question_data[i].question +'" class="audio"></audio>'
+            html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
+                '<audio src="'+ current_data.question_data[i].question +'" class="audio"></audio>' + '<div class="answer">'
 
             var answer = ""
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
@@ -152,13 +155,13 @@ function generateUnfinishedTest(current_data) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
                     answer += '<label class="col-4" style="opacity: 1">' +
-                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'">' +
-                        '<img src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'">' +
+                        '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 } else {
                     answer += '<label class="col-4" style="opacity: 0.3"> ' +
-                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'">' +
-                        '<img src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'">' +
+                        '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 }
 
@@ -181,7 +184,10 @@ function generateUnfinishedTest(current_data) {
             if (type=='6') {
                 visibility = 'visibility: hidden;'
             }
-            html += '<div class="tab" style="display: none;"><img class="question" style="'+visibility+'" src="/test/images/'+current_data.question_data[i].question+'" alt=""><div class="answer">'
+            html += '<div class="tab" style="display: none;"><img class="question" style="'+visibility+'" src="/test/images/'+current_data.question_data[i].question+'" alt="">'
+            + '<p class="countDownTimer"></p>' +
+            "<div class='answer'>" ;
+
             var answer = ""
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
                 // console.log('i,j', j, i, current_data.answer[i])
@@ -222,6 +228,7 @@ function generateUnfinishedTest(current_data) {
             clearTimeout(timerId);
             timeout = 5;
         }
+        buttonMemoryChecked = false;
         hideQuestion(currentTab);
     }
 }
@@ -271,6 +278,7 @@ function getNewQuestionData(position) {
                         clearTimeout(timerId);
                         timeout = 5;
                     }
+                    buttonMemoryChecked = false;
                     hideQuestion(currentTab);
                 }
 
@@ -293,12 +301,14 @@ function displayTest() {
 
 function showTab(n) {
     //Badge
+    console.log(currentTab)
     $('.badge').text((currentTab+1)+' / '+total_question)
-
+    console.log(currentTab)
     //Button
     for (let i = 0; i < tab_number.length; i++) {
         tab_number[i].style.display = "none";
     }
+    console.log('n' + n)
     tab_number[n].style.display = "flex";
     // console.log(n, currentTab, total_question)
     if (n === 0) {
@@ -319,7 +329,7 @@ function showTab(n) {
 }
 
 function next(n) {
-    if(type == "6" &&timerId != null && timeout != 5 && timeout != -1)
+    if(type == "6" && buttonMemoryChecked == false)
     {
         return false;
     }
@@ -333,8 +343,8 @@ function next(n) {
     } else {
         tab_number[currentTab].style.display = "none";
         currentTab += 1
-        if (tab_number.length > currentTab){
-            // showTab(currentTab)
+        if (tab_number.length-1 > currentTab){
+            // showTab(currentTab);
         } else {
             //Lock and save answered
             just_answer = just_answer.data('position')
@@ -352,15 +362,25 @@ function next(n) {
             else {
                 render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
             }
-            showTab(currentTab)
-        }
 
+            if(type === '6'){
+                    //Memory
+                    if(timerId != null){
+                        clearTimeout(timerId);
+                        timeout = 5;
+                    }
+                    buttonMemoryChecked = false;
+                    hideQuestion(currentTab);
+                }
+            // showTab(currentTab)
+        }
+        showTab(currentTab)
     }
 
 }
 
 function prev() {
-    if(type == "6" &&timerId != null && timeout != 5 && timeout != -1)
+    if(type == "6" && buttonMemoryChecked == false)
     {
         return false;
     }
@@ -390,7 +410,8 @@ function render(question, answers) {
 
     let content = "<div class='tab' style='display: flex;'>" +
         "<img class='question' src='/test/images/" + question + "' alt=''>" +
-        "<div class='answer'>" +
+        '<p class="countDownTimer"></p>' +
+        "<div class='answer'"+ style +">" +
         answerHTML +
         "</div>" +
         "</div>";
@@ -404,7 +425,7 @@ function renderAudio(question, answers, question_image, answer_image){
     var answerHTML = "";
     answers.forEach(function(el, index) {
         answerHTML += "<label class='col-4'>" +
-            "<input type='radio' name='' value='"+el+"' data-position='"+index+"'>" +
+            "<input type='radio' style='z-index: -1;' name='' value='"+el+"' data-position='"+index+"'>" +
             "<img class='audio-image' src='" + answer_image +"' alt=''>" +
             "<audio src='"+ el+"' class='audio'></audio>" +
             "</label>"
@@ -417,19 +438,20 @@ function renderAudio(question, answers, question_image, answer_image){
         answerHTML +
         "</div>" +
         "</div>" ;
-
-    return content
     $('.button-np').before(content);
+    return content
+    
 }
 
 function hideQuestion(currentTab){
     var x = document.getElementsByClassName("tab");
     $(x[currentTab]).children('answer').css('visibility' ,'hidden')
     timerId = setInterval(function() {
-        if (timeout == -1) {
+        if (timeout == 0) {
             $(x[currentTab]).children('img').css('visibility' ,'hidden')
             $(x[currentTab]).children('.answer').css('visibility' ,'visible')
-            $('.countDownTimer').html( 'time out!')
+            $('.countDownTimer').html( 'Time out!')
+            buttonMemoryChecked = true;
             clearTimeout(timerId);
             timeout = 5;
         } else {

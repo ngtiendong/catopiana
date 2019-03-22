@@ -546,7 +546,8 @@ header {
   width: 100%;
   z-index: 10;
   background: url(/Catopiana_files/images/navbg@2x.png) top center/100% fixed no-repeat;
-  height: 180px; }
+  height: 180px;
+  pointer-events: auto; }
 
 .d-nav {
   display: -webkit-box;
