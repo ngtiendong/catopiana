@@ -29,7 +29,7 @@
 
 	$(document).on('mouseover', '.audio-image', function(event) {
 		event.preventDefault();
-		let music = $(this).siblings('.audio').attr('src');
+		var music = $(this).siblings('.audio').attr('src');
 		console.log(music);
 
 		var sound = new Howl({
@@ -39,7 +39,7 @@
 	});
 
 	function showTab(n) {
-	    for(let i=0; i<x.length; i++){
+	    for(var i=0; i<x.length; i++){
 	        x[i].style.display = "none";
 	    }
 	    x[n].style.display = "flex";
@@ -79,7 +79,7 @@
 		    currentTab = currentTab + 1;
 		    getQASound( currentTab + 1)
 	    }
-	    
+
 	}
 
 	function prev() {
@@ -89,7 +89,7 @@
 	    // reder html
 	    currentTab = currentTab - 1;
 	    showTab(currentTab);
-	    
+
 	}
 
 	function render(question, answers, question_image, answer_image){
@@ -99,7 +99,7 @@
                                 "<input type='radio' name='' value='A'>" +
                                 "<img class='audio-image' src='" + answer_image +"' alt=''>" +
                                 "<audio src='"+ el+"' class='audio'></audio>" +
-                            "</label>" 
+                            "</label>"
 
 			});
 	    var content = "<div class='tab' style='display: none;'>" +

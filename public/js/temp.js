@@ -29,7 +29,7 @@ $('.startBtn').click(async function () {
                 }).then(function (response) {
                     if (response.status === 1) {
                         //Save local storage
-                         testing_data = {
+                        testing_data = {
                             level: level,
                             question: []
                         };

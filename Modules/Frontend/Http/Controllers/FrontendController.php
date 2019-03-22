@@ -5,6 +5,7 @@ namespace Modules\Frontend\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Frontend\Entities\Question;
 
 class FrontendController extends Controller
 {
@@ -21,9 +22,9 @@ class FrontendController extends Controller
      * Display a creative page
      * @return Response
      */
-    public function test()
+    public function test($type)
     {
-        return view('frontend::test');
+        return view('frontend::test', compact('type'));
     }
 
      /**
@@ -44,55 +45,23 @@ class FrontendController extends Controller
         return view('frontend::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function getListQuestion(Request $request)
     {
-        //
-    }
+        $params = $request->all();
+        if (!empty($params['type']) || !empty($params['level'])) {
+            $raw_data = Question::getListQuestion($params['type'], $params['level']);
+//            dd($raw_data);
+            return [
+                'status' => 1,
+                'question_data' => $raw_data
+            ];
+        } else {
+            return [
+                'status' => 0
+            ];
+        }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('frontend::show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('frontend::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function getQA(Request $request)

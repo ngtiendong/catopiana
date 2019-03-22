@@ -3,14 +3,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Catopiana</title>
-	<link rel="stylesheet" href="{{asset('./Catopiana_files/bootstrap.min.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{asset('./Catopiana_files/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('./Catopiana_files/slick.css')}}">
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/style.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/jquery-ui.min.css')}}"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
 	{{-- <link rel="dns-prefetch" href="http://s.w.org/"> --}}
-	
+
 	<style type="text/css">
 		img.wp-smiley,
 		img.emoji {

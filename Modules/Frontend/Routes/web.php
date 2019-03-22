@@ -13,14 +13,18 @@
 
 Route::group([], function() {
     Route::get('/', 'FrontendController@index');
-    Route::get('/creative', 'FrontendController@test')->name('creative');
-    Route::get('/id', 'FrontendController@test')->name('id');
-    Route::get('/music', 'FrontendController@music')->name('music');
-    Route::get('/common', 'FrontendController@test')->name('common');
-    Route::get('/difference', 'FrontendController@test')->name('difference');
-    Route::get('/memory', 'FrontendController@test')->name('memory');
-    Route::get('/language', 'FrontendController@test')->name('language');
-    Route::get('/position', 'FrontendController@test')->name('position');
+    Route::get('/music-{type}', 'FrontendController@music')->name('music');
+    Route::get('/iq-{type}', 'FrontendController@test')->name('iq');
+    Route::get('/creative-{type}', 'FrontendController@test')->name('creative');
+    Route::get('/difference-{type}', 'FrontendController@test')->name('difference');
+
+    Route::get('/common-{type}', 'FrontendController@test')->name('common');
+    Route::get('/memory-{type}', 'FrontendController@test')->name('memory');
+    Route::get('/language-{type}', 'FrontendController@test')->name('language');
+    Route::get('/position-{type}', 'FrontendController@test')->name('position');
     Route::get('/getQA', 'FrontendController@getQA')->name('getQA');
     Route::get('/getQAAudio', 'FrontendController@getQAAudio')->name('getQAAudio');
+
+
+    Route::post('/get-list-question', 'FrontendController@getListQuestion');
 });
