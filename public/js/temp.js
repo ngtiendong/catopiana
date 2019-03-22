@@ -318,7 +318,7 @@ function showTab(n) {
 
 }
 
-function next(n) {
+function next() {
     if(type == "6" &&timerId != null && timeout != 5 && timeout != -1)
     {
         return false;
@@ -334,7 +334,7 @@ function next(n) {
         tab_number[currentTab].style.display = "none";
         currentTab += 1
         if (tab_number.length > currentTab){
-            // showTab(currentTab)
+            showTab(currentTab)
         } else {
             //Lock and save answered
             just_answer = just_answer.data('position')
@@ -417,9 +417,9 @@ function renderAudio(question, answers, question_image, answer_image){
         answerHTML +
         "</div>" +
         "</div>" ;
+    $('.button-np').before(content);
 
     return content
-    $('.button-np').before(content);
 }
 
 function hideQuestion(currentTab){
