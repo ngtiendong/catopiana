@@ -345,6 +345,7 @@ function next(n) {
         currentTab += 1
         if (tab_number.length-1 > currentTab){
             // showTab(currentTab);
+
         } else {
             //Lock and save answered
             just_answer = just_answer.data('position')
@@ -440,7 +441,6 @@ function renderAudio(question, answers, question_image, answer_image){
         "</div>" ;
     $('.button-np').before(content);
     return content
-    
 }
 
 function hideQuestion(currentTab){
