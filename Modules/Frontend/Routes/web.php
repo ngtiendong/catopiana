@@ -21,7 +21,7 @@ Route::group([], function() {
     Route::get('/common', 'FrontendController@test')->name('common');
     Route::get('/memory', 'FrontendController@test')->name('memory');
     Route::get('/language', 'FrontendController@test')->name('language');
-    Route::get('/position', 'FrontendController@test')->name('position');
+    Route::get('/position', 'FrontendController@position')->name('position');
 
 
 

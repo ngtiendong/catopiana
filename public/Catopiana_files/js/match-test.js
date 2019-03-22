@@ -1,71 +1,54 @@
 	var currentTab = 0;
-	var x = document.getElementsByClassName("tab");
-	connectDivs("left", "right-1", "blue", 0.2);
-	connectDivs("left", "right-2", "blue", 0.2);
-	connectDivs("left", "right-3", "blue", 0.0);
-	// var level = 1;
-	// $('.startBtn').click(async function(){
-	// 	let {value: level1} = await Swal.fire({
-	// 	  title: 'Please add level',
-	// 	  input: 'text',
-	// 	  inputPlaceholder: 'Enter your level'
-	// 	})
-	// 	if (level1) {
-		  $('.startBtn').css('opacity','0').css('z-index','-1');
+	var tab_number = document.getElementsByClassName("tab");
+	var relativeEl = document.getElementsByClassName("matching")
+	var leftItemImage = "";
+	var rightItemImage = "";
+	var level = 4;
+	var sourceTest = "/test/images/15C.png"
+
+	$('.startBtn').click(async function(){
+		let {value: level1} = await Swal.fire({
+		  title: 'Please add level',
+		  input: 'text',
+		  inputPlaceholder: 'Enter your level'
+		})
+		if (level1) {
+		  $('.startBtn').css('opacity','0').css('z-index','-10');
 			setTimeout(function(){
-				$('#testForm').css('display','block').css('opacity','1')
+				$('#testForm').css('display','block').css('visibility','visible').css('opacity','1')
 			}, 700)
-			// console.log(level, level1)
-			// level = level1;
-			// getQA(level, 1);
-		// }
-	// });
-	function getQA(level, num){
-		$.ajax({
-			url: '/getQA',
-			type: 'GET',
-			dataType: 'json',
-			data: {"level": level, "num" : num}
-		})
-		.done(function(data) {
-			console.log(data);
-			render(data.question, data.answers);
-			showTab(currentTab);
-		})
-		.fail(function(data) {
-			console.log(data);
-		});
-	}
+
+
+			render();
+			showTab(currentTab)
+		}
+	});
 
 	function showTab(n) {
-	    for(let i=0; i<x.length; i++){
-	        x[i].style.display = "none";
+	    // //Badge
+	    // console.log(currentTab)
+	    // $('.badge').text((currentTab+1)+' / '+total_question)
+	    // console.log(currentTab)
+	    //Button
+	    for (let i = 0; i < tab_number.length; i++) {
+	        tab_number[i].style.display = "none";
 	    }
-	    x[n].style.display = "flex";
-	    if (n == 0) {
-	    	document.getElementById("prevBtn").style.display = "none";
-	    } else {
-	    	document.getElementById("prevBtn").style.display = "inline";
-	    }
-	    // if (n == (x.length - 1)) {
-	    //     document.getElementById("nextBtn").innerHTML = "Submit";
-	    // } else {
-	    //     document.getElementById("nextBtn").innerHTML = "Next";
-	    // }
-	    // fixStepIndicator(n)
-	}
+	    tab_number[n].style.display = "inline"; 
+	    // tab display inline dep nhung ma draw dc :3 do vi tri tinh chat cua may thang position vs display :3
+	    if (n === 0) {
+	        document.getElementById("prevBtn").style.display = "none";
+	        document.getElementById("submitBtn").style.display = "none";
 
-	function fixStepIndicator(n) {
-	    var i, x = document.getElementsByClassName("step");
-	    for (i = 0; i < x.length; i++) {
-	        x[i].className = x[i].className.replace(" active", "");
-	    }
-	    x[n].className += " active";
-	}
+	    // }else if (n === total_question - 1) {
+	    //     document.getElementById("nextBtn").style.display = "none";
+	    //     document.getElementById("submitBtn").style.display = "inline";
 
-	function currentQ(n) {
-	    currentTab = n;
-	    showTab(currentTab);
+	    }
+	    else {
+	        document.getElementById("submitBtn").style.display = "none";
+	        document.getElementById("prevBtn").style.display = "inline";
+	        document.getElementById("nextBtn").style.display = "inline";
+	    }
 	}
 
 	function next(n) {
@@ -76,7 +59,8 @@
 	    	showTab(currentTab);
 	    }else{
 		    currentTab = currentTab + 1;
-		    getQA(level, currentTab + 1)
+	    	render();
+		    showTab(currentTab);
 	    }
 	    
 	}
@@ -86,58 +70,101 @@
 	    x[currentTab].style.display = "none";
 
 	    // reder html
-	    currentTab = currentTab - 1;
+	    currentTab +=  - 1;
 	    showTab(currentTab);
 	    
 	}
 
-	function render(question, answers){
-		var answerHTML = "";
-		answers.forEach(function(el) {
-				answerHTML += "<label class='col-6'>" +
-                                "<input type='radio' name='' value='A'>" +
-                                "<img src='" + el +"' alt=''>" +
-                            "</label>" 
+	function render(){
+		var content = "";
+		
+		content += '<div class=\'tab\' style=\'display: none;\'>'+
+		'    <div class="matching row" style="position: relative;">';
 
-			});
-	    var content = "<div class='tab' style='display: none;'>" +
-                           	"<img class='question' src='"+ question +"' alt=''>" +
-                            "<div class='answer'>" +
-                                answerHTML +
-                        	"</div>" +
-                        "</div>" ;
+		content += '<div class="div-l column" style="float:left; width:30% ">'+
+		'            <ul class="list-l">'+
+		'                <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-l1" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer;  " src="'+ sourceTest +'" alt=""></li>'+
+		'                <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-l2" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
+		'                <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-l3" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
+		'            </ul>'+
+		'        </div>'+
+		'        <div class="div-m column" style="float:left; width:40% "></div>'+
+		'        <div class="div-r column" style="float:left; width:30% ">'+
+		'            <ul class="list-r">'+
+		'                <li class="list-r-item"  style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-r1" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
+		'                <li class="list-r-item"  style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-r2" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
+		'                <li class="list-r-item" style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-r3" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
+		'            </ul>'+
+		'        </div>';
+			
+		content += '</div>'+
+		'    <div class="clearfix"></div>'+
+		'</div>';
+	
+
+
+
 	    $('.button-np').before(content);
+	    return;
 	}
 
-	// $(document).on('click', 'label', function(event) {
-	// 	event.preventDefault();
-	// 	$(this).css('opacity', '1');
-	// 	$(this).children('input').attr('checked', true);
-	//     $(this).siblings('label').each(function(index, el) {
-	//     	$(el).children('input').attr('checked', false);
-	//     	$(el).css('opacity', '0.3');
-	//     });
-	// });
+	
+	$(document).on('click', '.image-point-l', function(event) {
+		if($(this).attr('data-pointed') == "1"){
+			return false;
+		}
+		leftItemImage = $(this).attr('id');
+		// draw line 
+		if(leftItemImage != "" && rightItemImage != ""){
+			connectDivs(leftItemImage, rightItemImage, "blue", 0.2, currentTab);
+			document.getElementById(leftItemImage).setAttribute("style", "opacity: 0.8;");
+			document.getElementById(leftItemImage).setAttribute('data-pointed','1');
+			document.getElementById(rightItemImage).setAttribute("style", "opacity:0.8;");
+			document.getElementById(rightItemImage).setAttribute('data-pointed','1');
+			leftItemImage = "";
+			rightItemImage = "";
+		}
+	});
 
-	function createSVG() {
-		  var svg = document.getElementById("svg-canvas");
+	$(document).on('click', '.image-point-r', function(event) {
+		if($(this).attr('data-pointed') == "1"){
+			return false;
+		}
+		rightItemImage = $(this).attr('id');
+		// draw line 
+		if(leftItemImage != "" && rightItemImage != ""){
+			connectDivs(leftItemImage, rightItemImage, "blue", 0.2, currentTab);
+			document.getElementById(leftItemImage).setAttribute("style", "opacity: 0.8;");
+			document.getElementById(leftItemImage).setAttribute('data-pointed','1');
+			document.getElementById(rightItemImage).setAttribute("style", "opacity:0.8;");
+			document.getElementById(rightItemImage).setAttribute('data-pointed','1');
+			leftItemImage = "";
+			rightItemImage = "";
+		}
+	});
+
+		
+	// draw line with SVG each tab - 1 svg
+	function createSVG(currentTab) {
+		  var svg = document.getElementById(currentTab +"svg-canvas");
 		  if (null == svg) {
+		  	var matching = tab_number[currentTab].firstElementChild
 		    svg = document.createElementNS("http://www.w3.org/2000/svg", 
 		                                   "svg");
-		    svg.setAttribute('id', 'svg-canvas');
-		    svg.setAttribute('style', 'position:absolute;top:0px;left:0px');
-		    svg.setAttribute('width', document.body.clientWidth);
-		    svg.setAttribute('height', document.body.clientHeight);
+		    svg.setAttribute('id', currentTab+'svg-canvas');
+		    svg.setAttribute('style', 'position:absolute;top:0px;left:0px;z-index:-10');
+		    svg.setAttribute('width', matching.offsetWidth);
+		    svg.setAttribute('height', matching.offsetHeight);
 		    svg.setAttributeNS("http://www.w3.org/2000/xmlns/", 
 		                       "xmlns:xlink", 
 		                       "http://www.w3.org/1999/xlink");
-		    document.body.appendChild(svg);
+		    matching.appendChild(svg);
 		  }
 		  return svg;
 		}
 
-	function drawCircle(x, y, radius, color) {
-	    var svg = createSVG();
+	function drawCircle(x, y, radius, color,currentTab) {
+	    var svg = createSVG(currentTab);
 		    var shape = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 	    shape.setAttributeNS(null, "cx", x);
 	    shape.setAttributeNS(null, "cy", y);
@@ -149,20 +176,30 @@
 	function findAbsolutePosition(el) {
 	  	var _x = 0;
 	    var _y = 0;
-	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-	        _x += el.offsetLeft - el.scrollLeft;
-	        _y += el.offsetTop - el.scrollTop;
+	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) )
+	    {
+	        _x += el.offsetLeft ;
+	        _y += el.offsetTop ;
 	        el = el.offsetParent;
+	        if (el != null)
+	        {
+	            if (getComputedStyle !== 'undefined')
+	                valString = getComputedStyle(el, null).getPropertyValue('position');
+	            else
+	                valString = el.currentStyle['position'];
+	            if (valString === "relative")
+	                el = null;
+	        }
 	    }
-	    
-		  return {
+    	return {
 		      "x": _x,
 		      "y": _y
 		  };
 	}
 
-	function connectDivs(leftId, rightId, color, tension) {
+	function connectDivs(leftId, rightId, color, tension, currentTab) {
 		  var left = document.getElementById(leftId);
+
 		  var right = document.getElementById(rightId);
 			
 		  var leftPos = findAbsolutePosition(left);
@@ -175,17 +212,14 @@
 		  var x2 = rightPos.x;
 		  var y2 = rightPos.y;
 		  y2 += (right.offsetHeight / 2);
-
-		  var width=x2-x1;
-		  var height = y2-y1;
-
-		  drawCircle(x1, y1, 3, color);
-		  drawCircle(x2, y2, 3, color);
-		  drawCurvedLine(x1, y1, x2, y2, color, tension);
+		  console.log(rightPos)
+		  drawCircle(x1, y1, 3, color, currentTab);
+		  drawCircle(x2, y2, 3, color, currentTab);
+		  drawCurvedLine(x1, y1, x2, y2, color, tension,currentTab);
 		}
 
-	function drawCurvedLine(x1, y1, x2, y2, color, tension) {
-	    var svg = createSVG();
+	function drawCurvedLine(x1, y1, x2, y2, color, tension,currentTab) {
+	    var svg = createSVG(currentTab);
 	    var shape = document.createElementNS("http://www.w3.org/2000/svg", 
 	                                         "path");
 	    if (tension<0) {
@@ -214,5 +248,5 @@
 	    shape.setAttributeNS(null, "stroke", color);
 	    svg.appendChild(shape);
 	}
-
+	// end Draw
 	
