@@ -18,15 +18,18 @@
             <div class="col-lg-12">
                 <div class="testOverlay">
                     <a class="startBtn">Click To Start!</a>
+                    <input id="type" value="{{$type}}" hidden>
+
                     <form id="testForm">
                         <div class="btn button-np">
                             <button type="button" id="prevBtn" onclick="prev()">Previous</button>
                             <button type="button" id="nextBtn" onclick="next()">Next</button>
+                            <button type="submit" id="submitBtn" style="display: none">Submit</button>
+
                         </div>
                         <div class="dot">
-                           {{--  <span class="step active" onclick="currentQ(0)"></span>
-                            <span class="step" onclick="currentQ(1)"></span>
-                            <span class="step" onclick="currentQ(2)"></span> --}}
+                            <span class="badge badge-pill badge-primary"></span>
+
                         </div>
                     </form>
                 </div>
@@ -37,7 +40,7 @@
     </div>
     <div class="container list-test">
         <div class="row">
-        
+
         </div>
     </div>
 </section>
@@ -50,7 +53,11 @@
 
 
 @push('js')
-<script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/local-storage.js')}}"></script>
+    <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
+    <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('/js/music.js')}}"></script>
+    <script src="{{asset('/js/temp.js')}}"></script>
+
+{{--<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>--}}
 @endpush

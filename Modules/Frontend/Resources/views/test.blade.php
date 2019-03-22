@@ -27,9 +27,12 @@
                             <button type="submit" id="submitBtn" style="display: none">Submit</button>
                         </div>
                         <div class="dot">
-                             <span class="step active" onclick="currentQ(0)"></span>
-                            <span class="step" onclick="currentQ(1)"></span>
-                            <span class="step" onclick="currentQ(2)"></span>
+                            <span class="badge badge-pill badge-primary"></span>
+
+
+                            {{--<span class="step active" onclick="currentQ(0)"></span>--}}
+                            {{--<span class="step" onclick="currentQ(1)"></span>--}}
+                            {{--<span class="step" onclick="currentQ(2)"></span>--}}
                         </div>
                     </form>
                 </div>
@@ -53,131 +56,8 @@
 
 
 @push('js')
- <script>
-	{{--//test script--}}
-	// var currentTab = 0;
-	// var x = document.getElementsByClassName("tab");
-	{{--showTab(currentTab);--}}
-
-	{{--function showTab(n) {--}}
-	    {{--for(var i=0; i<x.length; i++){--}}
-	        {{--x[i].style.display = "none";--}}
-	    {{--}--}}
-	    {{--x[n].style.display = "flex";--}}
-	    {{--// if (n == 0) {--}}
-	    {{--// 	document.getElementById("prevBtn").style.display = "none";--}}
-	    {{--// } else {--}}
-	    {{--// 	document.getElementById("prevBtn").style.display = "inline";--}}
-	    {{--// }--}}
-	    {{--if (n == (x.length - 1)) {--}}
-	        {{--document.getElementById("nextBtn").innerHTML = "Submit";--}}
-	    {{--} else {--}}
-	        {{--document.getElementById("nextBtn").innerHTML = "Next";--}}
-	    {{--}--}}
-	    {{--fixStepIndicator(n)--}}
-	{{--}--}}
-
-	{{--function currentQ(n) {--}}
-	    {{--currentTab = n;--}}
-	    {{--showTab(currentTab);--}}
-	{{--}--}}
-
-	{{--function nextPrev(n) {--}}
-	    {{--var x = document.getElementsByClassName("tab");--}}
-	    {{--if (n == 1 && !validateForm()) return false;--}}
-	    {{--x[currentTab].style.display = "none";--}}
-	    {{--currentTab = currentTab + n;--}}
-	    {{--if (currentTab >= x.length) {--}}
-	        {{--// document.getElementById("regForm").submit();--}}
-	        {{--console.log(ca_arr[0]);--}}
-	        {{--console.log(ra[1]);--}}
-	        {{--console.log(checkNumTrue(ca_arr, ra));--}}
-	        {{--if (!localStorage.getItem("username")) {--}}
-	            {{--$(".testOverlay").append(--}}
-	                                {{--// '<div class="popupResult">'--}}
-	                                {{--// +    '<p>Howdie ' + checkNumTrue(ca_arr, ra) + '/'+ x.length +'!</p>'--}}
-	                                {{--// +    '<p>Your score: ' + checkNumTrue(ca_arr, ra) + '/'+ x.length +'</p>'--}}
-	                                {{--// + '</div>'--}}
-	                                {{--'<form class="regUser" method="post" action="">'--}}
-	                                {{--+    '<p>Please enter your name below..</p>'--}}
-	                                {{--+    '<input class="regName" name="username" type="text" />'--}}
-
-	                                {{--+    '<input class="submitName" value="submit" name="submit"></input>'--}}
-	                                {{--+ '</form>'--}}
-	                            {{--);--}}
-	        {{--} else {--}}
-	            {{--$(".testOverlay").append(--}}
-	                        {{--'<div class="popupResult">'--}}
-	                        {{--+    '<p>Howdie ' + localStorage.getItem("username") + '!</p>'--}}
-	                        {{--+    '<p>Your score: ' + checkNumTrue(ca_arr, ra) + '/'+ x.length +'</p>'--}}
-	                        {{--+ '</div>'--}}
-	                    {{--);--}}
-	        {{--}--}}
-	        {{--localStorage.setItem('IQ', checkNumTrue(ca_arr, ra));--}}
-	        {{--return false;--}}
-	    {{--}--}}
-	    {{--showTab(currentTab);--}}
-	{{--}--}}
-
-	{{--function validateForm() {--}}
-	    {{--var x, y, i, valid = true;--}}
-	    {{--x = document.getElementsByClassName("tab");--}}
-	    {{--y = x[currentTab].getElementsByTagName("input");--}}
-	{{--//   for (i = 0; i < y.length; i++) {--}}
-	{{--//     if (y[i].value == "") {--}}
-	{{--//       y[i].className += " invalid";--}}
-	{{--//       valid = false;--}}
-	{{--//     }--}}
-	{{--//   }--}}
-	    {{--if (valid) {--}}
-	        {{--document.getElementsByClassName("step")[currentTab].className += " finish";--}}
-	    {{--}--}}
-	    {{--return valid;--}}
-	{{--}--}}
-
-	{{--function fixStepIndicator(n) {--}}
-	    {{--var i, x = document.getElementsByClassName("step");--}}
-	    {{--for (i = 0; i < x.length; i++) {--}}
-	        {{--x[i].className = x[i].className.replace(" active", "");--}}
-	    {{--}--}}
-	    {{--x[n].className += " active";--}}
-	{{--}--}}
-
-	{{--function checkNumTrue(a, b) {--}}
-	    {{--var ii = 0;--}}
-	    {{--var a_i = 0;--}}
-	    {{--var b_i = 0;--}}
-
-	    {{--while (a_i < a.length && b_i < b.length) {--}}
-	        {{--if (a[a_i] === b[b_i]) {--}}
-	            {{--ii += 1;--}}
-	        {{--}--}}
-	        {{--a_i++;--}}
-	        {{--b_i++;--}}
-	    {{--}--}}
-	    {{--return ii;--}}
-	{{--}--}}
-
-	{{--var ra = ["A","D","C"];--}}
-	{{--console.log(ra);--}}
-	{{--var ca;--}}
-	{{--var ca_arr = [];--}}
-	{{--$('label').on('click', function() {--}}
-	    {{--$(this).css('opacity', '1');--}}
-	    {{--$(this).children('audio')[0].play();--}}
-	    {{--$(this).siblings('label').css('opacity', '0.3');--}}
-	    {{--ca = $("input[name='"+$(this).parent().parent().attr('id')+"']:checked").val();--}}
-	    {{--ca_arr[currentTab] = ca;--}}
-	    {{--//ca_arr.push(ca);--}}
-	    {{--ca_arr = ca_arr.filter(function( element ) {--}}
-	        {{--return element !== undefined;--}}
-	    {{--});--}}
-	    {{--console.log(ca_arr);--}}
-	    {{--console.log(currentTab);--}}
-	{{--});--}}
-</script>
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/test.js')}}"></script>
+<script src="{{asset('/js/temp.js')}}"></script>
 @endpush

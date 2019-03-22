@@ -6,6 +6,7 @@ if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')
     var testing = localStorage.getItem('testing');
     var testing_data = JSON.parse(testing);
+
     console.log(testing_data)
 
     var test_level = testing_data.level

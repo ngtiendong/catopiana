@@ -1,7 +1,7 @@
 <header class="">
 	<nav class="d-nav">
 		<ul class="psy-pane">
-			<li class="home"><img src="{{asset('./Catopiana_files/images/home.png')}}" alt=""><a class="smooth active" href="">home</a></li>
+			<li class="home"><img src="{{asset('./Catopiana_files/images/home.png')}}" alt=""><a class="smooth active" href="{{route('home')}}">home</a></li>
 			<li class="contact"><img src="{{asset('./Catopiana_files/images/contact.png')}}" alt=""><a class="smooth" href="#id2">contact</a></li>
 			<li class="about"><img src="{{asset('./Catopiana_files/images/about.png')}}" alt=""><a class="smooth" href="#for-parent">about us</a></li>
 		</ul>
