@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   font-weight: inherit;
   font-style: inherit; }
 
+
 b, strong, th {
   font-weight: bold; }
 
@@ -265,6 +266,12 @@ img {
   width: 100px;
   text-align: center;
 }
+
+.countdown-disabled {
+    cursor: not-allowed !important;
+    opacity: .65;
+}
+
 
 @media all and (max-width: 991px) {
   .md-pad-7 {
@@ -1119,6 +1126,20 @@ footer .col {
   z-index: 5;
 }
 
+.list-after-finished {
+    text-align: center;
+}
+
+.list-after-finished h3 {
+    padding: 0% 5%;
+}
+
+.list-after-finished .test-item{
+    margin: 0 10px !important;
+    display: inline-block !important;
+}
+
+
 #id2 .test-item {
   display: block;
   width: 100px;
@@ -1569,7 +1590,8 @@ footer .col {
   background: #fff;
   position: relative;
   transform: translateX(-15px);
-  margin: 70px auto 0;
+    border-radius: 20px;
+    margin: 35px auto 0;
 }
 #testForm {
   width: 100%;
@@ -2084,6 +2106,8 @@ footer .col {
   font-family: 'Times New Roman';
   color: #ccccff; }
 
+
+
 @keyframes zoom {
   0%, 100% {transform: translate(-50%, -50%) scale(0.9)}
   50% {transform: translate(-50%, -50%) scale(1.1)}
@@ -2113,6 +2137,7 @@ footer .col {
 label.col-6.label-matching {
     margin: 5px;
 }
+
 
 .matching.row{
   position: relative;
@@ -2150,3 +2175,4 @@ label.col-6.label-matching {
   border-radius: 10px; 
   border :1px solid green;
 }
+

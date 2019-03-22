@@ -14,7 +14,7 @@ class Question extends Model
         $curriculum = Curriculum::where([
             ['type', 1],
             ['level', '<=', $level]
-        ])->orderBy('level')->first();
+        ])->orderBy('level', 'desc')->first();
 
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
 

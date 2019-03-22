@@ -12,8 +12,11 @@
 	                </a>
                 </div>
             </div>
-            <div class="col-lg-6 offset-lg-3">
+            <div class="col-lg-6 offset-lg-3 fadeOut">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
+            </div>
+            <div class="col-lg-12 list-after-finished" id="list-after-finished">
+                <h3></h3>
             </div>
             <div class="col-lg-12">
                 <div class="testOverlay">
@@ -21,7 +24,7 @@
                     <input id="type" value="{{$type}}" hidden>
 
                     <form id="testForm">
-                        <div class="btn button-np" style="z-index: -1">
+                        <div class="btn button-np" style="">
                             <button type="button" id="prevBtn" onclick="prev()">Previous</button>
                             <button type="button" id="nextBtn" onclick="next()">Next</button>
                             <button type="submit" id="submitBtn" style="display: none">Submit</button>
@@ -56,6 +59,7 @@
     <script type="text/javascript" src="{{asset('/js/local-storage.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('/js/svg_variables.js')}}"></script>
     <script src="{{asset('/js/music.js')}}"></script>
     <script src="{{asset('/js/temp.js')}}"></script>
 
