@@ -1,37 +1,58 @@
 	var currentTab = 0;
 	var x = document.getElementsByClassName("tab");
+	var level = 1;
+	var type = 'normal';
+	var style = '';
+	var timeout = 5;
+	var timerId = null;
 
+	var pathname = window.location.pathname;
+	if(pathname == '/memory')
+		{
+			type = 'memory';
+		}
+	console.log(pathname);
 	$('.startBtn').click(async function(){
-		let level = await Swal.fire({
+		let {value: level1} = await Swal.fire({
 		  title: 'Please add level',
 		  input: 'text',
 		  inputPlaceholder: 'Enter your level'
 		})
-		if (level) {
+		if (level1) {
 		  $(this).css('opacity','0').css('z-index','-1');
 			setTimeout(function(){
 				$('#testForm').css('display','block').css('opacity','1')
 			}, 700)
+			level = level1;
 			getQA(level, 1);
+
 		}
-		
 	});
-
 	function getQA(level, num){
-
 		$.ajax({
 			url: '/getQA',
 			type: 'GET',
 			dataType: 'json',
-			data: {"level": level, "num" : num},
+			data: {"level": level, "num" : num}
 		})
 		.done(function(data) {
 			console.log(data);
 			render(data.question, data.answers);
 			showTab(currentTab);
+			if(type == 'memory'){
+				if(timerId != null){
+					clearTimeout(timerId);
+					timeout = 5;
+				}
+				hideQuestion(currentTab);
+			}
 		})
 		.fail(function(data) {
-			console.log(data);
+			Swal.fire({
+			  type: 'error',
+			  title: 'Oops...',
+			  text: 'Something went wrong!'
+			})
 		});
 	}
 
@@ -67,6 +88,10 @@
 	}
 
 	function next(n) {
+		if(type == 'memory' && timerId != null && timeout != 5 && timeout != -1)
+		{
+			return false;
+		}
 	    var x = document.getElementsByClassName("tab");
 	    x[currentTab].style.display = "none";
 	    if(currentTab < x.length - 1 ){
@@ -74,12 +99,16 @@
 	    	showTab(currentTab);
 	    }else{
 		    currentTab = currentTab + 1;
-		    getQA(4, currentTab + 1)
+		    getQA(level, currentTab + 1)
 	    }
 	    
 	}
 
 	function prev() {
+		if(type == "memory" &&timerId != null && timeout != 5 && timeout != -1)
+		{
+			return false;
+		}
 	    var x = document.getElementsByClassName("tab");
 	    x[currentTab].style.display = "none";
 
@@ -98,15 +127,36 @@
                             "</label>" 
 
 			});
+		if(type == "memory" ){
+			style = 'style="visibility : hidden;"';
+		}
 	    var content = "<div class='tab' style='display: none;'>" +
                            	"<img class='question' src='"+ question +"' alt=''>" +
-                            "<div class='answer'>" +
+                           	'<p class="countDownTimer"></p>' +
+                            "<div class='answer'"+ style +">" +
                                 answerHTML +
                         	"</div>" +
                         "</div>" ;
 	    $('.button-np').before(content);
 	}
 
+	function hideQuestion(currentTab){
+		var x = document.getElementsByClassName("tab");
+		$(x[currentTab]).children('answer').css('visibility' ,'hidden')
+		timerId = setInterval(function() { 
+			if (timeout == -1) {
+		    		$(x[currentTab]).children('img').css('visibility' ,'hidden')
+					$(x[currentTab]).children('.answer').css('visibility' ,'visible')
+					$('.countDownTimer').html( 'time out!')
+					clearTimeout(timerId);
+					timeout = 5;
+			    } else {
+			        $('.countDownTimer').html( timeout + ' seconds');
+			        timeout--;
+			    }
+		 }, 1000);
+	}
+	
 	$(document).on('click', 'label', function(event) {
 		event.preventDefault();
 		$(this).css('opacity', '1');
@@ -116,3 +166,6 @@
 	    	$(el).css('opacity', '0.3');
 	    });
 	});
+
+
+	

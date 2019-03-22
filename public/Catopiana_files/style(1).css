@@ -1620,7 +1620,7 @@ footer .col {
     left: 10px;
   }
   .section-test .tab .answer {
-    margin-top: 50px;
+    margin-top: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1630,7 +1630,8 @@ footer .col {
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    }
     .section-test .tab .answer label {
       transition: all linear 0.3s;
       position: relative;
@@ -1643,11 +1644,16 @@ footer .col {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      cursor: pointer; }
+      cursor: pointer;
+      margin-bottom: 2px;
+      }
       .section-test .tab .answer label:hover span:before {
         opacity: .3; }
       .section-test .tab .answer label img {
-        width: 100px; }
+        width: 100px;
+        border: 1px solid deepskyblue;
+        border-radius: 20px;
+        }
       .section-test .tab .answer label input {
         position: absolute;
         opacity: 0; }
@@ -1680,7 +1686,7 @@ footer .col {
           content: "\f00c";
           opacity: 0; }
 .section-test .tab .question {
-  margin-top: 50px;
+  margin-top: 45px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1690,7 +1696,10 @@ footer .col {
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  border: 1px solid burlywood;
+  border-radius: 15px;
+  }
   .section-test .tab .question label {
     transition: all linear 0.3s;
     position: relative;
@@ -1709,6 +1718,9 @@ footer .col {
     .section-test .tab .question label img {
       width: 100px; }
     .section-test .tab .question label input {
+      position: absolute;
+      opacity: 0; }
+    .section-test .tab .row label input {
       position: absolute;
       opacity: 0; }
       .section-test .tab .question label input:checked ~ span:before {
@@ -1768,7 +1780,6 @@ footer .col {
   box-shadow: 5px 5px 0 0 rgba(158, 88, 7, 1);
   transition: 0.1s;
 }
-
 #prevBtn {
   left: -70px;
 }
@@ -2095,4 +2106,8 @@ footer .col {
   .d-nav .psy-pane li:nth-child(3) a {
     left: 35px;
   }
+}
+
+label.col-6.label-matching {
+    margin: 5px;
 }
