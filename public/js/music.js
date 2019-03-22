@@ -13,7 +13,6 @@ var music_image = '<svg id="play"  viewBox="0 0 163 163" version="1.1" xmlns="ht
 $(document).on('mouseenter', '.audio-image', function(event) {
     event.preventDefault();
     let music = $(this).siblings('.audio').attr('src');
-    console.log ("!jump!!!")
     if (sound != null) {
         sound.stop();
         sound.unload();

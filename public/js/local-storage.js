@@ -2,19 +2,35 @@
  * Initial when load page
  */
 
+var list_test_finished = []
+var testing_data
+
 if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')
     var testing = localStorage.getItem('testing');
-    var testing_data = JSON.parse(testing);
-
-    console.log(testing_data)
-
+    testing_data = JSON.parse(testing);
     var test_level = testing_data.level
 
-} else {
-    var testing_data
+    //List test finish
+    testing_data.question.forEach(function(value, index) {
+        list_test_finished.push(parseInt(value.type))
+    })
 }
 
+$(function(){
+    console.log("data", testing_data);
+    if (list_test_finished.length > 0) {
+        $('a.test-item').each(function(index){
+            var this_type = $(this).data('type')
+            // console.log (this_type, list_test_finished)
+            if (list_test_finished.indexOf(this_type) > -1){
+                $(this).css('opacity',0.4)
+            }
+        })
+    }
+
+    // displayTestUnFinishedAfterSubmit()
+});
 
 /**
  * Event to click button add to cart
