@@ -13,15 +13,75 @@ var timeout = 5;
 var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
-$(document).on('click', 'label', function (event) {
+$(document).on('click', 'label',function (event) {
     event.preventDefault();
     $(this).css('opacity', '1');
-    $(this).children('input').attr('checked', true);
+    $(this).find('input').eq(0).prop('checked', true);
+    console.log("checked here", $(this))
+
     $(this).siblings('label').each(function (index, el) {
-        $(el).children('input').attr('checked', false);
+        $(el).find('input').eq(0).prop('checked', false);
         $(el).css('opacity', '0.3');
     });
 });
+
+
+
+$(function(){
+    $('#testForm').on('submit', function(event){
+        //update local storage
+        event.preventDefault()
+        let just_answer = $('.tab').eq(currentTab).find('input:checked')
+        if (typeof $(just_answer).val() === 'undefined'){
+            //Chua tra loi
+            alert("Chua tra loi")
+        } else {
+            swal.fire({
+                title: 'Please enter your name below..',
+                input: 'text',
+                inputPlaceholder: '...',
+                confirmButtonText: 'Submit',
+                showLoaderOnConfirm: true,
+                background: 'orange',
+                display: 'flex',
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value) {
+                            resolve()
+                        } else {
+                            resolve('You need to enter name:)')
+                        }
+                    })
+                }
+            }).then((name) => {
+                if (name.value) {
+                    //Lock and save answered
+                    just_answer = just_answer.data('position')
+                    this_question.answers.push(just_answer)
+                    this_question.status = 1
+                    //Save into local storage
+                    localStorage.setItem('testing', JSON.stringify(testing_data));
+
+                    let candidate_answers = this_question.answers;
+                    console.log('answer', candidate_answers, this_question, just_answer)
+
+                    let correct = candidate_answers.filter(answer => answer == 0).length
+                    Swal.fire({
+                        title: `${name.value} \n Your score: `+correct+'/'+total_question,
+                        text: 'Please write down your account below:',
+                        background: 'orange',
+                        display: 'flex',
+                    })
+
+                    //Display test not finished
+                    displayTestUnFinishedAfterSubmit()
+                } else {
+
+                }
+            })
+        }
+    })
+})
 
 $('.startBtn').click(async function () {
     //Check local storage
@@ -155,12 +215,12 @@ function generateUnfinishedTest(current_data) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
                     answer += '<label class="col-4" style="opacity: 1">' +
-                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'">' +
+                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 } else {
                     answer += '<label class="col-4" style="opacity: 0.3"> ' +
-                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'">' +
+                        '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 }
@@ -173,10 +233,11 @@ function generateUnfinishedTest(current_data) {
             html += '</div></div>'
             currentTab++
         }
+        if (length_answered < total_question) {
+            html += renderAudio(current_data.question_data[length_answered].question, current_data.question_data[length_answered].answers,
+                current_data.question_data[length_answered].question_image,current_data.question_data[length_answered].answer_image)
+        }
 
-
-        html += renderAudio(current_data.question_data[length_answered].question, current_data.question_data[length_answered].answers,
-            current_data.question_data[length_answered].question_image,current_data.question_data[length_answered].answer_image)
     }
     else {
         for (var i = 0; i<length_answered; i++) {
@@ -193,12 +254,12 @@ function generateUnfinishedTest(current_data) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
                     answer += '<label class="col-6" style="opacity: 1">' +
-                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'">' +
+                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
                         '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 } else {
                     answer += '<label class="col-6" style="opacity: 0.3"> ' +
-                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'">' +
+                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
                         '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 }
@@ -212,7 +273,9 @@ function generateUnfinishedTest(current_data) {
             currentTab++
         }
         // console.log(current_data.question_data[length_answered])
-        html += render(current_data.question_data[length_answered].question, current_data.question_data[length_answered].answers)
+        if (length_answered < total_question){
+            html += render(current_data.question_data[length_answered].question, current_data.question_data[length_answered].answers)
+        }
     }
 
 
@@ -251,6 +314,7 @@ function getNewQuestionData(position) {
                     current_index: 0
                 };
                 if (position == -1) {
+                    position_this_question = testing_data.question.length
                     testing_data.question.push(this_question);
                 } else {
                     testing_data.question[position] = this_question
@@ -296,19 +360,17 @@ function displayTest() {
     $('.startBtn').css('opacity', '0').css('z-index', '-1');
     setTimeout(function () {
         $('#testForm').css('display', 'block').css('opacity', '1')
-    }, 700)
+    }, 100)
 }
 
 function showTab(n) {
     //Badge
-    console.log(currentTab)
+    // console.log("currentTab", currentTab)
     $('.badge').text((currentTab+1)+' / '+total_question)
-    console.log(currentTab)
     //Button
     for (let i = 0; i < tab_number.length; i++) {
         tab_number[i].style.display = "none";
     }
-    console.log('n' + n)
     tab_number[n].style.display = "flex";
     // console.log(n, currentTab, total_question)
     if (n === 0) {
@@ -328,33 +390,36 @@ function showTab(n) {
 
 }
 
-function next(n) {
+function next() {
     if(type == "6" && buttonMemoryChecked == false)
     {
         return false;
     }
-
     // let just_answer = tab_number[currentTab].querySelector('input:checked')
     let just_answer = $('.tab').eq(currentTab).find('input:checked')
-    // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
     if (typeof $(just_answer).val() === 'undefined'){
         //Chua tra loi
+        console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
         alert("Chua tra loi")
     } else {
         tab_number[currentTab].style.display = "none";
         currentTab += 1
-        if (tab_number.length-1 > currentTab){
-            // showTab(currentTab);
+        console.log ("number tab", tab_number.length-1, "tab current", currentTab)
 
+        //Lock and save answered
+        just_answer = just_answer.data('position')
+        console.log("push here")
+        this_question.answers.push(just_answer)
+
+        if (tab_number.length-1 >= currentTab){
+            //An prev xong quay thi => ko can render html them nua
+            showTab(currentTab);
         } else {
-            //Lock and save answered
-            just_answer = just_answer.data('position')
-            this_question.answers.push(just_answer)
+
             //Save into local storage
             // console.log (testing_data, 'test')
             localStorage.setItem('testing', JSON.stringify(testing_data))
 
-            //Check finish
             if (type == '1'){
                 //Audio
                 renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
@@ -389,8 +454,12 @@ function prev() {
     var x = document.getElementsByClassName("tab");
     x[currentTab].style.display = "none";
 
-    // reder html
-    currentTab += -1;
+    currentTab += -1
+    console.log("pop here")
+    this_question.answers.pop()
+    //Save into local storage
+    localStorage.setItem('testing', JSON.stringify(testing_data))
+
     showTab(currentTab);
 
 }
@@ -399,7 +468,7 @@ function render(question, answers) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
         answerHTML += "<label class='col-6'>" +
-            "<input type='radio' name='' value='"+el+"' data-position='"+index+"'>" +
+            "<input type='radio' value='"+el+index+"' data-position='"+index+"' hidden>" +
             "<img src='/test/images/" + el + "' alt=''>" +
             "</label>"
 
@@ -426,7 +495,7 @@ function renderAudio(question, answers, question_image, answer_image){
     var answerHTML = "";
     answers.forEach(function(el, index) {
         answerHTML += "<label class='col-4'>" +
-            "<input type='radio' style='z-index: -1;' name='' value='"+el+"' data-position='"+index+"'>" +
+            "<input type='radio' style='z-index: -1;' value='"+el+"' data-position='"+index+"' hidden>" +
             "<img class='audio-image' src='" + answer_image +"' alt=''>" +
             "<audio src='"+ el+"' class='audio'></audio>" +
             "</label>"
@@ -445,7 +514,8 @@ function renderAudio(question, answers, question_image, answer_image){
 
 function hideQuestion(currentTab){
     var x = document.getElementsByClassName("tab");
-    $(x[currentTab]).children('answer').css('visibility' ,'hidden')
+    $(x[currentTab]).children('answer').css('visibility' ,'hidden');
+
     timerId = setInterval(function() {
         if (timeout == 0) {
             $(x[currentTab]).children('img').css('visibility' ,'hidden')
@@ -454,9 +524,36 @@ function hideQuestion(currentTab){
             buttonMemoryChecked = true;
             clearTimeout(timerId);
             timeout = 5;
+            $('button').removeClass('countdown-disabled')
+
         } else {
             $('.countDownTimer').html( timeout + ' seconds');
             timeout--;
+            $('button').addClass('countdown-disabled')
         }
     }, 1000);
+}
+
+function displayTestUnFinishedAfterSubmit() {
+    list_test_finished.push(parseInt(type))
+
+    let gen_html = '<div style="margin-top:25px; padding-right: 40px">'
+
+    for (var i=1; i<9; i++) {
+        if (list_test_finished.indexOf(i) < 0) {
+            //Chua thi
+            gen_html += array_svg[i-1]
+        }
+    }
+
+    gen_html += '</div>'
+    $('div.list-after-finished > h3').text("Next test: ")
+    $('div.list-after-finished').hide()
+    $('div.list-after-finished').empty()
+    $('div.list-after-finished').append(gen_html)
+
+    $('.fadeOut').hide()
+    $('div.list-after-finished').fadeIn(1000)
+
+
 }
