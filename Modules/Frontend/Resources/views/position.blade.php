@@ -12,34 +12,68 @@
 	                </a>
                 </div>
             </div>
-            <div class="col-lg-6 offset-lg-3">
+            <div class="col-md-8 col-md-offset-2">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
             </div>
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="testOverlay">
                     {{-- <input id="type" value="{{$type}}" hidden> --}}
                     <a class="startBtn">Click To Start!</a>
-                    <form id="testForm" style="   visibility: hidden;">
 
-                        <div class="btn button-np">
-                            <button type="button" id="prevBtn" onclick="prev()">Previous</button>
-                            <button type="button" id="nextBtn" onclick="next()">Next</button>
-                            <button type="submit" id="submitBtn" style="display: none">Submit</button>
+                    <form id="testForm" style="display: none">
+                        <div class="position-tab" >
+                            <div class="matching row" id="test-area">
+                                <div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >
+                                    <ul class="column-left">
+                                        <li class="list-l-item">
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png" >
+                                        </li>
+                                        <li class="list-l-item" >
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
+                                        </li>
+                                        <li class="list-l-item" >
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>
+                                <div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >
+                                    <ul class="column-right">
+                                        <li class="list-l-item">
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png" >
+                                        </li>
+                                        <li class="list-l-item" >
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
+                                        </li>
+                                        <li class="list-l-item" >
+                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
+
+
+                        <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: inline;">Previous</button>
+                        <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: inline;">Next</button>
+                        <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
+
                         <div class="dot">
                             <span class="badge badge-pill badge-primary"></span>
 
 
-                            {{--<span class="step active" onclick="currentQ(0)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(1)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(2)"></span>--}}
+
+
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
+        <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" >
+        <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" >
     </div>
     <div class="container list-test">
         <div class="row">
@@ -60,5 +94,68 @@
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
 {{-- <script src="{{asset('/js/temp.js')}}"></script> --}}
-<script src="{{asset('/Catopiana_files/js/match-test.js')}}"></script>
+{{--<script src="{{asset('/Catopiana_files/js/match-test.js')}}"></script>--}}
+<script src="{{asset('/js/two.js')}}"></script>
+<script src="{{asset('/admin-lte/plugins/anseki-leader-line/leader-line.min.js')}}"></script>
+
+
+<script type="text/javascript">
+    $(function(){
+
+        $('.startBtn').click(async function () {
+            $('.startBtn').css('opacity', '0').css('z-index', '-1');
+            setTimeout(function () {
+                $('#testForm').css('display', 'block').css('opacity', '1')
+            }, 500)
+
+        });
+
+        $('.list-l-item img').on('click', function(e){
+            e.preventDefault()
+            if ($(this).hasClass("clicked-img")){
+                // Already click
+                // 1. Check line of this element => if has => remove line and class "clicked-img" of both in 2 column as well
+                // 2. If not line => just remove class "clicked-img" of this element
+            } else {
+                //Remove class clicked in same column
+                $(this).closest('ul').find('.clicked-img.unlock-selection').removeClass('clicked-img')
+                //Add clicked this image
+                $(this).addClass('clicked-img')
+            }
+
+            // Check clicked on 2 column to create line
+            // Class unlink-selection to avoid case that 2 img which had already line before
+            var elements_click = $(this).closest('.matching').find('.clicked-img.unlock-selection')
+            if (elements_click.length == 2) {
+                //Create line
+                var line = new LeaderLine(
+                    LeaderLine.pointAnchor(document.getElementsByClassName('clicked-img unlock-selection')[0], {
+                        x: document.getElementsByClassName('clicked-img unlock-selection')[0].width,
+                        y: document.getElementsByClassName('clicked-img unlock-selection')[0].height/2
+                    })
+                    ,
+                    LeaderLine.pointAnchor(document.getElementsByClassName('clicked-img unlock-selection')[1], {
+                        x: 0,
+                        y: document.getElementsByClassName('clicked-img unlock-selection')[1].height/2
+                    })
+                    , { size: 4, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+                            startColor: 'rgb(17, 148, 51)',
+                            endColor: 'rgb(17, 148, 51)'
+                        }
+                    }
+                );
+
+                line.show('fade', {duration: 500, timing: [0.58, 0, 0.42, 1]})
+
+                //Delete unlock-selection class
+                $(elements_click).each(function(){
+                    $(this).removeClass('unlock-selection')
+                })
+            }
+        })
+    })
+
+
+</script>
+
 @endpush
