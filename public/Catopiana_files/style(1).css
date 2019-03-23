@@ -1597,7 +1597,7 @@ footer .col {
   width: 100%;
   opacity: 0;
   transition: all ease-in-out 0.7s;
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 .startBtn {
@@ -2166,13 +2166,13 @@ label.col-6.label-matching {
 
 .list-l .list-l-item img {
   width:150px;
-  border-radius: 10px; 
+  border-radius: 10px;
   border :1px solid green;
 }
 
 .list-r .list-r-item img {
   width:150px;
-  border-radius: 10px; 
+  border-radius: 10px;
   border :1px solid green;
 }
 
