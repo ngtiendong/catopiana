@@ -1,4 +1,10 @@
+
+
+<!-- JQuery -->
 <script src="{{asset('/Catopiana_files/js/jquery.js')}}"></script>
+<!-- BOOTSTRAP -->
+
+<!-- OTHER -->
 <script src="{{asset('/Catopiana_files/js/gsap.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/scrollMagic.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/animation.gsap.min.js')}}"></script>

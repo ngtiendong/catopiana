@@ -1,0 +1,41 @@
+
+
+.position-tab {
+    padding: 0 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.image-point-l {
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.clicked-img {
+    opacity: 0.5;
+    transition: ease 0.1s;
+}
+
+.test-button {
+    position: absolute;
+    top: 0;
+    background: orange;
+    width: 130px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    outline: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 5px 5px 0 0 rgba(236, 139, 27, 1);
+    box-shadow: 5px 5px 0 0 rgba(158, 88, 7, 1);
+    transition: 0.1s;
+    top: 50%;
+}
+
+svg {
+    z-index: 3;
+}
