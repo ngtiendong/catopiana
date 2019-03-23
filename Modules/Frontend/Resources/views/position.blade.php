@@ -19,27 +19,8 @@
                 <div class="testOverlay">
                     {{-- <input id="type" value="{{$type}}" hidden> --}}
                     <a class="startBtn">Click To Start!</a>
-                    <form id="testForm">
-                        {{-- <div class='tab' style='display: none;'>
-                            <div class="matching row" style="position: relative;">
-                                <div class="div-l column" style="float:left; width:30% ">
-                                    <ul class="list-l">
-                                        <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="l1" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer;  " src="{{asset('/Catopiana_files/images/test/1.jpg')}}" alt=""></li>
-                                        <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="l2" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer; " src="{{asset('/Catopiana_files/images/test/1.jpg')}}" alt=""></li>
-                                        <li class="list-l-item"  style="margin:10px; padding: 5px;"><img id="l3" data-pointed="0" class="image-point-l" style="width:200px; border-radius: 15px; cursor: pointer; " src="{{asset('/Catopiana_files/images/test/1.jpg')}}" alt=""></li>
-                                    </ul>
-                                </div>
-                                <div class="div-m column" style="float:left; width:40% "></div>
-                                <div class="div-r column" style="float:left; width:30% ">
-                                    <ul class="list-r">
-                                        <li class="list-r-item"  style="margin:10px; padding: 5px;"><img id="r1" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="{{asset('/Catopiana_files/images/test/1a.jpg')}}" alt=""></li>
-                                        <li class="list-r-item"  style="margin:10px; padding: 5px;"><img id="r2" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="{{asset('/Catopiana_files/images/test/1b.jpg')}}" alt=""></li>
-                                        <li class="list-r-item" style="margin:10px; padding: 5px;"><img id="r3" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="{{asset('/Catopiana_files/images/test/1c.jpg')}}" alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div> --}}
+                    <form id="testForm" style="   visibility: hidden;">
+
                         <div class="btn button-np">
                             <button type="button" id="prevBtn" onclick="prev()">Previous</button>
                             <button type="button" id="nextBtn" onclick="next()">Next</button>

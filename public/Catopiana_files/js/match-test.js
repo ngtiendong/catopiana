@@ -33,7 +33,7 @@
 	    for (let i = 0; i < tab_number.length; i++) {
 	        tab_number[i].style.display = "none";
 	    }
-	    tab_number[n].style.display = "inline"; 
+	    tab_number[n].style.display = "flex";
 	    // tab display inline dep nhung ma draw dc :3 do vi tri tinh chat cua may thang position vs display :3
 	    if (n === 0) {
 	        document.getElementById("prevBtn").style.display = "none";
@@ -62,7 +62,7 @@
 	    	render();
 		    showTab(currentTab);
 	    }
-	    
+
 	}
 
 	function prev() {
@@ -72,14 +72,14 @@
 	    // reder html
 	    currentTab +=  - 1;
 	    showTab(currentTab);
-	    
+
 	}
 
 	function render(){
 		var content = "";
-		
+
 		content += '<div class=\'tab\' style=\'display: none;\'>'+
-		'    <div class="matching row" style="position: relative;">';
+		'    <div class="matching row" style="position: relative; max-width: 460px;">';
 
 		content += '<div class="div-l column" style="float:left; width:30% ">'+
 		'            <ul class="list-l">'+
@@ -96,11 +96,11 @@
 		'                <li class="list-r-item" style="margin:10px; padding: 5px;"><img id="'+ currentTab +'-r3" data-pointed="0" class="image-point-r" style="width:200px; border-radius: 15px; cursor: pointer; " src="'+ sourceTest +'" alt=""></li>'+
 		'            </ul>'+
 		'        </div>';
-			
+
 		content += '</div>'+
 		'    <div class="clearfix"></div>'+
 		'</div>';
-	
+
 
 
 
@@ -108,13 +108,13 @@
 	    return;
 	}
 
-	
+
 	$(document).on('click', '.image-point-l', function(event) {
 		if($(this).attr('data-pointed') == "1"){
 			return false;
 		}
 		leftItemImage = $(this).attr('id');
-		// draw line 
+		// draw line
 		if(leftItemImage != "" && rightItemImage != ""){
 			connectDivs(leftItemImage, rightItemImage, "blue", 0.2, currentTab);
 			document.getElementById(leftItemImage).setAttribute("style", "opacity: 0.8;");
@@ -131,7 +131,7 @@
 			return false;
 		}
 		rightItemImage = $(this).attr('id');
-		// draw line 
+		// draw line
 		if(leftItemImage != "" && rightItemImage != ""){
 			connectDivs(leftItemImage, rightItemImage, "blue", 0.2, currentTab);
 			document.getElementById(leftItemImage).setAttribute("style", "opacity: 0.8;");
@@ -143,20 +143,21 @@
 		}
 	});
 
-		
+
 	// draw line with SVG each tab - 1 svg
 	function createSVG(currentTab) {
 		  var svg = document.getElementById(currentTab +"svg-canvas");
 		  if (null == svg) {
 		  	var matching = tab_number[currentTab].firstElementChild
-		    svg = document.createElementNS("http://www.w3.org/2000/svg", 
+              console.log
+		    svg = document.createElementNS("http://www.w3.org/2000/svg",
 		                                   "svg");
 		    svg.setAttribute('id', currentTab+'svg-canvas');
 		    svg.setAttribute('style', 'position:absolute;top:0px;left:0px;z-index:-10');
 		    svg.setAttribute('width', matching.offsetWidth);
 		    svg.setAttribute('height', matching.offsetHeight);
-		    svg.setAttributeNS("http://www.w3.org/2000/xmlns/", 
-		                       "xmlns:xlink", 
+		    svg.setAttributeNS("http://www.w3.org/2000/xmlns/",
+		                       "xmlns:xlink",
 		                       "http://www.w3.org/1999/xlink");
 		    matching.appendChild(svg);
 		  }
@@ -201,7 +202,7 @@
 		  var left = document.getElementById(leftId);
 
 		  var right = document.getElementById(rightId);
-			
+
 		  var leftPos = findAbsolutePosition(left);
 		  var x1 = leftPos.x;
 		  var y1 = leftPos.y;
@@ -220,7 +221,7 @@
 
 	function drawCurvedLine(x1, y1, x2, y2, color, tension,currentTab) {
 	    var svg = createSVG(currentTab);
-	    var shape = document.createElementNS("http://www.w3.org/2000/svg", 
+	    var shape = document.createElementNS("http://www.w3.org/2000/svg",
 	                                         "path");
 	    if (tension<0) {
 		    var delta = (y2-y1)*tension;
@@ -228,9 +229,9 @@
 		    var hy1=y1-delta;
 		    var hx2=x2;
 		    var hy2=y2+delta;
-		    var path = "M " + x1 + " " + y1 + 
-		              " C " + hx1 + " " + hy1 + " "  
-		                    + hx2 + " " + hy2 + " " 
+		    var path = "M " + x1 + " " + y1 +
+		              " C " + hx1 + " " + hy1 + " "
+		                    + hx2 + " " + hy2 + " "
 		                    + x2 + " " + y2;
 		} else {
 		    var delta = (x2-x1)*tension;
@@ -238,9 +239,9 @@
 		    var hy1=y1;
 		    var hx2=x2-delta;
 		    var hy2=y2;
-		    var path = "M " + x1 + " " + y1 + 
-		              " C " + hx1 + " " + hy1 + " "  
-		                    + hx2 + " " + hy2 + " " 
+		    var path = "M " + x1 + " " + y1 +
+		              " C " + hx1 + " " + hy1 + " "
+		                    + hx2 + " " + hy2 + " "
 		                    + x2 + " " + y2;
 		}
 	    shape.setAttributeNS(null, "d", path);
@@ -249,4 +250,4 @@
 	    svg.appendChild(shape);
 	}
 	// end Draw
-	
+

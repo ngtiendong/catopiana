@@ -34,7 +34,7 @@ $(function(){
         let just_answer = $('.tab').eq(currentTab).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined'){
             //Chua tra loi
-            alert("Chua tra loi")
+            alert("Please answer the question")
         } else {
             swal.fire({
                 title: 'Please enter your name below..',
@@ -400,7 +400,7 @@ function next() {
     if (typeof $(just_answer).val() === 'undefined'){
         //Chua tra loi
         console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
-        alert("Chua tra loi")
+        alert("Please answer the question")
     } else {
         tab_number[currentTab].style.display = "none";
         currentTab += 1
