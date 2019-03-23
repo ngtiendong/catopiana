@@ -23,6 +23,15 @@ class FrontendController extends Controller
      * Display a creative page
      * @return Response
      */
+    public function position()
+    {
+        return view('frontend::position');
+    }
+
+    /**
+     * Display a creative page
+     * @return Response
+     */
     public function test()
     {
         $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
