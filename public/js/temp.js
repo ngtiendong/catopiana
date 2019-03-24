@@ -14,7 +14,7 @@ var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
 let fakeAnswer = 0;
-let minLv = 3;
+let minLv = 1;
 let timeToChange;
 let flagChange = 0;
 
@@ -427,12 +427,15 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
             if (response.status === 1) {
                 // console.log(response.question_data)
                 // ghep cau hoi vao this_question
-                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                console.log('test :' )
-                console.log(this_question)
-                testing_data.question[position] = this_question
-                // trừ lv khi sai 
-                testing_data.level = test_level;
+                if(response.question_data.length != 0){
+                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    testing_data.question[position] = this_question
+                    // trừ lv khi sai 
+                    testing_data.level = test_level;
+                }
+                // console.log('test :' )
+                // console.log(this_question)
+                
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -479,14 +482,15 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
         success: function (response) {
 
             if (response.status === 1) {
+                if(response.question_data.length != 0){
+                     // ghep cau hoi vao this_question
+                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    testing_data.question[position] = this_question
+                    // trừ lv khi timeout 
+                    testing_data.level = test_level;
+                }
                 // console.log(response.question_data)
-                // ghep cau hoi vao this_question
-                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                // console.log('test :' )
-                // console.log(this_question)
-                testing_data.question[position] = this_question
-                // trừ lv khi timeout 
-                testing_data.level = test_level;
+               
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
