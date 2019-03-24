@@ -14,7 +14,9 @@ var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
 let fakeAnswer = 0;
-let minLv = 4;
+let minLv = 3;
+let timeToChange;
+let flagChange = 0;
 
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
@@ -147,9 +149,12 @@ $('.startBtn').click(async function () {
                             }
                             buttonMemoryChecked = false;
                             hideQuestion(currentTab);
-
                         }
 
+                        // check khi start lan dau qua 20s chuyen cau hoi lv thap
+                        if(level > minLv){           
+                            setTimeToChange(level - 1 , 1)
+                        }
                     }
 
                 }).catch(function (response) {
@@ -394,8 +399,21 @@ function showTab(n) {
 }
 
 
+setTimeToChange = (test_level, indexIncorrect) => {
+    timeToChange = setTimeout(() => {
+    changeDynamicQuestionTimeOut(test_level, indexIncorrect)
+}, 20000)
+}
+
+stopTimeToChange = () => {
+    for (var i = timeToChange; i > 0; i--)
+    clearTimeout(timeToChange)
+}
+
+
 
 let changeDynamicQuestion = (test_level, indexIncorrect) => {
+    console.log(type, test_level, indexIncorrect)
     $.ajax({
         method: "POST",
         url: "/get-list-less-level-question",
@@ -438,6 +456,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     hideQuestion(currentTab);
                 }
                 showTab(indexIncorrect)
+                flagChange = 0;
             } else {
                 console.log("error", response)
             }
@@ -466,12 +485,13 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                 // console.log('test :' )
                 // console.log(this_question)
                 testing_data.question[position] = this_question
-                // trừ lv khi sai 
+                // trừ lv khi timeout 
                 testing_data.level = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
-
+                // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
+                flagChange = 1;
             } else {
                 console.log("error", response)
             }
@@ -491,6 +511,9 @@ function next() {
         console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
         alert("Please answer the question")
     } else {
+        // dừng việc check20s tránh đuplicate lặp timeout
+        stopTimeToChange()
+
         tab_number[currentTab].style.display = "none";
         currentTab += 1
         console.log ("number tab", tab_number.length-1, "tab current", currentTab)
@@ -505,7 +528,8 @@ function next() {
             showTab(currentTab);
         } else {
             // compare answer
-            if(just_answer != fakeAnswer && parseInt(testing_data.level) != minLv ){
+            console.log(flagChange)
+            if(just_answer != fakeAnswer && parseInt(testing_data.level) > minLv && flagChange == 0 ){
                 console.log('w answer');
                 changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
             } else {
@@ -532,6 +556,10 @@ function next() {
                         hideQuestion(currentTab);
                     }
                 showTab(currentTab)
+                // sau khi render 20s k next thì sẽ => câu hỏi thấp
+                if(parseInt(testing_data.level) > minLv){
+                    setTimeToChange(testing_data.level - 1 , currentTab );
+                }
             }
         }
     }
