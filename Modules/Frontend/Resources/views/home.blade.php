@@ -38,10 +38,10 @@
 <section class="psy-section" id="id2">
 	<div class="container">
 			<div class="row tn">
-			 	<div class="col-lg-6 offset-lg-3">
+			 	<div class="col-md-6 col-md-offset-3">
 	  			<h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-md-12">
 	  			<div class="bigwhale">
 					<a class="test-now" href="#list-test">
 						<img src="{{asset('./Catopiana_files/images/whale.png')}}">

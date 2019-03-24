@@ -30,4 +30,5 @@ Route::group([], function() {
 
 
     Route::post('/get-list-question', 'FrontendController@getListQuestion');
+    Route::post('/get-list-less-level-question', 'FrontendController@getListLessLevelQuestion');
 });
