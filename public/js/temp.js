@@ -13,6 +13,9 @@ var timeout = 5;
 var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
+let fakeAnswer = 0;
+let minLv = 4;
+
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
     $(this).css('opacity', '1');
@@ -214,12 +217,12 @@ function generateUnfinishedTest(current_data) {
 
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
-                    answer += '<label class="col-4" style="opacity: 1">' +
+                    answer += '<label class="col-md-4" style="opacity: 1">' +
                         '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 } else {
-                    answer += '<label class="col-4" style="opacity: 0.3"> ' +
+                    answer += '<label class="col-md-4" style="opacity: 0.3"> ' +
                         '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
@@ -253,12 +256,12 @@ function generateUnfinishedTest(current_data) {
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
-                    answer += '<label class="col-6" style="opacity: 1">' +
+                    answer += '<label class="col-md-6" style="opacity: 1">' +
                         '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
                         '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 } else {
-                    answer += '<label class="col-6" style="opacity: 0.3"> ' +
+                    answer += '<label class="col-md-6" style="opacity: 0.3"> ' +
                         '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
                         '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
@@ -390,9 +393,95 @@ function showTab(n) {
 
 }
 
+
+
+let changeDynamicQuestion = (test_level, indexIncorrect) => {
+    $.ajax({
+        method: "POST",
+        url: "/get-list-less-level-question",
+        data: {
+            'type': type,
+            'level': test_level,
+            'index' : indexIncorrect
+        },
+        success: function (response) {
+
+            if (response.status === 1) {
+                // console.log(response.question_data)
+                // ghep cau hoi vao this_question
+                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                console.log('test :' )
+                console.log(this_question)
+                testing_data.question[position] = this_question
+                // trừ lv khi sai 
+                testing_data.level = test_level;
+
+                // total_question = parseInt(this_question.question_data.length)
+                localStorage.setItem('testing', JSON.stringify(testing_data));
+
+                if (type == '1'){
+                    //Audio
+                    renderAudio(this_question.question_data[indexIncorrect].question, this_question.question_data[indexIncorrect].answers,
+                        this_question.question_data[indexIncorrect].question_image, this_question.question_data[indexIncorrect].answer_image)
+                }
+                else {
+                    render(this_question.question_data[indexIncorrect].question, this_question.question_data[indexIncorrect].answers)
+                }
+                
+                if(type === '6'){
+                    //Memory
+                    if(timerId != null){
+                        clearTimeout(timerId);
+                        timeout = 5;
+                    }
+                    buttonMemoryChecked = false;
+                    hideQuestion(currentTab);
+                }
+                showTab(indexIncorrect)
+            } else {
+                console.log("error", response)
+            }
+
+        }
+
+    })
+}
+
+let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
+    console.log(type, test_level, indexIncorrect)
+    $.ajax({
+        method: "POST",
+        url: "/get-list-less-level-question",
+        data: {
+            'type': type,
+            'level': test_level,
+            'index' : indexIncorrect
+        },
+        success: function (response) {
+
+            if (response.status === 1) {
+                // console.log(response.question_data)
+                // ghep cau hoi vao this_question
+                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                // console.log('test :' )
+                // console.log(this_question)
+                testing_data.question[position] = this_question
+                // trừ lv khi sai 
+                testing_data.level = test_level;
+
+                // total_question = parseInt(this_question.question_data.length)
+                localStorage.setItem('testing', JSON.stringify(testing_data));
+
+            } else {
+                console.log("error", response)
+            }
+        }
+
+    })
+}
+ 
 function next() {
-    if(type == "6" && buttonMemoryChecked == false)
-    {
+    if(type == "6" && buttonMemoryChecked == false){
         return false;
     }
     // let just_answer = tab_number[currentTab].querySelector('input:checked')
@@ -415,32 +504,36 @@ function next() {
             //An prev xong quay thi => ko can render html them nua
             showTab(currentTab);
         } else {
+            // compare answer
+            if(just_answer != fakeAnswer && parseInt(testing_data.level) != minLv ){
+                console.log('w answer');
+                changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
+            } else {
+                //Save into local storage
+                // console.log (testing_data, 'test')
+                localStorage.setItem('testing', JSON.stringify(testing_data))
 
-            //Save into local storage
-            // console.log (testing_data, 'test')
-            localStorage.setItem('testing', JSON.stringify(testing_data))
-
-            if (type == '1'){
-                //Audio
-                renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
-                    this_question.question_data[currentTab].question_image, this_question.question_data[currentTab].answer_image)
-            }
-            else {
-                render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
-            }
-
-            if(type === '6'){
-                    //Memory
-                    if(timerId != null){
-                        clearTimeout(timerId);
-                        timeout = 5;
-                    }
-                    buttonMemoryChecked = false;
-                    hideQuestion(currentTab);
+                if (type == '1'){
+                    //Audio
+                    renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
+                        this_question.question_data[currentTab].question_image, this_question.question_data[currentTab].answer_image)
                 }
-            // showTab(currentTab)
+                else {
+                    render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
+                }
+
+                if(type === '6'){
+                        //Memory
+                        if(timerId != null){
+                            clearTimeout(timerId);
+                            timeout = 5;
+                        }
+                        buttonMemoryChecked = false;
+                        hideQuestion(currentTab);
+                    }
+                showTab(currentTab)
+            }
         }
-        showTab(currentTab)
     }
 
 }
@@ -467,7 +560,7 @@ function prev() {
 function render(question, answers) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
-        answerHTML += "<label class='col-6'>" +
+        answerHTML += "<label class='col-md-6'>" +
             "<input type='radio' value='"+el+index+"' data-position='"+index+"' hidden>" +
             "<img src='/test/images/" + el + "' alt=''>" +
             "</label>"
@@ -494,7 +587,7 @@ function render(question, answers) {
 function renderAudio(question, answers, question_image, answer_image){
     var answerHTML = "";
     answers.forEach(function(el, index) {
-        answerHTML += "<label class='col-4'>" +
+        answerHTML += "<label class='col-md-4'>" +
             "<input type='radio' style='z-index: -1;' value='"+el+"' data-position='"+index+"' hidden>" +
             "<img class='audio-image' src='" + answer_image +"' alt=''>" +
             "<audio src='"+ el+"' class='audio'></audio>" +

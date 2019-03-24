@@ -20,7 +20,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * Display a creative page
+     * Display a position page
      * @return Response
      */
     public function position()
@@ -68,6 +68,29 @@ class FrontendController extends Controller
                 $raw_data = Question::getListQuestion($params['type'], $params['level']);
             }
 //            dd($raw_data);
+            return [
+                'status' => 1,
+                'question_data' => $raw_data
+            ];
+        } else {
+            return [
+                'status' => 0
+            ];
+        }
+
+
+    }
+
+    public function getListLessLevelQuestion(Request $request)
+    {
+        $params = $request->all();
+        if (!empty($params['type']) && !empty($params['level']) && !empty($params['index'])) {
+            if ($params['type'] == "1"){
+                //Audio
+                $raw_data = Question::getLessLevelQuestionAudio($params['type'], $params['level'], $params['index']);
+            }else {
+                $raw_data = Question::getLessLevelQuestion($params['type'], $params['level'], $params['index']);
+            }
             return [
                 'status' => 1,
                 'question_data' => $raw_data
