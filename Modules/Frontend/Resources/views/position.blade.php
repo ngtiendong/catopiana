@@ -21,40 +21,6 @@
                     <a class="startBtn">Click To Start!</a>
 
                     <form id="testForm" style="display: none">
-                        {{--<div class="position-tab" >--}}
-                            {{--<div class="matching row" id="test-area">--}}
-                                {{--<div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >--}}
-                                    {{--<ul class="column-left" data-position="0">--}}
-                                        {{--<li class="list-l-item">--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="1">--}}
-                                        {{--</li>--}}
-                                        {{--<li class="list-l-item" >--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="2">--}}
-                                        {{--</li>--}}
-                                        {{--<li class="list-l-item" >--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="3">--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</div>--}}
-                                {{--<div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>--}}
-                                {{--<div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >--}}
-                                    {{--<ul class="column-right" data-position="1">--}}
-                                        {{--<li class="list-l-item">--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="1">--}}
-                                        {{--</li>--}}
-                                        {{--<li class="list-l-item" >--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="2">--}}
-                                        {{--</li>--}}
-                                        {{--<li class="list-l-item" >--}}
-                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="3">--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-lg-1"></div>--}}
-                            {{--</div>--}}
-                            {{--<div class="clearfix"></div>--}}
-                        {{--</div>--}}
-
 
                         <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
                         <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>
