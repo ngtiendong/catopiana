@@ -134,7 +134,7 @@ $('.startBtn').click(async function () {
                         };
 
                         testing_data.question.push(this_question);
-                        localStorage.setItem('testing', JSON.stringify(testing_data));
+                        // localStorage.setItem('testing', JSON.stringify(testing_data));
                         total_question = parseInt(this_question.question_data.length)
                         //Display
                         displayTest()
@@ -531,7 +531,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 level_temp = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
-                localStorage.setItem('testing', JSON.stringify(testing_data));
+                // localStorage.setItem('testing', JSON.stringify(testing_data));
 
                 if (type == '1'){
                     //Audio
@@ -591,7 +591,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                 // console.log(response.question_data)
 
                 // total_question = parseInt(this_question.question_data.length)
-                localStorage.setItem('testing', JSON.stringify(testing_data));
+                // localStorage.setItem('testing', JSON.stringify(testing_data));
                 // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
                 flagChange = 1;
             } else {
@@ -657,7 +657,7 @@ function next() {
                 } else {
                     //Save into local storage
                     // console.log (testing_data, 'test')
-                    localStorage.setItem('testing', JSON.stringify(testing_data))
+                    // localStorage.setItem('testing', JSON.stringify(testing_data))
 
                     renderPosition(this_question.question_data[currentTab][0], this_question.question_data[currentTab][1])
 
