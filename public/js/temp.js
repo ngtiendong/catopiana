@@ -64,6 +64,9 @@ $(function(){
                 if (name.value) {
                     //Lock and save answered
                     just_answer = just_answer.data('position')
+                    if (this_question.answers.length > currentTab) {
+                        this_question.answers.pop()
+                    }
                     this_question.answers.push(just_answer)
                     this_question.status = 1
                     //Save into local storage
@@ -154,7 +157,7 @@ $('.startBtn').click(async function () {
                         }
 
                         // check khi start lan dau qua 20s chuyen cau hoi lv thap
-                        if(level > minLv){           
+                        if(level > minLv){
                             setTimeToChange(level - 1 , 1)
                         }
                     }
@@ -291,7 +294,7 @@ function generateUnfinishedTest(current_data) {
 
 
     $('.tab').remove()
-    $('.button-np').before(html)
+    $('#prevBtn').before(html)
     displayTest()
     showTab(currentTab)
 
@@ -433,11 +436,11 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
                     // testing_data.question[position] = this_question
                 }
-                // trừ lv khi sai 
+                // trừ lv khi sai
                 level_temp = test_level
                 // console.log('test :' )
                 // console.log(this_question)
-                
+
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -450,7 +453,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 else {
                     render(this_question.question_data[indexIncorrect].question, this_question.question_data[indexIncorrect].answers)
                 }
-                
+
                 if(type === '6'){
                     //Memory
                     if(timerId != null){
@@ -493,7 +496,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
                     // testing_data.question[position] = this_question
                 }
-                 // trừ lv khi timeout 
+                 // trừ lv khi timeout
                     level_temp = test_level
                 // console.log(response.question_data)
 
@@ -508,7 +511,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 
     })
 }
- 
+
 function next() {
     if(type == "6" && buttonMemoryChecked == false){
         return false;
@@ -521,7 +524,7 @@ function next() {
         alert("Please answer the question")
     } else {
         // dừng việc check20s tránh đuplicate lặp timeout
-        
+
 
         tab_number[currentTab].style.display = "none";
         currentTab += 1
@@ -530,13 +533,14 @@ function next() {
         //Lock and save answered
         just_answer = just_answer.data('position')
         this_question.answers.push(just_answer)
+        console.log("push here", this_question.answers)
         if (tab_number.length-1 >= currentTab){
             //An prev xong quay thi => ko can render html them nua
             showTab(currentTab);
         } else {
             stopTimeToChange()
             // compare answer
-            console.log(flagChange) 
+            console.log(flagChange)
             console.log(level_temp)
             if(typeof(level_temp) === 'undefined'){
                 level_temp = parseInt(testing_data.level);
@@ -568,7 +572,7 @@ function next() {
                         hideQuestion(currentTab);
                     }
                 showTab(currentTab)
-                flagChange = 0 
+                flagChange = 0
                 // sau khi render 20s k next thì sẽ => câu hỏi thấp
                 if(level_temp > minLv){
                     setTimeToChange(level_temp - 1 , currentTab );
@@ -589,8 +593,11 @@ function prev() {
     x[currentTab].style.display = "none";
 
     currentTab += -1
-    console.log("pop here")
-    this_question.answers.pop()
+    while(this_question.answers.length > currentTab){
+        this_question.answers.pop()
+    }
+    console.log("pop here", this_question.answers)
+
     //Save into local storage
     localStorage.setItem('testing', JSON.stringify(testing_data))
 
@@ -620,8 +627,9 @@ function render(question, answers) {
         "</div>" +
         "</div>";
 
-    $('.button-np').before(content);
+    // $('.button-np').before(content);
     // console.log("conent", content)
+    $('#prevBtn').before(content)
     return content
 }
 
@@ -642,7 +650,7 @@ function renderAudio(question, answers, question_image, answer_image){
         answerHTML +
         "</div>" +
         "</div>" ;
-    $('.button-np').before(content);
+    $('#prevBtn').before(content);
     return content
 }
 

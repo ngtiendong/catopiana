@@ -24,12 +24,10 @@
                     <input id="type" value="{{$type}}" hidden>
 
                     <form id="testForm">
-                        <div class="btn button-np" style="">
-                            <button type="button" id="prevBtn" onclick="prev()">Previous</button>
-                            <button type="button" id="nextBtn" onclick="next()">Next</button>
-                            <button type="submit" id="submitBtn" style="display: none">Submit</button>
+                            <button class="test-button" type="button" id="prevBtn" onclick="prev()">Previous</button>
+                            <button class="test-button" type="button" id="nextBtn" onclick="next()">Next</button>
+                            <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
 
-                        </div>
                         <div class="dot">
                             <span class="badge badge-pill badge-primary"></span>
 
