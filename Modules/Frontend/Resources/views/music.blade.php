@@ -58,8 +58,8 @@
     <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
     <script src="{{asset('/js/svg_variables.js')}}"></script>
-    <script src="{{asset('/js/music.js')}}"></script>
-    <script src="{{asset('/js/temp.js')}}"></script>
+    <script src="{{asset('/js/music.js?v=1.2')}}"></script>
+    <script src="{{asset('/js/temp.js?v=1.2')}}"></script>
 
 {{--<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>--}}
 @endpush
