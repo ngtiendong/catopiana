@@ -1,7 +1,14 @@
 let currentTab = 0;
-let tab_number = document.getElementsByClassName("tab");
 let total_question = 0
 var type = $('#type').val()
+let tab_number, fakeAnswer
+if (type == '8') {
+    tab_number = document.getElementsByClassName("position-tab");
+    fakeAnswer = [[0,0], [1,1], [2,2]];
+} else {
+    tab_number = document.getElementsByClassName("tab");
+    fakeAnswer = 0;
+}
 // console.log('type', type, type == '2')
 
 var this_question
@@ -13,12 +20,9 @@ var timeout = 5;
 var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
-let fakeAnswer = 0;
-let minLv = 1;
-
+let minLv = 4;
 let timeToChange;
 let flagChange = 0;
-let level_temp;
 
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
@@ -137,6 +141,8 @@ $('.startBtn').click(async function () {
                         if (type === '1'){
                             renderAudio(this_question.question_data[0].question, this_question.question_data[0].answers,
                                 this_question.question_data[0].question_image, this_question.question_data[0].answer_image)
+                        } else if (type === '8'){
+                            renderPosition(this_question.question_data[0][0],this_question.question_data[0][1])
                         }
                         else {
                             render(this_question.question_data[0].question, this_question.question_data[0].answers)
@@ -154,7 +160,7 @@ $('.startBtn').click(async function () {
                         }
 
                         // check khi start lan dau qua 20s chuyen cau hoi lv thap
-                        if(level > minLv){           
+                        if(level > minLv){
                             setTimeToChange(level - 1 , 1)
                         }
                     }
@@ -211,7 +217,7 @@ function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
     var html = ''
     var length_answered = current_data.answers.length;
-    console.log('length answer', length_answered)
+    console.log('length answer', current_data.answers)
 
     if (type == '1'){
         //Audio
@@ -249,6 +255,56 @@ function generateUnfinishedTest(current_data) {
         }
 
     }
+    else if(type == '8') {
+        for (var i = 0; i<length_answered; i++) {
+            var question_left = current_data.question_data[i][0]
+            var question_right = current_data.question_data[i][1]
+
+            html += '<div class="position-tab" style="display: none">' +
+                '                            <div class="matching row" id="test-area">' +
+                '                                <div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >' +
+                '                                    <ul class="column-left" data-position="0">' +
+                '                                        <li class="list-l-item">' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_left[0]+'" data-index="1">' +
+                '                                        </li>' +
+                '                                        <li class="list-l-item" >' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_left[1]+'" data-index="2">' +
+                '                                        </li>' +
+                '                                        <li class="list-l-item" >' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_left[2]+'" data-index="3">' +
+                '                                        </li>' +
+                '                                    </ul>' +
+                '                                </div>' +
+                '                                <div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>' +
+                '                                <div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >' +
+                '                                    <ul class="column-right" data-position="1">' +
+                '                                        <li class="list-l-item">' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_right[0]+'" data-index="1">' +
+                '                                        </li>' +
+                '                                        <li class="list-l-item" >' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_right[1]+'" data-index="2">' +
+                '                                        </li>' +
+                '                                        <li class="list-l-item" >' +
+                '                                            <img class="image-point-l clicked-img" src="'+question_right[2]+'" data-index="3">' +
+                '                                        </li>' +
+                '                                    </ul>' +
+                '                                </div>' +
+                '                                <div class="col-lg-1"></div>' +
+                '                            </div>' +
+                '                            <div class="clearfix"></div>' +
+                '                        </div>'
+
+            for (var j=0; j<3; j++) {
+                // console.log(current_data.answers[i][j], i, j)
+                // current_data.answers[i][j][2].hide()
+            }
+            currentTab++
+        }
+
+        if (length_answered < total_question) {
+            html += renderPosition(current_data.question_data[length_answered][0], current_data.question_data[length_answered][1])
+        }
+    }
     else {
         for (var i = 0; i<length_answered; i++) {
             var visibility
@@ -256,8 +312,8 @@ function generateUnfinishedTest(current_data) {
                 visibility = 'visibility: hidden;'
             }
             html += '<div class="tab" style="display: none;"><img class="question" style="'+visibility+'" src="/test/images/'+current_data.question_data[i].question+'" alt="">'
-            + '<p class="countDownTimer"></p>' +
-            "<div class='answer'>" ;
+                + '<p class="countDownTimer"></p>' +
+                "<div class='answer'>" ;
 
             var answer = ""
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
@@ -288,10 +344,14 @@ function generateUnfinishedTest(current_data) {
         }
     }
 
+    if (type == '8') {
+        $('.position-tab').remove()
+        $('#prevBtn').before(html)
+    } else {
+        $('.tab').remove()
+        $('.button-np').before(html)
+    }
 
-
-    $('.tab').remove()
-    $('.button-np').before(html)
     displayTest()
     showTab(currentTab)
 
@@ -340,6 +400,8 @@ function getNewQuestionData(position) {
                     //Audio
                     renderAudio(this_question.question_data[0].question, this_question.question_data[0].answers,
                         this_question.question_data[0].question_image, this_question.question_data[0].answer_image)
+                }else if (type === '8'){
+                    renderPosition(this_question.question_data[0][0],this_question.question_data[0][1])
                 }
                 else {
                     render(this_question.question_data[0].question, this_question.question_data[0].answers)
@@ -381,14 +443,20 @@ function showTab(n) {
     for (let i = 0; i < tab_number.length; i++) {
         tab_number[i].style.display = "none";
     }
-    tab_number[n].style.display = "flex";
+    if (type == '8') {
+        tab_number[n].style.display = "block";
+    } else {
+        tab_number[n].style.display = "flex";
+    }
     // console.log(n, currentTab, total_question)
     if (n === 0) {
+        document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
 
     }else if (n === total_question - 1) {
         document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("prevBtn").style.display = "inline";
         document.getElementById("submitBtn").style.display = "inline";
 
     }
@@ -403,15 +471,14 @@ function showTab(n) {
 
 setTimeToChange = (test_level, indexIncorrect) => {
     timeToChange = setTimeout(() => {
-    changeDynamicQuestionTimeOut(test_level, indexIncorrect)
-}, 20000)
+        changeDynamicQuestionTimeOut(test_level, indexIncorrect)
+    }, 20000)
 }
 
 stopTimeToChange = () => {
     for (var i = timeToChange; i > 0; i--)
-    clearTimeout(timeToChange)
+        clearTimeout(timeToChange)
 }
-
 
 
 let changeDynamicQuestion = (test_level, indexIncorrect) => {
@@ -429,15 +496,12 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
             if (response.status === 1) {
                 // console.log(response.question_data)
                 // ghep cau hoi vao this_question
-                if(response.question_data.length != 0){
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    testing_data.question[position] = this_question
-                }
-                // trừ lv khi sai 
-                level_temp = test_level
-                // console.log('test :' )
-                // console.log(this_question)
-                
+                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                console.log('test :' )
+                console.log(this_question)
+                testing_data.question[position] = this_question
+                // trừ lv khi sai
+                testing_data.level = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -446,11 +510,13 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     //Audio
                     renderAudio(this_question.question_data[indexIncorrect].question, this_question.question_data[indexIncorrect].answers,
                         this_question.question_data[indexIncorrect].question_image, this_question.question_data[indexIncorrect].answer_image)
+                }else if (type == '8'){
+                    renderPosition(this_question.question_data[indexIncorrect][0],this_question.question_data[indexIncorrect][1])
                 }
                 else {
                     render(this_question.question_data[indexIncorrect].question, this_question.question_data[indexIncorrect].answers)
                 }
-                
+
                 if(type === '6'){
                     //Memory
                     if(timerId != null){
@@ -462,10 +528,6 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 }
                 showTab(indexIncorrect)
                 flagChange = 0;
-                if(level_temp > minLv){
-                    console.log('vào đây dynamyc')
-                    setTimeToChange(level_temp - 1 , currentTab );
-                }
             } else {
                 console.log("error", response)
             }
@@ -488,14 +550,14 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
         success: function (response) {
 
             if (response.status === 1) {
-                if(response.question_data.length != 0){
-                     // ghep cau hoi vao this_question
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    testing_data.question[position] = this_question
-                }
-                 // trừ lv khi timeout 
-                    level_temp = test_level
                 // console.log(response.question_data)
+                // ghep cau hoi vao this_question
+                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                // console.log('test :' )
+                // console.log(this_question)
+                testing_data.question[position] = this_question
+                // trừ lv khi timeout
+                testing_data.level = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -508,57 +570,118 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 
     })
 }
- 
+
 function next() {
     if(type == "6" && buttonMemoryChecked == false){
         return false;
     }
-    // let just_answer = tab_number[currentTab].querySelector('input:checked')
-    let just_answer = $('.tab').eq(currentTab).find('input:checked')
-    if (typeof $(just_answer).val() === 'undefined'){
-        //Chua tra loi
-        // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
-        alert("Please answer the question")
-    } else {
-        // dừng việc check20s tránh đuplicate lặp timeout
-        stopTimeToChange()
+    if (type == "8") {
+        //Position
+        if (line_array.length == 3) {
+            tab_number[currentTab].style.display = "none";
+            currentTab += 1
+            console.log ("number tab", tab_number.length-1, "tab current", currentTab)
 
-        tab_number[currentTab].style.display = "none";
-        currentTab += 1
-        console.log ("number tab", tab_number.length-1, "tab current", currentTab)
+            //Lock and save answered
+            let just_answer = line_array
+            console.log ("just_answer", line_array)
+            line_array = []
+            let compare_just_answer = [
+                [just_answer[0][0],just_answer[0][1]],
+                [just_answer[1][0],just_answer[1][1]],
+                [just_answer[2][0],just_answer[2][1]],
+            ]
 
-        //Lock and save answered
-        just_answer = just_answer.data('position')
-        this_question.answers.push(just_answer)
+            this_question.answers.push(just_answer)
+            just_answer[0][2].hide()
+            just_answer[1][2].hide()
+            just_answer[2][2].hide()
 
-        if (tab_number.length-1 >= currentTab){
-            //An prev xong quay thi => ko can render html them nua
-            showTab(currentTab);
-        } else {
-            // compare answer
-            console.log(flagChange) 
-            console.log(level_temp)
-            if(typeof(level_temp) === 'undefined'){
-                level_temp = parseInt(testing_data.level);
-            }
-            if(just_answer != fakeAnswer && level_temp > minLv && flagChange == 0 ){
-                console.log('w answer');
-                changeDynamicQuestion(level_temp -1 , this_question.answers.length)
+            if (tab_number.length-1 >= currentTab){
+                //An prev xong quay lai tab nay thi` => ko can render html them nua
+                showTab(currentTab);
+                //Show line
+                all_line_array[currentTab-1] = just_answer
+                line_array = all_line_array[currentTab]
+                console.log('all', all_line_array, currentTab)
+
+                for (var j=0; j<all_line_array[currentTab].length; j++) {
+                    all_line_array[currentTab][j][2].show()
+                    // $('.column-left img[data-index='+all_line_array[currentTab-1][j][0]+']').addClass('clicked-img').removeClass('unlock-selection')
+                    // $('.column-right img[data-index='+all_line_array[currentTab-1][j][1]+']').addClass('clicked-img').removeClass('unlock-selection')
+                }
+
             } else {
-                //Save into local storage
-                // console.log (testing_data, 'test')
-                localStorage.setItem('testing', JSON.stringify(testing_data))
+                // compare answer
+                all_line_array.push(just_answer)
+                console.log('allpush', all_line_array)
 
-                if (type == '1'){
-                    //Audio
-                    renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
-                        this_question.question_data[currentTab].question_image, this_question.question_data[currentTab].answer_image)
-                }
-                else {
-                    render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
-                }
 
-                if(type === '6'){
+                console.log(flagChange)
+                if(compare_just_answer.compare(fakeAnswer) && parseInt(testing_data.level) > minLv && flagChange == 0 ){
+                    console.log('w answer');
+                    changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
+                } else {
+                    //Save into local storage
+                    // console.log (testing_data, 'test')
+                    localStorage.setItem('testing', JSON.stringify(testing_data))
+
+                    renderPosition(this_question.question_data[currentTab][0], this_question.question_data[currentTab][1])
+
+                    showTab(currentTab)
+                    // sau khi render 20s k next thì sẽ => câu hỏi thấp
+                    if(parseInt(testing_data.level) > minLv){
+                        setTimeToChange(testing_data.level - 1 , currentTab );
+                    }
+                }
+            }
+        } else {
+            alert("Please answer the question")
+        }
+    }
+    else {
+        // let just_answer = tab_number[currentTab].querySelector('input:checked')
+        let just_answer = $('.tab').eq(currentTab).find('input:checked')
+        if (typeof $(just_answer).val() === 'undefined'){
+            //Chua tra loi
+            console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
+            alert("Please answer the question")
+        } else {
+            // dừng việc check20s tránh đuplicate lặp timeout
+            stopTimeToChange()
+
+            tab_number[currentTab].style.display = "none";
+            currentTab += 1
+            console.log ("number tab", tab_number.length-1, "tab current", currentTab)
+
+            //Lock and save answered
+            just_answer = just_answer.data('position')
+            this_question.answers.push(just_answer)
+
+            if (tab_number.length-1 >= currentTab){
+                //An prev xong quay thi => ko can render html them nua
+                showTab(currentTab);
+            } else {
+                // compare answer
+                console.log(flagChange)
+                if(just_answer != fakeAnswer && parseInt(testing_data.level) > minLv && flagChange == 0 ){
+                    console.log('w answer');
+                    changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
+                } else {
+                    //Save into local storage
+                    // console.log (testing_data, 'test')
+                    localStorage.setItem('testing', JSON.stringify(testing_data))
+
+                    if (type == '1'){
+                        //Audio
+                        renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
+                            this_question.question_data[currentTab].question_image, this_question.question_data[currentTab].answer_image)
+                    }
+                    else {
+                        render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
+                    }
+
+                    if(type === '6'){
                         //Memory
                         if(timerId != null){
                             clearTimeout(timerId);
@@ -567,15 +690,16 @@ function next() {
                         buttonMemoryChecked = false;
                         hideQuestion(currentTab);
                     }
-                showTab(currentTab)
-                flagChange = 0 
-                // sau khi render 20s k next thì sẽ => câu hỏi thấp
-                if(level_temp > minLv){
-                    setTimeToChange(level_temp - 1 , currentTab );
+                    showTab(currentTab)
+                    // sau khi render 20s k next thì sẽ => câu hỏi thấp
+                    if(parseInt(testing_data.level) > minLv){
+                        setTimeToChange(testing_data.level - 1 , currentTab );
+                    }
                 }
             }
         }
     }
+
 
 }
 
@@ -584,13 +708,32 @@ function prev() {
     {
         return false;
     }
+    if (type == '8') {
+        var x = document.getElementsByClassName("position-tab");
+    } else {
+        var x = document.getElementsByClassName("tab");
+    }
+    if (line_array) {
+        for (var i=0; i< line_array.length; i++) {
+            line_array[i][2].hide()
+            // $('.column-left img[data-index='+line_array[i][0]+']').removeClass('clicked-img').addClass('unlock-selection')
+            // $('.column-right img[data-index='+line_array[i][1]+']').removeClass('clicked-img').addClass('unlock-selection')
+        }
 
-    var x = document.getElementsByClassName("tab");
+    }
     x[currentTab].style.display = "none";
+    var old_line_array = this_question.answers.pop()
+    all_line_array[currentTab] = line_array
+    line_array = old_line_array
+    currentTab += -1;
 
-    currentTab += -1
-    console.log("pop here")
-    this_question.answers.pop()
+    if (type == '8') {
+        //Show line already in prev
+        console.log ('all', all_line_array)
+        for (var j=0; j<3; j++) {
+            old_line_array[j][2].show()
+        }
+    }
     //Save into local storage
     localStorage.setItem('testing', JSON.stringify(testing_data))
 
@@ -690,4 +833,64 @@ function displayTestUnFinishedAfterSubmit() {
     $('div.list-after-finished').fadeIn(1000)
 
 
+}
+
+function renderPosition(question_left, question_right) {
+    var html = ''
+    html += '<div class="position-tab" style="display: block">' +
+        '                            <div class="matching row" id="test-area">' +
+        '                                <div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >' +
+        '                                    <ul class="column-left" data-position="0">' +
+        '                                        <li class="list-l-item">' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_left[0]+'" data-index="1">' +
+        '                                        </li>' +
+        '                                        <li class="list-l-item" >' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_left[1]+'" data-index="2">' +
+        '                                        </li>' +
+        '                                        <li class="list-l-item" >' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_left[2]+'" data-index="3">' +
+        '                                        </li>' +
+        '                                    </ul>' +
+        '                                </div>' +
+        '                                <div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>' +
+        '                                <div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >' +
+        '                                    <ul class="column-right" data-position="1">' +
+        '                                        <li class="list-l-item">' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_right[0]+'" data-index="1">' +
+        '                                        </li>' +
+        '                                        <li class="list-l-item" >' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_right[1]+'" data-index="2">' +
+        '                                        </li>' +
+        '                                        <li class="list-l-item" >' +
+        '                                            <img class="image-point-l unlock-selection" src="'+question_right[2]+'" data-index="3">' +
+        '                                        </li>' +
+        '                                    </ul>' +
+        '                                </div>' +
+        '                                <div class="col-lg-1"></div>' +
+        '                            </div>' +
+        '                            <div class="clearfix"></div>' +
+        '                        </div>'
+    $('#prevBtn').before(html);
+    return html
+}
+
+
+Array.prototype.compare = function(array) {
+    if (!array) {
+        return false;
+    }
+    if (this.length !== array.length) {
+        return false;
+    }
+    for (var i = 0, l = this.length; i < l; i++) {
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            if (!this[i].compare(array[i])) {
+                return false;
+            }
+        }
+        else if (this[i] !== array[i]) {
+            return false;
+        }
+    }
+    return true;
 }

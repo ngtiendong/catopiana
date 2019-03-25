@@ -25,7 +25,8 @@ class FrontendController extends Controller
      */
     public function position()
     {
-        return view('frontend::position');
+        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::position', compact('type'));
     }
 
     /**
@@ -64,7 +65,11 @@ class FrontendController extends Controller
             if ($params['type'] == "1"){
                 //Audio
                 $raw_data = Question::getListQuestionAudio($params['type'], $params['level']);
-            }else {
+            }elseif ($params['type'] == "8") {
+                //Position
+                $raw_data = Question::getListQuestionPosition($params['type'], $params['level']);
+            }
+            else {
                 $raw_data = Question::getListQuestion($params['type'], $params['level']);
             }
 //            dd($raw_data);
@@ -88,7 +93,11 @@ class FrontendController extends Controller
             if ($params['type'] == "1"){
                 //Audio
                 $raw_data = Question::getLessLevelQuestionAudio($params['type'], $params['level'], $params['index']);
-            }else {
+            } elseif($params['type'] == "8") {
+                //Position
+                $raw_data = Question::getLessLevelQuestionPosition($params['type'], $params['level'], $params['index']);
+            }
+            else {
                 $raw_data = Question::getLessLevelQuestion($params['type'], $params['level'], $params['index']);
             }
             return [
