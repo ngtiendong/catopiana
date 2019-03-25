@@ -6,15 +6,15 @@ var list_test_finished = []
 var testing_data
 
 if (localStorage.getItem('testing')) {
-    localStorage.removeItem('testing')
-    // var testing = localStorage.getItem('testing');
-    // testing_data = JSON.parse(testing);
-    // var test_level = testing_data.level
-    //
-    // //List test finish
-    // testing_data.question.forEach(function(value, index) {
-    //     list_test_finished.push(parseInt(value.type))
-    // })
+    // localStorage.removeItem('testing')
+    var testing = localStorage.getItem('testing');
+    testing_data = JSON.parse(testing);
+    var test_level = testing_data.level
+    
+    //List test finish
+    testing_data.question.forEach(function(value, index) {
+        list_test_finished.push(parseInt(value.type))
+    })
 }
 
 $(function(){

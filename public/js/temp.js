@@ -431,7 +431,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 // ghep cau hoi vao this_question
                 if(response.question_data.length != 0){
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    testing_data.question[position] = this_question
+                    // testing_data.question[position] = this_question
                 }
                 // trừ lv khi sai 
                 level_temp = test_level
@@ -491,7 +491,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                 if(response.question_data.length != 0){
                      // ghep cau hoi vao this_question
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    testing_data.question[position] = this_question
+                    // testing_data.question[position] = this_question
                 }
                  // trừ lv khi timeout 
                     level_temp = test_level
@@ -521,7 +521,7 @@ function next() {
         alert("Please answer the question")
     } else {
         // dừng việc check20s tránh đuplicate lặp timeout
-        stopTimeToChange()
+        
 
         tab_number[currentTab].style.display = "none";
         currentTab += 1
@@ -530,11 +530,11 @@ function next() {
         //Lock and save answered
         just_answer = just_answer.data('position')
         this_question.answers.push(just_answer)
-
         if (tab_number.length-1 >= currentTab){
             //An prev xong quay thi => ko can render html them nua
             showTab(currentTab);
         } else {
+            stopTimeToChange()
             // compare answer
             console.log(flagChange) 
             console.log(level_temp)

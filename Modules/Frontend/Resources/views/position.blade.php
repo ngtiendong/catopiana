@@ -126,8 +126,8 @@
                             value[2].remove()
                             //Remove clicked img class
                             // console.log('img[data-index='+value[0]+']', $('img[data-index='+value[0]+']'))
-                            $('.column-left img[data-index='+value[0]+']').removeClass('clicked-img').addClass('unlock-selection')
-                            $('.column-right img[data-index='+value[1]+']').removeClass('clicked-img').addClass('unlock-selection')
+                            $(this_img).closest('.matching').find('.column-left img[data-index='+value[0]+']').removeClass('clicked-img').addClass('unlock-selection')
+                            $(this_img).closest('.matching').find('.column-right img[data-index='+value[1]+']').removeClass('clicked-img').addClass('unlock-selection')
                         }
                     })
                 }

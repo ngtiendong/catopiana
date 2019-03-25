@@ -20,9 +20,10 @@ var timeout = 5;
 var timerId = null;
 $('.badge').text((currentTab+1)+' / '+total_question)
 
-let minLv = 4;
+let minLv = 1;
 let timeToChange;
 let flagChange = 0;
+let level_temp;
 
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
@@ -256,6 +257,7 @@ function generateUnfinishedTest(current_data) {
 
     }
     else if(type == '8') {
+        all_line_array = current_data.answers;
         for (var i = 0; i<length_answered; i++) {
             var question_left = current_data.question_data[i][0]
             var question_right = current_data.question_data[i][1]
@@ -294,10 +296,33 @@ function generateUnfinishedTest(current_data) {
                 '                            <div class="clearfix"></div>' +
                 '                        </div>'
 
-            for (var j=0; j<3; j++) {
-                // console.log(current_data.answers[i][j], i, j)
-                // current_data.answers[i][j][2].hide()
-            }
+            // for (var j=0; j<3; j++) {
+            // //     // console.log(current_data.answers[i][j], i, j)
+            // //     // current_data.answers[i][j][2].hide();
+            //      var line = new LeaderLine(
+            //         LeaderLine.pointAnchor($('.column-left .clicked-img[data-index="'+ current_data.answers[i][j][0]+'"]'), {
+            //             x: $('.column-left .clicked-img[data-index="'+ current_data.answers[i][j][0]+'"]').width(),
+            //             y: $('.column-left .clicked-img[data-index="'+ current_data.answers[i][j][0]+'"]').height()/2
+            //         })
+            //         ,
+            //         LeaderLine.pointAnchor($('.column-right .clicked-img[data-index="'+ current_data.answers[i][j][1]+'"]'), {
+            //             x: 0,
+            //             y: $('.column-right .clicked-img[data-index="'+ current_data.answers[i][j][1]+'"]').height()/2
+            //         })
+            //         , { size: 4, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+            //                 startColor: 'rgb(17, 148, 51)',
+            //                 endColor: 'rgb(17, 148, 51)'
+            //             }
+            //         }
+            //     );
+            //     //Push to line array
+            //     line.hide();
+            //     current_data.answers[i][j][2] = line
+            //     this_question = current_data;
+            //     // current_data.answers[i][j][2].hide();
+            // }
+            // 
+
             currentTab++
         }
 
@@ -496,12 +521,14 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
             if (response.status === 1) {
                 // console.log(response.question_data)
                 // ghep cau hoi vao this_question
-                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                console.log('test :' )
-                console.log(this_question)
-                testing_data.question[position] = this_question
+                if(response.question_data.length != 0){
+                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    console.log('test :' )
+                    console.log(this_question)
+                    // testing_data.question[position] = this_question
+                }
                 // trừ lv khi sai
-                testing_data.level = test_level;
+                level_temp = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -528,6 +555,10 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 }
                 showTab(indexIncorrect)
                 flagChange = 0;
+                if(level_temp > minLv){
+                    console.log('vào đây dynamyc')
+                    setTimeToChange(level_temp - 1 , currentTab );
+                }
             } else {
                 console.log("error", response)
             }
@@ -550,14 +581,14 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
         success: function (response) {
 
             if (response.status === 1) {
+                if(response.question_data.length != 0){
+                     // ghep cau hoi vao this_question
+                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    // testing_data.question[position] = this_question
+                }
+                 // trừ lv khi timeout 
+                    level_temp = test_level
                 // console.log(response.question_data)
-                // ghep cau hoi vao this_question
-                Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                // console.log('test :' )
-                // console.log(this_question)
-                testing_data.question[position] = this_question
-                // trừ lv khi timeout
-                testing_data.level = test_level;
 
                 // total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -578,6 +609,7 @@ function next() {
     if (type == "8") {
         //Position
         if (line_array.length == 3) {
+            
             tab_number[currentTab].style.display = "none";
             currentTab += 1
             console.log ("number tab", tab_number.length-1, "tab current", currentTab)
@@ -613,6 +645,7 @@ function next() {
 
             } else {
                 // compare answer
+                stopTimeToChange()
                 all_line_array.push(just_answer)
                 console.log('allpush', all_line_array)
 
@@ -644,11 +677,11 @@ function next() {
         let just_answer = $('.tab').eq(currentTab).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined'){
             //Chua tra loi
-            console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
+            // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
             alert("Please answer the question")
         } else {
             // dừng việc check20s tránh đuplicate lặp timeout
-            stopTimeToChange()
+            
 
             tab_number[currentTab].style.display = "none";
             currentTab += 1
@@ -662,12 +695,16 @@ function next() {
                 //An prev xong quay thi => ko can render html them nua
                 showTab(currentTab);
             } else {
+                stopTimeToChange()
                 // compare answer
                 console.log(flagChange)
-                if(just_answer != fakeAnswer && parseInt(testing_data.level) > minLv && flagChange == 0 ){
+                 if(typeof(level_temp) === 'undefined'){
+                level_temp = parseInt(testing_data.level);
+                }
+                if(just_answer != fakeAnswer && level_temp > minLv && flagChange == 0 ){
                     console.log('w answer');
-                    changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
-                } else {
+                    changeDynamicQuestion(level_temp -1 , this_question.answers.length)
+                }  else {
                     //Save into local storage
                     // console.log (testing_data, 'test')
                     localStorage.setItem('testing', JSON.stringify(testing_data))
@@ -691,9 +728,10 @@ function next() {
                         hideQuestion(currentTab);
                     }
                     showTab(currentTab)
+                    flagChange = 0 
                     // sau khi render 20s k next thì sẽ => câu hỏi thấp
-                    if(parseInt(testing_data.level) > minLv){
-                        setTimeToChange(testing_data.level - 1 , currentTab );
+                    if(level_temp > minLv){
+                        setTimeToChange(level_temp - 1 , currentTab );
                     }
                 }
             }
@@ -723,7 +761,9 @@ function prev() {
     }
     x[currentTab].style.display = "none";
     var old_line_array = this_question.answers.pop()
+    console.log('tú test : ' ,old_line_array);
     all_line_array[currentTab] = line_array
+    console.log('tu : ', line_array, old_line_array)
     line_array = old_line_array
     currentTab += -1;
 
