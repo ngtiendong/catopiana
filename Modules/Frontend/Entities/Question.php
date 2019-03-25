@@ -48,6 +48,26 @@ class Question extends Model
         return $raw_data;
     }
 
+    public static function getListQuestionPosition($type, $level)
+    {
+        $raw_data = [];
+        for ($i=1; $i<7; $i++){
+            $left = [
+                'test/images/1r.png',
+                'test/images/2r.png',
+                'test/images/3r.png',
+            ];
+            $right = [
+                'test/images/4r.png',
+                'test/images/5r.png',
+                'test/images/6r.png',
+            ];
+            $raw_data[] = [$left,$right];
+        }
+        return $raw_data;
+    }
+
+
     public static function getLessLevelQuestion($type, $level, $index)
     {
         $curriculum = Curriculum::where([
@@ -71,7 +91,7 @@ class Question extends Model
     public static function getLessLevelQuestionAudio($type, $level, $index)
     {
         $raw_data = [];
-        for ($i=1; $i<7; $i++){
+        for ($i=7; $i<13; $i++){
             $raw_data[] = [
                 'question' => asset('/test/audios/cau'. $i.'/question.mov'),
                 'answers' => [
@@ -83,6 +103,25 @@ class Question extends Model
                 'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
                 'correct' => 0
             ];
+        }
+        return $raw_data;
+    }
+
+    public static function getLessLevelQuestionPosition($type, $level, $index)
+    {
+        $raw_data = [];
+        for ($i=1; $i<7; $i++){
+            $left = [
+                'test/images/7r.png',
+                'test/images/8r.png',
+                'test/images/9r.png',
+            ];
+            $right = [
+                'test/images/10r.png',
+                'test/images/11r.png',
+                'test/images/12r.png',
+            ];
+            $raw_data[] = [$left,$right];
         }
         return $raw_data;
     }

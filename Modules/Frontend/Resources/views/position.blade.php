@@ -17,47 +17,47 @@
             </div>
             <div class="col-md-12">
                 <div class="testOverlay">
-                    {{-- <input id="type" value="{{$type}}" hidden> --}}
+                     <input id="type" value="{{$type}}" hidden>
                     <a class="startBtn">Click To Start!</a>
 
                     <form id="testForm" style="display: none">
-                        <div class="position-tab" >
-                            <div class="matching row" id="test-area">
-                                <div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >
-                                    <ul class="column-left">
-                                        <li class="list-l-item">
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png" >
-                                        </li>
-                                        <li class="list-l-item" >
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
-                                        </li>
-                                        <li class="list-l-item" >
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>
-                                <div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >
-                                    <ul class="column-right">
-                                        <li class="list-l-item">
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png" >
-                                        </li>
-                                        <li class="list-l-item" >
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
-                                        </li>
-                                        <li class="list-l-item" >
-                                            <img class="image-point-l unlock-selection" src="/test/images/15C.png">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                        {{--<div class="position-tab" >--}}
+                            {{--<div class="matching row" id="test-area">--}}
+                                {{--<div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >--}}
+                                    {{--<ul class="column-left" data-position="0">--}}
+                                        {{--<li class="list-l-item">--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="1">--}}
+                                        {{--</li>--}}
+                                        {{--<li class="list-l-item" >--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="2">--}}
+                                        {{--</li>--}}
+                                        {{--<li class="list-l-item" >--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="3">--}}
+                                        {{--</li>--}}
+                                    {{--</ul>--}}
+                                {{--</div>--}}
+                                {{--<div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>--}}
+                                {{--<div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >--}}
+                                    {{--<ul class="column-right" data-position="1">--}}
+                                        {{--<li class="list-l-item">--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="1">--}}
+                                        {{--</li>--}}
+                                        {{--<li class="list-l-item" >--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="2">--}}
+                                        {{--</li>--}}
+                                        {{--<li class="list-l-item" >--}}
+                                            {{--<img class="image-point-l unlock-selection" src="/test/images/15C.png" data-index="3">--}}
+                                        {{--</li>--}}
+                                    {{--</ul>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-lg-1"></div>--}}
+                            {{--</div>--}}
+                            {{--<div class="clearfix"></div>--}}
+                        {{--</div>--}}
 
 
-                        <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: inline;">Previous</button>
-                        <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: inline;">Next</button>
+                        <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
+                        <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>
                         <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
 
                         <div class="dot">
@@ -93,29 +93,47 @@
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-{{-- <script src="{{asset('/js/temp.js')}}"></script> --}}
-{{--<script src="{{asset('/Catopiana_files/js/match-test.js')}}"></script>--}}
 <script src="{{asset('/js/two.js')}}"></script>
 <script src="{{asset('/admin-lte/plugins/anseki-leader-line/leader-line.min.js')}}"></script>
-
-
 <script type="text/javascript">
-    $(function(){
+    var line_array = []
+    var all_line_array = []
 
+    $(function(){
         $('.startBtn').click(async function () {
             $('.startBtn').css('opacity', '0').css('z-index', '-1');
             setTimeout(function () {
                 $('#testForm').css('display', 'block').css('opacity', '1')
             }, 500)
-
         });
 
-        $('.list-l-item img').on('click', function(e){
+        $(document).on('click', '.list-l-item img',function(e){
             e.preventDefault()
             if ($(this).hasClass("clicked-img")){
                 // Already click
                 // 1. Check line of this element => if has => remove line and class "clicked-img" of both in 2 column as well
+                var this_img = this
+                if (line_array.length > 0) {
+                    //Check left or right column
+                    var flag_column_position = parseInt($(this_img).closest('ul').data('position'))
+                    line_array.forEach(function(value, index) {
+                        console.log(index, value, flag_column_position)
+                        // console.log(value[flag_column_position], $(this_img).data('index'))
+                        if (value[flag_column_position] == $(this_img).data('index')){
+                            //remove data array line
+                            line_array.splice(index,1)
+                            //remove svg line
+                            value[2].remove()
+                            //Remove clicked img class
+                            // console.log('img[data-index='+value[0]+']', $('img[data-index='+value[0]+']'))
+                            $('.column-left img[data-index='+value[0]+']').removeClass('clicked-img').addClass('unlock-selection')
+                            $('.column-right img[data-index='+value[1]+']').removeClass('clicked-img').addClass('unlock-selection')
+                        }
+                    })
+                }
                 // 2. If not line => just remove class "clicked-img" of this element
+
+
             } else {
                 //Remove class clicked in same column
                 $(this).closest('ul').find('.clicked-img.unlock-selection').removeClass('clicked-img')
@@ -145,8 +163,8 @@
                     }
                 );
 
-                line.show('fade', {duration: 500, timing: [0.58, 0, 0.42, 1]})
-
+                //Push to line array
+                line_array.push([$('.column-left .clicked-img.unlock-selection').data('index'), $('.column-right .clicked-img.unlock-selection').data('index'), line])
                 //Delete unlock-selection class
                 $(elements_click).each(function(){
                     $(this).removeClass('unlock-selection')
@@ -157,5 +175,6 @@
 
 
 </script>
+ <script src="{{asset('/js/beta_position.js')}}"></script>
 
 @endpush
