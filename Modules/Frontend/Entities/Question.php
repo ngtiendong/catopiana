@@ -74,10 +74,13 @@ class Question extends Model
             ['type', 1],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
+        $raw_data = [];
 
+        if($curriculum == null){
+            return $raw_data;
+        }
         $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
 
-        $raw_data = [];
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
