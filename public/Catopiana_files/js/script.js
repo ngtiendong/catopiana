@@ -280,18 +280,36 @@ jQuery(function($) {
 		$('body').removeClass('overlay');
 	});
 
-// 	$(document).on('click', '#submitReg', function() {
-// 		localStorage.setItem('username', $('.uname').val());
-// 		var data = {
-// 			"title": $('.uname').val(),
-// 			"uname": $('.uactualname').val(),
-// 			"username": $('.uname').val(),
-// 			"userpass": $('.upass').val(),
-// 			"email": $('.uemail').val()
-// 		};
-// // 		var url = "http://localhost/cat/create-user.php";
-// 		var url = "http://catopiana.com/create-user.php";
 
-// 		$.post(url, data, function (json) {});
-// 	});
 })
+
+$(document).on('click', '#submitLog', function(event) {
+		var data = {
+			"username": $('.logname').val(),
+			"password": $('.logpass').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status != 200){
+				$('.signWindow .warning').css('opacity', 1);
+			}
+			else{
+				window.location.reload()
+			}
+		})
+		.fail(function(response) {
+			console.log(response.responseJSON.message);
+			$('.signWindow .warning').html(response.responseJSON.message)
+			$('.signWindow .warning').css('opacity', 1);
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});

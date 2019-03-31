@@ -6,34 +6,7 @@
 		<div class="wrap">
 			<img src="{{asset('./Catopiana_files/images/bg-02.png')}}" alt="">
 			@include('frontend::layouts.header')
-			<div id="signin" class="signWindow">
-				<a>X</a>
-				<h2>SIGN IN</h2>
-				<p class="warning">(account is invalid!)</p>
-				<form>
-					<label>ID:</label>
-					<input type="text" placeholder="username" class="logname">
-					<label>Password:</label>
-					<input type="password" placeholder="password" class="logpass">
-					<button id="submitLog" name="login">Log in</button>
-				</form>
-			</div>
-
-			<div id="signup" class="signWindow">
-				<a>X</a>
-				<h2>SIGN UP</h2>
-				<form action="" method="post">
-					<label>ID:</label>
-					<input type="text" placeholder="username" class="uname">
-					<label>Password:</label>
-					<input type="password" placeholder="password" class="upass">
-					<label>Name:</label>
-					<input type="text" placeholder="your name" class="uactualname">
-					<label>Email:</label>
-					<input type="email" placeholder="your email" class="uemail">
-					<button id="submitReg" type="submit" name="reg">Sign up</button>
-				</form>
-			</div>
+			
 			@yield('content')
 			
 			@include('frontend::layouts.footer')

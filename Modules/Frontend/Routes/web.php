@@ -31,4 +31,14 @@ Route::group([], function() {
 
     Route::post('/get-list-question', 'FrontendController@getListQuestion');
     Route::post('/get-list-less-level-question', 'FrontendController@getListLessLevelQuestion');
+
+    Route::get('/register', 'Auth\RegistrationController@showRegistrationForm')->name('register');
+    Route::post('/register', 'Auth\RegistrationController@register');
+     
+    // Route::get('/login', 'Auth\LoginController@showLoginForm');
+    Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+    Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider');
+    Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
 });
