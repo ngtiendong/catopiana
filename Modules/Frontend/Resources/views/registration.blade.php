@@ -35,7 +35,7 @@
 			        </div>
 
 			        <div class="form-group">
-			            <label for="password">Full name:</label>
+			            <label for="fullname">Full name:</label>
 			            <input type="text" class="form-control"  value="{{old('fullname')}}"  name="fullname">
 			            @if ($errors->has('username'))
 						    <small class="text-danger">{{ $errors->first('fullname') }}</small>
