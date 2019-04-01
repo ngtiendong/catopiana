@@ -5,6 +5,7 @@
 	<title>Catopiana</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('/admin-lte/bootstrap/css/bootstrap.css')}}">
+    <meta name="google-site-verification" content="_ls8hoTDp0mtmfp6yy104yApUZLLglkmSTsZRMLaPsc" />
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/slick.css')}}">
 
