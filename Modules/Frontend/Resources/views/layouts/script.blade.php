@@ -3,7 +3,7 @@
 <!-- JQuery -->
 <script src="{{asset('/Catopiana_files/js/jquery.js')}}"></script>
 <!-- BOOTSTRAP -->
-
+<script src="{{ asset('admin-lte/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- OTHER -->
 <script src="{{asset('/Catopiana_files/js/gsap.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/scrollMagic.min.js')}}"></script>
