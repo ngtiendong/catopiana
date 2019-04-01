@@ -8,7 +8,8 @@
 		<ul class="top-right-menu">
 			@if(!auth()->check())
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
-				<a class="smooth" href="#signin">sign in</a>
+				{{--<a class="smooth" href="#signin">sign in</a>--}}
+                <a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-in">sign in</a>
 			</li>
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
 			@else
@@ -33,8 +34,10 @@
 			</ul>
 			<ul class="top-right-menu">
 				@if(!auth()->check())
-				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+				<li class="sign">
+                    <img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
 					<a class="smooth" href="#signin">sign in</a>
+                    {{--<button type="button" data-toggle="modal" data-target="#modal-sign-n">sign in</button>--}}
 				</li>
 				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
 				@else

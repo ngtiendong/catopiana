@@ -680,15 +680,15 @@ header {
 }
 
 #signin, #signup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgb(25, 136, 187);
-  z-index: 20;
-  color: #fff;
-  padding: 20px;
-  display: none;
+  /*position: fixed;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*background: rgb(25, 136, 187);*/
+  /*!*z-index: 20;*!*/
+  /*color: #fff;*/
+  /*padding: 20px;*/
+  /*display: none;*/
 }
 
 #signin.active, #signup.active {
@@ -702,12 +702,6 @@ header {
 
 #signin label, #signup label {
   display: block;
-}
-
-#signin input, #signup input {
-  display: block;
-  margin: 5px 0 15px;
-  border: 0;
 }
 
 #signin button, #signup button {
