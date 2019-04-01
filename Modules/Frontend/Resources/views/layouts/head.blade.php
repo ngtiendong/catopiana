@@ -1,11 +1,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="google-site-verification" content="6-eHxeb5yYy-Tfx1c-AlTEdz71ol5syZzsfOipwDBJs" />
+	<meta name="google-site-verification" content="_ls8hoTDp0mtmfp6yy104yApUZLLglkmSTsZRMLaPsc" />
 	<title>Catopiana</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('/admin-lte/bootstrap/css/bootstrap.css')}}">
-    <meta name="google-site-verification" content="_ls8hoTDp0mtmfp6yy104yApUZLLglkmSTsZRMLaPsc" />
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/slick.css')}}">
 
