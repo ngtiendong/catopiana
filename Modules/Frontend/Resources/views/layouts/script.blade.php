@@ -19,6 +19,3 @@
 </script>
 <!-- Some function need to run in document ready function: Select2 ,.... -->
 <script src="{{ asset('helperJS/documentReadyFunction.js') }}"></script>
-
-
-@stack('js')

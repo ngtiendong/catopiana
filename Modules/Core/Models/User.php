@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
     use SoftDeletes, Authenticatable, CanResetPassword;
 
-    protected $fillable = ["username", "email", "password", "fullname", "phone"];
+    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name'];
 
     public function setPasswordAttribute($pass)
     {
@@ -46,6 +46,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             'Modules\Core\Models\Group','Modules\Core\Models\UserGroup',
             'user_id', 'id'
         );
+    }
+
+    public function social_accounts()
+    {
+        return $this->hasMany('Modules\Frontend\Entities\SocialAccount', 'user_id');
     }
 
     public function getListPermissions() {

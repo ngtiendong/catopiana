@@ -233,11 +233,11 @@ jQuery(function($) {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
 	});
-	if(!localStorage.getItem('IQ')) {
-		console.log('not login yet');
-	} else {
-		console.log('logged in')
-	}
+	// if(!localStorage.getItem('IQ')) {
+	// 	console.log('not login yet');
+	// } else {
+	// 	console.log('logged in')
+	// }
 
 	// $('.startBtn').click(function(){
 	// 	$(this).css('opacity','0').css('z-index','-1');
@@ -280,18 +280,64 @@ jQuery(function($) {
 		$('body').removeClass('overlay');
 	});
 
-// 	$(document).on('click', '#submitReg', function() {
-// 		localStorage.setItem('username', $('.uname').val());
-// 		var data = {
-// 			"title": $('.uname').val(),
-// 			"uname": $('.uactualname').val(),
-// 			"username": $('.uname').val(),
-// 			"userpass": $('.upass').val(),
-// 			"email": $('.uemail').val()
-// 		};
-// // 		var url = "http://localhost/cat/create-user.php";
-// 		var url = "http://catopiana.com/create-user.php";
 
-// 		$.post(url, data, function (json) {});
-// 	});
 })
+
+$(document).on('click', '#submitLog', function(event) {
+		var data = {
+			"username": $('.logname').val(),
+			"password": $('.logpass').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status != 200){
+				$('.signWindow .warning').css('opacity', 1);
+			}
+			else{
+				window.location.reload()
+			}
+		})
+		.fail(function(response) {
+			console.log(response.responseJSON.message);
+			$('.signWindow .warning').html(response.responseJSON.message)
+			$('.signWindow .warning').css('opacity', 1);
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+$(document).on('click', '#submitReg', function(event) {
+		var data = {
+			"email": $('.genEmail').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status != 200){
+				$('.signWindow .warning').css('opacity', 1);
+			}
+			else{
+				window.location.reload()
+			}
+		})
+		.fail(function(response) {
+			$('.signWindow .warning').html(response.responseJSON.errors['email'])
+			$('.signWindow .warning').css('opacity', 1);
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
