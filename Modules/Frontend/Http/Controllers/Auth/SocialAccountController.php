@@ -5,8 +5,9 @@ namespace Modules\Frontend\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Core\Models\User;
 use Socialite;
-use Modules\Frontend\Services\SocialAccountService;
+
 
 class SocialAccountController extends Controller
 {
@@ -15,23 +16,40 @@ class SocialAccountController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback(SocialAccountService $accountService, $provider)
+    public function handleProviderCallback($provider)
     {
-
-        try{
-            // get user from social
-            $user = Socialite::driver($provider)->user();
-        } catch(\Exception $e) {
-            return redirect()->back();
-        }
+        $userSocial = Socialite::driver($provider)->user();
+        // try{
+        //     $userSocial = Socialite::driver($provider)->user();
+        // } catch(\Exception $e) {
+        //     return redirect()->back();
+        // }
         // find in database if not create
-        $authUser = $accountService->findOrCreate(
-            $user,
-            $provider
-        );
+        // 
+        // 
+        $user = User::where('provider_name', $provider)
+                   ->where('provider_id', $userSocial->getId())
+                   ->first();
 
-        auth()->login($authUser, true);
+        if (!$user) {
+            // check user have email of account
+            $user = User::where('email', $userSocial->getEmail())->first();
 
-        return redirect()->route('home');
+            if (! $user) {
+                // if no have then create
+                $user = User::create([  
+                    'email' => $userSocial->getEmail(),
+                    'username' => $userSocial->getName(),
+                    'provider_id'   => $userSocial->getId(),
+                    'provider_name' => $provider,
+                ]);
+            } else {
+                return back()->with(['errors' =>'Email has been already']);
+            }
+        }
+
+        auth()->login($user, true);
+
+        return redirect('/');
     }
 }

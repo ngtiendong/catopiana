@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0021)http://catopiana.com/ -->
 <html lang="en-US">
 	@include('frontend::layouts.head')
 	<body class="home blog">
@@ -30,3 +29,4 @@
 		</div>
 	</body>
 </html>
+

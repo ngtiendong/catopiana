@@ -6,15 +6,17 @@
 			<li class="about"><img src="{{asset('./Catopiana_files/images/about.png')}}" alt=""><a class="smooth" href="#for-parent">about us</a></li>
 		</ul>
 		<ul class="top-right-menu">
-			@if(!Auth::check())
-			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signin">sign in</a></li>
+			@if(!auth()->check())
+			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+				<a class="smooth" href="#signin">sign in</a>
+			</li>
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
 			@else
+			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">{{auth()->user()->username}}</a></li>
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">sign out</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-
 			</li>
 			@endif
 		</ul>
@@ -30,11 +32,14 @@
 				<li class="about"><img src="{{asset('./Catopiana_files/images/about.png')}}" alt=""><a class="smooth" href="#for-parent">about us</a></li>
 			</ul>
 			<ul class="top-right-menu">
-				@if(!Auth::check())
-				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signin">sign in</a></li>
+				@if(!auth()->check())
+				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+					<a class="smooth" href="#signin">sign in</a>
+				</li>
 				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
 				@else
-				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="">Logout</a></li>
+				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">sign out</a>
+				</li>
 				@endif
 			</ul>
 		</div>

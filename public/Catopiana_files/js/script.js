@@ -233,11 +233,11 @@ jQuery(function($) {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
 	});
-	if(!localStorage.getItem('IQ')) {
-		console.log('not login yet');
-	} else {
-		console.log('logged in')
-	}
+	// if(!localStorage.getItem('IQ')) {
+	// 	console.log('not login yet');
+	// } else {
+	// 	console.log('logged in')
+	// }
 
 	// $('.startBtn').click(function(){
 	// 	$(this).css('opacity','0').css('z-index','-1');
@@ -307,6 +307,34 @@ $(document).on('click', '#submitLog', function(event) {
 		.fail(function(response) {
 			console.log(response.responseJSON.message);
 			$('.signWindow .warning').html(response.responseJSON.message)
+			$('.signWindow .warning').css('opacity', 1);
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	});
+$(document).on('click', '#submitReg', function(event) {
+		var data = {
+			"email": $('.genEmail').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status != 200){
+				$('.signWindow .warning').css('opacity', 1);
+			}
+			else{
+				window.location.reload()
+			}
+		})
+		.fail(function(response) {
+			$('.signWindow .warning').html(response.responseJSON.errors['email'])
 			$('.signWindow .warning').css('opacity', 1);
 		})
 		.always(function() {

@@ -17,17 +17,10 @@
 <div id="signup" class="signWindow" >
 	<a>X</a>
 	<h2>SIGN UP</h2>
-	<form action="{{route('register')}}" method="post" >
-		<label>User name:</label>
-		<input style="color:black;" type="text" name="username" placeholder="username" class="sUsername">
-		{{-- <label>Password:</label>
-		<input style="color:black;" type="password" name="password" placeholder="password" class="sPassword">
-		<label>Name:</label>
-		<input style="color:black;" type="text" name="fullname" placeholder="your name" class="sFullname">
+	<p class="warning">Atuo Generate Errors!!</p>
 		<label>Email:</label>
-		<input style="color:black;" type="email" name="email" placeholder="your email" class="sEmail">
- --}}		<button id="submitReg" type="submit" style="color:black;">Auto generate account</button>
-	</form>
+		<input style="color:black;" type="email" name="email" placeholder="Your email" class="genEmail">
+		<button id="submitReg" data-route="{{route('generate-account')}}" type="button" style="color:black;">Auto generate account</button>
 	<hr>
 		<label class="text-center"> or sign up</label>
 		<button type="button" id="signupButton" onclick="location.href='/register'" style="color:black;"> Sign Up</button>

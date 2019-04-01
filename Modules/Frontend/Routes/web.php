@@ -35,9 +35,10 @@ Route::group([], function() {
     Route::get('/register', 'Auth\RegistrationController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegistrationController@register');
      
-    // Route::get('/login', 'Auth\LoginController@showLoginForm');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+    Route::post('/generate-account','Auth\RegistrationController@generateAccount')->name('generate-account');
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');

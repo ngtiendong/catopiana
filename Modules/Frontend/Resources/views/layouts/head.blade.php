@@ -1,7 +1,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta name="google-site-verification" content="6-eHxeb5yYy-Tfx1c-AlTEdz71ol5syZzsfOipwDBJs" />
 	<title>Catopiana</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('/admin-lte/bootstrap/css/bootstrap.css')}}">

@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
     use SoftDeletes, Authenticatable, CanResetPassword;
 
-    protected $fillable = ["username", "email", "password", "fullname", "phone"];
+    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name'];
 
     public function setPasswordAttribute($pass)
     {

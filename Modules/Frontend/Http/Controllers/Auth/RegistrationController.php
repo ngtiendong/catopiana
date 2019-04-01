@@ -23,7 +23,7 @@ class RegistrationController extends Controller
     */
 
     /**
-     * Create a new controller instance.
+     * show form registration.
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Create a new controller instance.
+     * register.
      *
      * @return void
      */
@@ -73,6 +73,32 @@ class RegistrationController extends Controller
     protected function create(array $data)
     {
         return User::create($data);
+    }
+
+    public function generateAccount(Request $request)
+    {
+        $this->validatorEmail($request->all())->validate();
+        $data_account = [
+            'email' => $request->email,
+            'username' => 'ctpa'.str_random(4),
+            'password' => str_random(8)
+        ];
+        $user = $this->create($data_account);
+        // email user name password for user
+
+        //
+        auth()->login($user);
+        return response()->json([
+            'status' => 200
+        ]);
+    }
+
+
+    protected function validatorEmail(array $data)
+    {
+        return Validator::make($data, [
+            'email' => ['required', 'string', 'email', 'max:255','unique:users']
+        ]);
     }
 
 }
