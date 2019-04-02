@@ -680,15 +680,15 @@ header {
 }
 
 #signin, #signup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgb(25, 136, 187);
-  z-index: 20;
-  color: #fff;
-  padding: 20px;
-  display: none;
+  /*position: fixed;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*background: rgb(25, 136, 187);*/
+  /*!*z-index: 20;*!*/
+  /*color: #fff;*/
+  /*padding: 20px;*/
+  /*display: none;*/
 }
 
 #signin.active, #signup.active {
@@ -702,12 +702,6 @@ header {
 
 #signin label, #signup label {
   display: block;
-}
-
-#signin input, #signup input {
-  display: block;
-  margin: 5px 0 15px;
-  border: 0;
 }
 
 #signin button, #signup button {
@@ -2085,3 +2079,69 @@ footer .col {
     left: 35px;
   }
 }
+
+#modal-sign-in .login-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-sign-in .social-btn .btn {
+        border: none;
+        margin: 10px 3px 0;
+        opacity: 1;
+    }
+    #modal-sign-in .social-btn .btn:hover {
+        opacity: 0.9;
+    }
+    #modal-sign-in .social-btn .btn-primary {
+        background: #507cc0;
+    }
+    #modal-sign-in .social-btn .btn-info {
+        background: #64ccf1;
+    }
+    #modal-sign-in .social-btn .btn-danger {
+        background: #df4930;
+    }
+    #modal-sign-in .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-sign-in .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-sign-in {
+        font-family: inherit;
+    }
+    #modal-sign-in .modal-dialog {
+        width: 350px;
+    }
+    #modal-sign-in .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-sign-in.modal-footer{
+        border-top: 0;
+        margin-top: 0px;
+        padding: 10px 20px 20px;
+    }
+
+    #modal-sign-in .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-sign-in .modal-header h3 {
+        text-align: center;
+    }
+
+    #modal-sign-in p, #modal-sign-in label, #modal-sign-in h3 {
+        color: white;
+    }

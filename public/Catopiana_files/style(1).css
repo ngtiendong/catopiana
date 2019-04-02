@@ -689,11 +689,12 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(25, 136, 187);
-  z-index: 20;
-  color: #fff;
-  padding: 20px;
-  display: none;
+    width: 50%
+  /*background: rgb(25, 136, 187);*/
+  /*z-index: 20;*/
+  /*color: #fff;*/
+  /*padding: 20px;*/
+  /*display: none;*/
 }
 
 #signin.active, #signup.active {
@@ -709,10 +710,10 @@ header {
   display: block;
 }
 
-#signin input, #signup input {
-  display: block;
-  margin: 5px 0 15px;
-  border: 0;
+#signin .or-seperator {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
 }
 
 #signin button, #signup button {
