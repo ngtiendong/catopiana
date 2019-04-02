@@ -281,9 +281,13 @@ jQuery(function($) {
 	});
 
 
-})
-
+});
+var checkClick = true
 $(document).on('click', '#submitLog', function(event) {
+		if(!checkClick){
+				return false;
+			}
+		checkClick = false;
 		var data = {
 			"username": $('.logname').val(),
 			"password": $('.logpass').val()
@@ -311,9 +315,14 @@ $(document).on('click', '#submitLog', function(event) {
 		})
 		.always(function() {
 			console.log("complete");
+			checkClick = true;
 		});
 	});
 $(document).on('click', '#submitReg', function(event) {
+		if(!checkClick){
+			return false;
+		}
+		checkClick = false;
 		var data = {
 			"email": $('.genEmail').val()
 		};
@@ -338,6 +347,7 @@ $(document).on('click', '#submitReg', function(event) {
 			$('.signWindow .warning').css('opacity', 1);
 		})
 		.always(function() {
+			checkClick = true;
 			console.log("complete");
 		});
 	});

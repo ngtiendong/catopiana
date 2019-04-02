@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+        'Modules\Frontend\Events\SendEmailWhenGenerate' => [
+            'Modules\Frontend\Listeners\SendEmailWhenGenerateListener',
+        ],
     ];
 
     /**
