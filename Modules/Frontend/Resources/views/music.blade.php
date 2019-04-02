@@ -53,7 +53,7 @@
 @endsection
 
 
-@push('js')
+@section('js')
     <script type="text/javascript" src="{{asset('/js/local-storage.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
@@ -62,4 +62,4 @@
     <script src="{{asset('/js/temp.js?v=1.2')}}"></script>
 
 {{--<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>--}}
-@endpush
+@endsection

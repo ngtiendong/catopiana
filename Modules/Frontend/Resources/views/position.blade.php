@@ -55,7 +55,7 @@
 @endsection
 
 
-@push('js')
+@section('js')
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
@@ -143,4 +143,4 @@
 </script>
  <script src="{{asset('/js/beta_position.js')}}"></script>
 
-@endpush
+@endsection

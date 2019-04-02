@@ -3,7 +3,7 @@
 <!-- JQuery -->
 <script src="{{asset('/Catopiana_files/js/jquery.js')}}"></script>
 <!-- BOOTSTRAP -->
-<script src="{{ asset('admin-lte/bootstrap/js/bootstrap.min.js') }}"></script>
+{{--<script src="{{ asset('admin-lte/bootstrap/js/bootstrap.min.js') }}"></script>--}}
 <!-- OTHER -->
 <script src="{{asset('/Catopiana_files/js/gsap.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/scrollMagic.min.js')}}"></script>
@@ -19,3 +19,4 @@
 </script>
 <!-- Some function need to run in document ready function: Select2 ,.... -->
 <script src="{{ asset('helperJS/documentReadyFunction.js') }}"></script>
+@yield('js')
