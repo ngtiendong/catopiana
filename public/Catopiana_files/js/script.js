@@ -402,3 +402,72 @@ $(document).on('click', '#genButton', function(event) {
 	});
 	
 });
+
+$(document).on('click', '#regButton', function(event) {
+		if(!checkClick){
+				return false;
+			}
+		checkClick = false;
+		var data = {
+			"username": $('.regName').val(),
+			"email": $('.regEmail').val(),
+			"password": $('.regPassword').val(),
+			"fullname": $('.regFullname').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status == 200){
+				window.location.href = '/';
+			}
+		})
+		.fail(function(response) {
+			if(response.status == 422){
+				var errors = response.responseJSON.errors;
+				if(errors.username == undefined){
+					$('.usernameError').addClass('hide');
+				}else {
+					$('.usernameError').removeClass('hide').html(errors.username);
+				}
+				if(errors.email == undefined){
+					$('.emailError').addClass('hide');
+				}else {
+					$('.emailError').removeClass('hide').html(errors.email);
+				}
+				if(errors.password == undefined){
+					$('.passwordError').addClass('hide');
+				}else {
+					$('.passwordError').removeClass('hide').html(errors.password);
+				}
+				if(errors.fullname == undefined){
+					$('.fullnameError').addClass('hide');
+				}else {
+					$('.fullnameError').removeClass('hide').html(errors.fullname);
+				}
+
+				$('.regPassword').val('')
+			} else {
+				alert('Server Errors')
+			}
+		})
+		.always(function() {
+			checkClick = true;
+		});
+	});
+
+$("#modal-register").on("hidden.bs.modal", function () {
+    $('.regName').val('');
+    $('.regEmail').val('');
+    $('.regPassword').val('');
+    $('.regFullname').val('');
+    $('.usernameError').addClass('hide');
+    $('.emailError').addClass('hide');
+    $('.passwordError').addClass('hide');
+    $('.fullnameError').addClass('hide');
+});

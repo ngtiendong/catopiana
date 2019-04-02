@@ -91,8 +91,8 @@
                 <div class="or-seperator"><i>or</i></div>
                 <p class="text-center">Create new account</p>
                 <div class="text-center div-signup">
-                    <a href="{{route('register')}}" class="btn signup-btn"> Sign Up</a>
-                    {{-- <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a> --}}
+                    {{-- <a href="{{route('register')}}" class="btn signup-btn"> Sign Up</a> --}}
+                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a>
                 </div>
             </div>
         </div>
@@ -113,27 +113,27 @@
                  <div class="content">
                     <div class="form-group">
                         <label for="" >Username:</label>
-                        <input type="text" class="form-control logname">
+                        <input type="text" class="form-control regName">
                         <small class="text-danger hide usernameError"></small>
                     </div>
                     <div class="form-group">
                         <label for="" >Email:</label>
-                        <input type="Email" class="form-control logname">
-                        <small class="text-danger hide usernameError"></small>
+                        <input type="Email" class="form-control regEmail">
+                        <small class="text-danger hide emailError"></small>
                     </div>
                     <div class="form-group">
                         <label for=""  >Password:</label>
-                        <input type="password" class="form-control logpass">
+                        <input type="password" class="form-control regPassword">
                         <small class="text-danger hide passwordError"></small>
                     </div>
                     <div class="form-group">
                         <label for="" >Full Name:</label>
-                        <input type="text" class="form-control logname">
-                        <small class="text-danger hide usernameError"></small>
+                        <input type="text" class="form-control regFullname">
+                        <small class="text-danger hide fullnameError"></small>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group text-center div-register">
-                        <button type="submit" data-route="{{route('register')}}" id="submitLog" class="btn register-btn btn-inline-block">Register</button>
+                        <button type="submit" data-route="{{route('register')}}" id="regButton" class="btn register-btn btn-inline-block">Register</button>
                     </div>  
                 </div>
                 <div class="or-seperator"><i>or</i></div>

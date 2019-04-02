@@ -50,9 +50,19 @@ class RegistrationController extends Controller
 
         $this->validator($request->all())->validate();
         $user = $this->create($request->except('_token'));
+        if(!$user){
+            return response()->json([
+                'status' => 500,
+                'errors' => 'server errors'
+            ],500);
+        }
         $this->guard()->login($user);
+        return response()->json([
+                'status' => 200,
+                'success' => 'registed'
+            ],200);
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 
 
