@@ -10,6 +10,7 @@ use Modules\Core\Models\User;
 use Modules\Core\Models\Customer;
 use Modules\Frontend\Events\SendEmailWhenGenerate;
 // use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class RegistrationController extends Controller
 {
@@ -81,7 +82,7 @@ class RegistrationController extends Controller
         return Customer::create($data);
     }
 
-    public function generateAccount(Request $request)
+    public function generateAccountEmail(Request $request)
     {
         $this->validatorEmail($request->all())->validate();
         $data_account = [
@@ -89,14 +90,27 @@ class RegistrationController extends Controller
             'username' => 'ctpa'.str_random(4),
             'password' => str_random(8)
         ];
-        $user = $this->create($data_account);
-        // email user name password for user
+        $customer = $this->create($data_account);
+        // email customer name password for customer
         event(new SendEmailWhenGenerate($data_account));
         //
-        $this->guard()->login($user);
+        $this->guard()->login($customer);
         return response()->json([
             'status' => 200
         ]);
+    }
+
+    public function generateAccount()
+    {
+        $data_account = [
+            // 'email' => null,
+            'username' => (string) Str::uuid(),
+            'password' => str_random(8)
+        ];
+        $customer = $this->create($data_account);
+
+        $this->guard()->login($customer);
+        return redirect()->back();
     }
 
 

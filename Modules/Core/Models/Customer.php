@@ -19,6 +19,15 @@ class Customer extends Model implements AuthenticatableContract
         $this->attributes['password'] = Hash::make($pass);
     }
 
+    public function getUsernameAttribute()
+    {
+        if(strlen($this->attributes['username']) < 9)
+        {
+            return $this->attributes['username'];
+        }
+        return substr($this->attributes['username'],0,8).'...';
+    }
+
     protected $hidden = [
             'password','remember_token'
         ];

@@ -43,13 +43,11 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
             return response()->json([
                 'status' => 200
-            ],200 );
+            ],200);
         }
-
         return response()->json([
-            'error' =>  'login fail',
             'status' => 401
-        ],200 );
+        ],401);
     }
 
     /**
@@ -64,7 +62,7 @@ class LoginController extends Controller
     {
         $request->validate([
             $this->username() => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:6',
         ]);
     }
 

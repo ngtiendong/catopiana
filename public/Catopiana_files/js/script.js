@@ -271,14 +271,14 @@ jQuery(function($) {
 	// 	localStorage.setItem('username',uname);
 	// });
 
-	$('.sign').click(function(){
-		$('body').toggleClass('overlay');
-		$($(this).children('a').attr('href')).toggleClass('active');
-	});
-	$('.signWindow a').click(function() {
-		$(".signWindow").removeClass('active');
-		$('body').removeClass('overlay');
-	});
+	// $('.sign').click(function(){
+	// 	$('body').toggleClass('overlay');
+	// 	$($(this).children('a').attr('href')).toggleClass('active');
+	// });
+	// $('.signWindow a').click(function() {
+	// 	$(".signWindow").removeClass('active');
+	// 	$('body').removeClass('overlay');
+	// });
 
 
 });
@@ -301,23 +301,46 @@ $(document).on('click', '#submitLog', function(event) {
 		})
 		.done(function(response) {
 			console.log(response);
-			if(response.status != 200){
-				$('.signWindow .warning').css('opacity', 1);
-			}
-			else{
+			if(response.status == 200){
 				window.location.reload()
 			}
 		})
 		.fail(function(response) {
-			console.log(response.responseJSON.message);
-			$('.signWindow .warning').html(response.responseJSON.message)
-			$('.signWindow .warning').css('opacity', 1);
+			if(response.status == 422){
+				var errors = response.responseJSON.errors;
+				if(errors.username == undefined){
+					$('.usernameError').addClass('hide');
+					console.log('zoo')
+				}else {
+					$('.usernameError').removeClass('hide').html(errors.username);
+				}
+				if(errors.password == undefined){
+					$('.passwordError').addClass('hide');
+				}else {
+					$('.passwordError').removeClass('hide').html(errors.password);
+				}
+				$('.logpass').val('')
+			}
+			if(response.status == 401){
+				console.log('aa')
+				$('.login-errors').removeClass('hide');	
+				$('.logpass').val('')
+				$('.passwordError').removeClass('hide').html(errors.password);
+				$('.usernameError').removeClass('hide').html(errors.username);
+			}
 		})
 		.always(function() {
-			console.log("complete");
 			checkClick = true;
 		});
 	});
+$("#modal-sign-in").on("hidden.bs.modal", function () {
+    $('.logpass').val('');
+    $('.logname').val('');
+    $('.usernameError').addClass('hide');
+    $('.passwordError').addClass('hide');
+    $('.login-errors').addClass('hide');
+});
+// gen with email
 $(document).on('click', '#submitReg', function(event) {
 		if(!checkClick){
 			return false;

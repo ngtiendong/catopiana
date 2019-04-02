@@ -11,10 +11,10 @@
 				{{--<a class="smooth" href="#signin">sign in</a>--}}
                 <a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-in">sign in</a>
 			</li>
-			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
+			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-up">sign up</a></li>
 			@else
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#">{{auth()->guard('customers')->user()->username}}</a></li>
-			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">sign out</a>
+			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">log out</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -35,12 +35,14 @@
 			<ul class="top-right-menu">
 				@guest('customers')
 				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
-					<a class="smooth" href="#signin">sign in</a>
-                    {{--<button type="button" data-toggle="modal" data-target="#modal-sign-n">sign in</button>--}}
+					{{-- <a class="smooth" href="#signin">sign in</a> --}}
+                    <a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-in">sign in</a>
 				</li>
-				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="#signup">sign up</a></li>
+				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+					<a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-up">sign up</a>
+				</li>
 				@else
-				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">sign out</a>
+				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt=""><a class="smooth" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">log out</a>
 				</li>
 				@endguest
 			</ul>
