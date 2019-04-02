@@ -84,14 +84,61 @@
                     </div> --}}
                     <p class="text-center">Generate Account</p>
                     <div class="form-group text-center div-login">
-                        {{-- <button type="button" data-route="{{route('generate')}}" id="submitReg" class="btn login-btn btn-inline-block">Generate</button> --}}
-                        <a type="button" href="{{route('generate')}}" class="btn login-btn btn-inline-block gen-btn">Generate</a>
+                        <button type="button" data-route="{{route('generate')}}" id="genButton" class="btn login-btn btn-inline-block">Generate</button>
+                        {{-- <a type="button" href="{{route('generate')}}" class="btn login-btn btn-inline-block gen-btn">Generate</a> --}}
                     </div>  
                 </div>
                 <div class="or-seperator"><i>or</i></div>
                 <p class="text-center">Create new account</p>
                 <div class="text-center div-signup">
                     <a href="{{route('register')}}" class="btn signup-btn"> Sign Up</a>
+                    {{-- <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal-register" class="modal fade" role="dialog">
+    <div class="modal-dialog" id="register">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Register</h4>
+                <a type="button" class="close-modal" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                 <div class="content">
+                    <div class="form-group">
+                        <label for="" >Username:</label>
+                        <input type="text" class="form-control logname">
+                        <small class="text-danger hide usernameError"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="" >Email:</label>
+                        <input type="Email" class="form-control logname">
+                        <small class="text-danger hide usernameError"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for=""  >Password:</label>
+                        <input type="password" class="form-control logpass">
+                        <small class="text-danger hide passwordError"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="" >Full Name:</label>
+                        <input type="text" class="form-control logname">
+                        <small class="text-danger hide usernameError"></small>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group text-center div-register">
+                        <button type="submit" data-route="{{route('register')}}" id="submitLog" class="btn register-btn btn-inline-block">Register</button>
+                    </div>  
+                </div>
+                <div class="or-seperator"><i>or</i></div>
+                <div class="clearfix">
+                    <p class="text-center">Already have an account? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signin-btn"> Sign In</a></p>
                 </div>
             </div>
         </div>

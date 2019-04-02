@@ -50,4 +50,30 @@ class Customer extends Model implements AuthenticatableContract
 
         return $customerAvatar;
     }
+
+    public function customer_question()
+    {
+        return $this->hasMany(CustomerQuestion::class,'customer_id');
+    }
+
+
+    public function saveDataLocalStorage($data)
+    {
+        // luuw chuaw check
+        foreach($data['question'] as $question){
+            // for with type
+            if($question['type'] != 8 || $question['type'] != 1){
+                $question_data = $question['question_data'];
+                foreach($question['answers'] as $key => $answer){
+                    // question_data has type, question_data, question_index, question_id, question_curriculum
+                    $this->customer_question()->create([
+                        'question_id' => $question_data[$key]['question_id'],
+                        'answer' =>  $answer
+                    ]);
+                }
+            }
+        }
+
+    }
+
 }

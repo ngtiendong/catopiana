@@ -100,17 +100,20 @@ class RegistrationController extends Controller
         ]);
     }
 
-    public function generateAccount()
+    public function generateAccount(Request $request)
     {
+        // dd($request->all());
         $data_account = [
             // 'email' => null,
             'username' => (string) Str::uuid(),
             'password' => str_random(8)
         ];
         $customer = $this->create($data_account);
-
+        if($request->data != null){
+            $customer->saveDataLocalStorage($request->data);
+        }
         $this->guard()->login($customer);
-        return redirect()->back();
+        return response()->json(['status' => 200]);
     }
 
 

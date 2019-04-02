@@ -2152,7 +2152,7 @@ footer .col {
         color: white;
     }
 
-    //
+    
     #modal-sign-up .login-btn {
         font-size: 15px;
         font-weight: bold;
@@ -2226,3 +2226,55 @@ footer .col {
   align-items: center;
   cursor: pointer;
 }
+
+ #modal-register .register-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-register .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-register .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-register {
+        font-family: inherit;
+    }
+    #modal-register .modal-dialog {
+        width: 350px;
+    }
+    #modal-register .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-register.modal-footer{
+        border-top: 0;
+        margin-top: 0px;
+        padding: 10px 20px 20px;
+    }
+
+    #modal-register .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-register .modal-header h3 {
+        text-align: center;
+    }
+    #modal-register .div-register {
+            margin-top: 15px;
+    }
+
+    #modal-register p, #modal-register label, #modal-register h4 {
+        color: white;
+    }

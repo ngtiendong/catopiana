@@ -302,7 +302,7 @@ $(document).on('click', '#submitLog', function(event) {
 		.done(function(response) {
 			console.log(response);
 			if(response.status == 200){
-				window.location.reload()
+				window.location.reload(true)
 			}
 		})
 		.fail(function(response) {
@@ -310,7 +310,6 @@ $(document).on('click', '#submitLog', function(event) {
 				var errors = response.responseJSON.errors;
 				if(errors.username == undefined){
 					$('.usernameError').addClass('hide');
-					console.log('zoo')
 				}else {
 					$('.usernameError').removeClass('hide').html(errors.username);
 				}
@@ -322,8 +321,6 @@ $(document).on('click', '#submitLog', function(event) {
 				$('.logpass').val('')
 			}
 			if(response.status == 401){
-				console.log('aa')
-				$('.login-errors').removeClass('hide');	
 				$('.logpass').val('')
 				$('.passwordError').removeClass('hide').html(errors.password);
 				$('.usernameError').removeClass('hide').html(errors.username);
@@ -374,3 +371,34 @@ $(document).on('click', '#submitReg', function(event) {
 			console.log("complete");
 		});
 	});
+// genButton 
+$(document).on('click', '#genButton', function(event) {
+	event.preventDefault();
+	url = $(this).data('route');
+	console.log(1);
+	console.log(testing_data);
+	if(testing_data == undefined){
+		testing_data = null;
+	}
+	var data = {
+		'data' : testing_data
+	};
+	$.ajax({
+		url: url,
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+	})
+	.done(function(response) {
+		// if(response.status == 200){
+			window.location.reload(true);
+		// }
+	})
+	.fail(function(response) {
+		console.log(response);
+	})
+	.always(function(response) {
+		console.log(response);
+	});
+	
+});
