@@ -271,19 +271,23 @@ jQuery(function($) {
 	// 	localStorage.setItem('username',uname);
 	// });
 
-	$('.sign').click(function(){
-		$('body').toggleClass('overlay');
-		$($(this).children('a').attr('href')).toggleClass('active');
-	});
-	$('.signWindow a').click(function() {
-		$(".signWindow").removeClass('active');
-		$('body').removeClass('overlay');
-	});
+	// $('.sign').click(function(){
+	// 	$('body').toggleClass('overlay');
+	// 	$($(this).children('a').attr('href')).toggleClass('active');
+	// });
+	// $('.signWindow a').click(function() {
+	// 	$(".signWindow").removeClass('active');
+	// 	$('body').removeClass('overlay');
+	// });
 
 
-})
-
+});
+var checkClick = true
 $(document).on('click', '#submitLog', function(event) {
+		if(!checkClick){
+				return false;
+			}
+		checkClick = false;
 		var data = {
 			"username": $('.logname').val(),
 			"password": $('.logpass').val()
@@ -297,23 +301,48 @@ $(document).on('click', '#submitLog', function(event) {
 		})
 		.done(function(response) {
 			console.log(response);
-			if(response.status != 200){
-				$('.signWindow .warning').css('opacity', 1);
-			}
-			else{
-				window.location.reload()
+			if(response.status == 200){
+				window.location.reload(true)
 			}
 		})
 		.fail(function(response) {
-			console.log(response.responseJSON.message);
-			$('.signWindow .warning').html(response.responseJSON.message)
-			$('.signWindow .warning').css('opacity', 1);
+			if(response.status == 422){
+				var errors = response.responseJSON.errors;
+				if(errors.username == undefined){
+					$('.usernameError').addClass('hide');
+				}else {
+					$('.usernameError').removeClass('hide').html(errors.username);
+				}
+				if(errors.password == undefined){
+					$('.passwordError').addClass('hide');
+				}else {
+					$('.passwordError').removeClass('hide').html(errors.password);
+				}
+				$('.logpass').val('')
+			}
+			if(response.status == 401){
+				$('.logpass').val('')
+				$('.passwordError').removeClass('hide').html(errors.password);
+				$('.usernameError').removeClass('hide').html(errors.username);
+			}
 		})
 		.always(function() {
-			console.log("complete");
+			checkClick = true;
 		});
 	});
+$("#modal-sign-in").on("hidden.bs.modal", function () {
+    $('.logpass').val('');
+    $('.logname').val('');
+    $('.usernameError').addClass('hide');
+    $('.passwordError').addClass('hide');
+    $('.login-errors').addClass('hide');
+});
+// gen with email
 $(document).on('click', '#submitReg', function(event) {
+		if(!checkClick){
+			return false;
+		}
+		checkClick = false;
 		var data = {
 			"email": $('.genEmail').val()
 		};
@@ -338,6 +367,107 @@ $(document).on('click', '#submitReg', function(event) {
 			$('.signWindow .warning').css('opacity', 1);
 		})
 		.always(function() {
+			checkClick = true;
 			console.log("complete");
 		});
 	});
+// genButton 
+$(document).on('click', '#genButton', function(event) {
+	event.preventDefault();
+	url = $(this).data('route');
+	console.log(1);
+	console.log(testing_data);
+	if(testing_data == undefined){
+		testing_data = null;
+	}
+	var data = {
+		'data' : testing_data
+	};
+	$.ajax({
+		url: url,
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+	})
+	.done(function(response) {
+		// if(response.status == 200){
+			window.location.reload(true);
+		// }
+	})
+	.fail(function(response) {
+		console.log(response);
+	})
+	.always(function(response) {
+		console.log(response);
+	});
+	
+});
+
+$(document).on('click', '#regButton', function(event) {
+		if(!checkClick){
+				return false;
+			}
+		checkClick = false;
+		var data = {
+			"username": $('.regName').val(),
+			"email": $('.regEmail').val(),
+			"password": $('.regPassword').val(),
+			"fullname": $('.regFullname').val()
+		};
+		url = $(this).data('route');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+		})
+		.done(function(response) {
+			console.log(response);
+			if(response.status == 200){
+				window.location.href = '/';
+			}
+		})
+		.fail(function(response) {
+			if(response.status == 422){
+				var errors = response.responseJSON.errors;
+				if(errors.username == undefined){
+					$('.usernameError').addClass('hide');
+				}else {
+					$('.usernameError').removeClass('hide').html(errors.username);
+				}
+				if(errors.email == undefined){
+					$('.emailError').addClass('hide');
+				}else {
+					$('.emailError').removeClass('hide').html(errors.email);
+				}
+				if(errors.password == undefined){
+					$('.passwordError').addClass('hide');
+				}else {
+					$('.passwordError').removeClass('hide').html(errors.password);
+				}
+				if(errors.fullname == undefined){
+					$('.fullnameError').addClass('hide');
+				}else {
+					$('.fullnameError').removeClass('hide').html(errors.fullname);
+				}
+
+				$('.regPassword').val('')
+			} else {
+				alert('Server Errors')
+			}
+		})
+		.always(function() {
+			checkClick = true;
+		});
+	});
+
+$("#modal-register").on("hidden.bs.modal", function () {
+    $('.regName').val('');
+    $('.regEmail').val('');
+    $('.regPassword').val('');
+    $('.regFullname').val('');
+    $('.usernameError').addClass('hide');
+    $('.emailError').addClass('hide');
+    $('.passwordError').addClass('hide');
+    $('.fullnameError').addClass('hide');
+});

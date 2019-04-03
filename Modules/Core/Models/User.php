@@ -48,11 +48,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         );
     }
 
-    public function social_accounts()
-    {
-        return $this->hasMany('Modules\Frontend\Entities\SocialAccount', 'user_id');
-    }
-
     public function getListPermissions() {
         $roleIds = $this->user_roles->pluck("role_id")->toArray();
         $userPermissions = RolePermission::whereIn("role_id", $roleIds)->groupBy("permission_id")->pluck("permission_id")->toArray();

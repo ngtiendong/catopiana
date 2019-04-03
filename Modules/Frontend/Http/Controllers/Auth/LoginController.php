@@ -19,9 +19,19 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+   /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest:customers')->except('logout');
+    }
+
     public function logout(Request $request)
     {
-        auth()->logout();
+        $this->guard()->logout();
         return redirect()->back();
     }
 
@@ -33,13 +43,11 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
             return response()->json([
                 'status' => 200
-            ],200 );
+            ],200);
         }
-
         return response()->json([
-            'error' =>  'login fail',
             'status' => 401
-        ],200 );
+        ],401);
     }
 
     /**
@@ -54,7 +62,7 @@ class LoginController extends Controller
     {
         $request->validate([
             $this->username() => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -66,7 +74,7 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
-        return Auth::attempt($this->credentials($request));
+        return  $this->guard()->attempt($this->credentials($request));
     }
 
     /**
@@ -87,5 +95,15 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+     /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('customers');
     }
 }

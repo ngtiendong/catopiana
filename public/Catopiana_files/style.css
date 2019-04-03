@@ -679,6 +679,9 @@ header {
   cursor: pointer;
 }
 
+
+
+
 #signin, #signup {
   /*position: fixed;*/
   /*top: 50%;*/
@@ -2079,3 +2082,199 @@ footer .col {
     left: 35px;
   }
 }
+
+    #modal-sign-in .login-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-sign-in .social-btn .btn {
+        border: none;
+        margin: 10px 3px 0;
+        opacity: 1;
+    }
+    #modal-sign-in .social-btn .btn:hover {
+        opacity: 0.9;
+    }
+    #modal-sign-in .social-btn .btn-primary {
+        background: #507cc0;
+    }
+    #modal-sign-in .social-btn .btn-info {
+        background: #64ccf1;
+    }
+    #modal-sign-in .social-btn .btn-danger {
+        background: #df4930;
+    }
+    #modal-sign-in .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-sign-in .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-sign-in {
+        font-family: inherit;
+    }
+    #modal-sign-in .modal-dialog {
+        width: 350px;
+    }
+    #modal-sign-in .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-sign-in.modal-footer{
+        border-top: 0;
+        margin-top: 0px;
+        padding: 10px 20px 20px;
+    }
+
+    #modal-sign-in .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-sign-in .modal-header h3 {
+        text-align: center;
+    }
+    #modal-sign-in .div-login {
+            margin-top: 15px;
+    }
+
+    #modal-sign-in p, #modal-sign-in label, #modal-sign-in h4 {
+        color: white;
+    }
+
+    
+    #modal-sign-up .login-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-sign-up .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-sign-up .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-sign-up {
+        font-family: inherit;
+    }
+    #modal-sign-up .modal-dialog {
+        width: 300px;
+    }
+    #modal-sign-up .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-sign-up .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-sign-up .modal-header h3 {
+        text-align: center;
+    }
+    #modal-sign-up .div-login {
+            margin-top: 15px;
+    }  
+    #modal-sign-up .div-signup {
+            margin-top: 15px;
+            margin-top: 10px;
+
+    }
+    #modal-sign-up .signup-btn{
+            background: white;
+
+    }
+    #modal-sign-up .gen-btn{
+            background: white;
+
+    }
+
+    #modal-sign-up p, #modal-sign-up label, #modal-sign-up h4 {
+        color: white;
+    }
+
+  .modal-header .close-modal {
+  position: absolute;
+  background: #ccc;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+ #modal-register .register-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-register .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-register .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-register {
+        font-family: inherit;
+    }
+    #modal-register .modal-dialog {
+        width: 350px;
+    }
+    #modal-register .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-register.modal-footer{
+        border-top: 0;
+        margin-top: 0px;
+        padding: 10px 20px 20px;
+    }
+
+    #modal-register .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-register .modal-header h3 {
+        text-align: center;
+    }
+    #modal-register .div-register {
+            margin-top: 15px;
+    }
+
+    #modal-register p, #modal-register label, #modal-register h4 {
+        color: white;
+    }

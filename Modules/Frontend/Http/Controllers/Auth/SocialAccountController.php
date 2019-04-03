@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Models\User;
+use Modules\Core\Models\Customer;
 use Socialite;
 
 
@@ -18,37 +19,34 @@ class SocialAccountController extends Controller
 
     public function handleProviderCallback($provider)
     {
-        $userSocial = Socialite::driver($provider)->user();
-        // try{
-        //     $userSocial = Socialite::driver($provider)->user();
-        // } catch(\Exception $e) {
-        //     return redirect()->back();
-        // }
+        // $userSocial = Socialite::driver($provider)->user();
+        try{
+            $userSocial = Socialite::driver($provider)->user();
+        } catch(\Exception $e) {
+            return back();
+        }
         // find in database if not create
-        // 
-        // 
-        $user = User::where('provider_name', $provider)
+        $user = Customer::where('provider_name', $provider)
                    ->where('provider_id', $userSocial->getId())
                    ->first();
 
         if (!$user) {
             // check user have email of account
-            $user = User::where('email', $userSocial->getEmail())->first();
+            $user = Customer::where('email', $userSocial->getEmail())->first();
 
             if (! $user) {
                 // if no have then create
-                $user = User::create([  
+                $user = Customer::create([  
                     'email' => $userSocial->getEmail(),
                     'username' => $userSocial->getName(),
                     'provider_id'   => $userSocial->getId(),
                     'provider_name' => $provider,
                 ]);
             } else {
-                return back()->with(['errors' =>'Email has been already']);
+                return back();
             }
         }
-
-        auth()->login($user, true);
+        auth()->guard('customers')->login($user, true);
 
         return redirect('/');
     }
