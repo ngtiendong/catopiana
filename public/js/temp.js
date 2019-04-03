@@ -124,7 +124,7 @@ $('.startBtn').click(async function () {
                         position_this_question = 0
 
                         this_question = {
-                            type: type,
+                            type: type, //topic
                             question_data: response.question_data,
                             current_index: 0,
                             answers: [],

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 use Modules\Frontend\Entities\Question;
 
 class FrontendController extends Controller
@@ -16,6 +17,7 @@ class FrontendController extends Controller
      */
     public function index()
     {
+//        dd(auth()->guard('customers')->user()->username);
         return view('frontend::home');
     }
 
@@ -93,6 +95,7 @@ class FrontendController extends Controller
             if ($params['type'] == "1"){
                 //Audio
                 $raw_data = Question::getLessLevelQuestionAudio($params['type'], $params['level'], $params['index']);
+                
             } elseif($params['type'] == "8") {
                 //Position
                 $raw_data = Question::getLessLevelQuestionPosition($params['type'], $params['level'], $params['index']);

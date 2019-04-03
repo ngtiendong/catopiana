@@ -788,6 +788,7 @@
 @endsection
 
 
-@push('js')
+@section('js')
     <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
-@endpush
+    <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
+@endsection

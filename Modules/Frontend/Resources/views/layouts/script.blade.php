@@ -12,6 +12,8 @@
 <script src="{{asset('/Catopiana_files/js/user.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/script.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/calculation.js')}}"></script>
+<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
+
 <script>
 	$('.d-nav').hc_menu({
 			open: '.open-mnav',

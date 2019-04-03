@@ -47,7 +47,6 @@ class RegistrationController extends Controller
      */
     public function register(Request $request)
     {
-
         $this->validator($request->all())->validate();
         $user = $this->create($request->except('_token'));
         if(!$user){
@@ -77,7 +76,7 @@ class RegistrationController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255','unique:customers'],
             'email' => ['required', 'string', 'email', 'max:255','unique:customers'],
-            'password' => ['required', 'string', 'min:6'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -112,7 +111,7 @@ class RegistrationController extends Controller
 
     public function generateAccount(Request $request)
     {
-        // dd($request->all());
+//         dd($request->all());
         $data_account = [
             // 'email' => null,
             'username' => (string) Str::uuid(),
@@ -123,7 +122,12 @@ class RegistrationController extends Controller
             $customer->saveDataLocalStorage($request->data);
         }
         $this->guard()->login($customer);
-        return response()->json(['status' => 200]);
+
+        return response()->json([
+            'status' => 200,
+            'username' => $data_account['username'],
+            'password' => $data_account['password']
+        ]);
     }
 
 

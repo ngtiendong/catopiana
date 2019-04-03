@@ -23,8 +23,6 @@ Route::group([], function() {
     Route::get('/language', 'FrontendController@test')->name('language');
     Route::get('/position', 'FrontendController@position')->name('position');
 
-
-
     Route::get('/getQA', 'FrontendController@getQA')->name('getQA');
     Route::get('/getQAAudio', 'FrontendController@getQAAudio')->name('getQAAudio');
 
@@ -34,7 +32,7 @@ Route::group([], function() {
 
     Route::get('/register', 'Auth\RegistrationController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegistrationController@register');
-     
+
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
