@@ -25,7 +25,7 @@ class Customer extends Model implements AuthenticatableContract
         {
             return $this->attributes['username'];
         }
-        return substr($this->attributes['username'],0,8).'...';
+        return mb_substr($this->attributes['username'],0,6)."...";
     }
 
     protected $hidden = [
@@ -59,7 +59,7 @@ class Customer extends Model implements AuthenticatableContract
 
     public function saveDataLocalStorage($data)
     {
-        // luuw chuaw check
+        // luu chua check
         foreach($data['question'] as $question){
             // for with type
             if($question['type'] != 8 || $question['type'] != 1){

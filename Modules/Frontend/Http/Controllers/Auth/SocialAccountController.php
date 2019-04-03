@@ -29,14 +29,13 @@ class SocialAccountController extends Controller
         $user = Customer::where('provider_name', $provider)
                    ->where('provider_id', $userSocial->getId())
                    ->first();
-
         if (!$user) {
             // check user have email of account
             $user = Customer::where('email', $userSocial->getEmail())->first();
 
             if (! $user) {
                 // if no have then create
-                $user = Customer::create([  
+                $user = Customer::create([
                     'email' => $userSocial->getEmail(),
                     'username' => $userSocial->getName(),
                     'provider_id'   => $userSocial->getId(),
