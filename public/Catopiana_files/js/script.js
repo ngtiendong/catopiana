@@ -280,5 +280,4 @@ jQuery(function($) {
 	// 	$('body').removeClass('overlay');
 	// });
 
-
 });

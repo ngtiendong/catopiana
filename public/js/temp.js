@@ -1,8 +1,7 @@
-let currentTab = 0;
+// let currentTab = 0;
 let tab_number = document.getElementsByClassName("tab");
 let total_question = 0
 var type = $('#type').val()
-// console.log('type', type, type == '2')
 
 var this_question
 var position_this_question
@@ -11,14 +10,13 @@ var buttonMemoryChecked = true;
 var style = '';
 var timeout = 5;
 var timerId = null;
-$('.badge').text((currentTab+1)+' / '+total_question)
+$('.badge').text( '0 / '+total_question)
 
 let fakeAnswer = 0;
 let minLv = 1;
 
 let timeToChange;
 let flagChange = 0;
-// let level_temp;
 let current_index_max = 0;
 
 $(document).on('click', 'label',function (event) {
@@ -39,57 +37,34 @@ $(function(){
     $('#testForm').on('submit', function(event){
         //update local storage
         event.preventDefault()
-        let just_answer = $('.tab').eq(currentTab).find('input:checked')
+        let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined'){
             //Chua tra loi
             alert("Please answer the question")
         } else {
-            swal.fire({
-                title: 'Please enter your name below..',
-                input: 'text',
-                inputPlaceholder: '...',
-                confirmButtonText: 'Submit',
-                showLoaderOnConfirm: true,
+            just_answer = just_answer.data('position')
+            if (this_question.answers.length > this_question.current_index) {
+                this_question.answers.pop()
+            }
+            this_question.answers.push(just_answer)
+            this_question.status = 1
+            //Save into local storage
+            localStorage.setItem('testing', JSON.stringify(testing_data));
+
+            let candidate_answers = this_question.answers;
+            console.log('answer', candidate_answers, this_question, just_answer)
+
+            let correct = candidate_answers.filter(answer => answer == 0).length
+            Swal.fire({
+                title: ` \n Your score: `+ correct +' / '+total_question,
+                text: 'You have completed this test!',
                 background: 'orange',
                 display: 'flex',
-                inputValidator: (value) => {
-                    return new Promise((resolve) => {
-                        if (value) {
-                            resolve()
-                        } else {
-                            resolve('You need to enter name:)')
-                        }
-                    })
-                }
-            }).then((name) => {
-                if (name.value) {
-                    //Lock and save answered
-                    just_answer = just_answer.data('position')
-                    if (this_question.answers.length > this_question.current_index) {
-                        this_question.answers.pop()
-                    }
-                    this_question.answers.push(just_answer)
-                    this_question.status = 1
-                    //Save into local storage
-                    localStorage.setItem('testing', JSON.stringify(testing_data));
-
-                    let candidate_answers = this_question.answers;
-                    console.log('answer', candidate_answers, this_question, just_answer)
-
-                    let correct = candidate_answers.filter(answer => answer == 0).length
-                    Swal.fire({
-                        title: `${name.value} \n Your score: `+correct+'/'+total_question,
-                        text: 'Please write down your account below:',
-                        background: 'orange',
-                        display: 'flex',
-                    })
-
-                    //Display test not finished
-                    displayTestUnFinishedAfterSubmit()
-                } else {
-
-                }
-            })
+            }).then(() => {
+                $('#modal-after-answertoppic').modal();
+            });
+            //Display test not finished
+            displayTestUnFinishedAfterSubmit()
         }
     })
 })
@@ -159,6 +134,7 @@ $('.startBtn').click(async function () {
                             html_gen_all += html_arr_element;
                         });
                          $('#prevBtn').before(html_gen_all)
+                        current_index_max = this_question.current_index
                         showTab(this_question.current_index)
 
                         if(type == '6'){
@@ -168,12 +144,12 @@ $('.startBtn').click(async function () {
                                 timeout = 5;
                             }
                             buttonMemoryChecked = false;
-                            hideQuestion(currentTab);
+                            hideQuestion(this_question.current_index);
                         }
 
                         // check khi start lan dau qua 20s chuyen cau hoi lv thap
                         if(level > minLv){
-                            setTimeToChange(level - 1 , 1)
+                            setTimeToChange(level - 1 , this_question.current_index + 1)
                         }
                     }
 
@@ -307,9 +283,10 @@ function generateUnfinishedTest(current_data) {
     $('.tab').remove()
     $('#prevBtn').before(html)
     displayTest()
+    current_index_max = current_data.current_index;
     showTab(current_data.current_index)
     if(current_data.level_temp > minLv){
-        setTimeToChange(current_data.level_temp - 1 , current_data.indexIncorrect );
+        setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
     if(type === '6'){
         //Memory
@@ -318,7 +295,7 @@ function generateUnfinishedTest(current_data) {
             timeout = 5;
         }
         buttonMemoryChecked = false;
-        hideQuestion(current_data.indexIncorrect);
+        hideQuestion(current_data.current_index);
     }
 }
 
@@ -373,10 +350,11 @@ function getNewQuestionData(position) {
                     html_gen_all += html_arr_element;
                 });
                 $('#prevBtn').before(html_gen_all)
-                
+
+                current_index_max = this_question.current_index;
                 showTab(this_question.current_index)
                 if(this_question.level_temp > minLv){
-                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index );
+                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 }
                 if(type === '6'){
                     //Memory
@@ -509,13 +487,13 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                         timeout = 5;
                     }
                     buttonMemoryChecked = false;
-                    hideQuestion(currentTab);
+                    hideQuestion(indexIncorrect);
                 }
                 
                 flagChange = 0;
                 if(this_question.level_temp > minLv){
                     // console.log('vào đây dynamyc')
-                    setTimeToChange(this_question.level_temp - 1 , currentTab );
+                    setTimeToChange(this_question.level_temp - 1 , indexIncorrect + 1 );
                 }
             } else {
                 console.log("error", response)
@@ -555,10 +533,10 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                         });
                         
                     }
-                    console.log('html_arr_gen_again ', html_arr_gen_again)
-                    console.log('indexIncorrect ', indexIncorrect)
-                    console.log('current_index ', this_question.current_index)
-                    console.log('this_questionlength ', this_question.question_data.length)
+                    // console.log('html_arr_gen_again ', html_arr_gen_again)
+                    // console.log('indexIncorrect ', indexIncorrect)
+                    // console.log('current_index ', this_question.current_index)
+                    // console.log('this_questionlength ', this_question.question_data.length)
 
                     Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
@@ -597,7 +575,7 @@ function next() {
     // let just_answer = tab_number[currentTab].querySelector('input:checked')
     let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
     if (typeof $(just_answer).val() === 'undefined'){
-        //Chua tra loi
+        //Chua tra loihide
         // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
         alert("Please answer the question")
     } else {
@@ -609,36 +587,21 @@ function next() {
         just_answer = just_answer.data('position')
         this_question.answers.push(just_answer)
         console.log("push here", this_question.answers)
-        // check neu prev lai thi se k checktime doi cau hoi nua!
-        if (current_index_max > this_question.current_index - 1){
-
-            showTab(this_question.current_index);
+        if (current_index_max >= this_question.current_index){
+                showTab(this_question.current_index);
         } else {
-            current_index_max = this_question.answers.length;
+            current_index_max += 1;
         // dừng việc check20s tránh đuplicate lặp timeout
-        ////////////////////
-        // check cai nay //
-        ////////////////////
             stopTimeToChange()
             // compare answer
-            console.log(this_question.level_temp)
             if(just_answer != fakeAnswer && this_question.level_temp > minLv && flagChange == 0 ){
                 console.log('w answer');
-                changeDynamicQuestion(this_question.level_temp -1 , this_question.answers.length)
+                // truyền vào câu số i sai => truyền current index đã dc cộng + 1
+                changeDynamicQuestion(this_question.level_temp -1 , this_question.current_index)
             } else {
                 //Save into local storage
                 // console.log (testing_data, 'test')
                 localStorage.setItem('testing', JSON.stringify(testing_data))
-
-                // if (type == '1'){
-                //     //Audio
-                //     renderAudio(this_question.question_data[currentTab].question, this_question.question_data[currentTab].answers,
-                //         this_question.question_data[currentTab].question_image, this_question.question_data[currentTab].answer_image)
-                // }
-                // else {
-                //     render(this_question.question_data[currentTab].question,this_question.question_data[currentTab].answers)
-                // }
-
                 if(type === '6'){
                         //Memory
                         if(timerId != null){
@@ -652,7 +615,8 @@ function next() {
                 flagChange = 0
                 // sau khi render 20s k next thì sẽ => câu hỏi thấp
                 if(this_question.level_temp > minLv){
-                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index );
+                    // lv hết => câu đang làm chậm => curren_index này chậm => truyền vào câu thứ i sai : chính là currne_index + 1;
+                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 }
             }
         }
@@ -669,9 +633,9 @@ function prev() {
     var x = document.getElementsByClassName("tab");
 
     x[this_question.current_index].style.display = "none";
-
+    
     this_question.current_index += -1
-    while(this_question.answers.length > currentTab){
+    while(this_question.answers.length > this_question.current_index){
         this_question.answers.pop()
     }
     console.log("pop here", this_question.answers)
@@ -732,14 +696,14 @@ function renderAudio(question, answers, question_image, answer_image){
     return content
 }
 
-function hideQuestion(currentTab){
+function hideQuestion(currne_index){
     var x = document.getElementsByClassName("tab");
-    $(x[currentTab]).children('answer').css('visibility' ,'hidden');
+    $(x[currne_index]).children('answer').css('visibility' ,'hidden');
 
     timerId = setInterval(function() {
         if (timeout == 0) {
-            $(x[currentTab]).children('img').css('visibility' ,'hidden')
-            $(x[currentTab]).children('.answer').css('visibility' ,'visible')
+            $(x[currne_index]).children('img').css('visibility' ,'hidden')
+            $(x[currne_index]).children('.answer').css('visibility' ,'visible')
             $('.countDownTimer').html( 'Time out!')
             buttonMemoryChecked = true;
             clearTimeout(timerId);

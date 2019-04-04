@@ -24,3 +24,8 @@ var array_svg = [
     '<a class="test-item chat" href="/language">'+language+'</a>',
     '<a class="test-item global" href="/position">'+position+'</a>'
 ]
+
+if(type != undefined){
+	console.log(type)
+	$('.bigwhale').append(array_svg[type-1])
+}
