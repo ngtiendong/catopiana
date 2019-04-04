@@ -1,31 +1,3 @@
-{{--<div id="signin" class="signWindow">--}}
-	{{--<a>X</a>--}}
-	{{--<h2>SIGN IN</h2>--}}
-	{{--<p class="warning">(account is invalid!)</p>--}}
-		{{--<label>User name:</label>--}}
-		{{--<input style="color:black;" type="text" placeholder="username" class="logname">--}}
-		{{--<label>Password:</label>--}}
-		{{--<input style="color:black;" type="password" placeholder="password" class="logpass">--}}
-		{{--<button type="button" id="submitLog" data-route="{{route('login')}}" style="color:black;">Log in</button>--}}
-		{{--<hr>--}}
-		{{--<ul style="display: inline-block; list-style: none">--}}
-			{{--<li><i class="fa fa-facebook-square"><button style="color:black;" onclick="location.href='/login/facebook'">facebook</button></i></li>--}}
-			{{--<li><i class="fa fa-google"><button onclick="location.href='/login/google'" style="color:black;">google</button></i></li>--}}
-		{{--</ul>--}}
-{{--</div>--}}
-
-{{--<div id="signup" class="signWindow" >--}}
-	{{--<a>X</a>--}}
-	{{--<h2>SIGN UP</h2>--}}
-	{{--<p class="warning">Atuo Generate Errors!!</p>--}}
-		{{--<label>Email:</label>--}}
-		{{--<input style="color:black;" type="email" name="email" placeholder="Your email" class="genEmail">--}}
-		{{--<button id="submitReg" data-route="{{route('generate-account')}}" type="button" style="color:black;">Auto generate account</button>--}}
-	{{--<hr>--}}
-		{{--<label class="text-center"> or sign up</label>--}}
-		{{--<button type="button" id="signupButton" onclick="location.href='/register'" style="color:black;"> Sign Up</button>--}}
-{{--</div>--}}
-
 <div id="modal-sign-in" class="modal fade" role="dialog">
     <div class="modal-dialog" id="signin">
 
@@ -98,8 +70,6 @@
         </div>
     </div>
 </div>
-
-
 <div id="modal-register" class="modal fade" role="dialog">
     <div class="modal-dialog" id="register">
 
@@ -128,9 +98,9 @@
                             <small class="text-danger hide passwordError"></small>
                         </div>
                         <div class="form-group">
-                            <label for=""  >Repeat Password:</label>
-                            <input type="password" class="form-control regPassword" required name="password_confirmation">
-                            <small class="text-danger hide passwordError"></small>
+                            <label for=""  >Confirmation Password:</label>
+                            <input type="password" class="form-control regPasswordConfirm" required name="password_confirmation">
+                            <small class="text-danger hide passwordConFirmError"></small>
                         </div>
                         <div class="form-group">
                             <label for="" >Full Name:</label>
@@ -147,6 +117,35 @@
                 <div class="or-seperator"><i>or</i></div>
                 <div class="clearfix">
                     <p class="text-center">Already have an account? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signin-btn"> Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-after-answertoppic" class="modal fade" role="dialog">
+    <div class="modal-dialog" id="answertoppic">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center"> </h4>
+                <a type="button" class="close-modal" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                 <div class="content">
+                    <p class="text-center">Sign in</p>
+                    <div class="text-center div-signup">
+                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signup-btn"> Sign in</a>
+                </div>
+                </div>
+                <div class="or-seperator"><i>or</i></div>
+                <p class="text-center">Create new account</p>
+                <div class="text-center div-signup">
+                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a>
+                </div>
+                <div class="or-seperator"><i>or</i></div>
+                <p class="text-center">Next quiz!</p>
+                <div class="text-center div-signup">
+                    <a type="button" data-dismiss="modal" id="continues-test" class="btn signup-btn"> Continues</a>
                 </div>
             </div>
         </div>

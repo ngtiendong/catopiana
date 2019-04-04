@@ -12,7 +12,7 @@ class Question extends Model
     public static function getListQuestion($type, $level)
     {
         $curriculum = Curriculum::where([
-            ['type', 1],
+            ['topic_id', 2],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
@@ -21,11 +21,11 @@ class Question extends Model
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
                 'question' => $question['question'],
-                'answers' => $answer,
+                'answers' => $answer
                 // trả về thêm inđex, level 
-                'question_index' => $question['index'],
-                'question_id' => $question['id'],
-                'question_curriculum' => $question['curriculum_id']
+                // 'question_index' => $question['index'],
+                // 'question_id' => $question['id'],
+                // 'question_curriculum' => $question['curriculum_id']
             ];
         }
         return $raw_data;
@@ -33,18 +33,22 @@ class Question extends Model
 
     public static function getListQuestionAudio($type, $level)
     {
+        $curriculum = Curriculum::where([
+            ['topic_id', $type],
+            ['level', '<=', $level]
+        ])->orderBy('level', 'desc')->first();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
         $raw_data = [];
-        for ($i=1; $i<7; $i++){
+        foreach ($list_question as $question) {
+            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            foreach($answers as $key => $answer){
+                $answers[$key] = asset($answer);
+            }
             $raw_data[] = [
-                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-                'answers' => [
-                    asset('/test/audios/cau'. $i.'/A.mov'),
-                    asset('/test/audios/cau'. $i.'/B.mov'),
-                    asset('/test/audios/cau'. $i.'/C.mov'),
-                ],
+                'question' => $question['question'],
+                'answers' => $answers,
                 'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-                'correct' => 0
+                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
             ];
         }
         return $raw_data;
@@ -73,7 +77,7 @@ class Question extends Model
     public static function getLessLevelQuestion($type, $level, $index)
     {
         $curriculum = Curriculum::where([
-            ['type', 1],
+            ['topic_id', 2],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
@@ -87,11 +91,11 @@ class Question extends Model
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
                 'question' => $question['question'],
-                'answers' => $answer,
+                'answers' => $answer
                 // trả về thêm inđex, level 
-                'question_index' => $question['index'],
-                'question_id' => $question['id'],
-                'question_curriculum' => $question['curriculum_id']
+                // 'question_index' => $question['index'],
+                // 'question_id' => $question['id'],
+                // 'question_curriculum' => $question['curriculum_id']
 
             ];
         }
@@ -100,18 +104,27 @@ class Question extends Model
 
     public static function getLessLevelQuestionAudio($type, $level, $index)
     {
+        $curriculum = Curriculum::where([
+            ['topic_id', $type],
+            ['level', '<=', $level]
+        ])->orderBy('level', 'desc')->first();
         $raw_data = [];
-        for ($i=7; $i<13; $i++){
+
+        if($curriculum == null){
+            return $raw_data;
+        }
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+
+        foreach ($list_question as $question) {
+            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            foreach($answers as $key => $answer){
+                $answers[$key] = asset($answer);
+            }
             $raw_data[] = [
-                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-                'answers' => [
-                    asset('/test/audios/cau'. $i.'/A.mov'),
-                    asset('/test/audios/cau'. $i.'/B.mov'),
-                    asset('/test/audios/cau'. $i.'/C.mov'),
-                ],
+                'question' => $question['question'],
+                'answers' => $answers,
                 'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-                'correct' => 0
+                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
             ];
         }
         return $raw_data;

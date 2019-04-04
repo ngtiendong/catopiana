@@ -2278,3 +2278,62 @@ footer .col {
     #modal-register p, #modal-register label, #modal-register h4 {
         color: white;
     }
+
+        #modal-after-answertoppic .login-btn {
+        font-size: 15px;
+        font-weight: bold;
+        width: 50%;
+        background-color: white;
+    }
+    #modal-after-answertoppic .or-seperator {
+        margin-top: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+    }
+    #modal-after-answertoppic .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+    }   
+    #modal-after-answertoppic {
+        font-family: inherit;
+    }
+    #modal-after-answertoppic .modal-dialog {
+        width: 300px;
+    }
+    #modal-after-answertoppic .modal-content {
+        background: rgb(25, 136, 187);
+    }
+
+    #modal-after-answertoppic .modal-header {
+
+        border: 0 none;
+        padding: 15px 15px 15px;
+    /*     padding: 11px 15px; */
+    }
+
+    #modal-after-answertoppic .modal-header h3 {
+        text-align: center;
+    }
+    #modal-after-answertoppic .div-login {
+            margin-top: 15px;
+    }  
+    #modal-after-answertoppic .div-signup {
+            margin-top: 15px;
+            margin-top: 10px;
+
+    }
+    #modal-after-answertoppic .signup-btn{
+            background: white;
+
+    }
+    #modal-after-answertoppic .gen-btn{
+            background: white;
+
+    }
+
+    #modal-after-answertoppic p, #modal-after-answertoppic label, #modal-after-answertoppic h4 {
+        color: white;
+    }
