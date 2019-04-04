@@ -20,8 +20,15 @@ $(document).on('click', '#submitLog', function(event) {
             if(response.status == 200){
                 window.location.reload(true)
             }
+            if(response.status == 401){
+                $('.logpass').val('')
+                $('.passwordError').addClass('hide');
+                $('.usernameError').addClass('hide');
+                $('.login-errors').removeClass('hide');
+            }
         })
         .fail(function(response) {
+            console.log(response);
             if(response.status == 422){
                 var errors = response.responseJSON.errors;
                 if(errors.username == undefined){
@@ -35,11 +42,6 @@ $(document).on('click', '#submitLog', function(event) {
                     $('.passwordError').removeClass('hide').html(errors.password);
                 }
                 $('.logpass').val('')
-            }
-            if(response.status == 401){
-                $('.logpass').val('')
-                $('.passwordError').removeClass('hide').html(errors.password);
-                $('.usernameError').removeClass('hide').html(errors.username);
             }
         })
         .always(function() {
@@ -109,9 +111,9 @@ $(document).on('click', '#genButton', function(event) {
             // Show account:
             Swal.fire({
                 type: 'success',
-                title: 'Tài khoản của bạn:',
+                title: 'Your account:',
                 text: 'Username: '+response.username+'\n Password: '+response.password,
-                footer: 'Bạn vui lòng lưu lại tài khoản nhé!'
+                footer: 'Please save your account!'
             }).then(()=>{
                 window.location.reload(true);
             })
@@ -165,14 +167,14 @@ $('form#form-sign-up').on('submit', function(event) {
                 }else {
                     $('.fullnameError').removeClass('hide').html(errors.fullname);
                 }
-
                 $('.regPassword').val('')
+                $('.regPasswordConfirm').val('')
             } else {
                 alert('Server Errors')
             }
         })
         .always(function() {
-            checkClick = true;
+            $('button#regButton').prop('disabled', false);
         });
 });
 
@@ -180,6 +182,7 @@ $("#modal-register").on("hidden.bs.modal", function () {
     $('.regName').val('');
     $('.regEmail').val('');
     $('.regPassword').val('');
+    $('.regPasswordConfirm').val('');
     $('.regFullname').val('');
     $('.usernameError').addClass('hide');
     $('.emailError').addClass('hide');

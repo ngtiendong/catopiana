@@ -128,9 +128,9 @@
                             <small class="text-danger hide passwordError"></small>
                         </div>
                         <div class="form-group">
-                            <label for=""  >Repeat Password:</label>
-                            <input type="password" class="form-control regPassword" required name="password_confirmation">
-                            <small class="text-danger hide passwordError"></small>
+                            <label for=""  >Confirmation Password:</label>
+                            <input type="password" class="form-control regPasswordConfirm" required name="password_confirmation">
+                            <small class="text-danger hide passwordConFirmError"></small>
                         </div>
                         <div class="form-group">
                             <label for="" >Full Name:</label>

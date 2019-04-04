@@ -12,7 +12,7 @@ class Question extends Model
     public static function getListQuestion($type, $level)
     {
         $curriculum = Curriculum::where([
-            ['type', 1],
+            ['topic_id', 1],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
@@ -21,11 +21,11 @@ class Question extends Model
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
                 'question' => $question['question'],
-                'answers' => $answer,
+                'answers' => $answer
                 // trả về thêm inđex, level 
-                'question_index' => $question['index'],
-                'question_id' => $question['id'],
-                'question_curriculum' => $question['curriculum_id']
+                // 'question_index' => $question['index'],
+                // 'question_id' => $question['id'],
+                // 'question_curriculum' => $question['curriculum_id']
             ];
         }
         return $raw_data;
@@ -73,7 +73,7 @@ class Question extends Model
     public static function getLessLevelQuestion($type, $level, $index)
     {
         $curriculum = Curriculum::where([
-            ['type', 1],
+            ['topic_id', 1],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
@@ -87,11 +87,11 @@ class Question extends Model
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
                 'question' => $question['question'],
-                'answers' => $answer,
+                'answers' => $answer
                 // trả về thêm inđex, level 
-                'question_index' => $question['index'],
-                'question_id' => $question['id'],
-                'question_curriculum' => $question['curriculum_id']
+                // 'question_index' => $question['index'],
+                // 'question_id' => $question['id'],
+                // 'question_curriculum' => $question['curriculum_id']
 
             ];
         }

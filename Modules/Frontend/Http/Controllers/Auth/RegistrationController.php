@@ -118,9 +118,6 @@ class RegistrationController extends Controller
             'password' => str_random(8)
         ];
         $customer = $this->create($data_account);
-        if($request->data != null){
-            $customer->saveDataLocalStorage($request->data);
-        }
         $this->guard()->login($customer);
 
         return response()->json([

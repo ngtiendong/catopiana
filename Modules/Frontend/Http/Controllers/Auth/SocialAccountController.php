@@ -23,7 +23,7 @@ class SocialAccountController extends Controller
         try{
             $userSocial = Socialite::driver($provider)->user();
         } catch(\Exception $e) {
-            return back();
+            return redirect('/');
         }
         // find in database if not create
         $user = Customer::where('provider_name', $provider)
@@ -42,7 +42,7 @@ class SocialAccountController extends Controller
                     'provider_name' => $provider,
                 ]);
             } else {
-                return back();
+                return redirect('/');
             }
         }
         auth()->guard('customers')->login($user, true);
