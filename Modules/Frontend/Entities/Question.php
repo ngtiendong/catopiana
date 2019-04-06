@@ -9,7 +9,7 @@ class Question extends Model
     protected $guarded = [];
     protected $table = 'questions';
 
-    public static function getListQuestion($type, $level)
+    public static function getListQuestion($topic, $level)
     {
         $curriculum = Curriculum::where([
             ['topic_id', 2],
@@ -22,36 +22,56 @@ class Question extends Model
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
-                // trả về thêm inđex, level 
+                // trả về thêm inđex, level
                 // 'question_index' => $question['index'],
                 // 'question_id' => $question['id'],
                 // 'question_curriculum' => $question['curriculum_id']
             ];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
     }
 
-    public static function getListQuestionAudio($type, $level)
+    public static function getListQuestionAudio($topic, $level)
     {
         $curriculum = Curriculum::where([
-            ['topic_id', $type],
+            ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
-        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
+//        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
+//        $raw_data = [];
+//        foreach ($list_question as $question) {
+//            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+//            foreach($answers as $key => $answer){
+//                $answers[$key] = asset($answer);
+//            }
+//            $raw_data[] = [
+//                'question' => $question['question'],
+//                'answers' => $answers,
+//                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+//                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+//            ];
+//        }
         $raw_data = [];
-        foreach ($list_question as $question) {
-            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
-            foreach($answers as $key => $answer){
-                $answers[$key] = asset($answer);
-            }
+        for ($i=1; $i<7; $i++){
             $raw_data[] = [
-                'question' => $question['question'],
-                'answers' => $answers,
+                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
+                'answers' => [
+                    asset('/test/audios/cau'. $i.'/A.mov'),
+                    asset('/test/audios/cau'. $i.'/B.mov'),
+                    asset('/test/audios/cau'. $i.'/C.mov'),
+                ],
                 'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
+                'correct' => 0
             ];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
     }
 
     public static function getListQuestionPosition($type, $level)
@@ -70,11 +90,13 @@ class Question extends Model
             ];
             $raw_data[] = [$left,$right];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => 2
+        ];
     }
 
-
-    public static function getLessLevelQuestion($type, $level, $index)
+    public static function getLessLevelQuestion($topic, $level, $index)
     {
         $curriculum = Curriculum::where([
             ['topic_id', 2],
@@ -92,20 +114,23 @@ class Question extends Model
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
-                // trả về thêm inđex, level 
+                // trả về thêm inđex, level
                 // 'question_index' => $question['index'],
                 // 'question_id' => $question['id'],
                 // 'question_curriculum' => $question['curriculum_id']
 
             ];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
     }
 
-    public static function getLessLevelQuestionAudio($type, $level, $index)
+    public static function getLessLevelQuestionAudio($topic, $level, $index)
     {
         $curriculum = Curriculum::where([
-            ['topic_id', $type],
+            ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
@@ -113,21 +138,38 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
-
-        foreach ($list_question as $question) {
-            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
-            foreach($answers as $key => $answer){
-                $answers[$key] = asset($answer);
-            }
+//        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+//
+//        foreach ($list_question as $question) {
+//            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+//            foreach($answers as $key => $answer){
+//                $answers[$key] = asset($answer);
+//            }
+//            $raw_data[] = [
+//                'question' => $question['question'],
+//                'answers' => $answers,
+//                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+//                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+//            ];
+//        }
+        $raw_data = [];
+        for ($i=1; $i<7; $i++){
             $raw_data[] = [
-                'question' => $question['question'],
-                'answers' => $answers,
+                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
+                'answers' => [
+                    asset('/test/audios/cau'. $i.'/A.mov'),
+                    asset('/test/audios/cau'. $i.'/B.mov'),
+                    asset('/test/audios/cau'. $i.'/C.mov'),
+                ],
                 'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
+                'correct' => 0
             ];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
     }
 
     public static function getLessLevelQuestionPosition($type, $level, $index)
@@ -146,6 +188,9 @@ class Question extends Model
             ];
             $raw_data[] = [$left,$right];
         }
-        return $raw_data;
+        return [
+            'raw_data' => $raw_data,
+            'type' => 2
+        ];
     }
 }

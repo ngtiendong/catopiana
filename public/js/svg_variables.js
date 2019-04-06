@@ -25,7 +25,7 @@ var array_svg = [
     '<a class="test-item global" href="/position">'+position+'</a>'
 ]
 
-if(type != undefined){
-	console.log(type)
-	$('.bigwhale').append(array_svg[type-1])
+if(topic != undefined){
+	console.log(topic)
+	$('.bigwhale').append(array_svg[topic-1])
 }

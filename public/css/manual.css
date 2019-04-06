@@ -40,3 +40,7 @@
 svg {
     z-index: 3;
 }
+
+#id2 .container .icon-in-test-page .test-item {
+    margin: 0 10px 10px;
+}
