@@ -6,19 +6,21 @@
     <div class="container">
         <div class="row tn">
             <div class="md-lg-12">
-                <div class="bigwhale">
-	                
+                <div class="bigwhale icon-in-test-page">
+
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 fadeOut">
-                <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
+                <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. </h3>
             </div>
             <div class="col-md-12 list-after-finished" id="list-after-finished">
                 <h3></h3>
             </div>
             <div class="col-md-12">
                 <div class="testOverlay">
-                    <input id="type" value="{{$type}}" hidden>
+                    <input id="type" value="{{$type_and_topic['type']}}" hidden>
+                    <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
+
                     <a class="startBtn">Click To Start!</a>
                     <form id="testForm">
 
@@ -57,7 +59,8 @@
 @section('js')
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
-<script src="{{asset('/js/temp.js?v=1.2')}}"></script>
+<script src="{{asset('/js/variables.js')}}"></script>
+<script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 
 @endsection

@@ -6,20 +6,19 @@
     <div class="container">
         <div class="row tn">
             <div class="col-md-12">
-                <div class="bigwhale">
-                    	                    
+                <div class="bigwhale icon-in-test-page">
+
                 </div>
             </div>
-            <div class="col-md-6 col-md-offset-3 fadeOut">
-                <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
+            <div class="col-md-6 col-md-offset-3 ">
+                <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio.</h3>
             </div>
-            <div class="col-md-12 list-after-finished" id="list-after-finished">
-                <h3></h3>
-            </div>
+
             <div class="col-md-12">
                 <div class="testOverlay">
                     <a class="startBtn">Click To Start!</a>
-                    <input id="type" value="{{$type}}" hidden>
+                    <input id="type" value="{{$type_and_topic['type']}}" hidden>
+                    <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
 
                     <form id="testForm">
                             <button class="test-button" type="button" id="prevBtn" onclick="prev()">Previous</button>
@@ -32,6 +31,10 @@
                         </div>
                     </form>
                 </div>
+            </div>
+
+            <div class="col-md-12 list-after-finished" id="list-after-finished">
+                <h3></h3>
             </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
@@ -56,9 +59,10 @@
     <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
     <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
     <script src="{{asset('/js/music.js?v=1.2')}}"></script>
-    <script src="{{asset('/js/temp.js?v=1.2')}}"></script>
+    <script src="{{asset('/js/variables.js')}}"></script>
+    <script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
     <script src="{{asset('/js/svg_variables.js')}}"></script>
-    
+
 
 {{--<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>--}}
 @endsection

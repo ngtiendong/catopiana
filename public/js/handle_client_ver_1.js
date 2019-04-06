@@ -1,24 +1,7 @@
-// let currentTab = 0;
-let tab_number = document.getElementsByClassName("tab");
-let total_question = 0
-var type = $('#type').val()
 
-var this_question
-var position_this_question
-var buttonMemoryChecked = true;
-
-var style = '';
-var timeout = 5;
-var timerId = null;
-$('.badge').text( '0 / '+total_question)
-
-let fakeAnswer = 0;
-let minLv = 1;
-
-let timeToChange;
-let flagChange = 0;
-let current_index_max = 0;
-
+/**
+ * Handle here
+ */
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
     $(this).css('opacity', '1');
@@ -31,11 +14,18 @@ $(document).on('click', 'label',function (event) {
     });
 });
 
-
+/**
+ * 1. Submit Event
+ * 2. Click Image in topic Position
+ */
 $(function(){
     $('#testForm').on('submit', function(event){
         //update local storage
         event.preventDefault()
+        if (type == '2') {
+            // POSITION
+            return submitPosition()
+        }
         let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined'){
             //Chua tra loi
@@ -54,20 +44,17 @@ $(function(){
             console.log('answer', candidate_answers, this_question, just_answer)
 
             let correct = candidate_answers.filter(answer => answer == 0).length
-            Swal.fire({
-                title: ` \n Your score: `+ correct +' / '+total_question,
-                text: 'You have completed this test!',
-                background: 'orange',
-                display: 'flex',
-            }).then(() => {
-                $('#modal-after-answertoppic').modal();
-            });
+
+            showDialogScore(correct, total_question)
             //Display test not finished
             displayTestUnFinishedAfterSubmit()
         }
     })
 })
 
+/**
+ * Click start button to load data from server
+ */
 $('.startBtn').click(async function () {
     //Check local storage
     if (typeof(test_level) === 'undefined') {
@@ -78,83 +65,8 @@ $('.startBtn').click(async function () {
             confirmButtonText: 'Look up',
             showLoaderOnConfirm: true,
             preConfirm: (level) => {
-                return $.ajax({
-                    method: "POST",
-                    url: "/get-list-question",
-                    data: {
-                        'type': type,
-                        'level': level
-                    },
-                    cache: false,
-
-                }).then(function (response) {
-                    console.log(type, response)
-                    if (response.status === 1) {
-                        //Save local storage
-                        testing_data = {
-                            level: level,
-                            question: []
-                        };
-
-                        position_this_question = 0
-                        // add
-                        // data to html
-                        html_arr = [];
-                        if (type === '1'){
-                            response.question_data.forEach( function(question_data_element, index) {
-                                html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
-                                question_data_element.question_image, question_data_element.answer_image))
-                            });
-                        }
-                        else {
-                            response.question_data.forEach( function(question_data_element, index) {
-                                html_arr.push(render(question_data_element.question, question_data_element.answers))
-                            });
-
-                        }
-                        //
-                        this_question = {
-                            type: type, //topic
-                            question_data: response.question_data,
-                            current_index: 0,
-                            answers: [],
-                            status: 0,
-                            level_temp : level,
-                            html_arr: html_arr,
-                        };
-
-                        testing_data.question.push(this_question);
-                        localStorage.setItem('testing', JSON.stringify(testing_data));
-                        total_question = parseInt(this_question.question_data.length)
-                        //Display
-                        displayTest()
-                        var html_gen_all = ''
-                        html_arr.forEach( function(html_arr_element, index) {
-                            html_gen_all += html_arr_element;
-                        });
-                         $('#prevBtn').before(html_gen_all)
-                        current_index_max = this_question.current_index
-                        showTab(this_question.current_index)
-
-                        if(type == '6'){
-                            //Memory
-                            if(timerId != null){
-                                clearTimeout(timerId);
-                                timeout = 5;
-                            }
-                            buttonMemoryChecked = false;
-                            hideQuestion(this_question.current_index);
-                        }
-
-                        // check khi start lan dau qua 20s chuyen cau hoi lv thap
-                        if(level > minLv){
-                            setTimeToChange(level - 1 , this_question.current_index + 1)
-                        }
-                    }
-
-                }).catch(function (response) {
-                    console.log("error", response)
-                })
+                test_level = level
+                return getNewQuestionData(position_in_local_storage)
             },
             allowOutsideClick: () => !Swal.isLoading()
         })
@@ -163,25 +75,24 @@ $('.startBtn').click(async function () {
     else {
         //Check history
         let flag = 1;
-        let position = -1;
         for (var i = 0; i < testing_data.question.length; i++) {
-            var current_data = testing_data.question[i];
+            this_question = testing_data.question[i];
             // console.log('current', current_data)
 
-            if (current_data.type == type ) {
+            if (this_question.topic == topic) {
                 // Da ton tai bai test type nay trong lich su
                 position_this_question = i
-                if (current_data.status === 0) {
+                if (this_question.status === 0) {
                     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
-                    console.log('current', current_data)
-                    this_question = current_data
+                    console.log('current', this_question)
+                    // this_question = current_data
                     total_question = parseInt(this_question.question_data.length)
-                    generateUnfinishedTest(current_data)
+                    generateUnfinishedTest(this_question)
                     flag = -1;
                 } else {
                     // Da ton tai nhung da hoan thanh bai test => luu lai position
                     flag = 0;
-                    position = i;
+                    position_in_local_storage = i;
                 }
 
                 break
@@ -191,7 +102,7 @@ $('.startBtn').click(async function () {
 
         if (flag !== -1) {
             //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
-            getNewQuestionData(position)
+            getNewQuestionData(position_in_local_storage)
         }
 
 
@@ -204,18 +115,18 @@ function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
     var html = ''
     var length_answered = current_data.answers.length;
-    var length_
     console.log('length answer', length_answered)
 
+    /**
+     * Gen html : Chỗ này code thừa cực nhiều, cần sửa
+     */
     if (type == '1'){
         //Audio
         for (var i = 0; i<length_answered; i++) {
             html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
                 '<audio src="'+ current_data.question_data[i].question +'" class="audio"></audio>' + '<div class="answer">'
-
             var answer = ""
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
-
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
                     answer += '<label class="col-md-4" style="opacity: 1">' +
@@ -228,25 +139,40 @@ function generateUnfinishedTest(current_data) {
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 }
-
-
-
             }
-
             html += answer
             html += '</div></div>'
             // currentTab++
         }
     }
+
+    else if(type == '2') {
+        max_images_in_column = this_question.question_data[0][0].length
+        all_line_array = current_data.answers.slice();
+        // console.log('all line array init', all_line_array)
+
+        for (var i = 0; i<length_answered; i++) {
+            var question_left = current_data.question_data[i][0]
+            var question_right = current_data.question_data[i][1]
+
+            html += renderPosition(question_left, question_right, "clicked-img", "none")
+
+            // this_question.current_index++
+        }
+        if (length_answered < total_question) {
+            html += renderPosition(current_data.question_data[length_answered][0], current_data.question_data[length_answered][1], "unlock-selection", "block")
+        }
+    }
+
     else {
         for (var i = 0; i<length_answered; i++) {
             var visibility = '';
-            if (type=='6') {
+            if (topic == '6') {
                 visibility = 'visibility: hidden;'
             }
             html += '<div class="tab" style="display: none;"><img class="question" style="'+visibility+'" src="/test/images/'+current_data.question_data[i].question+'" alt="">'
-            + '<p class="countDownTimer"></p>' +
-            "<div class='answer'>" ;
+                + '<p class="countDownTimer"></p>' +
+                "<div class='answer'>" ;
 
             var answer = ""
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
@@ -262,9 +188,6 @@ function generateUnfinishedTest(current_data) {
                         '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 }
-
-
-
             }
 
             html += answer
@@ -273,6 +196,7 @@ function generateUnfinishedTest(current_data) {
         }
         // console.log(current_data.question_data[length_answered])
     }
+
     if (length_answered < total_question){
         for(var not_answered = length_answered ; not_answered < total_question ; not_answered++ ){
             html += current_data.html_arr[not_answered];
@@ -281,13 +205,16 @@ function generateUnfinishedTest(current_data) {
 
     $('.tab').remove()
     $('#prevBtn').before(html)
+
     displayTest()
     current_index_max = current_data.current_index;
     showTab(current_data.current_index)
+
     if(current_data.level_temp > minLv){
         setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
-    if(type === '6'){
+
+    if(topic === '6'){
         //Memory
         if(timerId != null){
             clearTimeout(timerId);
@@ -303,17 +230,30 @@ function getNewQuestionData(position) {
         method: "POST",
         url: "/get-list-question",
         data: {
-            'type': type,
+            'topic': topic,
             'level': test_level
         },
         success: function (response) {
             if (response.status === 1) {
+                if (typeof testing_data == 'undefined') {
+                    testing_data = {
+                        level: test_level,
+                        question: []
+                    };
+                }
                 // save html -> localstorage
                 html_arr = [];
-                if (type === '1'){
+                response.type = response.type.toString()
+                console.log(response.type, topic, test_level)
+                if (response.type === '1'){
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
-                        question_data_element.question_image, question_data_element.answer_image))
+                            question_data_element.question_image, question_data_element.answer_image))
+                    });
+                } else if (response.type === '2'){
+                    max_images_in_column = response.question_data[0].length
+                    response.question_data.forEach( function(question_data_element, index) {
+                        html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                     });
                 }
                 else {
@@ -323,7 +263,8 @@ function getNewQuestionData(position) {
 
                 }
                 this_question = {
-                    type: type,
+                    type: response.type,
+                    topic: topic,
                     question_data: response.question_data,
                     status: 0,
                     answers: [],
@@ -331,12 +272,17 @@ function getNewQuestionData(position) {
                     level_temp: test_level,
                     html_arr : html_arr
                 };
-                if (position == -1) {
-                    position_this_question = testing_data.question.length
-                    testing_data.question.push(this_question);
+                if (typeof testing_data !== 'undefined') {
+                    if (position == -1 ) {
+                        position_this_question = testing_data.question.length
+                        testing_data.question.push(this_question);
+                    } else {
+                        testing_data.question[position] = this_question
+                    }
                 } else {
-                    testing_data.question[position] = this_question
+
                 }
+
 
                 total_question = parseInt(this_question.question_data.length)
                 localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -355,7 +301,7 @@ function getNewQuestionData(position) {
                 if(this_question.level_temp > minLv){
                     setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 }
-                if(type === '6'){
+                if(topic === '6'){
                     //Memory
                     if(timerId != null){
                         clearTimeout(timerId);
@@ -390,14 +336,22 @@ function showTab(current_index) {
     for (let i = 0; i < tab_number.length; i++) {
         tab_number[i].style.display = "none";
     }
-    tab_number[current_index].style.display = "flex";
+    if (topic == '8') {
+        tab_number[current_index].style.display = "block";
+    } else {
+        tab_number[current_index].style.display = "flex";
+    }
+
     // console.log(n, currentTab, total_question)
+
     if (current_index === 0) {
+        document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
 
     }else if (current_index === total_question - 1) {
         document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("prevBtn").style.display = "inline";
         document.getElementById("submitBtn").style.display = "inline";
 
     }
@@ -412,15 +366,14 @@ function showTab(current_index) {
 
 setTimeToChange = (test_level, indexIncorrect) => {
     timeToChange = setTimeout(() => {
-    changeDynamicQuestionTimeOut(test_level, indexIncorrect)
-}, 20000)
+        changeDynamicQuestionTimeOut(test_level, indexIncorrect)
+    }, 20000)
 }
 
 stopTimeToChange = () => {
     for (var i = timeToChange; i > 0; i--)
-    clearTimeout(timeToChange)
+        clearTimeout(timeToChange)
 }
-
 
 
 let changeDynamicQuestion = (test_level, indexIncorrect) => {
@@ -429,12 +382,11 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
         method: "POST",
         url: "/get-list-less-level-question",
         data: {
-            'type': type,
+            'topic': topic,
             'level': test_level,
             'index' : indexIncorrect
         },
         success: function (response) {
-
             if (response.status === 1) {
                 // console.log(response.question_data)
                 // ghep cau hoi vao this_question
@@ -446,7 +398,12 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     if (type === '1'){
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                            question_data_element.question_image, question_data_element.answer_image))
+                                question_data_element.question_image, question_data_element.answer_image))
+                        });
+                    } else if (type === '2'){
+                        // max_images_in_column = response.question_data[0].length
+                        response.question_data.forEach( function(question_data_element, index) {
+                            html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                         });
                     }
                     else {
@@ -464,8 +421,10 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
                     var tab_ = $('.tab');
                     var html_gen_again = '';
+                    console.log(tab_, indexIncorrect)
+
                     for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                            tab_[i].remove();
+                        tab_.eq(i).remove();
                     }
                     html_arr_gen_again.forEach( function(gen_again_element, index) {
                         html_gen_again += gen_again_element;
@@ -479,7 +438,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 localStorage.setItem('testing', JSON.stringify(testing_data));
                 console.log('current: ', indexIncorrect, 'data', this_question)
                 showTab(indexIncorrect)
-                if(type === '6'){
+                if(topic === '6'){
                     //Memory
                     if(timerId != null){
                         clearTimeout(timerId);
@@ -504,26 +463,29 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
 }
 
 let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
-    console.log(type, test_level, indexIncorrect)
     $.ajax({
         method: "POST",
         url: "/get-list-less-level-question",
         data: {
-            'type': type,
+            'topic': topic,
             'level': test_level,
             'index' : indexIncorrect
         },
         success: function (response) {
-
             if (response.status === 1) {
                 if(response.question_data.length != 0){
-                    // gen laij html
-                    //
+                    // gen lai html
+
                     html_arr_gen_again = [];
                     if (type === '1'){
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                            question_data_element.question_image, question_data_element.answer_image))
+                                question_data_element.question_image, question_data_element.answer_image))
+                        });
+                    } else if (response.type === '2'){
+                        max_images_in_column = response.question_data[0].length
+                        response.question_data.forEach( function(question_data_element, index) {
+                            html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                         });
                     }
                     else {
@@ -542,7 +504,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                     var tab_ = $('.tab');
                     var html_gen_again = '';
                     for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                            tab_[i].remove();
+                        tab_[i].remove();
                     }
                     html_arr_gen_again.forEach( function(gen_again_element, index) {
                         html_gen_again += gen_again_element;
@@ -551,8 +513,8 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                     $('#prevBtn').before(html_gen_again)
                 }
                 // xuwr lyys
-                 // trừ lv khi timeout
-                    this_question.level_temp = test_level
+                // trừ lv khi timeout
+                this_question.level_temp = test_level
                 // console.log(response.question_data)
 
                 // total_question = parseInt(this_question.question_data.length)
@@ -568,81 +530,96 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 }
 
 function next() {
-    if(type == "6" && buttonMemoryChecked == false){
+    if(type == "3" && buttonMemoryChecked == false){
+        // MEMORY
         return false;
     }
-    // let just_answer = tab_number[currentTab].querySelector('input:checked')
-    let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
-    if (typeof $(just_answer).val() === 'undefined'){
-        //Chua tra loihide
-        // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
-        alert("Please answer the question")
+    if(type == '2') {
+        // POSITION
+        nextButtonPosition()
     } else {
-        tab_number[this_question.current_index].style.display = "none";
-        this_question.current_index += 1
-        console.log ("number tab", tab_number.length-1, "tab current", this_question.current_index)
-
-        //Lock and save answered
-        just_answer = just_answer.data('position')
-        this_question.answers.push(just_answer)
-        console.log("push here", this_question.answers)
-        if (current_index_max >= this_question.current_index){
-                showTab(this_question.current_index);
-        } else {
-            current_index_max += 1;
-        // dừng việc check20s tránh đuplicate lặp timeout
-            stopTimeToChange()
-            // compare answer
-            if(just_answer != fakeAnswer && this_question.level_temp > minLv && flagChange == 0 ){
-                console.log('w answer');
-                // truyền vào câu số i sai => truyền current index đã dc cộng + 1
-                changeDynamicQuestion(this_question.level_temp -1 , this_question.current_index)
-            } else {
-                //Save into local storage
-                // console.log (testing_data, 'test')
-                localStorage.setItem('testing', JSON.stringify(testing_data))
-                if(type === '6'){
-                        //Memory
-                        if(timerId != null){
-                            clearTimeout(timerId);
-                            timeout = 5;
-                        }
-                        buttonMemoryChecked = false;
-                        hideQuestion(this_question.current_index);
-                    }
-                showTab(this_question.current_index)
-                flagChange = 0
-                // sau khi render 20s k next thì sẽ => câu hỏi thấp
-                if(this_question.level_temp > minLv){
-                    // lv hết => câu đang làm chậm => curren_index này chậm => truyền vào câu thứ i sai : chính là currne_index + 1;
-                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
-                }
-            }
-        }
+        // AUDIO AND NORMAL
+        nextButton()
     }
 
 }
 
 function prev() {
-
-    if(type == "6" && buttonMemoryChecked == false)
+    if(type == '3' && buttonMemoryChecked == false)
     {
+        // MEMORY
         return false;
     }
     var x = document.getElementsByClassName("tab");
 
-    x[this_question.current_index].style.display = "none";
+    if (type == '2') {
+        // POSITION
+        if (line_array) {
+            for (var i=0; i < line_array.length; i++) {
+                line_array[i][2].hide()
+            }
+        }
 
-    this_question.current_index += -1
-    while(this_question.answers.length > this_question.current_index){
-        this_question.answers.pop()
+        x[this_question.current_index].style.display = "none";
+
+        var old_line_array = this_question.answers.pop()
+
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
+
+        console.log('Old line array : ' ,old_line_array);
+        // console.log('line array', line_array)
+        console.log('current tag ', this_question.current_index)
+        let temp_arr = [...line_array]
+
+        if (all_line_array.length > this_question.current_index) {
+            all_line_array[this_question.current_index] = temp_arr
+        } else {
+            all_line_array.push(temp_arr)
+        }
+
+        this_question.current_index += -1;
+
+        showTab(this_question.current_index);
+
+        //Show line already in prev
+        line_array.length = 0
+        var currentTab = this_question.current_index
+
+        for (var j = 0; j < 3; j++) {
+            if (jQuery.isEmptyObject(old_line_array[j][2])) {
+                //Create line
+                var left = old_line_array[j][0]
+                var right = old_line_array[j][1]
+                var left_element = document.getElementsByClassName('tab')[currentTab]
+                    .getElementsByClassName('column-left')[0].getElementsByClassName('clicked-img')[left]
+                var right_element = document.getElementsByClassName('tab')[currentTab]
+                    .getElementsByClassName('column-right')[0].getElementsByClassName('clicked-img')[right]
+
+                //Push to line array
+                line_array.push([$(left_element).data('index'), $(right_element).data('index'), createLine(left_element, right_element)])
+
+            } else {
+                line_array = [...old_line_array]
+                old_line_array[j][2].show()
+            }
+        }
+
+    } else {
+        x[this_question.current_index].style.display = "none";
+
+        this_question.current_index += -1
+        while(this_question.answers.length > this_question.current_index){
+            this_question.answers.pop()
+        }
+        console.log("pop here", this_question.answers)
+
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
+
+        showTab(this_question.current_index);
     }
-    console.log("pop here", this_question.answers)
 
-    //Save into local storage
-    localStorage.setItem('testing', JSON.stringify(testing_data))
-
-    showTab(this_question.current_index);
 
 }
 
@@ -739,4 +716,68 @@ function displayTestUnFinishedAfterSubmit() {
     $('div.list-after-finished').fadeIn(1000)
 
 
+}
+
+function nextButton() {
+    // let just_answer = tab_number[currentTab].querySelector('input:checked')
+    let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
+
+    if (typeof $(just_answer).val() === 'undefined'){
+        // Chua tra loi hide
+        // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
+        alert("Please answer the question")
+    } else {
+        tab_number[this_question.current_index].style.display = "none";
+        this_question.current_index += 1
+        // console.log ("number tab", tab_number.length-1, "tab current", this_question.current_index)
+
+        //Lock and save answered
+        just_answer = just_answer.data('position')
+        this_question.answers.push(just_answer)
+        console.log("push here", this_question.answers)
+        if (current_index_max >= this_question.current_index){
+            showTab(this_question.current_index);
+        } else {
+            current_index_max += 1;
+            // dừng việc check20s tránh đuplicate lặp timeout
+            stopTimeToChange()
+            // compare answer
+            if(just_answer != fakeAnswer && this_question.level_temp > minLv && flagChange == 0 ){
+                console.log('w answer');
+                // truyền vào câu số i sai => truyền current index đã dc cộng + 1
+                changeDynamicQuestion(this_question.level_temp -1 , this_question.current_index)
+            } else {
+                //Save into local storage
+                // console.log (testing_data, 'test')
+                localStorage.setItem('testing', JSON.stringify(testing_data))
+                if(type === '6'){
+                    //Memory
+                    if(timerId != null){
+                        clearTimeout(timerId);
+                        timeout = 5;
+                    }
+                    buttonMemoryChecked = false;
+                    hideQuestion(this_question.current_index);
+                }
+                showTab(this_question.current_index)
+                flagChange = 0
+                // sau khi render 20s k next thì sẽ => câu hỏi thấp
+                if(this_question.level_temp > minLv){
+                    // lv hết => câu đang làm chậm => curren_index này chậm => truyền vào câu thứ i sai : chính là currne_index + 1;
+                    setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
+                }
+            }
+        }
+    }
+}
+
+function showDialogScore(correct, total) {
+    Swal.fire({
+        title: ` \n Your score: `+ correct +' / '+total,
+        text: 'You have completed this test!',
+        background: 'orange',
+        display: 'flex',
+    }).then(() => {
+        $('#modal-after-answertoppic').modal();
+    });
 }
