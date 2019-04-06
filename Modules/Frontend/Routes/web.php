@@ -11,7 +11,9 @@
 |
 */
 
-Route::group([], function() {
+Route::group(/**
+ *
+ */ [], function() {
     Route::get('/', 'FrontendController@index')->name('home');
     Route::get('/music', 'FrontendController@music')->name('music');
     Route::get('/iq', 'FrontendController@test')->name('iq');
@@ -41,4 +43,13 @@ Route::group([], function() {
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider')->name('social');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
+    Route::get('/paypal-test',function(){
+        return view('frontend::paypals.test');
+    })->middleware('auth:customers');
+    
+    //  payment
+    Route::get('/execute-payment', 'PaymentController@execute');
+    Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+    Route::get('execute-agreement/{success}','SubscriptionController@executeAgreement');
 });
