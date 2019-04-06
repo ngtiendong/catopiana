@@ -1039,7 +1039,7 @@ footer .col {
 #id2 .container .row.tn {
   position: relative;
   z-index: 3;
-  padding-top: 200px;
+  padding-top: 13%;
   width: 100%
 }
 
@@ -1075,7 +1075,7 @@ footer .col {
 }
 
 .section-test#id2 .container .bigwhale {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 #id2 .container .bigwhale .bg {
@@ -1577,8 +1577,8 @@ footer .col {
   margin-top: 70px; }
 
 .testOverlay {
-  width: 700px;
-  height: 500px;
+  width: 800px;
+  height: 600px;
   z-index: 12;
   display: flex;
   justify-content: center;

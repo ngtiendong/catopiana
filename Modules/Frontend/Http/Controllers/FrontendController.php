@@ -27,8 +27,8 @@ class FrontendController extends Controller
      */
     public function position()
     {
-        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
-        return view('frontend::position', compact('type'));
+        $type_and_topic=$this->getTopicAndTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::position', compact('type_and_topic'));
     }
 
     /**
@@ -37,8 +37,8 @@ class FrontendController extends Controller
      */
     public function test()
     {
-        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
-        return view('frontend::test', compact('type'));
+        $type_and_topic=$this->getTopicAndTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::test', compact('type_and_topic'));
     }
 
      /**
@@ -47,8 +47,8 @@ class FrontendController extends Controller
      */
     public function music()
     {
-        $type=$this->getTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
-        return view('frontend::music', compact('type'));
+        $type_and_topic=$this->getTopicAndTypeId(\Illuminate\Support\Facades\Route::currentRouteName());
+        return view('frontend::music', compact('type_and_topic'));
     }
 
     /**
@@ -64,20 +64,21 @@ class FrontendController extends Controller
     {
         $params = $request->all();
         if (!empty($params['type']) || !empty($params['level'])) {
-            if ($params['type'] == "1"){
+            if ($params['topic'] == "1"){
                 //Audio
-                $raw_data = Question::getListQuestionAudio($params['type'], $params['level']);
-            }elseif ($params['type'] == "8") {
+                $raw_data = Question::getListQuestionAudio($params['topic'], $params['level']);
+            }elseif ($params['topic'] == "8") {
                 //Position
-                $raw_data = Question::getListQuestionPosition($params['type'], $params['level']);
+                $raw_data = Question::getListQuestionPosition($params['topic'], $params['level']);
             }
             else {
-                $raw_data = Question::getListQuestion($params['type'], $params['level']);
+                $raw_data = Question::getListQuestion($params['topic'], $params['level']);
             }
 //            dd($raw_data);
             return [
                 'status' => 1,
-                'question_data' => $raw_data
+                'question_data' => $raw_data['raw_data'],
+                'type' => $raw_data['type']
             ];
         } else {
             return [
@@ -91,27 +92,36 @@ class FrontendController extends Controller
     public function getListLessLevelQuestion(Request $request)
     {
         $params = $request->all();
-        if (!empty($params['type']) && !empty($params['level']) && !empty($params['index'])) {
-            if ($params['type'] == "1"){
+        if (!empty($params['topic']) && !empty($params['topic']) && !empty($params['index'])) {
+            if ($params['topic'] == "1"){
                 //Audio
-                $raw_data = Question::getLessLevelQuestionAudio($params['type'], $params['level'], $params['index']);
-                
-            } elseif($params['type'] == "8") {
+                $raw_data = Question::getLessLevelQuestionAudio($params['topic'], $params['level'], $params['index']);
+
+            } elseif($params['topic'] == "8") {
                 //Position
-                $raw_data = Question::getLessLevelQuestionPosition($params['type'], $params['level'], $params['index']);
+                $raw_data = Question::getLessLevelQuestionPosition($params['topic'], $params['level'], $params['index']);
             }
             else {
-                $raw_data = Question::getLessLevelQuestion($params['type'], $params['level'], $params['index']);
+                $raw_data = Question::getLessLevelQuestion($params['topic'], $params['level'], $params['index']);
             }
-            return [
-                'status' => 1,
-                'question_data' => $raw_data
-            ];
-        } else {
-            return [
-                'status' => 0
-            ];
+            if (!empty($raw_data['raw_data'])) {
+                return [
+                    'status' => 1,
+                    'question_data' => $raw_data['raw_data'],
+                    'type' => $raw_data['type']
+                ];
+            } else {
+                return [
+                    'status' => 1,
+                    'question_data' => $raw_data,
+                ];
+            }
+
         }
+        return [
+            'status' => 0
+        ];
+
 
 
     }
@@ -148,32 +158,56 @@ class FrontendController extends Controller
         return response()->json($questionAnswer,200);
     }
 
-    public function getTypeId($name)
+    public function getTopicAndTypeId($name)
     {
         switch ($name) {
             case 'music':
-                return 1;
+                return [
+                    'topic' => "1",
+                    'type' => "1"
+                ];
                 break;
             case 'iq':
-                return 2;
+                return [
+                    'topic' => "2",
+                    'type' => "0"
+                ];
                 break;
             case 'creative':
-                return 3;
+                return [
+                    'topic' => "3",
+                    'type' => "0"
+                ];
                 break;
             case 'difference':
-                return 4;
+                return [
+                    'topic' => "4",
+                    'type' => "0"
+                ];
                 break;
             case 'common':
-                return 5;
+                return [
+                    'topic' => "5",
+                    'type' => "0"
+                ];
                 break;
             case 'memory':
-                return 6;
+                return [
+                    'topic' => "6",
+                    'type' => "0"
+                ];
                 break;
             case 'language':
-                return 7;
+                return [
+                    'topic' => "7",
+                    'type' => "0"
+                ];
                 break;
             case 'position':
-                return 8;
+                return [
+                    'topic' => "8",
+                    'type' => "2"
+                ];
                 break;
             default:
                 return 0;
