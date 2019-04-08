@@ -43,6 +43,7 @@ Route::group(/**
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider')->name('social');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+    Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
 
     Route::get('/paypal-test',function(){
         return view('frontend::paypals.test');
@@ -51,5 +52,5 @@ Route::group(/**
     //  payment
     Route::get('/execute-payment', 'PaymentController@execute');
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
-    Route::get('execute-agreement/{success}','SubscriptionController@executeAgreement');
+    Route::get('/execute-agreement/{success}','SubscriptionController@executeAgreement');
 });

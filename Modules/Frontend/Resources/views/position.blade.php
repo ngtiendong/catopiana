@@ -20,7 +20,7 @@
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
                     <a class="startBtn">Click To Start!</a>
 
-                    <form id="testForm" style="display: none">
+                    <form id="testForm" style="display: none" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
 
                         <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
                         <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>

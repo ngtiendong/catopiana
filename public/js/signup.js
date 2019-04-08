@@ -151,7 +151,7 @@ $('form#form-sign-up').on('submit', function(event) {
     if(testing_data == undefined){
         testing_data = '';
     }
-    data = $(this).serialize()
+    data = $(this).serialize();
     $.ajax({
         url: url,
         type: 'POST',

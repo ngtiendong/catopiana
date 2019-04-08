@@ -23,9 +23,9 @@ class PackageService
         $diff = collect($topic_init_free_id)->diff($test_free_id_done);
         if($diff->count() == 0)
         { 
-            $this->giveFreePackage();
+            return $this->giveFreePackage();
         } else {
-            return ;
+            return false;
         }
     }
 
@@ -39,6 +39,6 @@ class PackageService
             'payment_type' => null,
             'payment_status' => null
         ]);
-        return;
+        return true;
     }
 }

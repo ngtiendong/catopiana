@@ -233,4 +233,5 @@ class FrontendController extends Controller
 
 
     }
+
 }
