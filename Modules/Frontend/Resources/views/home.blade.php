@@ -55,7 +55,7 @@
 		<img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
 	</div>
 	<div ></div>
-    @if (auth()->guard('customers')->user() && auth()->guard('customers')->user()->test_status == 0)
+    @if (!auth()->guard('customers')->user() || auth()->guard('customers')->user()->test_status == 0)
 	<div class="container list-test">
 			<div class="row">
 			<div class="top">
