@@ -44,8 +44,9 @@ $(function(){
             console.log('answer', candidate_answers, this_question, just_answer)
 
             let correct = candidate_answers.filter(answer => answer == 0).length
-
-            showDialogScore(correct, total_question)
+            // let login = false;
+            login = $(this).data('login');
+            showDialogScore(correct, total_question, login )
             //Display test not finished
             displayTestUnFinishedAfterSubmit()
         }
@@ -784,13 +785,44 @@ function nextButton() {
     }
 }
 
-function showDialogScore(correct, total) {
+function showDialogScore(correct, total, login = false) {
     Swal.fire({
         title: ` \n Your score: `+ correct +' / '+total,
         text: 'You have completed this test!',
         background: 'orange',
         display: 'flex',
     }).then(() => {
-        $('#modal-after-answertoppic').modal();
+        if(!login){
+            $('#modal-after-answertoppic').modal();
+        }
+        updateDataTesting()
     });
+}
+
+function updateDataTesting()
+{
+    if(testing_data == undefined){
+        testing_data = '';
+    }
+    // get local storate 
+    var data = {
+        'local_storage' : testing_data
+    };
+    $.ajax({
+        url: '/updateDataTesting',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+    }).done(function(response) {
+            // update testing_id đã có trên db,
+            if(response.local_storage === undefined || response.local_storage.length == 0){
+                // alert('tai khoan chua co du lieu gi tren serve');
+            }else {
+                localStorage.removeItem('testing');
+                changeLocalStorage(response.local_storage)
+            }
+        })
+        .fail(function(response) {
+            console.log(response);
+        })
 }

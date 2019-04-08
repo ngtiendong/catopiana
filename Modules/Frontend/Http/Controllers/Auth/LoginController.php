@@ -121,4 +121,21 @@ class LoginController extends Controller
     {
         return Auth::guard('customers');
     }
+
+    public function updateDataTesting(Request $request)
+    {
+        $local_storage = [];
+        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        {
+            $this->localStorageService->createTesting($request->input('local_storage'));
+            $local_storage = $this->localStorageService->getTesting();
+        }
+        if(auth()->guard('customers')->user()->test_status == 0){
+            $this->packageService->checkDoneFreeQuestion();
+        }
+        return response()->json([
+            'status' => 200,
+            'local_storage' => $local_storage
+        ],200);
+    }
 }

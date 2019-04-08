@@ -43,6 +43,7 @@ Route::group(/**
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider')->name('social');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+    Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
 
     Route::get('/paypal-test',function(){
         return view('frontend::paypals.test');
