@@ -13,7 +13,7 @@ if (localStorage.getItem('testing')) {
 
     //List test finish
     testing_data.question.forEach(function(value, index) {
-        list_test_finished.push(parseInt(value.type))
+        list_test_finished.push(parseInt(value.topic))
     })
 }
 

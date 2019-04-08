@@ -101,7 +101,7 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request)
     {
-        // check login  email and username 
+        // check login  email and username
         if(filter_var($request->username, FILTER_VALIDATE_EMAIL)){
             return ['email' => $request->username, 'password' => $request->password];
         }
@@ -128,7 +128,7 @@ class LoginController extends Controller
         $local_storage = [];
         if($request->input('local_storage') != '' || $request->input('local_storage') != null)
         {
-            $this->localStorageService->createTesting($request->input('local_storage'));
+            $this->localStorageService->updateTesting($request->input('local_storage'));
             $local_storage = $this->localStorageService->getTesting();
         }
         if(auth()->guard('customers')->user()->test_status == 0){

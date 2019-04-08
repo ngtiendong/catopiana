@@ -228,9 +228,9 @@ function submitPosition() {
 
         let candidate_answers = this_question.answers;
         console.log('answer', candidate_answers, this_question, just_answer)
-
         let correct = filterCorrectPosition()
-        showDialogScore(correct, total_question*max_images_in_column)
+        var login = $('#testForm').data('login');
+        showDialogScore(correct, total_question*max_images_in_column, login)
         //Display test not finished
         displayTestUnFinishedAfterSubmit()
 

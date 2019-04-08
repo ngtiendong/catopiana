@@ -14,8 +14,7 @@ $(document).on('click', '#submitLog', function(event) {
         type: 'POST',
         dataType: 'json',
         data: data,
-    })
-        .done(function(response) {
+    }).done(function(response) {
             console.log(response);
             if(response.status == 200){
                 // console.log(response.local_storage)
@@ -104,7 +103,7 @@ $(document).on('click', '#genButton', function(event) {
     if(testing_data == undefined){
         testing_data = '';
     }
-    // get local storate 
+    // get local storate
     var data = {
         'local_storage' : testing_data
     };
@@ -151,16 +150,25 @@ $('form#form-sign-up').on('submit', function(event) {
     if(testing_data == undefined){
         testing_data = '';
     }
-    data = $(this).serialize();
+    let post_data = {
+        'data':$(this).serialize(),
+        'local_storage': testing_data
+    };
     $.ajax({
         url: url,
         type: 'POST',
         dataType: 'json',
-        data: data,
+        data: post_data,
     }).done(function(response) {
             console.log(response);
             if(response.status == 200){
-                window.location.href = '/';
+                if(response.local_storage === undefined || response.local_storage.length == 0){
+                    // alert('tai khoan chua co du lieu gi tren serve');
+                }else {
+                    localStorage.removeItem('testing');
+                    changeLocalStorage(response.local_storage);
+                    window.location.reload(true);
+                }
             }
         })
         .fail(function(response) {
@@ -209,7 +217,7 @@ $("#modal-register").on("hidden.bs.modal", function () {
     $('.fullnameError').addClass('hide');
 });
 
-changeLocalStorage = (response) => 
+changeLocalStorage = (response) =>
 {
     console.log('start:' , testing_data)
     // localStorage.removeItem('testing');
@@ -257,12 +265,12 @@ changeLocalStorage = (response) =>
         };
         if (typeof testing_data !== 'undefined') {
             testing_data.question.push(this_question);
-        } 
+        }
         // total_question = parseInt(this_question.question_data.length)
     });
     console.log('end ', testing_data)
     localStorage.setItem('testing', JSON.stringify(testing_data));
-   
+
 }
 
 
@@ -272,7 +280,7 @@ $(document).on('click', '#logoutBtn', function(event) {
     if(testing_data == undefined){
         testing_data = '';
     }
-    // get local storate 
+    // get local storate
     data = {
         'local_storage' : testing_data
     };
@@ -289,5 +297,5 @@ $(document).on('click', '#logoutBtn', function(event) {
     .fail(function(response) {
         console.log(response);
     });
-    
+
 });

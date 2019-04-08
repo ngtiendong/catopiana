@@ -15,14 +15,14 @@ class PackageService
     {
         $this->customer = auth()->guard('customers')->user();
         $topic_init_free_id = Topic::where('type',0)->pluck('id')->toArray();
-        $testings = $this->customer->customer_testing->where('status',1);
+        $testings = $this->customer->customer_testing->where('status', 1);
         $test_free_id_done = [];
         foreach ($testings as $testing) {
             $test_free_id_done[] = Curriculum::where('id',json_decode($testing->curriculum_id)[0])->first()->topic_id;
         }
         $diff = collect($topic_init_free_id)->diff($test_free_id_done);
         if($diff->count() == 0)
-        { 
+        {
             return $this->giveFreePackage();
         } else {
             return false;
@@ -31,7 +31,7 @@ class PackageService
 
     protected function giveFreePackage()
     {
-        $package = Package::where('type', 0)->first(); 
+        $package = Package::where('type', 0)->first();
         $this->customer->update(['test_status' => 1]);
         $this->customer->packages()->attach($package->id,[
             'payment_amount' => 0,
