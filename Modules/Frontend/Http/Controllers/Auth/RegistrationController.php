@@ -12,14 +12,18 @@ use Modules\Frontend\Events\SendEmailWhenGenerate;
 // use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 use Modules\Frontend\Services\LocalStorageService;
+use Modules\Frontend\Services\PackageService;
 
 class RegistrationController extends Controller
 {
     protected $localStorageService;
-    public function __construct(LocalStorageService $localStorageService)
+    protected $packageService;
+
+    public function __construct(LocalStorageService $localStorageService, PackageService $packageService)
     {
         $this->middleware('guest:customers');
         $this->localStorageService = $localStorageService;
+        $this->packageService = $packageService;
     }
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +66,9 @@ class RegistrationController extends Controller
         if($request->input('local_storage') != '' || $request->input('local_storage') != null)
         {
             $this->localStorageService->createTesting($request->input('local_storage'));
+            if(auth()->guard('customers')->user()->test_status == 0){
+                $this->packageService->checkDoneFreeQuestion();
+            }
         }
         return response()->json([
                 'status' => 200,

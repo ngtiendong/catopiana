@@ -178,6 +178,54 @@ class FrontendController extends Controller
                     'type' => "2"
                 ];
                 break;
+            case 'physics':
+                return [
+                    'topic' => "9",
+                    'type' => "0"
+                ];
+                break;
+            case 'chemistry':
+                return [
+                    'topic' => "10",
+                    'type' => "0"
+                ];
+                break;
+
+            case 'math':
+                return [
+                    'topic' => "11",
+                    'type' => "0"
+                ];
+                break;
+            
+            case 'animal':
+                return [
+                    'topic' => "10",
+                    'type' => "0"
+                ];
+                break;
+            
+            case 'weather':
+                return [
+                    'topic' => "13",
+                    'type' => "0"
+                ];
+                break;
+            
+            case 'plan':
+                return [
+                    'topic' => "14",
+                    'type' => "0"
+                ];
+                break;
+            
+            case 'position':
+                return [
+                    'topic' => "15",
+                    'type' => "0"
+                ];
+                break;
+            
             default:
                 return 0;
                 break;

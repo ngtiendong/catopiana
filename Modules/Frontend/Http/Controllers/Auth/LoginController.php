@@ -49,11 +49,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->packageService->checkDoneFreeQuestion();
         $this->validateLogin($request);
-
         if ($this->attemptLogin($request)) {
-            $this->packageService->checkDoneFreeQuestion();
+            if(auth()->guard('customers')->user()->test_status == 0){
+                $this->packageService->checkDoneFreeQuestion();
+            }
             $local_storage = $this->localStorageService->getTesting();
             return response()->json([
                 'status' => 200,

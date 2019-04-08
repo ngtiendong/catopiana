@@ -12,7 +12,7 @@ class Question extends Model
     public static function getListQuestion($topic, $level)
     {
         $curriculum = Curriculum::where([
-            ['topic_id', 2],
+            ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
@@ -98,7 +98,7 @@ class Question extends Model
     public static function getLessLevelQuestion($topic, $level, $index)
     {
         $curriculum = Curriculum::where([
-            ['topic_id', 2],
+            ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];

@@ -65,6 +65,6 @@ class Customer extends Model implements AuthenticatableContract
 
     public function packages()
     {
-        return $this->belongsToMany(Package::class,'customer_package')->withPivot();
+        return $this->belongsToMany(Package::class,'customer_package');
     }
 }

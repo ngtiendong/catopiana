@@ -8,10 +8,10 @@ use Modules\Core\Models\Customer;
 class Package extends Model
 {
     protected $guarded = [];
-    protected $table = 'package';
+    protected $table = 'packages';
 
     public function customers()
     {
-        return $this->belongsToMany(Customer::class,'customer_package')->withPivot();
+        return $this->belongsToMany(Customer::class,'customer_package');
     }
 }
