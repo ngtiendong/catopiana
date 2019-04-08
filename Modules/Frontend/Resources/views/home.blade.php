@@ -58,7 +58,7 @@
 	<div class="container list-test">
 			<div class="row">
 			<div class="top">
-				<a class="test-item ghitar" href="{{ route('music') }}" data-type="1">
+				<a class="test-item ghitar" href="{{ route('music') }}" data-topic="1">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.39 112.85"><defs><style>.d2fa109d-1887-4481-9c20-8e0b4dd84a7f{fill:#ffd364;}.b1822cc8-5301-4582-8350-4c864ad75dae{fill:#102f41;}.\30 4aa408b-6cb5-4614-927e-ae5753dcb896{fill:#f6b344;}.ba0e072d-1646-44aa-9c97-02e4944f9fe2{fill:#82d9e8;}</style></defs>
                         <title>music</title>
                         <g id="e026f4d9-5325-4327-a773-f15734f3fb95" data-name="Layer 2">
@@ -130,7 +130,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item brain" href="{{ route('iq') }}" data-type="2">
+				<a class="test-item brain" href="{{ route('iq') }}" data-topic="2">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.93 116.7"><defs><style>.ea7927c4-26e5-4a51-8871-91fb1090623f{fill:#ae87be;}.\35 2ea4671-10bf-4979-884b-08f6ad13f2db{fill:#f05c42;}.fc5a0db9-2687-41c3-a28e-80996c513432{fill:#102f41;}.\34 28ee4a8-30b0-414c-bb65-d1f885636717{fill:#ffaf42;}.\34 1de24ea-9b3c-40a9-97ae-73f0ac741c62{fill:#f1e4c4;}.calbtn{fill:#faaf3d;}.\34 b7c23d9-1cf6-4e21-9d40-c4c726c687ba{fill:#ed6245;}</style></defs>
                         <title>iq</title>
                         <g id="d2005e62-e63c-4ca3-a37f-4bba6d4ce9c6" data-name="Layer 2">
@@ -183,7 +183,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item lightball" href="{{route('creative')}}" data-type="3">
+				<a class="test-item lightball" href="{{route('creative')}}" data-topic="3">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.24 111.16"><defs><style>.abc51657-1193-4ea0-a02c-f5bcf0f75d66{fill:#dc4844;}.\30 683cfd7-6423-4015-bdb2-4ce5e0d1ab49{fill:#f7dfbf;}.d6fa8b08-8a7d-4c98-ad6e-d23a871fea26{fill:#058486;}.f7180ad9-dccc-401b-bd40-96bc8b676d5c{fill:#6e7cf9;}.fc436431-307d-461a-b40c-8752d7982989{fill:#f05c42;}.yellow{fill:#f6b344;}.\31 0aa44b5-8f8e-4773-af90-aadbb997de5a{fill:#102f41;}.\36 04825e9-0420-4589-84c9-bf88bdb22f86{fill:#403833;}.a23bc613-5062-4ee8-a8b8-cf2115203630{fill:#f7f1e6;}</style></defs>
                         <title>creative</title>
                         <g id="9769a56f-686c-4028-aeb1-c48343273f70" data-name="Layer 2">
@@ -230,7 +230,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item squid" href="{{ route('difference') }}" data-type="4">
+				<a class="test-item squid" href="{{ route('difference') }}" data-topic="4">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220.47 208.62"><defs><style>.\32 441e3e0-0ed8-443a-a2a3-8dc14aaa2677{fill:#a256a2;}.\31 5d8c7e4-f1aa-4a32-b690-4b549d35c82b,.\32 441e3e0-0ed8-443a-a2a3-8dc14aaa2677{stroke-miterlimit:10;}.\35 27b377e-d96b-48c0-92a2-48f73803019c{fill:#f0e935;}.\37 ddc308b-e8c9-4ee4-84a9-a737fca264e4{fill:#6dbd45;}.\39 90efebe-aba9-4986-8082-abd31563f03e{fill:#fff;}.a303924a-898f-40f8-8fb1-d068fcf2f23e{fill:#f1ea3e;}.\30 d3db742-4b40-4b7c-8b20-2960e6696797{fill:#3b803d;}.e4803b68-12d2-4af9-8b8b-5d4e241ab15f{fill:#fff493;}.\37 270d748-3d8c-44fd-a58a-c634301f7c01{fill:#ca2200;}.\31 5d8c7e4-f1aa-4a32-b690-4b549d35c82b{fill:none;stroke:#000;}</style></defs>
                         <title>differ2</title>
                         <g id="be328467-07cf-4751-b771-954e0e81cfd9" data-name="Layer 2">
@@ -308,7 +308,7 @@
 				</a>
 			</div>
 			<div class="bot">
-				<a class="test-item atom" href="{{ route('common') }}" data-type="5">
+				<a class="test-item atom" href="{{ route('common') }}" data-topic="5">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117.96 114.71"><defs><style>.\34 2cb4aed-1c9d-4b72-a691-4833a6fedefd{fill:#007535;fill-rule:evenodd;}.ec8b7b31-5088-4c4a-bd11-c80941927c6d{fill:#fff;}.feaf0ef1-0d03-4ce6-8112-92b3b20f40c8{fill:#faaf3d;}.\33 18c648e-611b-43fc-aa05-56ca54347146{fill:#f05c42;}.\33 32d6e62-481c-4174-be19-2738310c9c9f{fill:#102f41;}.\37 b2b49ff-e4ef-4f5c-b63d-768f97059d4d{fill:#c343ff;}.\36 6199feb-e474-49b6-9ab2-69843ff7a1d7{fill:#e4ff43;}.c649fe0b-f550-4005-87be-6b5807075462{fill:#ffaf42;}</style></defs>
                         <title>common</title>
                         <g id="ba76e3fc-3e27-4f7a-99b8-20a60530c605" data-name="Layer 2">
@@ -375,7 +375,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item zoom" href="{{ route('memory') }}" data-type="6">
+				<a class="test-item zoom" href="{{ route('memory') }}" data-topic="6">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.76 112.64"><defs><style>.b082699e-51a6-4c27-a6f6-b9e9cede11e5{fill:#cccbc9;}.d8b75f71-37c7-4ddd-8e81-6dd7a5c8fe2a{fill:#058486;}.\37 b6dc562-3d88-4166-8eff-6d7cfe64da99{fill:#102f41;}.\38 bc97996-98fd-4d05-a727-90e46df76b63{fill:#fff;}.\32 a4ff295-e997-4b74-a58d-b2a009e30239{fill:#f05c42;}.\36 1ae35dd-40de-487f-ac1a-3a1462543fb9{fill:#0c5054;}.a96b6822-c8a8-488c-835d-0014699f5d85{fill:#faaf3d;}.\32 28c9a70-6758-46a0-b840-93a69bfc3b9f{fill:#f1e4c4;}</style></defs>
                         <title>memory</title>
                         <g id="86753051-f80c-494b-b4ca-5226303eb5bc" data-name="Layer 2">
@@ -429,7 +429,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item chat" href="{{ route('language') }}" data-type="7">
+				<a class="test-item chat" href="{{ route('language') }}" data-topic="7">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.19 115.98"><defs><style>.f6628188-fd3e-4e62-8534-ff323147b308{fill:#3eb49e;}.\33 08362b5-3183-4be7-9a47-1cb2663f8c03{fill:#cfea34;}.\36 f3769d6-c4a1-4672-b40b-3713275048ce{fill:#ed6245;}.\33 0a81913-c4c7-4915-851f-7bea478cb26c{fill:#45f4f4;}.\38 94d7564-4909-4df0-ae42-9325e1d41360{fill:#fccc32;}</style></defs>
                         <title>language</title>
                         <g id="55cf74b6-01d6-4a6c-8914-cd43d056fbaf" data-name="Layer 2">
@@ -456,7 +456,7 @@
                         </g>
                     </svg>
 				</a>
-				<a class="test-item global" href="{{ route('position')}}" data-type="8">
+				<a class="test-item global" href="{{ route('position')}}" data-topic="8">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 118.6 115.4"><defs><style>.b9235abe-da72-4241-b5c7-43c1ada52098{fill:none;}.\35 00c2674-d427-4d85-a1cb-1dec81f50e20{fill:#f57d1f;}.\32 6b67bcf-a934-413e-9d94-f06a9d462780{fill:#058486;}.c1ec9fd5-6e79-4ba5-a082-4877cff202a5{fill:#102f41;}.\34 13645e3-586b-49d7-b40b-39e6adae8aa7{fill:#faaf3d;}.\35 fb07c04-9d3b-4d24-8b62-f4ff642619d7{clip-path:url(#3781bd4b-c4d1-4e5a-ad21-f42812fe903d);}.\33 55753fe-be65-49c3-aab3-0ff45f55eacf{fill:#fff;}.\35 02b52d4-82fa-421d-b49d-070bdc7dc89f{fill:#a34404;}.\38 dd6e04e-37a9-4575-80fc-ad7939d13dfe{clip-path:url(#1712e3cb-42be-4039-aa59-bc0e631518a7);}</style><clippath id="3781bd4b-c4d1-4e5a-ad21-f42812fe903d"><rect class="b9235abe-da72-4241-b5c7-43c1ada52098" x="63.45" y="86.52" width="38.8" height="5.97" transform="translate(-14.66 16.24) rotate(-10.29)"></rect></clippath><clippath id="1712e3cb-42be-4039-aa59-bc0e631518a7"><path class="b9235abe-da72-4241-b5c7-43c1ada52098" d="M79.74,66.83a12.14,12.14,0,0,0-9.86,12.54l-2,.36,1.18,6.59,27.42-4.89L95.3,74.84l-2.13.38m-5.53,1L75.42,78.39a6.33,6.33,0,0,1,12.22-2.18Z"></path></clippath></defs>
                         <title>position</title>
                         <g id="01a5ab0a-9fb9-4b53-a98d-cea5fede240d" data-name="Layer 2">

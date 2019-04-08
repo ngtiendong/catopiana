@@ -45,7 +45,7 @@ $(function(){
 
             let correct = candidate_answers.filter(answer => answer == 0).length
             // let login = false;
-            login = $(this).data('login');
+            var login = $(this).data('login');
             showDialogScore(correct, total_question, login )
             //Display test not finished
             displayTestUnFinishedAfterSubmit()
@@ -93,6 +93,7 @@ $('.startBtn').click(async function () {
                 } else {
                     // Da ton tai nhung da hoan thanh bai test => luu lai position
                     flag = 0;
+                    // generateUnfinishedTest(this_question)
                     position_in_local_storage = i;
                 }
 
@@ -496,7 +497,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                             html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
                                 question_data_element.question_image, question_data_element.answer_image))
                         });
-                    } else if (response.type === '2'){
+                    } else if (type === '2'){
                         max_images_in_column = response.question_data[0].length
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
@@ -508,7 +509,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                         });
 
                     }
-                    // console.log('html_arr_gen_again ', html_arr_gen_again)
+                    console.log('html_arr_gen_again ', html_arr_gen_again)
                     // console.log('indexIncorrect ', indexIncorrect)
                     // console.log('current_index ', this_question.current_index)
                     // console.log('this_questionlength ', this_question.question_data.length)
@@ -709,7 +710,7 @@ function hideQuestion(current_index){
 }
 
 function displayTestUnFinishedAfterSubmit() {
-    list_test_finished.push(parseInt(type))
+    list_test_finished.push(parseInt(topic))
 
     let gen_html = '<div style="margin-top:25px; padding-right: 40px">'
 
@@ -792,10 +793,13 @@ function showDialogScore(correct, total, login = false) {
         background: 'orange',
         display: 'flex',
     }).then(() => {
+        console.log(login, !login)
         if(!login){
             $('#modal-after-answertoppic').modal();
+        } else {
+            // Login roi => Update du lieu len
+            updateDataTesting()
         }
-        updateDataTesting()
     });
 }
 
@@ -804,10 +808,15 @@ function updateDataTesting()
     if(testing_data == undefined){
         testing_data = '';
     }
-    // get local storate 
+    // get local storate
     var data = {
         'local_storage' : testing_data
     };
+    this_question.answers.forEach(function(value, index) {
+        for (var i=0; i<3; i++){
+            value[i].splice(2,1)
+        }
+    });
     $.ajax({
         url: '/updateDataTesting',
         type: 'POST',
@@ -833,4 +842,5 @@ function updateDataTesting()
         .fail(function(response) {
             console.log(response);
         })
+    alert(21321231123213)
 }

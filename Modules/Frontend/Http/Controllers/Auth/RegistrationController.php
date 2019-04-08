@@ -53,9 +53,13 @@ class RegistrationController extends Controller
      * @return void
      */
     public function register(Request $request)
-    {   
-        $this->validator($request->all())->validate();
-        $user = $this->create($request->except('_token'));
+    {
+        parse_str($request->data, $sign_up_data);
+        $local_storage = $request->local_storage;
+
+        $this->validator($sign_up_data)->validate();
+        unset($sign_up_data['password_confirmation']);
+        $user = $this->create($sign_up_data);
         if(!$user){
             return response()->json([
                 'status' => 500,
@@ -63,16 +67,20 @@ class RegistrationController extends Controller
             ],500);
         }
         $this->guard()->login($user);
-        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        $local_storage_response = [];
+        if(!empty($local_storage))
         {
-            $this->localStorageService->createTesting($request->input('local_storage'));
+            $this->localStorageService->createTesting($local_storage);
             if(auth()->guard('customers')->user()->test_status == 0){
                 $this->packageService->checkDoneFreeQuestion();
+                $local_storage_response = $this->localStorageService->getTesting();
             }
         }
         return response()->json([
                 'status' => 200,
-                'success' => 'registed'
+                'success' => 'registed',
+                'local_storage' => $local_storage_response,
+                'givePackage' => $givePackage
             ],200);
 
         // return redirect()->route('home');
@@ -138,12 +146,14 @@ class RegistrationController extends Controller
         {
             $this->localStorageService->createTesting($request->input('local_storage'));
             $local_storage = $this->localStorageService->getTesting();
+            $givePackage = $this->packageService->checkDoneFreeQuestion();
         }
         return response()->json([
             'status' => 200,
             'username' => $data_account['username'],
             'password' => $data_account['password'],
-            'local_storage' => $local_storage
+            'local_storage' => $local_storage,
+            'givePackage' => $givePackage
         ]);
     }
 

@@ -51,20 +51,6 @@ class Question extends Model
                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
            ];
        }
-        // $raw_data = [];
-        // for ($i=1; $i<7; $i++){
-        //     $raw_data[] = [
-        //         'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-        //         'answers' => [
-        //             asset('/test/audios/cau'. $i.'/A.mov'),
-        //             asset('/test/audios/cau'. $i.'/B.mov'),
-        //             asset('/test/audios/cau'. $i.'/C.mov'),
-        //         ],
-        //         'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-        //         'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-        //         'correct' => 0
-        //     ];
-        // }
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
@@ -72,24 +58,26 @@ class Question extends Model
         ];
     }
 
-    public static function getListQuestionPosition($type, $level)
+    public static function getListQuestionPosition($topic, $level)
     {
+        $curriculum = Curriculum::where([
+            ['topic_id', $topic],
+            ['level', '<=', $level]
+        ])->orderBy('level', 'desc')->first();
+
+        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
         $raw_data = [];
-        for ($i=1; $i<7; $i++){
-            $left = [
-                'test/images/1r.png',
-                'test/images/2r.png',
-                'test/images/3r.png',
+
+        foreach ($list_question as $question) {
+//            dd($question['question'], $topic, $curriculum, $list_question);
+            $question = \GuzzleHttp\json_decode($question['question'], true);
+            $raw_data[] = [
+                $question['left'],
+                $question['right']
             ];
-            $right = [
-                'test/images/4r.png',
-                'test/images/5r.png',
-                'test/images/6r.png',
-            ];
-            $raw_data[] = [$left,$right];
         }
         return [
-            'curriculum_id' => 0, // fix
+            'curriculum_id' => $curriculum->id, // fix
             'raw_data' => $raw_data,
             'type' => 2
         ];
@@ -147,20 +135,7 @@ class Question extends Model
                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
            ];
        }
-        // $raw_data = [];
-        // for ($i=1; $i<7; $i++){
-        //     $raw_data[] = [
-        //         'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-        //         'answers' => [
-        //             asset('/test/audios/cau'. $i.'/A.mov'),
-        //             asset('/test/audios/cau'. $i.'/B.mov'),
-        //             asset('/test/audios/cau'. $i.'/C.mov'),
-        //         ],
-        //         'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-        //         'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-        //         'correct' => 0
-        //     ];
-        // }
+
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
@@ -168,24 +143,27 @@ class Question extends Model
         ];
     }
 
-    public static function getLessLevelQuestionPosition($type, $level, $index)
+    public static function getLessLevelQuestionPosition($topic, $level, $index)
     {
+        $curriculum = Curriculum::where([
+            ['topic_id', $topic],
+            ['level', '<=', $level]
+        ])->orderBy('level', 'desc')->first();
+
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+
         $raw_data = [];
-        for ($i=1; $i<7; $i++){
-            $left = [
-                'test/images/7r.png',
-                'test/images/8r.png',
-                'test/images/9r.png',
+
+        foreach ($list_question as $question) {
+//            dd($question['question'], $topic, $curriculum, $list_question);
+            $question = \GuzzleHttp\json_decode($question['question'], true);
+            $raw_data[] = [
+                $question['left'],
+                $question['right']
             ];
-            $right = [
-                'test/images/10r.png',
-                'test/images/11r.png',
-                'test/images/12r.png',
-            ];
-            $raw_data[] = [$left,$right];
         }
         return [
-            'curriculum_id' => 0, // fix
+            'curriculum_id' => $curriculum->id, // fix
             'raw_data' => $raw_data,
             'type' => 2
         ];
