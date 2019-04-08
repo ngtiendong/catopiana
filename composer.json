@@ -14,7 +14,8 @@
         "laravel/socialite": "^3.2.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
-        "nwidart/laravel-modules": "^4.0"
+        "nwidart/laravel-modules": "^4.0",
+        "paypal/rest-api-sdk-php": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

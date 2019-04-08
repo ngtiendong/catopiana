@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curriculum extends Model
 {
-    protected $fillable = [];
+    protected $guarded = [];
     protected $table = 'curriculums';
+
+    public function topic()
+    {
+    	return $this->belongsTo(Topic::class,'topic_id');
+    }
 }

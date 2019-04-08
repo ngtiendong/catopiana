@@ -6,13 +6,15 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Modules\Frontend\Entities\CustomerTesting;
+use Modules\Frontend\Entities\Package;
 
 class Customer extends Model implements AuthenticatableContract
 {
     use Authenticatable;
 
     protected $table = 'customers';
-    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name'];
+    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name','test_status'];
 
     public function setPasswordAttribute($pass)
     {
@@ -51,29 +53,18 @@ class Customer extends Model implements AuthenticatableContract
         return $customerAvatar;
     }
 
-    public function customer_question()
+    public function customer_testing()
     {
-        return $this->hasMany(CustomerQuestion::class,'customer_id');
+        return $this->hasMany(CustomerTesting::class,'customer_id');
     }
 
-
-    public function saveDataLocalStorage($data)
+    public function customer_package()
     {
-        // luu chua check
-        foreach($data['question'] as $question){
-            // for with type
-            if($question['type'] != 8 || $question['type'] != 1){
-                $question_data = $question['question_data'];
-                foreach($question['answers'] as $key => $answer){
-                    // question_data has type, question_data, question_index, question_id, question_curriculum
-                    $this->customer_question()->create([
-                        'question_id' => $question_data[$key]['question_id'],
-                        'answer' =>  $answer
-                    ]);
-                }
-            }
-        }
-
+        return $this->hasMany(CustomerPackage::class,'customer_id');
     }
 
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class,'customer_package');
+    }
 }

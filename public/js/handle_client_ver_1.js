@@ -262,6 +262,9 @@ function getNewQuestionData(position) {
                     });
 
                 }
+                var curriculum_ids = [];
+                curriculum_ids.push(response.curriculum_id)
+
                 this_question = {
                     type: response.type,
                     topic: topic,
@@ -270,7 +273,9 @@ function getNewQuestionData(position) {
                     answers: [],
                     current_index: 0,
                     level_temp: test_level,
-                    html_arr : html_arr
+                    html_arr : html_arr,
+                    curriculum_ids : curriculum_ids,
+                    customer_testing_id : ''
                 };
                 if (typeof testing_data !== 'undefined') {
                     if (position == -1 ) {
@@ -363,13 +368,13 @@ function showTab(current_index) {
 
 }
 
-
+// đặt time check trả lời sau 20s
 setTimeToChange = (test_level, indexIncorrect) => {
     timeToChange = setTimeout(() => {
         changeDynamicQuestionTimeOut(test_level, indexIncorrect)
     }, 20000)
 }
-
+// dừng check trả lời 20s
 stopTimeToChange = () => {
     for (var i = timeToChange; i > 0; i--)
         clearTimeout(timeToChange)
@@ -392,6 +397,10 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 // ghep cau hoi vao this_question
                 // html_arr_gen_again = [];
                 if(response.question_data.length != 0){
+                    // add curriculum_ids
+                    if(!this_question.curriculum_ids.includes(response.curriculum_id)){
+                        this_question.curriculum_ids.push(response.curriculum_id)
+                    }
                     // gen laij html
                     //
                     html_arr_gen_again = [];
@@ -474,6 +483,10 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
         success: function (response) {
             if (response.status === 1) {
                 if(response.question_data.length != 0){
+                    // add curriculum_ids
+                    if(!this_question.curriculum_ids.includes(response.curriculum_id)){
+                        this_question.curriculum_ids.push(response.curriculum_id)
+                    }
                     // gen lai html
 
                     html_arr_gen_again = [];
@@ -633,7 +646,7 @@ function render(question, answers) {
 
     });
 
-    if(type === "6" ){
+    if(topic === "6" ){
         style = 'style="visibility : hidden;"';
     }
 
@@ -672,22 +685,22 @@ function renderAudio(question, answers, question_image, answer_image){
     return content
 }
 
-function hideQuestion(currne_index){
+function hideQuestion(current_index){
     var x = document.getElementsByClassName("tab");
-    $(x[currne_index]).children('answer').css('visibility' ,'hidden');
+    $(x[current_index]).children('answer').css('visibility' ,'hidden');
 
     timerId = setInterval(function() {
         if (timeout == 0) {
-            $(x[currne_index]).children('img').css('visibility' ,'hidden')
-            $(x[currne_index]).children('.answer').css('visibility' ,'visible')
-            $('.countDownTimer').html( 'Time out!')
+            $(x[current_index]).children('img').css('visibility' ,'hidden')
+            $(x[current_index]).children('.answer').css('visibility' ,'visible')
+            $(x[current_index]).children('.countDownTimer').html( 'Time out!')
             buttonMemoryChecked = true;
             clearTimeout(timerId);
             timeout = 5;
             $('button').removeClass('countdown-disabled')
 
         } else {
-            $('.countDownTimer').html( timeout + ' seconds');
+             $(x[current_index]).children('.countDownTimer').html( timeout + ' seconds');
             timeout--;
             $('button').addClass('countdown-disabled')
         }
@@ -750,7 +763,7 @@ function nextButton() {
                 //Save into local storage
                 // console.log (testing_data, 'test')
                 localStorage.setItem('testing', JSON.stringify(testing_data))
-                if(type === '6'){
+                if(topic === '6'){
                     //Memory
                     if(timerId != null){
                         clearTimeout(timerId);

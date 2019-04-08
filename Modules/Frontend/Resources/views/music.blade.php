@@ -63,6 +63,5 @@
     <script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
     <script src="{{asset('/js/svg_variables.js')}}"></script>
 
-
-{{--<script src="{{asset('/Catopiana_files/js/music-test.js')}}"></script>--}}
+    <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 @endsection

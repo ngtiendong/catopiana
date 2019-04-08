@@ -47,4 +47,22 @@ return [
         'redirect' => 'https://beta.catopiana.com/login/google/callback',
     ],
 
+    'paypal' => [
+        'id' => env('PAYPAL_CLIENT_ID'),
+        'secret' => env('PAYPAL_CLIENT_SECRET'),
+        'url' => [
+            'redirect' => 'https://beta.catopiana.com/execute-payment',
+            'cancel'=>'https://beta.catopiana.com/payment-test',
+            'executeAgreement' => [
+                'success'=>'https://beta.catopiana.com/execute-agreement/true',
+                'failure'=>'https://beta.catopiana.com/execute-agreement/false'
+            ]
+        ],
+        'currency' => 'USD',
+        'settings' => [
+            'mode' => env('PAYPAL_MODE','sandbox'),
+            'http.ConnectionTimeOut' => 30,
+        ],
+    ],
+
 ];
