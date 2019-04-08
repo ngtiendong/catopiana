@@ -149,10 +149,12 @@ class Question extends Model
             ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
-
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
-
         $raw_data = [];
+        if($curriculum == null){
+            return $raw_data;
+        }
+        
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
 
         foreach ($list_question as $question) {
 //            dd($question['question'], $topic, $curriculum, $list_question);

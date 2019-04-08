@@ -105,6 +105,8 @@ function nextButtonPosition () {
 
         } else {
             current_index_max += 1
+             // dừng việc check20s tránh đuplicate lặp timeout
+            stopTimeToChange()
             // compare answer
             all_line_array.push(just_answer)
             console.log('all push', all_line_array)
@@ -123,7 +125,7 @@ function nextButtonPosition () {
                 showTab(currentTab)
                 // sau khi render 20s k next thì sẽ => câu hỏi thấp
                 if(parseInt(testing_data.level) > minLv){
-                    setTimeToChange(testing_data.level - 1 , currentTab );
+                    setTimeToChange(testing_data.level - 1 , currentTab + 1 );
                 }
             }
         }
