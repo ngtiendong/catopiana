@@ -30,7 +30,7 @@ class LoginController extends Controller
      */
     public function __construct(LocalStorageService $localStorageService, PackageService $packageService)
     {
-        $this->middleware('guest:customers')->except('logout');
+        $this->middleware('guest:customers')->except('logout','updateDataTesting');
         $this->localStorageService = $localStorageService;
         $this->packageService = $packageService;
     }
@@ -52,12 +52,13 @@ class LoginController extends Controller
         $this->validateLogin($request);
         if ($this->attemptLogin($request)) {
             if(auth()->guard('customers')->user()->test_status == 0){
-                $this->packageService->checkDoneFreeQuestion();
+                $givePackage = $this->packageService->checkDoneFreeQuestion();
             }
             $local_storage = $this->localStorageService->getTesting();
             return response()->json([
                 'status' => 200,
-                'local_storage' => $local_storage
+                'local_storage' => $local_storage,
+                'givePackage' => $givePackage
             ],200);
         }
         return response()->json([
@@ -131,11 +132,12 @@ class LoginController extends Controller
             $local_storage = $this->localStorageService->getTesting();
         }
         if(auth()->guard('customers')->user()->test_status == 0){
-            $this->packageService->checkDoneFreeQuestion();
+            $givePackage = $this->packageService->checkDoneFreeQuestion();
         }
         return response()->json([
             'status' => 200,
-            'local_storage' => $local_storage
+            'local_storage' => $local_storage,
+            'givePackage' => $givePackage
         ],200);
     }
 }

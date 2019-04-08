@@ -52,5 +52,5 @@ Route::group(/**
     //  payment
     Route::get('/execute-payment', 'PaymentController@execute');
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
-    Route::get('execute-agreement/{success}','SubscriptionController@executeAgreement');
+    Route::get('/execute-agreement/{success}','SubscriptionController@executeAgreement');
 });

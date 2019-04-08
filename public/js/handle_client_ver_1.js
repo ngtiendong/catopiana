@@ -820,6 +820,14 @@ function updateDataTesting()
             }else {
                 localStorage.removeItem('testing');
                 changeLocalStorage(response.local_storage)
+                if(response.givePackage == true){
+                    Swal.fire({
+                        title: 'Notice',
+                        text: 'You have completed all free test! You will be receviced free package!',
+                        background: 'orange',
+                        display: 'flex',
+                    });
+                }
             }
         })
         .fail(function(response) {
