@@ -55,6 +55,7 @@
 		<img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
 	</div>
 	<div ></div>
+    @if (auth()->guard('customers')->user()->test_status == 0)
 	<div class="container list-test">
 			<div class="row">
 			<div class="top">
@@ -595,6 +596,13 @@
 		<img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
 		<img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
 	</div>
+    @else
+        <div class="container list-test" style="z-index: 9; font-size: 40px; margin: 50px; text-align: center;">
+            <div class="row">
+                <h1>Bạn đã hoàn thành xong 8 bài đầu tiên</h1>
+            </div>
+        </div>
+    @endif
 
 	<img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
 </section>

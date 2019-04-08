@@ -2,6 +2,7 @@
 
 namespace Modules\Frontend\Services;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Frontend\Entities\Curriculum;
 use Modules\Frontend\Entities\CustomerTesting;
 use Modules\Frontend\Entities\Topic;
@@ -11,6 +12,12 @@ use Modules\Frontend\Entities\Package;
 class PackageService
 {
     protected $customer;
+    public function __construct()
+    {
+        $this->customer = auth()->guard('customers')->user();
+    }
+
+
     public function checkDoneFreeQuestion()
     {
         $this->customer = auth()->guard('customers')->user();

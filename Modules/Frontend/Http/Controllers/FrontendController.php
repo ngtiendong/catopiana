@@ -17,7 +17,7 @@ class FrontendController extends Controller
      */
     public function index()
     {
-//        dd(auth()->guard('customers')->user()->username);
+//        dd(auth()->guard('customers')->user()->test_status);
         return view('frontend::home');
     }
 

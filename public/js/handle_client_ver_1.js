@@ -812,11 +812,14 @@ function updateDataTesting()
     var data = {
         'local_storage' : testing_data
     };
-    this_question.answers.forEach(function(value, index) {
-        for (var i=0; i<3; i++){
-            value[i].splice(2,1)
-        }
-    });
+    if (type === '2') {
+        this_question.answers.forEach(function(value, index) {
+            for (var i=0; i<3; i++){
+                value[i].splice(2,1)
+            }
+        });
+    }
+
     $.ajax({
         url: '/updateDataTesting',
         type: 'POST',
@@ -842,5 +845,4 @@ function updateDataTesting()
         .fail(function(response) {
             console.log(response);
         })
-    alert(21321231123213)
 }
