@@ -13,4 +13,5 @@ class Topic extends Model
     {
     	return $this->hasMany(Curriculum::class,'topic_id');
     }
+
 }

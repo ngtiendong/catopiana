@@ -74,11 +74,11 @@ class FrontendController extends Controller
             else {
                 $raw_data = Question::getListQuestion($params['topic'], $params['level']);
             }
-//            dd($raw_data);
             return [
                 'status' => 1,
                 'question_data' => $raw_data['raw_data'],
-                'type' => $raw_data['type']
+                'type' => $raw_data['type'],
+                'curriculum_id' => $raw_data['curriculum_id']
             ];
         } else {
             return [
@@ -108,7 +108,8 @@ class FrontendController extends Controller
                 return [
                     'status' => 1,
                     'question_data' => $raw_data['raw_data'],
-                    'type' => $raw_data['type']
+                    'type' => $raw_data['type'],
+                    'curriculum_id' => $raw_data['curriculum_id']
                 ];
             } else {
                 return [
@@ -124,38 +125,6 @@ class FrontendController extends Controller
 
 
 
-    }
-
-    public function getQA(Request $request)
-    {
-        $level = $request->level;
-        $questionAnswer = [
-            'question' => asset('/test/images/'.$level.'age/'. $request->num.'A.png'),
-            'answers' => [
-                asset('/test/images/'.$level.'age/'. $request->num.'A.png'),
-                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
-                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
-                asset('/test/images/'.$level.'age/'. $request->num.'BCD.png'),
-            ],
-            'correct' => 0
-        ];
-        return response()->json($questionAnswer,200);
-    }
-
-    public function getQAAudio(Request $request)
-    {
-        $questionAnswer = [
-            'question' => asset('/test/audios/cau'. $request->num.'/question.mov'),
-            'answers' => [
-                asset('/test/audios/cau'. $request->num.'/A.mov'),
-                asset('/test/audios/cau'. $request->num.'/B.mov'),
-                asset('/test/audios/cau'. $request->num.'/C.mov'),
-            ],
-            'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-            'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-            'correct' => 0
-        ];
-        return response()->json($questionAnswer,200);
     }
 
     public function getTopicAndTypeId($name)
@@ -194,7 +163,7 @@ class FrontendController extends Controller
             case 'memory':
                 return [
                     'topic' => "6",
-                    'type' => "0"
+                    'type' => "3"
                 ];
                 break;
             case 'language':

@@ -17,5 +17,5 @@ class CustomerPayment extends Model
     public function customer_curriculum()
     {
     	return $this->hasMany(CustomerCurriculum::class,'payment_id');
-    }
+    } 
 }

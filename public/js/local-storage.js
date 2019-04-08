@@ -18,7 +18,7 @@ if (localStorage.getItem('testing')) {
 }
 
 $(function(){
-    console.log("data", testing_data);
+    console.log("dataLocalstorge in localstorage file: ", testing_data);
     if (list_test_finished.length > 0) {
         $('a.test-item').each(function(index){
             var this_type = $(this).data('topic')

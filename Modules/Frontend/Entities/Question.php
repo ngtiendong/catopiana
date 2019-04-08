@@ -22,13 +22,10 @@ class Question extends Model
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
-                // trả về thêm inđex, level
-                // 'question_index' => $question['index'],
-                // 'question_id' => $question['id'],
-                // 'question_curriculum' => $question['curriculum_id']
             ];
         }
         return [
+            'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'type' => $curriculum->type
         ];
@@ -40,35 +37,36 @@ class Question extends Model
             ['topic_id', $topic],
             ['level', '<=', $level]
         ])->orderBy('level', 'desc')->first();
-//        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
-//        $raw_data = [];
-//        foreach ($list_question as $question) {
-//            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
-//            foreach($answers as $key => $answer){
-//                $answers[$key] = asset($answer);
-//            }
-//            $raw_data[] = [
-//                'question' => $question['question'],
-//                'answers' => $answers,
-//                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-//                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
-//            ];
-//        }
+        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
         $raw_data = [];
-        for ($i=1; $i<7; $i++){
-            $raw_data[] = [
-                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-                'answers' => [
-                    asset('/test/audios/cau'. $i.'/A.mov'),
-                    asset('/test/audios/cau'. $i.'/B.mov'),
-                    asset('/test/audios/cau'. $i.'/C.mov'),
-                ],
-                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-                'correct' => 0
-            ];
-        }
+        foreach ($list_question as $question) {
+           $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+           foreach($answers as $key => $answer){
+               $answers[$key] = asset($answer);
+           }
+           $raw_data[] = [
+               'question' => $question['question'],
+               'answers' => $answers,
+               'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+               'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+           ];
+       }
+        // $raw_data = [];
+        // for ($i=1; $i<7; $i++){
+        //     $raw_data[] = [
+        //         'question' => asset('/test/audios/cau'. $i.'/question.mov'),
+        //         'answers' => [
+        //             asset('/test/audios/cau'. $i.'/A.mov'),
+        //             asset('/test/audios/cau'. $i.'/B.mov'),
+        //             asset('/test/audios/cau'. $i.'/C.mov'),
+        //         ],
+        //         'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+        //         'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
+        //         'correct' => 0
+        //     ];
+        // }
         return [
+            'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'type' => $curriculum->type
         ];
@@ -91,6 +89,7 @@ class Question extends Model
             $raw_data[] = [$left,$right];
         }
         return [
+            'curriculum_id' => 0, // fix
             'raw_data' => $raw_data,
             'type' => 2
         ];
@@ -114,14 +113,10 @@ class Question extends Model
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
-                // trả về thêm inđex, level
-                // 'question_index' => $question['index'],
-                // 'question_id' => $question['id'],
-                // 'question_curriculum' => $question['curriculum_id']
-
             ];
         }
         return [
+            'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'type' => $curriculum->type
         ];
@@ -138,35 +133,36 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-//        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
-//
-//        foreach ($list_question as $question) {
-//            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
-//            foreach($answers as $key => $answer){
-//                $answers[$key] = asset($answer);
-//            }
-//            $raw_data[] = [
-//                'question' => $question['question'],
-//                'answers' => $answers,
-//                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-//                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
-//            ];
-//        }
-        $raw_data = [];
-        for ($i=1; $i<7; $i++){
-            $raw_data[] = [
-                'question' => asset('/test/audios/cau'. $i.'/question.mov'),
-                'answers' => [
-                    asset('/test/audios/cau'. $i.'/A.mov'),
-                    asset('/test/audios/cau'. $i.'/B.mov'),
-                    asset('/test/audios/cau'. $i.'/C.mov'),
-                ],
-                'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-                'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
-                'correct' => 0
-            ];
-        }
+       $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+
+       foreach ($list_question as $question) {
+           $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+           foreach($answers as $key => $answer){
+               $answers[$key] = asset($answer);
+           }
+           $raw_data[] = [
+               'question' => $question['question'],
+               'answers' => $answers,
+               'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+               'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+           ];
+       }
+        // $raw_data = [];
+        // for ($i=1; $i<7; $i++){
+        //     $raw_data[] = [
+        //         'question' => asset('/test/audios/cau'. $i.'/question.mov'),
+        //         'answers' => [
+        //             asset('/test/audios/cau'. $i.'/A.mov'),
+        //             asset('/test/audios/cau'. $i.'/B.mov'),
+        //             asset('/test/audios/cau'. $i.'/C.mov'),
+        //         ],
+        //         'question_image' =>  asset('/Catopiana_files/images/sound.png'),
+        //         'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg'),
+        //         'correct' => 0
+        //     ];
+        // }
         return [
+            'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'type' => $curriculum->type
         ];
@@ -189,6 +185,7 @@ class Question extends Model
             $raw_data[] = [$left,$right];
         }
         return [
+            'curriculum_id' => 0, // fix
             'raw_data' => $raw_data,
             'type' => 2
         ];

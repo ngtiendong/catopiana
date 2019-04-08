@@ -11,12 +11,15 @@ use Modules\Core\Models\Customer;
 use Modules\Frontend\Events\SendEmailWhenGenerate;
 // use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Modules\Frontend\Services\LocalStorageService;
 
 class RegistrationController extends Controller
 {
-    public function __construct()
+    protected $localStorageService;
+    public function __construct(LocalStorageService $localStorageService)
     {
         $this->middleware('guest:customers');
+        $this->localStorageService = $localStorageService;
     }
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +49,7 @@ class RegistrationController extends Controller
      * @return void
      */
     public function register(Request $request)
-    {
+    {   
         $this->validator($request->all())->validate();
         $user = $this->create($request->except('_token'));
         if(!$user){
@@ -56,6 +59,10 @@ class RegistrationController extends Controller
             ],500);
         }
         $this->guard()->login($user);
+        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        {
+            $this->localStorageService->createTesting($request->input('local_storage'));
+        }
         return response()->json([
                 'status' => 200,
                 'success' => 'registed'
@@ -111,7 +118,6 @@ class RegistrationController extends Controller
 
     public function generateAccount(Request $request)
     {
-//         dd($request->all());
         $data_account = [
             // 'email' => null,
             'username' => (string) Str::uuid(),
@@ -119,11 +125,18 @@ class RegistrationController extends Controller
         ];
         $customer = $this->create($data_account);
         $this->guard()->login($customer);
-
+        // tạo và trả về
+        $local_storage = [];
+        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        {
+            $this->localStorageService->createTesting($request->input('local_storage'));
+            $local_storage = $this->localStorageService->getTesting();
+        }
         return response()->json([
             'status' => 200,
             'username' => $data_account['username'],
-            'password' => $data_account['password']
+            'password' => $data_account['password'],
+            'local_storage' => $local_storage
         ]);
     }
 

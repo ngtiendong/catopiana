@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Modules\Frontend\Services\LocalStorageService;
+use Modules\Frontend\Services\PackageService;
 
 class LoginController extends Controller
 {
+    protected $localStorageService;
+    protected $packageService;
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -24,25 +28,36 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(LocalStorageService $localStorageService, PackageService $packageService)
     {
         $this->middleware('guest:customers')->except('logout');
+        $this->localStorageService = $localStorageService;
+        $this->packageService = $packageService;
     }
 
     public function logout(Request $request)
     {
+        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        {
+            $this->localStorageService->updateTesting($request->input('local_storage'));
+        }
         $this->guard()->logout();
-        return redirect()->back();
-    }
+        return response()->json([
+            'status' => 200,
+        ],200);    }
 
 
     public function login(Request $request)
     {
+        $this->packageService->checkDoneFreeQuestion();
         $this->validateLogin($request);
 
         if ($this->attemptLogin($request)) {
+            $this->packageService->checkDoneFreeQuestion();
+            $local_storage = $this->localStorageService->getTesting();
             return response()->json([
-                'status' => 200
+                'status' => 200,
+                'local_storage' => $local_storage
             ],200);
         }
         return response()->json([
