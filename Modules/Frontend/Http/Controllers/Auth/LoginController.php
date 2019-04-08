@@ -131,6 +131,7 @@ class LoginController extends Controller
             $this->localStorageService->updateTesting($request->input('local_storage'));
             $local_storage = $this->localStorageService->getTesting();
         }
+        $givePackage = false;
         if(auth()->guard('customers')->user()->test_status == 0){
             $givePackage = $this->packageService->checkDoneFreeQuestion();
         }
