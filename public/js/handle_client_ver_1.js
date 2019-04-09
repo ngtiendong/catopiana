@@ -75,7 +75,7 @@ $('.startBtn').click(async function () {
 
     else {
         //Check history
-        let flag = 1;
+        let flag = 1; 
         for (var i = 0; i < testing_data.question.length; i++) {
             this_question = testing_data.question[i];
             // console.log('current', current_data)
@@ -83,32 +83,18 @@ $('.startBtn').click(async function () {
             if (this_question.topic == topic) {
                 // Da ton tai bai test type nay trong lich su
                 position_this_question = i
-                if (this_question.status === 0) {
-                    // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
-                    console.log('current', this_question)
-                    // this_question = current_data
-                    total_question = parseInt(this_question.question_data.length)
-                    generateUnfinishedTest(this_question)
-                    flag = -1;
-                } else {
-                    // Da ton tai nhung da hoan thanh bai test => luu lai position
-                    flag = 0;
-                    // generateUnfinishedTest(this_question)
-                    position_in_local_storage = i;
-                }
-
+                console.log('current', this_question)
+                // this_question = current_data
+                total_question = parseInt(this_question.question_data.length)
+                generateUnfinishedTest(this_question)
+                flag = -1;
                 break
             }
         }
-
-
         if (flag !== -1) {
             //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
             getNewQuestionData(position_in_local_storage)
         }
-
-
-
     }
 
 });
