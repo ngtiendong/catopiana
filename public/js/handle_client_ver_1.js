@@ -794,10 +794,7 @@ function updateDataTesting()
     if(testing_data == undefined){
         testing_data = '';
     }
-    // get local storate
-    var data = {
-        'local_storage' : testing_data
-    };
+    
     if (type === '2') {
         this_question.answers.forEach(function(value, index) {
             for (var i=0; i<3; i++){
@@ -805,7 +802,11 @@ function updateDataTesting()
             }
         });
     }
-
+    // get local storate
+    var data = {
+        'local_storage_this_question' : this_question,
+        'level' : test_level
+    };
     $.ajax({
         url: '/updateDataTesting',
         type: 'POST',
@@ -813,11 +814,12 @@ function updateDataTesting()
         data: data,
     }).done(function(response) {
             // update testing_id đã có trên db,
-            if(response.local_storage === undefined || response.local_storage.length == 0){
-                // alert('tai khoan chua co du lieu gi tren serve');
+            if(response.customer_testing_id == ''){
+                
             }else {
-                localStorage.removeItem('testing');
-                changeLocalStorage(response.local_storage)
+                console.log(response);
+                this_question.customer_testing_id  = response.customer_testing_id;
+                localStorage.setItem('testing', JSON.stringify(testing_data));               
                 if(response.givePackage == true){
                     Swal.fire({
                         title: 'Notice',
@@ -831,4 +833,10 @@ function updateDataTesting()
         .fail(function(response) {
             console.log(response);
         })
+}
+
+updateThisQuestion = (response) =>{
+    this_question.customer_testing_id  = response.customer_testing_id;
+    console.log(this_question);
+    localStorage.setItem('testing', JSON.stringify(testing_data));
 }

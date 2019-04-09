@@ -125,11 +125,10 @@ class LoginController extends Controller
 
     public function updateDataTesting(Request $request)
     {
-        $local_storage = [];
-        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        $customer_testing_id = '';
+        if($request->input('local_storage_this_question') != '' || $request->input('local_storage_this_question') != null)
         {
-            $this->localStorageService->updateTesting($request->input('local_storage'));
-            $local_storage = $this->localStorageService->getTesting();
+            $customer_testing_id = $this->localStorageService->updateThisQuestion($request->input('local_storage_this_question'),$request->input('level'));
         }
         $givePackage = false;
         if(auth()->guard('customers')->user()->test_status == 0){
@@ -137,7 +136,7 @@ class LoginController extends Controller
         }
         return response()->json([
             'status' => 200,
-            'local_storage' => $local_storage,
+            'customer_testing_id' => $customer_testing_id,
             'givePackage' => $givePackage
         ],200);
     }
