@@ -44,7 +44,7 @@ class LocalStorageService
             $curriculum_ids = json_decode($testing_item->curriculum_id);
             $level_temp = json_decode($testing_item->content)->level_temp;
             $status = $testing_item->status;
-            $current_index = sizeof($answers);
+            $current_index = sizeof($answers) == 0 ? 0 : sizeof($answers) - 1;
             $type  = json_decode($testing_item->content)->type;
             $topic  = json_decode($testing_item->content)->topic;
             $data_response[$key] = [
