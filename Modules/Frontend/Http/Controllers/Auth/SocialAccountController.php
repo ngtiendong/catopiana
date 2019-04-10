@@ -14,16 +14,19 @@ class SocialAccountController extends Controller
 {
     public function redirectToProvider($provider)
     {
+        session(['url_back' => url()->previous()]);
         return Socialite::driver($provider)->redirect();
     }
 
     public function handleProviderCallback($provider)
     {
+        $url = session('url_back', '/');
+        session()->forget('url_back');
         // $userSocial = Socialite::driver($provider)->user();
         try{
             $userSocial = Socialite::driver($provider)->user();
         } catch(\Exception $e) {
-            return redirect('/');
+            return redirect($url);
         }
         // find in database if not create
         $user = Customer::where('provider_name', $provider)
@@ -42,11 +45,11 @@ class SocialAccountController extends Controller
                     'provider_name' => $provider,
                 ]);
             } else {
-                return redirect('/');
+                return redirect($url);
             }
         }
         auth()->guard('customers')->login($user, true);
 
-        return redirect('/');
+        return redirect($url);
     }
 }

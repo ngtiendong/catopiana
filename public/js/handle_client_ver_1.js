@@ -75,7 +75,7 @@ $('.startBtn').click(async function () {
 
     else {
         //Check history
-        let flag = 1;
+        let flag = 1; 
         for (var i = 0; i < testing_data.question.length; i++) {
             this_question = testing_data.question[i];
             // console.log('current', current_data)
@@ -83,32 +83,18 @@ $('.startBtn').click(async function () {
             if (this_question.topic == topic) {
                 // Da ton tai bai test type nay trong lich su
                 position_this_question = i
-                if (this_question.status === 0) {
-                    // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
-                    console.log('current', this_question)
-                    // this_question = current_data
-                    total_question = parseInt(this_question.question_data.length)
-                    generateUnfinishedTest(this_question)
-                    flag = -1;
-                } else {
-                    // Da ton tai nhung da hoan thanh bai test => luu lai position
-                    flag = 0;
-                    // generateUnfinishedTest(this_question)
-                    position_in_local_storage = i;
-                }
-
+                console.log('current', this_question)
+                // this_question = current_data
+                total_question = parseInt(this_question.question_data.length)
+                generateUnfinishedTest(this_question)
+                flag = -1;
                 break
             }
         }
-
-
         if (flag !== -1) {
             //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
             getNewQuestionData(position_in_local_storage)
         }
-
-
-
     }
 
 });
@@ -808,10 +794,7 @@ function updateDataTesting()
     if(testing_data == undefined){
         testing_data = '';
     }
-    // get local storate
-    var data = {
-        'local_storage' : testing_data
-    };
+    
     if (type === '2') {
         this_question.answers.forEach(function(value, index) {
             for (var i=0; i<3; i++){
@@ -819,7 +802,11 @@ function updateDataTesting()
             }
         });
     }
-
+    // get local storate
+    var data = {
+        'local_storage_this_question' : this_question,
+        'level' : test_level
+    };
     $.ajax({
         url: '/updateDataTesting',
         type: 'POST',
@@ -827,11 +814,12 @@ function updateDataTesting()
         data: data,
     }).done(function(response) {
             // update testing_id đã có trên db,
-            if(response.local_storage === undefined || response.local_storage.length == 0){
-                // alert('tai khoan chua co du lieu gi tren serve');
+            if(response.customer_testing_id == ''){
+                
             }else {
-                localStorage.removeItem('testing');
-                changeLocalStorage(response.local_storage)
+                console.log(response);
+                this_question.customer_testing_id  = response.customer_testing_id;
+                localStorage.setItem('testing', JSON.stringify(testing_data));               
                 if(response.givePackage == true){
                     Swal.fire({
                         title: 'Notice',
@@ -845,4 +833,10 @@ function updateDataTesting()
         .fail(function(response) {
             console.log(response);
         })
+}
+
+updateThisQuestion = (response) =>{
+    this_question.customer_testing_id  = response.customer_testing_id;
+    console.log(this_question);
+    localStorage.setItem('testing', JSON.stringify(testing_data));
 }
