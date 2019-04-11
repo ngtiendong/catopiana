@@ -53,10 +53,6 @@ return [
         'url' => [
             'redirect' => 'https://beta.catopiana.com/execute-payment',
             'cancel'=>'https://beta.catopiana.com/payment-test',
-            'executeAgreement' => [
-                'success'=>'https://beta.catopiana.com/execute-agreement/true',
-                'failure'=>'https://beta.catopiana.com/execute-agreement/false'
-            ]
         ],
         'currency' => 'USD',
         'settings' => [

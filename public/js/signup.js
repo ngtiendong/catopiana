@@ -20,7 +20,7 @@ $(document).on('click', '#submitLog', function(event) {
                 // console.log(response.local_storage)
                 localStorage.removeItem('testing');
                 if(response.local_storage === undefined || response.local_storage.length == 0){
-                    alert('tai khoan chua co du lieu gi tren serve');
+                    alert('somethings wrongs');
                 }else {
                     changeLocalStorage(response.local_storage)
                 }
@@ -298,4 +298,44 @@ $(document).on('click', '#logoutBtn', function(event) {
         console.log(response);
     });
 
+});
+
+
+$(document).on('click', '.auth-provider', function(event) {
+    alert(1);
+    url = $(this).data('route');
+    if(testing_data == undefined){
+        testing_data = '';
+    }
+    var data = {
+        'local_storage' : testing_data
+    };
+    alert(2);
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+    }).done(function(response) {
+            console.log(response);
+            if(response.status == 200){
+                // console.log(response.local_storage)
+                localStorage.removeItem('testing');
+                if(response.local_storage === undefined || response.local_storage.length == 0){
+                    alert('somethings wrongs');
+                }else {
+                    // changeLocalStorage(response.local_storage)
+                    alert('co du lieu');
+                }
+                window.location.reload(true)
+
+            }
+            if(response.status == 401){
+
+            }
+        })
+        .fail(function(response) {
+            console.log(response);
+            
+        });
 });
