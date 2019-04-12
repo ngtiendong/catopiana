@@ -7,11 +7,21 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Models\User;
 use Modules\Core\Models\Customer;
+use Modules\Frontend\Services\LocalStorageService;
+use Modules\Frontend\Services\PackageService;
 use Socialite;
 
 
 class SocialAccountController extends Controller
 {
+    protected $localStorageService;
+    protected $packageService;
+    public function __construct(LocalStorageService $localStorageService, PackageService $packageService)
+    {
+        $this->middleware('guest:customers');
+        $this->localStorageService = $localStorageService;
+        $this->packageService = $packageService;
+    }
     public function redirectToProvider($provider)
     {
         session(['url_back' => url()->previous()]);
@@ -22,8 +32,7 @@ class SocialAccountController extends Controller
     {
         $url = session('url_back', '/');
         session()->forget('url_back');
-        // $userSocial = Socialite::driver($provider)->user();
-        try{
+        try {
             $userSocial = Socialite::driver($provider)->user();
         } catch(\Exception $e) {
             return redirect($url);

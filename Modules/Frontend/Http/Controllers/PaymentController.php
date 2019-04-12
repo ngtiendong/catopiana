@@ -12,11 +12,18 @@ use Modules\Frontend\Services\PaymentService;
 class PaymentController extends Controller
 {
     protected $payment_service;
+
     public function __construct(PaymentService $service)
     {
         $this->middleware('auth:customers');
         $this->payment_service = $service;
     }
+
+    public function buyPackage()
+    {
+        return view('frontend::paypals.test');
+    }
+
     public function create(Request $request)
     {   
         $data = $this->payment_service->getCurriculumData(); 
@@ -28,7 +35,7 @@ class PaymentController extends Controller
     {
         $payment = new ExecutePayment;
         $execute = $this->payment_service->saveData($payment->execute());
-        dd($execute);
-        return redirect('/');
+        // dd($execute);
+        return redirect('buy-package');
     }
 }

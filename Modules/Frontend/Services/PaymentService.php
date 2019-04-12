@@ -3,7 +3,7 @@
 namespace Modules\Frontend\Services;
 
 use Modules\Frontend\Entities\Curriculum;
-use Modules\Frontend\Entities\CustomerPayment;
+use Modules\Frontend\Entities\CustomerPackage;
 use Modules\Frontend\Entities\CustomerCurriculum;
 use PayPal\Api\Payment;
 
@@ -32,22 +32,17 @@ class PaymentService
         $payment_amount = $transaction->amount->total;
         $curriculum_ids = [];
         // change it, get Data
-        foreach(Curriculum::with('topic')->where('type',1)->get() as $curriculum){
-            $curriculum_ids[] =  $curriculum['id'];
-        }
-        $customerPayment = CustomerPayment::create([
+        // foreach(Curriculum::with('topic')->where('type',1)->get() as $curriculum){
+        //     $curriculum_ids[] =  $curriculum['id'];
+        // }
+        $customerPayment = CustomerPackage::create([
             'customer_id' => $customer_id,
+            'package_id' => 2,
             'payment_type' => 0, // paypal:0
             'payment_info' => 0, // changed it
-            'payment_amount' => $payment_amount,
-            'curriculum_ids' => json_encode($curriculum_ids)
+            'payment_status' => 0, // changed it
+            'payment_amount' => $payment_amount
         ]);
-        foreach ($curriculum_ids as $curriculum_id) {
-            $customerPayment->customer_curriculum()->create([
-                'curriculum_id' => $curriculum_id,
-                'customer_id' => $customerPayment->customer_id
-            ]);
-        }
         return ;
         
     }

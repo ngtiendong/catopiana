@@ -37,7 +37,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        if(!empty($request->input('local_storage')))
         {
             $this->localStorageService->updateTesting($request->input('local_storage'));
         }
@@ -51,6 +51,7 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
         if ($this->attemptLogin($request)) {
+            $givePackage = false;
             if(auth()->guard('customers')->user()->test_status == 0){
                 $givePackage = $this->packageService->checkDoneFreeQuestion();
             }
