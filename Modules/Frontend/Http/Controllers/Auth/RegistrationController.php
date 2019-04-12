@@ -56,7 +56,6 @@ class RegistrationController extends Controller
     {
         parse_str($request->data, $sign_up_data);
         $local_storage = $request->local_storage;
-
         $this->validator($sign_up_data)->validate();
         unset($sign_up_data['password_confirmation']);
         $user = $this->create($sign_up_data);
@@ -68,11 +67,12 @@ class RegistrationController extends Controller
         }
         $this->guard()->login($user);
         $local_storage_response = [];
+        $givePackage = false;
         if(!empty($local_storage))
         {
             $this->localStorageService->createTesting($local_storage);
             if(auth()->guard('customers')->user()->test_status == 0){
-                $this->packageService->checkDoneFreeQuestion();
+                $givePackage = $this->packageService->checkDoneFreeQuestion();
                 $local_storage_response = $this->localStorageService->getTesting();
             }
         }
@@ -142,7 +142,8 @@ class RegistrationController extends Controller
         $this->guard()->login($customer);
         // tạo và trả về
         $local_storage = [];
-        if($request->input('local_storage') != '' || $request->input('local_storage') != null)
+        $givePackage = false;
+        if(!empty($request->input('local_storage')))
         {
             $this->localStorageService->createTesting($request->input('local_storage'));
             $local_storage = $this->localStorageService->getTesting();

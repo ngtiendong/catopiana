@@ -20,7 +20,7 @@ $(document).on('click', '#submitLog', function(event) {
                 // console.log(response.local_storage)
                 localStorage.removeItem('testing');
                 if(response.local_storage === undefined || response.local_storage.length == 0){
-                    alert('somethings wrongs');
+                    // alert('somethings wrongs');
                 }else {
                     changeLocalStorage(response.local_storage)
                 }
@@ -101,7 +101,7 @@ $(document).on('click', '#genButton', function(event) {
     event.preventDefault();
     url = $(this).data('route');
     if(testing_data == undefined){
-        testing_data = '';
+        testing_data = [];
     }
     // get local storate
     var data = {
@@ -148,12 +148,13 @@ $('form#form-sign-up').on('submit', function(event) {
     url = $('#regButton').data('route');
     //Check repassword
     if(testing_data == undefined){
-        testing_data = '';
+        testing_data = [];
     }
     let post_data = {
         'data':$(this).serialize(),
         'local_storage': testing_data
     };
+    console.log(post_data);
     $.ajax({
         url: url,
         type: 'POST',
@@ -163,12 +164,13 @@ $('form#form-sign-up').on('submit', function(event) {
             console.log(response);
             if(response.status == 200){
                 if(response.local_storage === undefined || response.local_storage.length == 0){
-                    // alert('tai khoan chua co du lieu gi tren serve');
+                    //
                 }else {
                     localStorage.removeItem('testing');
                     changeLocalStorage(response.local_storage);
-                    window.location.reload(true);
                 }
+                    window.location.reload(true);
+
             }
         })
         .fail(function(response) {
@@ -197,6 +199,7 @@ $('form#form-sign-up').on('submit', function(event) {
                 $('.regPassword').val('')
                 $('.regPasswordConfirm').val('')
             } else {
+                console.log(response)
                 alert('Server Errors')
             }
         })
@@ -219,21 +222,21 @@ $("#modal-register").on("hidden.bs.modal", function () {
 
 changeLocalStorage = (response) =>
 {
-    console.log('start:' , testing_data)
+    // console.log('start:' , testing_data)
     // localStorage.removeItem('testing');
-    console.log('mid:' , testing_data)
+    // console.log('mid:' , testing_data)
     // if (typeof testing_data == 'undefined') {
         testing_data = {
             level: response[0].level,
             question: []
         };
     // }
-    console.log('local_storage:' , testing_data)
+    // console.log('local_storage:' , testing_data)
     // save html -> localstorage
     response.forEach( function(response_element, index) {
         html_arr = [];
         response_element.type = response_element.type.toString()
-        console.log(response_element.type, response_element.topic, response_element.level)
+        // console.log(response_element.type, response_element.topic, response_element.level)
         if (response_element.type === '1'){
             response_element.question_data.forEach( function(question_data_element, index) {
                 html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
@@ -268,7 +271,7 @@ changeLocalStorage = (response) =>
         }
         // total_question = parseInt(this_question.question_data.length)
     });
-    console.log('end ', testing_data)
+    // console.log('end ', testing_data)
     localStorage.setItem('testing', JSON.stringify(testing_data));
 
 }
@@ -278,7 +281,7 @@ $(document).on('click', '#logoutBtn', function(event) {
     event.preventDefault();
     url = $(this).data('route');
     if(testing_data == undefined){
-        testing_data = '';
+        testing_data = [];
     }
     // get local storate
     data = {
@@ -298,44 +301,4 @@ $(document).on('click', '#logoutBtn', function(event) {
         console.log(response);
     });
 
-});
-
-
-$(document).on('click', '.auth-provider', function(event) {
-    alert(1);
-    url = $(this).data('route');
-    if(testing_data == undefined){
-        testing_data = '';
-    }
-    var data = {
-        'local_storage' : testing_data
-    };
-    alert(2);
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: data,
-    }).done(function(response) {
-            console.log(response);
-            if(response.status == 200){
-                // console.log(response.local_storage)
-                localStorage.removeItem('testing');
-                if(response.local_storage === undefined || response.local_storage.length == 0){
-                    alert('somethings wrongs');
-                }else {
-                    // changeLocalStorage(response.local_storage)
-                    alert('co du lieu');
-                }
-                window.location.reload(true)
-
-            }
-            if(response.status == 401){
-
-            }
-        })
-        .fail(function(response) {
-            console.log(response);
-            
-        });
 });

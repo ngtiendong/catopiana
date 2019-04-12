@@ -779,7 +779,7 @@ function showDialogScore(correct, total, login = false) {
         background: 'orange',
         display: 'flex',
     }).then(() => {
-        console.log(login, !login)
+        // console.log(login, !login)
         if(!login){
             $('#modal-after-answertoppic').modal();
         } else {
@@ -791,10 +791,6 @@ function showDialogScore(correct, total, login = false) {
 
 function updateDataTesting()
 {
-    if(testing_data == undefined){
-        testing_data = '';
-    }
-    
     if (type === '2') {
         this_question.answers.forEach(function(value, index) {
             for (var i=0; i<3; i++){
@@ -815,7 +811,7 @@ function updateDataTesting()
     }).done(function(response) {
             // update testing_id đã có trên db,
             if(response.customer_testing_id == ''){
-                
+                // somethings wrongs
             }else {
                 console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
@@ -835,8 +831,8 @@ function updateDataTesting()
         })
 }
 
-updateThisQuestion = (response) =>{
-    this_question.customer_testing_id  = response.customer_testing_id;
-    console.log(this_question);
-    localStorage.setItem('testing', JSON.stringify(testing_data));
-}
+// updateThisQuestion = (response) =>{
+//     this_question.customer_testing_id  = response.customer_testing_id;
+//     console.log(this_question);
+//     localStorage.setItem('testing', JSON.stringify(testing_data));
+// }
