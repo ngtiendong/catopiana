@@ -7,6 +7,7 @@ use Modules\Frontend\Entities\CustomerTesting;
 
 class LocalStorageService
 {
+    // luwu baif test leen serve
     // luc get testing : answer , current_index = answer.lenght , html_arr = content['html_arr'], level_temp = content['level_temp'], question_data = content['question_data'] , status,  
     public function createTesting($local_storage)
     {
@@ -31,7 +32,7 @@ class LocalStorageService
         }
         
     }
-
+    // lay bai test tra lai local_storage
     public function getTesting()
     {
         $customer = auth()->guard('customers')->user();
@@ -44,7 +45,7 @@ class LocalStorageService
             $curriculum_ids = json_decode($testing_item->curriculum_id);
             $level_temp = json_decode($testing_item->content)->level_temp;
             $status = $testing_item->status;
-            $current_index = sizeof($answers) == 0 ? 0 : sizeof($answers) - 1;
+            $current_index = sizeof($answers) == 6 ? sizeof($answers) - 1 : sizeof($answers) ;
             $type  = json_decode($testing_item->content)->type;
             $topic  = json_decode($testing_item->content)->topic;
             $data_response[$key] = [
@@ -62,7 +63,7 @@ class LocalStorageService
         }
         return $data_response;
     }
-
+    // update bai test hoac tao moi,
     public function updateTesting($local_storage)
     {
         $customer = auth()->guard('customers')->user();
@@ -89,7 +90,7 @@ class LocalStorageService
         }
     }
 
-
+    // update 1 topic khi nguoi dung da sign in 
     public function updateThisQuestion($local_storage_item,$level)
     {
         $customer = auth()->guard('customers')->user();

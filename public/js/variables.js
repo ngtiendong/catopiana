@@ -23,3 +23,14 @@ var position_in_local_storage = -1;
 
 //Position
 var max_images_in_column = 0
+
+var topic_arr_free = [
+	'music',
+	'iq',
+	'creative',
+	'difference',
+	'common',
+	'memory',
+	'language',
+	'position'
+];

@@ -53,6 +53,7 @@
         <div class="row"></div>
     </div>
 </section>
+@include('frontend::layouts.modal_in_testing')
 @endsection
 
 
@@ -60,6 +61,7 @@
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
 <script src="{{asset('/js/variables.js')}}"></script>
+<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>

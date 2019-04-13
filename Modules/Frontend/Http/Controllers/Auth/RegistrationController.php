@@ -132,13 +132,19 @@ class RegistrationController extends Controller
     }
 
     public function generateAccount(Request $request)
-    {
+    {   
+        $this->validatorName($request->except('local_storage'))->validate();
         $data_account = [
-            // 'email' => null,
-            'username' => (string) Str::uuid(),
-            'password' => str_random(8)
+            'username' => preg_replace('/\s+/', '' ,$request->input('username')) .'-' . str_random(6),  //substr((string) Str::uuid(), 0, 5),
+            'password' => '123456'  //str_random(8)
         ];
         $customer = $this->create($data_account);
+        if(!$customer){
+            return response()->json([
+                'status' => 500,
+                'errors' => 'Server Error'   
+            ],500);
+        }
         $this->guard()->login($customer);
         // tạo và trả về
         $local_storage = [];
@@ -163,6 +169,14 @@ class RegistrationController extends Controller
     {
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255','unique:customers']
+        ]);
+    }
+
+
+    protected function validatorName(array $data)
+    {
+        return Validator::make($data, [
+            'username' => ['required', 'string', 'max:50','unique:customers']
         ]);
     }
 

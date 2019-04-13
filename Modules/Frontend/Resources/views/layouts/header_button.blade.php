@@ -49,12 +49,12 @@
             </div>
             <div class="modal-body">
                  <div class="content">
-                    {{-- <div class="form-group">
-                        <label for=""  >Password:</label>
-                        <input type="password" class="form-control logpass">
-                        <small class="text-danger hide passwordError"></small>
-                    </div> --}}
                     <p class="text-center">Generate Account</p>
+                    <div class="form-group">
+                        <label for=""  >Your Name:</label>
+                        <input type="text" required class="form-control" name="genName">
+                        <small class="text-danger genNameError"></small>
+                    </div>
                     <div class="form-group text-center div-login">
                         <button type="button" data-route="{{route('generate')}}" id="genButton" class="btn login-btn btn-inline-block">Generate</button>
                         {{-- <a type="button" href="{{route('generate')}}" class="btn login-btn btn-inline-block gen-btn">Generate</a> --}}
@@ -117,35 +117,6 @@
                 <div class="or-seperator"><i>or</i></div>
                 <div class="clearfix">
                     <p class="text-center">Already have an account? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signin-btn"> Sign In</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="modal-after-answertoppic" class="modal fade" role="dialog">
-    <div class="modal-dialog" id="answertoppic">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title text-center"> </h4>
-                <a type="button" class="close-modal" data-dismiss="modal">&times;</a>
-            </div>
-            <div class="modal-body">
-                 <div class="content">
-                    <p class="text-center">Sign in</p>
-                    <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signup-btn"> Sign in</a>
-                </div>
-                </div>
-                <div class="or-seperator"><i>or</i></div>
-                <p class="text-center">Create new account</p>
-                <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a>
-                </div>
-                <div class="or-seperator"><i>or</i></div>
-                <p class="text-center">Next quiz!</p>
-                <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" id="continues-test" class="btn signup-btn"> Continues</a>
                 </div>
             </div>
         </div>

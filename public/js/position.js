@@ -3,14 +3,6 @@ var all_line_array = []
 
 // Variable to solve prev button
 
-$(function(){
-    $('.startBtn').click(async function () {
-        $('.startBtn').css('opacity', '0').css('z-index', '-1');
-        setTimeout(function () {
-            $('#testForm').css('display', 'block').css('opacity', '1')
-        }, 500)
-    });
-
     $(document).on('click', '.list-l-item img',function(e){
         e.preventDefault()
         if ($(this).hasClass("clicked-img")){
@@ -130,7 +122,9 @@ function nextButtonPosition () {
             }
         }
     } else {
-        alert("Please answer the question")
+        // alert("Please answer the question")
+        Swal.fire('Please answer the question')
+
     }
 }
 
@@ -237,7 +231,11 @@ function submitPosition() {
         displayTestUnFinishedAfterSubmit()
 
     } else {
-        alert("Please answer the question")
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Please answer the question!',
+        })
     }
 }
 
@@ -251,4 +249,13 @@ function filterCorrectPosition() {
         }
     })
     return result
+}
+
+function convertAnswersPosition()
+{
+    this_question.answers.forEach(function(value, index) {
+        for (var i=0; i<3; i++){
+            value[i].splice(2,1)
+        }
+    });
 }

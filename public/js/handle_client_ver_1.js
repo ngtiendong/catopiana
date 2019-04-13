@@ -29,7 +29,11 @@ $(function(){
         let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined'){
             //Chua tra loi
-            alert("Please answer the question")
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Please answer the question!',
+            })
         } else {
             just_answer = just_answer.data('position')
             if (this_question.answers.length > this_question.current_index) {
@@ -58,12 +62,20 @@ $(function(){
  */
 $('.startBtn').click(async function () {
     //Check local storage
+    const level_obj = {'4': 'level 4','5': 'level 5','6': 'level 6' }
     if (typeof(test_level) === 'undefined') {
         await swal.fire({
             title: 'Please add level',
-            input: 'text',
-            inputPlaceholder: 'Enter your level',
+            input: 'radio',
+            inputPlaceholder: 'Chose your level',
             confirmButtonText: 'Look up',
+            input: 'radio',
+            inputOptions: level_obj,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to choose your level!'
+                }
+            },
             showLoaderOnConfirm: true,
             preConfirm: (level) => {
                 test_level = level
@@ -89,6 +101,7 @@ $('.startBtn').click(async function () {
                 generateUnfinishedTest(this_question)
                 flag = -1;
                 break
+
             }
         }
         if (flag !== -1) {
@@ -104,8 +117,29 @@ function generateUnfinishedTest(current_data) {
     var html = ''
     var length_answered = current_data.answers.length;
     console.log('length answer', length_answered)
+    // gen lai html, 
+    if(current_data.html_arr.length == 0){
+        current_data.type = current_data.type.toString()
+        console.log(current_data.type, topic, test_level)
+        if (current_data.type === '1'){
+            current_data.question_data.forEach( function(question_data_element, index) {
+                current_data.html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
+                    question_data_element.question_image, question_data_element.answer_image))
+            });
+        } else if (current_data.type === '2'){
+            max_images_in_column = current_data.question_data[0].length
+            current_data.question_data.forEach( function(question_data_element, index) {
+                current_data.html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+            });
+        }
+        else {
+            current_data.question_data.forEach( function(question_data_element, index) {
+                current_data.html_arr.push(render(question_data_element.question, question_data_element.answers))
+            });
 
-    /**
+        }
+    }
+        /**
      * Gen html : Chỗ này code thừa cực nhiều, cần sửa
      */
     if (type == '1'){
@@ -569,7 +603,7 @@ function prev() {
         localStorage.setItem('testing', JSON.stringify(testing_data))
 
         console.log('Old line array : ' ,old_line_array);
-        // console.log('line array', line_array)
+        console.log('line array', line_array)
         console.log('current tag ', this_question.current_index)
         let temp_arr = [...line_array]
 
@@ -696,8 +730,10 @@ function hideQuestion(current_index){
 }
 
 function displayTestUnFinishedAfterSubmit() {
-    list_test_finished.push(parseInt(topic))
-
+    if(!list_test_finished.includes(parseInt(topic))){
+        list_test_finished.push(parseInt(topic))
+    }
+    console.log(list_test_finished);
     let gen_html = '<div style="margin-top:25px; padding-right: 40px">'
 
     for (var i=1; i<9; i++) {
@@ -726,7 +762,11 @@ function nextButton() {
     if (typeof $(just_answer).val() === 'undefined'){
         // Chua tra loi hide
         // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
-        alert("Please answer the question")
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Please answer the question!',
+        })    
     } else {
         tab_number[this_question.current_index].style.display = "none";
         this_question.current_index += 1
@@ -785,6 +825,7 @@ function showDialogScore(correct, total, login = false) {
         } else {
             // Login roi => Update du lieu len
             updateDataTesting()
+            
         }
     });
 }
@@ -823,7 +864,11 @@ function updateDataTesting()
                         background: 'orange',
                         display: 'flex',
                     });
+
+                } else {
+                    $('#modal-after-answertoppic-logined').modal();
                 }
+
             }
         })
         .fail(function(response) {
@@ -836,3 +881,27 @@ function updateDataTesting()
 //     console.log(this_question);
 //     localStorage.setItem('testing', JSON.stringify(testing_data));
 // }
+
+$(document).on('click', '.continues-test', function(event) {
+    event.preventDefault();
+    if(!list_test_finished.includes(parseInt(topic))){
+        list_test_finished.push(parseInt(topic))
+    }
+    var next_quiz = 0;
+    for (var i=1; i<9; i++) {
+        if (list_test_finished.indexOf(i) < 0) {
+            //Chua thi
+            next_quiz = i
+            break;
+        }
+    }
+    // call server last time when have many curriculum
+    // now use variables topic_arr_free[]
+    if(next_quiz == 0){
+        window.location.href = '/'
+    } else {
+        var next_topic = topic_arr_free[next_quiz - 1];
+        window.location.href = '/'+next_topic;
+    }
+    
+});
