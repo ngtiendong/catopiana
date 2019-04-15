@@ -246,4 +246,9 @@ class FrontendController extends Controller
 
     }
 
+    public function resultFreeTest()
+    {
+        return view('frontend::free_test_result');
+    }
+
 }

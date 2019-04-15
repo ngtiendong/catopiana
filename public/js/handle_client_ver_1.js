@@ -863,6 +863,8 @@ function updateDataTesting()
                         text: 'You have completed all free test! You will be receviced free package!',
                         background: 'orange',
                         display: 'flex',
+                    }).then(() =>{
+                        window.location.href = '/free-test-results'
                     });
 
                 } else {
@@ -882,6 +884,7 @@ function updateDataTesting()
 //     localStorage.setItem('testing', JSON.stringify(testing_data));
 // }
 
+// chi voi 8 bai test free
 $(document).on('click', '.continues-test', function(event) {
     event.preventDefault();
     if(!list_test_finished.includes(parseInt(topic))){
@@ -895,10 +898,20 @@ $(document).on('click', '.continues-test', function(event) {
             break;
         }
     }
+    console.log(list_test_finished)
+    console.log(next_quiz);
+    return false;
     // call server last time when have many curriculum
     // now use variables topic_arr_free[]
     if(next_quiz == 0){
-        window.location.href = '/'
+        Swal.fire({
+            title: 'Notice',
+            text: 'You have completed all free test! You will be receviced free package!',
+            background: 'orange',
+            display: 'flex',
+        }).then(() => {
+            window.location.href = '/free-test-results'
+        });
     } else {
         var next_topic = topic_arr_free[next_quiz - 1];
         window.location.href = '/'+next_topic;

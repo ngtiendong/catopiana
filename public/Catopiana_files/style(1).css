@@ -2519,3 +2519,8 @@ label.col-6.label-matching {
     border-radius: 10px;
     border: 1px solid green;
 }
+
+.free_test_result h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}

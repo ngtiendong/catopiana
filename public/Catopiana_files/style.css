@@ -2771,3 +2771,16 @@ footer .col {
 #modal-after-answertoppic-logined p, #modal-after-answertoppic-logined label, #modal-after-answertoppic-logined h4 {
     color: white;
 }
+
+.top.text-center {
+    margin-bottom: 15px;
+}
+
+.bot.text-center {
+    margin-top: 15px;
+}
+
+.free_test_result h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
