@@ -53,7 +53,6 @@ var all_line_array = []
             })
         }
     })
-})
 
 function nextButtonPosition () {
     //Position
@@ -253,9 +252,11 @@ function filterCorrectPosition() {
 
 function convertAnswersPosition()
 {
-    this_question.answers.forEach(function(value, index) {
-        for (var i=0; i<3; i++){
-            value[i].splice(2,1)
-        }
-    });
+    if(typeof this_question != 'undefined'){
+        this_question.answers.forEach(function(value, index) {
+            for (var i=0; i<3; i++){
+                value[i].splice(2,1)
+            }
+        });
+    }
 }
