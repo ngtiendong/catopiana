@@ -46,6 +46,8 @@ Route::group(/**
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider')->name('social');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+    Route::post('/sendLocalStorageSocial', 'Auth\SocialAccountController@sendLocalStorageSocial');
+
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
 
     Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');

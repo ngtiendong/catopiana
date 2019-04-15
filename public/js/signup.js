@@ -94,6 +94,7 @@ $(document).on('click', '#genButton', function(event) {
                 text: 'Username: '+response.username+'\n Password: '+response.password,
                 footer: 'Please save your account!'
             }).then(()=>{
+                return false;
                 window.location.reload(true);
 
             })
@@ -210,6 +211,9 @@ $("#modal-sign-in").on("hidden.bs.modal", function () {
 
 changeLocalStorage = (response) =>
 {
+    if(response === '[]'){
+        return;
+    }
     console.log('res', response)
     // console.log('start:' , testing_data)
     // localStorage.removeItem('testing');
@@ -301,4 +305,50 @@ $(document).on('click', '#logoutBtn', function(event) {
         console.log(response);
     });
 
+});
+
+$(document).on('click', '.social-link', function(event) {
+    event.preventDefault();
+    url = $(this).data('route');
+    if(testing_data == undefined){
+        testing_data = [];
+    }
+    // delete line in postion page
+    if(typeof type != 'undefined' &&  type === '2' ){
+       convertAnswersPosition()
+    }
+    // get local storate
+    var data = {
+        'local_storage' : testing_data
+    };
+    $.ajax({
+        url: '/sendLocalStorageSocial',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        async : false,
+    })
+    .done(function(response) {
+        console.log("success");
+        alert(url);
+        window.location.href=url;
+    })
+    .fail(function(response) {
+        console.log(response);
+    })
+    .always(function(response) {
+        console.log(response);
+    });
+    
+});
+// get localstorgae from session
+$(document).ready(function() {
+    var storage = $('.storage').data('storage')
+    console.log('storage',storage)
+    if(storage !== '')
+    {
+        localStorage.removeItem('testing');
+        changeLocalStorage(storage);
+        console.log('change local_storage')
+    }
 });

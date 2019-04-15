@@ -31,8 +31,8 @@
                 <div class="or-seperator"><i>or</i></div>
                 <p class="text-center">Login with your social media account</p>
                 <div class="text-center social-btn">
-                    <a href="{{route('social',['facebook'])}}" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-                    <a href="{{route('social',['google'])}}" class="btn btn-danger"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
+                    <a data-route="{{route('social',['facebook'])}}" type="button" class="btn btn-primary social-link"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                    <a data-route="{{route('social',['google'])}}" type="button" class="btn btn-danger social-link"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
                 </div>
             </div>
         </div>
@@ -122,3 +122,7 @@
         </div>
     </div>
 </div>
+<div class="storage hidden" data-storage="{{ session('local_storage_response') == null ? "" : json_encode(session('local_storage_response'))  }}" style="display: none"></div>
+@if(session('local_storage_response') != null)
+    {{session()->forget('local_storage_response')}}
+@endif

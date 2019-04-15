@@ -4,7 +4,6 @@
 
 var list_test_finished = []
 var testing_data
-
 if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')
     var testing = localStorage.getItem('testing');
