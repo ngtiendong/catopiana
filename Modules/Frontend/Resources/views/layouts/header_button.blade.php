@@ -31,8 +31,8 @@
                 <div class="or-seperator"><i>or</i></div>
                 <p class="text-center">Login with your social media account</p>
                 <div class="text-center social-btn">
-                    <a href="{{route('social',['facebook'])}}" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-                    <a href="{{route('social',['google'])}}" class="btn btn-danger"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
+                    <a data-route="{{route('social',['facebook'])}}" type="button" class="btn btn-primary social-link"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                    <a data-route="{{route('social',['google'])}}" type="button" class="btn btn-danger social-link"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
                 </div>
             </div>
         </div>
@@ -49,12 +49,12 @@
             </div>
             <div class="modal-body">
                  <div class="content">
-                    {{-- <div class="form-group">
-                        <label for=""  >Password:</label>
-                        <input type="password" class="form-control logpass">
-                        <small class="text-danger hide passwordError"></small>
-                    </div> --}}
                     <p class="text-center">Generate Account</p>
+                    <div class="form-group">
+                        <label for=""  >Your Name:</label>
+                        <input type="text" required class="form-control" name="genName">
+                        <small class="text-danger genNameError"></small>
+                    </div>
                     <div class="form-group text-center div-login">
                         <button type="button" data-route="{{route('generate')}}" id="genButton" class="btn login-btn btn-inline-block">Generate</button>
                         {{-- <a type="button" href="{{route('generate')}}" class="btn login-btn btn-inline-block gen-btn">Generate</a> --}}
@@ -122,32 +122,7 @@
         </div>
     </div>
 </div>
-<div id="modal-after-answertoppic" class="modal fade" role="dialog">
-    <div class="modal-dialog" id="answertoppic">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title text-center"> </h4>
-                <a type="button" class="close-modal" data-dismiss="modal">&times;</a>
-            </div>
-            <div class="modal-body">
-                 <div class="content">
-                    <p class="text-center">Sign in</p>
-                    <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-sign-in" class="btn signup-btn"> Sign in</a>
-                </div>
-                </div>
-                <div class="or-seperator"><i>or</i></div>
-                <p class="text-center">Create new account</p>
-                <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" class="btn signup-btn"> Sign Up</a>
-                </div>
-                <div class="or-seperator"><i>or</i></div>
-                <p class="text-center">Next quiz!</p>
-                <div class="text-center div-signup">
-                    <a type="button" data-dismiss="modal" id="continues-test" class="btn signup-btn"> Continues</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="storage hidden" data-storage="{{ session('local_storage_response') == null ? "" : json_encode(session('local_storage_response'))  }}" style="display: none"></div>
+@if(session('local_storage_response') != null)
+    {{session()->forget('local_storage_response')}}
+@endif

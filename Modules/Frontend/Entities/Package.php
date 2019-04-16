@@ -14,4 +14,9 @@ class Package extends Model
     {
         return $this->belongsToMany(Customer::class,'customer_package');
     }
+
+    public function curriculums()
+    {
+        return $this->belongsToMany(Curriculum::class,'package_curriculum');
+    }
 }

@@ -24,10 +24,15 @@ Route::group(/**
     Route::get('/memory', 'FrontendController@test')->name('memory');
     Route::get('/language', 'FrontendController@test')->name('language');
     Route::get('/position', 'FrontendController@position')->name('position');
+    Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('position');
 
-    Route::get('/getQA', 'FrontendController@getQA')->name('getQA');
-    Route::get('/getQAAudio', 'FrontendController@getQAAudio')->name('getQAAudio');
-
+    // free package
+    Route::get('/physics', 'FrontendController@test')->name('physics')->middleware('test');
+    Route::get('/chemistry', 'FrontendController@position')->name('chemistry')->middleware('test');
+    Route::get('/math', 'FrontendController@test')->name('math')->middleware('test');
+    Route::get('/animal', 'FrontendController@position')->name('animal')->middleware('test');
+    Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('test');
+    Route::get('/plant', 'FrontendController@position')->name('plant')->middleware('test');
 
     Route::post('/get-list-question', 'FrontendController@getListQuestion');
     Route::post('/get-list-less-level-question', 'FrontendController@getListLessLevelQuestion');
@@ -43,6 +48,8 @@ Route::group(/**
 
     Route::get('/login/{provider}','Auth\SocialAccountController@redirectToProvider')->name('social');
     Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+    Route::post('/sendLocalStorageSocial', 'Auth\SocialAccountController@sendLocalStorageSocial');
+
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
 
     Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');

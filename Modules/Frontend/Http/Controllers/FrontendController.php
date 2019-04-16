@@ -8,17 +8,29 @@ use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Modules\Frontend\Entities\Question;
+use Modules\Frontend\Services\PackageService;
 
 class FrontendController extends Controller
 {
+    protected $packageService;
+    public function __construct(PackageService $packageService)
+    {
+        $this->packageService = $packageService;
+    }
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-//        dd(auth()->guard('customers')->user()->test_status);
-        return view('frontend::home');
+        $freePackage = null;
+        if(auth()->guard('customers')->user()){
+            $freePackage = $this->packageService->getFreePackage();
+        }
+        if($freePackage == null) {
+            return view('frontend::home');
+        }
+        return view('frontend::home',compact('freePackage'));
     }
 
     /**
@@ -200,7 +212,7 @@ class FrontendController extends Controller
 
             case 'animal':
                 return [
-                    'topic' => "10",
+                    'topic' => "12",
                     'type' => "0"
                 ];
                 break;
@@ -232,6 +244,11 @@ class FrontendController extends Controller
         }
 
 
+    }
+
+    public function resultFreeTest()
+    {
+        return view('frontend::free_test_result');
     }
 
 }

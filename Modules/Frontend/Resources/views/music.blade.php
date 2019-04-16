@@ -51,6 +51,7 @@
         <div class="row"></div>
     </div>
 </section>
+@include('frontend::layouts.modal_in_testing')
 @endsection
 
 

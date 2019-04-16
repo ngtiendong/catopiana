@@ -200,13 +200,22 @@ jQuery(function($) {
 	});
 
 	tl2 = new TimelineMax({ repeat: -1, yoyo: true });
-		tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.1);
+		tl2.to('#c1', 2, {rotation: 360, transformOrigin:"50% 50%"}, 0.);
 	$('.science').hover(function() {
 		tl2.play();
 	}, function() {
 		tl2.restart();
 		tl2.pause();
 	});
+	// free topic at home page
+	array_svg.forEach((item, key) => {
+	  	if(key < 4) {
+	  		$('.free_topic .top').append(item)
+	  	} else if ( key < 8) {
+	  		$('.free_topic .bot').append(item)
+	  	}
+
+	})
 
 	$($('.test-item')).hover(function() {
 		tlgt = new TimelineMax();
@@ -223,61 +232,20 @@ jQuery(function($) {
 	// end animation
 
 
-	var ii = 0;
-	$('.test-now').click(function() {
-		ii++;
+	// var ii = 0;
+	// $('.test-now').click(function() {
+		// ii++;
 		// if(ii % 2 != 0) {
 		// 	TweenMax.to('.list-test .top', 0.3, {css: {'opacity':'1', 'z-index':'1'}}, 0.1);
 		// 	TweenMax.to('.list-test .bot', 0.3, {css: {'opacity':'1', 'z-index':'1'}}, 0.1);
 		// } else {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
-	});
-	// if(!localStorage.getItem('IQ')) {
-	// 	console.log('not login yet');
-	// } else {
-	// 	console.log('logged in')
-	// }
-
-	// $('.startBtn').click(function(){
-	// 	$(this).css('opacity','0').css('z-index','-1');
-	// 	setTimeout(function(){
-	// 		$('#testForm').css('display','block').css('opacity','1')
-	// 	}, 700)
 	// });
-
-	// $(document).on('click', '.submitName', function(){
-	// 	var uname = "",
-	// 		upass = "";
-
-	// 	var possibleName = "0123456789";
-	// 	var possiblePass = "AaBbCcDdEeFfJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-
-	// 	for (var i = 0; i < 5; i++) {
-	// 		uname += possibleName.charAt(Math.floor(Math.random() * possibleName.length));
-	// 		upass += possiblePass.charAt(Math.floor(Math.random() * possiblePass.length));
-	// 	}
-	// 	uname = $('.regName').val().toLowerCase() + uname;
-	// 	console.log(uname);
-	// 	$(".testOverlay").append(
-	// 						'<div class="popupResult">'
-	// 						+    '<p>Howdie ' + $('.regName').val() + '!</p>'
-	// 						+    '<p>Your score: ' + checkNumTrue(ca_arr, ra) + '/'+ x.length +'</p>'
-	// 						+    '<p class="small">Please write down your account below:</p>'
-	// 						+	 '<p class="small">Username: '+ uname + '</p>'
-	// 						+	 '<p class="small">Password: '+ upass + '</p>'
-	// 						+ '</div>'
-	// 					);
-	// 	localStorage.setItem('username',uname);
-	// });
-
-	// $('.sign').click(function(){
-	// 	$('body').toggleClass('overlay');
-	// 	$($(this).children('a').attr('href')).toggleClass('active');
-	// });
-	// $('.signWindow a').click(function() {
-	// 	$(".signWindow").removeClass('active');
-	// 	$('body').removeClass('overlay');
-	// });
+	
+	
+	
 
 });
+
+

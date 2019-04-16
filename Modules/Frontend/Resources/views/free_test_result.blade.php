@@ -17,25 +17,14 @@
                 <h3></h3>
             </div>
             <div class="col-md-12">
-                <div class="testOverlay">
-                    <input id="type" value="{{$type_and_topic['type']}}" hidden>
-                    <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
-
-                    <a class="startBtn">Click To Start!</a>
-                    <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
-
-                            <button class="test-button" type="button" id="prevBtn"  onclick="prev()">Previous</button>
-                            <button class="test-button" type="button" id="nextBtn" onclick="next()">Next</button>
-                            <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
-                        <div class="dot">
-                            <span class="badge badge-pill badge-primary"></span>
-
-
-                            {{--<span class="step active" onclick="currentQ(0)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(1)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(2)"></span>--}}
+                <div class="testOverlay free_test_result">
+                    <div class="row">
+                        <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your free test results</h2>
+                        <div class="top text-center" style="margin-bottom: 15px"> 
                         </div>
-                    </form>
+                        <div class="bot text-center" style="margin-bottom: 15px">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,16 +42,33 @@
         <div class="row"></div>
     </div>
 </section>
-@include('frontend::layouts.modal_in_testing')
 @endsection
 
 
 @section('js')
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
-<script src="{{asset('/js/variables.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        console.log()
+        for (var i = 0; i < testing_data.question.length; i++) {
+            this_question = testing_data.question[i];
+            // console.log('current', current_data)
+
+            if (this_question.status == 1) {
+               total_question = parseInt(this_question.question_data.length);
+               correct = this_question.answers.filter(answer => answer == 0).length;
+               result = correct+'/'+total_question;
+               topic = parseInt(this_question.topic)
+               if(i < 4) {
+                    $('.free_test_result .top').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
+                } else if ( i < 8) {
+                    $('.free_test_result .bot').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
+                }
+            }
+        }
+    });
+</script>
 @endsection

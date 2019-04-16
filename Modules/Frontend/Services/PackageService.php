@@ -38,7 +38,7 @@ class PackageService
 
     protected function giveFreePackage()
     {
-        $package = Package::where('type', 0)->first();
+        $package = Package::where('type', 0)->first(); // package 0 free - 1 paid
         $this->customer->update(['test_status' => 1]);
         $this->customer->packages()->attach($package->id,[
             'payment_amount' => 0,
@@ -47,5 +47,16 @@ class PackageService
             'payment_status' => null
         ]);
         return true;
+    }
+
+    public function getFreePackage()
+    {
+        $this->customer = auth()->guard('customers')->user();
+        $package = $this->customer->packages()->with('curriculums','curriculums.topic')->where('type',0)->first();
+        if ($package == null){
+            return null;
+        }
+        $curriculums = $package->curriculums->take(4);
+        return $curriculums;
     }
 }

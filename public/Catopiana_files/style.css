@@ -2734,4 +2734,53 @@ footer .col {
 
 #modal-after-answertoppic p, #modal-after-answertoppic label, #modal-after-answertoppic h4 {
     color: white;
+
+}
+
+
+#modal-after-answertoppic-logined {
+    font-family: inherit;
+}
+
+#modal-after-answertoppic-logined .modal-dialog {
+    width: 300px;
+}
+
+#modal-after-answertoppic-logined .modal-content {
+    background: rgb(25, 136, 187);
+}
+
+#modal-after-answertoppic-logined .modal-header {
+    border: 0 none;
+    padding: 15px 15px 15px;    /*     padding: 11px 15px; */
+}
+
+#modal-after-answertoppic-logined .modal-header h3 {
+    text-align: center;
+}
+
+#modal-after-answertoppic-logined .div-continue {
+    margin-top: 15px;
+    margin-top: 10px;
+}
+
+#modal-after-answertoppic-logined .continues-test {
+    background: white;
+}
+
+#modal-after-answertoppic-logined p, #modal-after-answertoppic-logined label, #modal-after-answertoppic-logined h4 {
+    color: white;
+}
+
+.top.text-center {
+    margin-bottom: 15px;
+}
+
+.bot.text-center {
+    margin-top: 15px;
+}
+
+.free_test_result h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
 }

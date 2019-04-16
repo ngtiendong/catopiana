@@ -35,7 +35,9 @@ class SocialAccountController extends Controller
         try {
             $userSocial = Socialite::driver($provider)->user();
         } catch(\Exception $e) {
+            session()->forget('local_storage');
             return redirect($url);
+            // show message here error server
         }
         // find in database if not create
         $user = Customer::where('provider_name', $provider)
@@ -54,11 +56,37 @@ class SocialAccountController extends Controller
                     'provider_name' => $provider,
                 ]);
             } else {
+                session()->forget('local_storage');
                 return redirect($url);
+                // email social này đã đăng kí tài khoản
             }
-        }
-        auth()->guard('customers')->login($user, true);
+            auth()->guard('customers')->login($user, true);
+            // user mới thì thêm dữ liệu vào db
+            $local_storage = session('local_storage');
 
+            if(!empty($local_storage))
+            {
+                $this->localStorageService->createTesting($local_storage);
+            }
+        } else {
+            auth()->guard('customers')->login($user, true);
+        }
+        
+        $local_storage_response = [];
+        $local_storage = session('local_storage');
+        if(auth()->guard('customers')->user()->test_status == 0){
+            $local_storage_response = $this->localStorageService->getTesting();
+        }
+        session(['local_storage_response' => $local_storage_response]);
+        session()->forget('local_storage');
         return redirect($url);
+    }
+
+    public function sendLocalStorageSocial(Request $request)
+    {
+        session(['local_storage' => $request->input('local_storage')]);
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 }
