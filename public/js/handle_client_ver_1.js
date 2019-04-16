@@ -821,6 +821,7 @@ function showDialogScore(correct, total, login = false) {
     }).then(() => {
         // console.log(login, !login)
         if(!login){
+            alert(1)
             $('#modal-after-answertoppic').modal();
         } else {
             // Login roi => Update du lieu len
@@ -898,12 +899,16 @@ $(document).on('click', '.continues-test', function(event) {
             break;
         }
     }
-    console.log(list_test_finished)
-    console.log(next_quiz);
-    return false;
+    console.log(list_test_finished);
+    // đã làm sang bài test tặng
+    if(list_test_finished.length > 8){
+        alert(1);
+        next_quiz = -1;
+    }
+    
     // call server last time when have many curriculum
     // now use variables topic_arr_free[]
-    if(next_quiz == 0){
+    if (next_quiz == 0){
         Swal.fire({
             title: 'Notice',
             text: 'You have completed all free test! You will be receviced free package!',
@@ -912,9 +917,11 @@ $(document).on('click', '.continues-test', function(event) {
         }).then(() => {
             window.location.href = '/free-test-results'
         });
+    } else if (next_quiz == -1) {
+        // làm xong bài khác bài free
+        window.location.href = '/';
     } else {
         var next_topic = topic_arr_free[next_quiz - 1];
         window.location.href = '/'+next_topic;
     }
-    
 });
