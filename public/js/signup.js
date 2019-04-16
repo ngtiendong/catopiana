@@ -92,11 +92,10 @@ $(document).on('click', '#genButton', function(event) {
                 type: 'success',
                 title: 'Your account:',
                 text: 'Username: '+response.username+'\n Password: '+response.password,
-                footer: 'Please save your account!'
+                footer: 'Please save your account!',
+                allowOutsideClick: false
             }).then(()=>{
-                return false;
                 window.location.reload(true);
-
             })
 
         })
@@ -330,7 +329,6 @@ $(document).on('click', '.social-link', function(event) {
     })
     .done(function(response) {
         console.log("success");
-        alert(url);
         window.location.href=url;
     })
     .fail(function(response) {

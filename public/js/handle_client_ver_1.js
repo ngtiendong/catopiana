@@ -32,8 +32,8 @@ $(function(){
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'Please answer the question!',
-            })
+                text: 'Please answer the question!'
+            });
         } else {
             just_answer = just_answer.data('position')
             if (this_question.answers.length > this_question.current_index) {
@@ -819,10 +819,38 @@ function showDialogScore(correct, total, login = false) {
         background: 'orange',
         display: 'flex',
     }).then(() => {
-        // console.log(login, !login)
         if(!login){
-            alert(1)
-            $('#modal-after-answertoppic').modal();
+            Swal.fire({
+              title: 'Great Job!',
+              text: "Will you do the next lesson?",
+              type: 'question',
+              showCancelButton: true,
+              confirmButtonText: 'Continue Test',
+              cancelButtonText: 'Sign up',
+              cancelButtonColor :'#3085d6',
+              reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    continueTest();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire({
+                        title: 'Great Job!',
+                        text: "Do you want to register or sign in?",
+                        type: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sign In',
+                        cancelButtonText: 'Sign up',
+                        cancelButtonColor :'#3085d6',
+                    }).then((result) => {
+                        if (result.value) {
+                            $('#modal-sign-in').modal();
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            $('#modal-sign-up').modal();
+                        }
+                    });
+                }
+            })
+            
         } else {
             // Login roi => Update du lieu len
             updateDataTesting()
@@ -855,7 +883,7 @@ function updateDataTesting()
             if(response.customer_testing_id == ''){
                 // somethings wrongs
             }else {
-                console.log(response);
+                // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
                 localStorage.setItem('testing', JSON.stringify(testing_data));               
                 if(response.givePackage == true){
@@ -869,7 +897,19 @@ function updateDataTesting()
                     });
 
                 } else {
-                    $('#modal-after-answertoppic-logined').modal();
+                    // $('#modal-after-answertoppic-logined').modal();
+                    Swal.fire({
+                        title: 'Great job!',
+                        text: 'Will you do the next lesson?',
+                        type:'question',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Continue',
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                        if (result.value) {
+                            continueTest();
+                        }
+                    });
                 }
 
             }
@@ -879,15 +919,13 @@ function updateDataTesting()
         })
 }
 
-// updateThisQuestion = (response) =>{
-//     this_question.customer_testing_id  = response.customer_testing_id;
-//     console.log(this_question);
-//     localStorage.setItem('testing', JSON.stringify(testing_data));
-// }
-
-// chi voi 8 bai test free
 $(document).on('click', '.continues-test', function(event) {
     event.preventDefault();
+    continueTest();
+});
+// chi voi 8 bai test free
+function continueTest()
+{
     if(!list_test_finished.includes(parseInt(topic))){
         list_test_finished.push(parseInt(topic))
     }
@@ -899,10 +937,9 @@ $(document).on('click', '.continues-test', function(event) {
             break;
         }
     }
-    console.log(list_test_finished);
+    // console.log(list_test_finished);
     // đã làm sang bài test tặng
     if(list_test_finished.length > 8){
-        alert(1);
         next_quiz = -1;
     }
     
@@ -924,4 +961,4 @@ $(document).on('click', '.continues-test', function(event) {
         var next_topic = topic_arr_free[next_quiz - 1];
         window.location.href = '/'+next_topic;
     }
-});
+}

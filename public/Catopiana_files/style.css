@@ -2784,3 +2784,8 @@ footer .col {
     font-size: 30px;
     margin-bottom: 25px;
 }
+
+.package-paid.card.col-md-3.text-white.bg-light.border-danger {
+    padding: 10px;
+    border: solid 1px dimgrey;
+}

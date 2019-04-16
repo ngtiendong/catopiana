@@ -13,13 +13,13 @@ class PaymentService
     {   
         // can pass array of id curriculum to query
         $data = [];
-        $curriculums = Curriculum::with('topic')->where('type',1)->get();
+        $curriculums = Curriculum::with('topic')->where('type',0)->take(2)->get();
         foreach($curriculums as $key => $curriculum)
         {
             $data[] = [
                 'name'     => 'Curriculum '. $curriculum->topic->name . ' level '. $curriculum->level,
                 'sku'      =>  $key + 1 ,
-                'price'    => '70'
+                'price'    => '20'
             ];
         }
         return $data;

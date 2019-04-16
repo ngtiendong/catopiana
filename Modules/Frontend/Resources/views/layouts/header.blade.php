@@ -16,6 +16,9 @@
             </li>
 			@else
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+                 <a class="smooth" href="{{ route('buy-package') }}"><i class="fa fa-shopping-cart">&nbsp Buy</i></a>
+            </li>
+			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
                 <a class="smooth" href="#">{{auth()->guard('customers')->user()->username}}</a>
             </li>
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">

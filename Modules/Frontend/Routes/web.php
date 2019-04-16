@@ -25,6 +25,7 @@ Route::group(/**
     Route::get('/language', 'FrontendController@test')->name('language');
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('position');
+    Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
 
     // free package
     Route::get('/physics', 'FrontendController@test')->name('physics')->middleware('test');

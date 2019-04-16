@@ -62,7 +62,6 @@
 @section('js')
 
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
-<script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('/js/two.js')}}"></script>
 <script src="{{asset('/admin-lte/plugins/anseki-leader-line/leader-line.min.js')}}"></script>
 

@@ -24,10 +24,10 @@ class LocalStorageService
                 'customer_id' => auth()->guard('customers')->user()->id,
                 'curriculum_id' => json_encode($local_storage_item['curriculum_ids']),
                 'content' => json_encode($content),
-                'answer' => json_encode($local_storage_item['answers']),
+                'answer' => json_encode(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []),
                 'time_finish' => null,
                 'score' => null,
-                'status' => sizeof($local_storage_item['answers']) == sizeof($local_storage_item['question_data']) ? 1 : 0
+                'status' => sizeof(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []) == sizeof($local_storage_item['question_data']) ? 1 : 0
             ]);
         }
         
@@ -81,10 +81,10 @@ class LocalStorageService
                 [
                     'curriculum_id' => json_encode($local_storage_item['curriculum_ids']),
                     'content' => json_encode($content),
-                    'answer' => json_encode($local_storage_item['answers']),
+                    'answer' => json_encode(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []),
                     'time_finish' => null,
                     'score' => null,
-                    'status' => sizeof($local_storage_item['answers']) == sizeof($local_storage_item['question_data']) ? 1 : 0
+                    'status' => sizeof(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []) == sizeof($local_storage_item['question_data']) ? 1 : 0
                 ]
             );
         }
@@ -106,10 +106,10 @@ class LocalStorageService
             [
                 'curriculum_id' => json_encode($local_storage_item['curriculum_ids']),
                 'content' => json_encode($content),
-                'answer' => json_encode($local_storage_item['answers']),
+                'answer' => json_encode(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []),
                 'time_finish' => null,
                 'score' => null,
-                'status' => sizeof($local_storage_item['answers']) == sizeof($local_storage_item['question_data']) ? 1 : 0
+                'status' => sizeof(isset($local_storage_item['answers']) ? $local_storage_item['answers'] : []) == sizeof($local_storage_item['question_data']) ? 1 : 0
             ]
         );
         return $this_testing->id;
