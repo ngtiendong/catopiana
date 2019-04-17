@@ -34,3 +34,6 @@ var topic_arr_free = [
 	'language',
 	'position'
 ];
+
+const bar = document.querySelector('.bar');
+const progress = document.querySelector('.progress');
