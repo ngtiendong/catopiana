@@ -62,23 +62,23 @@ $(function(){
  */
 $('.startBtn').click(async function () {
     //Check local storage
-    const level_obj = {'4': 'level 4','5': 'level 5','6': 'level 6' }
     if (typeof(test_level) === 'undefined') {
         await swal.fire({
-            title: 'Please add level',
-            input: 'radio',
+            title: 'Please add level',f
+            input: 'number',
             inputPlaceholder: 'Chose your level',
             confirmButtonText: 'Look up',
-            input: 'radio',
-            inputOptions: level_obj,
             inputValidator: (value) => {
                 if (!value) {
-                    return 'You need to choose your level!'
-                }
+                    return 'You need to add your level !'
+                } 
+                if(value < 1) {
+                    return 'Your level must be greater than 0!'
+                } 
             },
             showLoaderOnConfirm: true,
-            preConfirm: (level) => {
-                test_level = level
+            preConfirm: (value) => {
+                test_level = value
                 return getNewQuestionData(position_in_local_storage)
             },
             allowOutsideClick: () => !Swal.isLoading()
@@ -886,10 +886,10 @@ function updateDataTesting()
                 // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
                 localStorage.setItem('testing', JSON.stringify(testing_data));               
-                if(response.givePackage == true){
+                if(response.givePackage == true ){
                     Swal.fire({
                         title: 'Notice',
-                        text: 'You have completed all free test! You will be receviced free package!',
+                        text: 'You have completed all free test!',
                         background: 'orange',
                         display: 'flex',
                     }).then(() =>{
@@ -930,35 +930,38 @@ function continueTest()
         list_test_finished.push(parseInt(topic))
     }
     var next_quiz = 0;
+    var count_free_package = 0;
     for (var i=1; i<9; i++) {
         if (list_test_finished.indexOf(i) < 0) {
             //Chua thi
             next_quiz = i
             break;
         }
+        count_free_package++;
     }
     // console.log(list_test_finished);
     // đã làm sang bài test tặng
-    if(list_test_finished.length > 8){
+    if(count_free_package == 8){
         next_quiz = -1;
     }
     
     // call server last time when have many curriculum
     // now use variables topic_arr_free[]
-    if (next_quiz == 0){
+    if (count_free_package == 0 && list_test_finished.indexOf(parseInt(topic)) > 0) {
         Swal.fire({
             title: 'Notice',
-            text: 'You have completed all free test! You will be receviced free package!',
+            text: 'You have completed all your free test!!',
             background: 'orange',
             display: 'flex',
         }).then(() => {
             window.location.href = '/free-test-results'
         });
-    } else if (next_quiz == -1) {
+    }  
+    if (next_quiz > 1 && next_quiz < 9) {
         // làm xong bài khác bài free
-        window.location.href = '/';
-    } else {
         var next_topic = topic_arr_free[next_quiz - 1];
         window.location.href = '/'+next_topic;
+    } else {
+        window.location.href = '/';
     }
 }

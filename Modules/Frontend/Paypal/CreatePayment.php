@@ -25,13 +25,13 @@ class CreatePayment extends Paypal
             $approvalUrl = $payment->getApprovalLink();
         // Redirect the customer to $approvalUrl
         } catch (PayPal\Exception\PayPalConnectionException $e) {
-            echo $e->getCode();
-            echo $e->getData();
-            die($e);
-            return redirect('/buy-package')->with('buy_package_error' ,'There was an error! Please try again later');
+            // echo $e->getCode();
+            // echo $e->getData();
+            // die($e);
+            return redirect()->route('packages')->with('buy_package_error' ,'There was an error! Please try again later');
         } catch (\Exception $e) {
-            die($e);
-            return redirect('/buy-package')->with('buy_package_error' ,'There was an error! Please try again later');
+            // die($e);
+            return redirect()->route('packages')->with('buy_package_error' ,'There was an error! Please try again later');
         }
         return redirect($approvalUrl);
     }

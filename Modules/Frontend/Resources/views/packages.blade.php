@@ -8,6 +8,7 @@
                         
                 <form id="form-payment" method="POST" action="{{route('create-payment')}}">
                     @csrf
+                    <input name="price" type="text" class="hidden">
                 </form>
                 <div class="row">
                     <h3 class="text-center">Buy Package</h3>
@@ -30,7 +31,7 @@
                                     <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Free Unlimited Private Curriculum</li>
                                     <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Monthly Unlimited Private Curriculum</li>
                                 </ul>
-                                <a href="#" class="btn-checkout btn-block btn-warning text-uppercase">Let's Do it</a>
+                                <a data-route="{{ route('getCurriculumsFreePackage') }}" data-test_status="{{$can_receive_free_package}}" class="btn-checkout btn-block btn-warning text-uppercase receive-free-package">Let's Do it</a>
                             </div>
                         </div>
                     </div>
@@ -46,12 +47,16 @@
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 2</li>
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 3</li>
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 4</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Unlimited Private Curriculum</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private Curriculum</li>
                                     <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Free Unlimited Private Curriculum</li>
                                     <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Monthly Unlimited Private Curriculum</li>
                                 </ul>
-                                <a href="#" class="btn-checkout btn-block btn-primary text-uppercase checkout">CheckOut</a>
+                                @if( $package_paid == null)
+                                <a href="#" class="btn-checkout btn-block btn-primary text-uppercase checkout" data-price="11.99">CheckOut</a>
+                                @else
+                                <a href="{{ route('getCurriculumsPaidPackage') }}" class="btn-checkout btn-block btn-warning text-uppercase">Let's Do it</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -67,12 +72,12 @@
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 2</li>
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 3</li>
                                     <li><span class="fa-li"><i class="fa fa-check"></i></span>Topic 4</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Unlimited Private Curriculum</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Unlimited Private Curriculum</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Free Unlimited Private Curriculum</li>
-                                    <li><span class="fa-li"><i class="fa fa-times"></i></span>Monthly Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Free Unlimited Private Curriculum</li>
+                                    <li><span class="fa-li"><i class="fa fa-check"></i></span>Monthly Unlimited Private Curriculum</li>
                                 </ul>
-                                <a href="#" class="btn-checkout btn-block btn-primary text-uppercase checkout">Checkout</a>
+                                <a href="#" class="btn-checkout btn-block btn-primary text-uppercase checkout-not-ready" data-price="21.99">Comming soon ...</a>
                             </div>
                         </div>
                     </div>
@@ -94,18 +99,19 @@
                 type: 'info',
                 title: '{{session('buy_package_light')}}',
                 showConfirmButton: false,
-              timer: 3000
+              timer: 5000
             })
         @elseif (session()->has('buy_package_error'))
             Swal.fire({
                 type: 'error',
                 title: '{{session('buy_package_error')}}',
                 showConfirmButton: false,
-              timer: 3000
+              timer: 5000
             })
         @endif
         $(document).on('click', '.checkout', function(event) {
             event.preventDefault();
+            price = $(this).data('price');
             Swal.fire({
                 title: '<h2><strong>Checkout<u></u></strong></h2>',
                 type: 'info',
@@ -126,9 +132,34 @@
                 cancelButtonAriaLabel: 'Cancel',
             }).then((result) => {
                 if(result.value) {
+                    $('input[name="price"]').val(price)
                     $('#form-payment').submit();
                 }
             })        
+        });
+
+        $(document).on('click', '.receive-free-package', function(event) {
+            event.preventDefault();
+            test_status = $(this).data('test_status');
+            url = $(this).data('route');
+            if(test_status == 0) {
+                Swal.fire({
+                    type: 'notice',
+                    title: 'Opps...',
+                    text: "You haven't completed 8 original quiz!"
+                });
+            } else {
+                window.location.href = url;
+            }
+        });
+
+        $(document).on('click', '.checkout-not-ready', function(event) {
+            event.preventDefault();
+                Swal.fire({
+                    type: 'warning',
+                    title: 'Opps...',
+                    text: "This package is not really ready"
+                });
         });
 
     </script>

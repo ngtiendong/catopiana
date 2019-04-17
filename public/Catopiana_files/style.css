@@ -17,7 +17,71 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
 */
-object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -36,19 +100,33 @@ html {
     scroll-behavior: smooth;
 }
 
-b, strong, th {
+b,
+strong,
+th {
     font-weight: bold;
 }
 
-i, em {
+i,
+em {
     font-style: italic;
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 75%;
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block;
 }
 
@@ -64,7 +142,8 @@ del {
     text-decoration: line-through;
 }
 
-abbr[title], dfn[title] {
+abbr[title],
+dfn[title] {
     border-bottom: 1px dotted;
     cursor: help;
 }
@@ -83,17 +162,23 @@ hr {
     padding: 0;
 }
 
-input, select {
+input,
+select {
     vertical-align: middle;
 }
 
-a, a:hover, a:focus, a:active {
+a,
+a:hover,
+a:focus,
+a:active {
     text-decoration: none;
     color: inherit;
     outline: none;
 }
 
-ol, ul, li {
+ol,
+ul,
+li {
     padding: 0;
     list-style: none;
     margin: 0;
@@ -103,7 +188,9 @@ label {
     font-weight: normal;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     padding-left: 12px;
     padding-right: 12px;
 }
@@ -121,7 +208,14 @@ textarea {
     padding: 8px 12px 5px 12px;
 }
 
-input, textarea, select, button, a, button:hover, button:active, button:focus {
+input,
+textarea,
+select,
+button,
+a,
+button:hover,
+button:active,
+button:focus {
     outline: none;
 }
 
@@ -169,7 +263,8 @@ img {
     margin-right: 0px;
 }
 
-.col-mar-0 [class*="col-"], .col-mar-0 .col {
+.col-mar-0 [class*="col-"],
+.col-mar-0 .col {
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -179,7 +274,8 @@ img {
     margin-right: -5px;
 }
 
-.col-mar-5 [class*="col-"], .col-mar-5 .col {
+.col-mar-5 [class*="col-"],
+.col-mar-5 .col {
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -189,7 +285,8 @@ img {
     margin-right: -8px;
 }
 
-.col-mar-8 [class*="col-"], .col-mar-8 .col {
+.col-mar-8 [class*="col-"],
+.col-mar-8 .col {
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -199,7 +296,8 @@ img {
     margin-right: -10px;
 }
 
-.col-mar-10 [class*="col-"], .col-mar-10 .col {
+.col-mar-10 [class*="col-"],
+.col-mar-10 .col {
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -240,7 +338,8 @@ img {
     position: absolute;
 }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before,
+.clearfix:after {
     content: '';
     display: block;
     clear: both;
@@ -350,7 +449,11 @@ img {
         display: block;
     }
 
-    .tb-responsive tbody, .tb-responsive tfoot, .tb-responsive tr, .tb-responsive th, .tb-responsive td {
+    .tb-responsive tbody,
+    .tb-responsive tfoot,
+    .tb-responsive tr,
+    .tb-responsive th,
+    .tb-responsive td {
         display: block;
     }
 
@@ -408,7 +511,10 @@ img {
     text-decoration: underline;
 }
 
-.s-content a, .s-content a:hover, .s-content a:focus, .s-content a:active {
+.s-content a,
+.s-content a:hover,
+.s-content a:focus,
+.s-content a:active {
     text-decoration: underline;
 }
 
@@ -440,19 +546,22 @@ img {
     object_fit: initial;
 }
 
-.s-content .alignleft, .s-content img.alignleft {
+.s-content .alignleft,
+.s-content img.alignleft {
     margin-right: 1.5em;
     display: inline;
     float: left;
 }
 
-.s-content .alignright, .s-content img.alignright {
+.s-content .alignright,
+.s-content img.alignright {
     margin-left: 1.5em;
     display: inline;
     float: right;
 }
 
-.s-content .aligncenter, .s-content img.aligncenter {
+.s-content .aligncenter,
+.s-content img.aligncenter {
     margin-right: auto;
     margin-left: auto;
     display: block;
@@ -475,7 +584,8 @@ img {
     float: right;
 }
 
-.s-content table, .s-content iframe {
+.s-content table,
+.s-content iframe {
     max-width: 100%;
     max-width: calc(100vw - 30px);
     margin: auto;
@@ -485,7 +595,12 @@ img {
     display: block;
 }
 
-.s-content h1, .s-content h2, .s-content h3, .s-content h4, .s-content h5, .s-content h6 {
+.s-content h1,
+.s-content h2,
+.s-content h3,
+.s-content h4,
+.s-content h5,
+.s-content h6 {
     font-weight: bold;
 }
 
@@ -925,7 +1040,8 @@ header {
     cursor: pointer;
 }
 
-#signin, #signup {
+#signin,
+#signup {
 
     /*position: fixed;*/
 
@@ -946,20 +1062,24 @@ header {
     /*display: none;*/
 }
 
-#signin.active, #signup.active {
+#signin.active,
+#signup.active {
     display: block;
 }
 
-#signin h2, #signup h2 {
+#signin h2,
+#signup h2 {
     text-align: center;
     margin-bottom: 10px
 }
 
-#signin label, #signup label {
+#signin label,
+#signup label {
     display: block;
 }
 
-#signin button, #signup button {
+#signin button,
+#signup button {
     margin-top: 10px;
     display: block;
     padding: 5px 10px;
@@ -976,7 +1096,8 @@ header {
     opacity: 0;
 }
 
-.f6, .f7 {
+.f6,
+.f7 {
     width: 200px;
 }
 
@@ -1050,7 +1171,8 @@ footer .col {
     margin: 10px 0;
 }
 
-.showLastSession .top, .showLastSession .bot {
+.showLastSession .top,
+.showLastSession .bot {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -1351,7 +1473,8 @@ footer .col {
     margin-top: -50px
 }
 
-#id2 .container .bot, #id2 .container .top {
+#id2 .container .bot,
+#id2 .container .top {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1551,7 +1674,8 @@ footer .col {
     padding: 10px
 }
 
-.article-slide-wr, .ultilities-wr {
+.article-slide-wr,
+.ultilities-wr {
     padding: 20px 30px
 }
 
@@ -1571,7 +1695,8 @@ footer .col {
     margin-top: 30px
 }
 
-.slick-next, .slick-prev {
+.slick-next,
+.slick-prev {
     position: absolute;
     border: 1px solid rgba(0, 0, 0, 0);
     z-index: 100;
@@ -1586,7 +1711,8 @@ footer .col {
     background-origin: padding-box
 }
 
-.slick-next, .slick-prev {
+.slick-next,
+.slick-prev {
     top: 50%;
     transform: translateY(-50%);
     outline: none;
@@ -1663,7 +1789,8 @@ footer .col {
     margin-bottom: 50px
 }
 
-.tailieu, .testnow {
+.tailieu,
+.testnow {
     background-image: url("images/gradient.png");
     width: 245px;
     height: 72px;
@@ -1871,7 +1998,8 @@ footer .col {
     align-items: center;
 }
 
-.page-template .tab > img, .page-template .question > img {
+.page-template .tab > img,
+.page-template .question > img {
     width: 200px;
 }
 
@@ -1880,7 +2008,8 @@ footer .col {
     position: relative;
 }
 
-.page-template .question i, .page-template .tab .answer label i {
+.page-template .question i,
+.page-template .tab .answer label i {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -2119,7 +2248,9 @@ footer .col {
 }
 
 @media all and (min-width:992px) {
-    .open-mnav, .m-nav, .m-nav-over {
+    .open-mnav,
+    .m-nav,
+    .m-nav-over {
         display: none !important;
     }
 
@@ -2236,7 +2367,8 @@ footer .col {
     padding: 10px;
 }
 
-.article-slide-wr, .ultilities-wr {
+.article-slide-wr,
+.ultilities-wr {
     padding: 20px 30px;
 }
 
@@ -2256,7 +2388,8 @@ footer .col {
     margin-top: 30px;
 }
 
-.slick-next, .slick-prev {
+.slick-next,
+.slick-prev {
     position: absolute;
     border: 1px solid rgba(0, 0, 0, 0);
     z-index: 100;
@@ -2271,11 +2404,13 @@ footer .col {
     background-origin: padding-box;
 }
 
-.article-slide-wr .slick-next, .article-slide-wr .slick-prev {
+.article-slide-wr .slick-next,
+.article-slide-wr .slick-prev {
     top: var(--imageheight1);
 }
 
-.ultilities-wr .slick-next, .ultilities-wr .slick-prev {
+.ultilities-wr .slick-next,
+.ultilities-wr .slick-prev {
     top: var(--imageheight2);
 }
 
@@ -2351,7 +2486,8 @@ footer .col {
     margin-bottom: 50px;
 }
 
-.testnow, .tailieu {
+.testnow,
+.tailieu {
     background-image: url("images/gradient.png");
     width: 245px;
     height: 72px;
@@ -2424,7 +2560,8 @@ footer .col {
 }
 
 @keyframes zoom {
-    0%, 100% {
+    0%,
+    100% {
         transform: translate(-50%, -50%) scale(0.9)
     }
 
@@ -2439,11 +2576,13 @@ footer .col {
         padding: 5px 30px;
     }
 
-    .d-nav .psy-pane li, .d-nav .top-right-menu li {
+    .d-nav .psy-pane li,
+    .d-nav .top-right-menu li {
         width: 115px;
     }
 
-    .d-nav .psy-pane li a, .d-nav .top-right-menu li.sign a {
+    .d-nav .psy-pane li a,
+    .d-nav .top-right-menu li.sign a {
         font-size: 11px;
     }
 
@@ -2535,7 +2674,9 @@ footer .col {
     margin-top: 15px;
 }
 
-#modal-sign-in p, #modal-sign-in label, #modal-sign-in h4 {
+#modal-sign-in p,
+#modal-sign-in label,
+#modal-sign-in h4 {
     color: white;
 }
 
@@ -2598,7 +2739,9 @@ footer .col {
     background: white;
 }
 
-#modal-sign-up p, #modal-sign-up label, #modal-sign-up h4 {
+#modal-sign-up p,
+#modal-sign-up label,
+#modal-sign-up h4 {
     color: white;
 }
 
@@ -2669,7 +2812,9 @@ footer .col {
     margin-top: 15px;
 }
 
-#modal-register p, #modal-register label, #modal-register h4 {
+#modal-register p,
+#modal-register label,
+#modal-register h4 {
     color: white;
 }
 
@@ -2732,11 +2877,11 @@ footer .col {
     background: white;
 }
 
-#modal-after-answertoppic p, #modal-after-answertoppic label, #modal-after-answertoppic h4 {
+#modal-after-answertoppic p,
+#modal-after-answertoppic label,
+#modal-after-answertoppic h4 {
     color: white;
-
 }
-
 
 #modal-after-answertoppic-logined {
     font-family: inherit;
@@ -2768,7 +2913,9 @@ footer .col {
     background: white;
 }
 
-#modal-after-answertoppic-logined p, #modal-after-answertoppic-logined label, #modal-after-answertoppic-logined h4 {
+#modal-after-answertoppic-logined p,
+#modal-after-answertoppic-logined label,
+#modal-after-answertoppic-logined h4 {
     color: white;
 }
 
@@ -2788,4 +2935,109 @@ footer .col {
 .package-paid.card.col-md-3.text-white.bg-light.border-danger {
     padding: 10px;
     border: solid 1px dimgrey;
+}
+
+.button-recevie-package:hover {
+    margin-top: 0px !important;
+    box-shadow: 0 0 0 !important;
+}
+
+.pricing .card {
+    border: none !important;
+    border-radius: 1rem !important;
+    transition: all 0.2s !important;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1) !important;
+    background: white;
+}
+
+.pricing {
+    position: relative;
+    bottom: -120px;
+}
+
+.pricing hr {
+    margin: 1.5rem 0 !important;
+}
+
+.pricing .card-title {
+    margin: 0.5rem 0 !important;
+    font-size: 3rem !important;
+    letter-spacing: .1rem !important;
+    font-weight: bold !important;
+}
+
+.pricing .card-price {
+    font-size: 3rem !important;
+    margin: 0 !important;
+}
+
+.pricing .card-price .period {
+    font-size: 1.5rem !important;
+}
+
+.pricing ul li {
+    margin-bottom: 1.5rem !important;
+    font-size: 1.5rem !important;
+}
+
+.pricing .text-muted {
+    opacity: 0.7 !important;
+}
+
+.pricing .btn-checkout {
+    font-size: 80% !important;
+    border-radius: 5rem !important;
+    letter-spacing: .1rem !important;
+    font-weight: bold !important;
+    padding: 2rem !important;
+    opacity: 0.7 !important;
+    transition: all 0.2s !important;
+}
+
+.btn-checkout {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px
+}
+
+/* Hover Effects on Card */
+@media (min-width:992px) {
+    .pricing .card:hover {
+        margin-top: -.25rem !important;
+        margin-bottom: .25rem !important;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .pricing .card:hover .btn {
+        opacity: 1 !important;
+    }
+
+}
+
+.back-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+}
+
+.back-button:hover {
+    cursor: pointer;
+    opacity: 1;
 }

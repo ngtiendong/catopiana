@@ -74,9 +74,7 @@ class SocialAccountController extends Controller
         
         $local_storage_response = [];
         $local_storage = session('local_storage');
-        if(auth()->guard('customers')->user()->test_status == 0){
-            $local_storage_response = $this->localStorageService->getTesting();
-        }
+        $local_storage_response = $this->localStorageService->getTesting();
         session(['local_storage_response' => $local_storage_response]);
         session()->forget('local_storage');
         return redirect($url);

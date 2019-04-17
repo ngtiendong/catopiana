@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="psy-section section-test" id="id2">
+<section class="psy-section section-test"" id="id2">
     <div class="container">
         <div class="row tn">
             <div class="md-lg-12">
