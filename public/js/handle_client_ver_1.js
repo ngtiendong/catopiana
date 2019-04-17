@@ -361,7 +361,7 @@ function displayTest() {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
     wait_load()
-    $('#testForm').imagesLoaded().then(function(){
+    $('#testForm').waitForImages(function(){
         $('.progress').css('display','none')
     });
 

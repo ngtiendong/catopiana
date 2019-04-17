@@ -17,6 +17,7 @@
 <script src="https://cdn.jsdelivr.net/npm/mo-js@latest/build/mo.min.js"></script>
 <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
 <script src="{{asset('/js/effect.js')}}"></script>
+<script src="{{asset('/js/waitForImages.js')}}"></script>
 
 <script>
 	$('.d-nav').hc_menu({
