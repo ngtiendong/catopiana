@@ -22,6 +22,9 @@
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
 
                     <a class="startBtn">Click To Start!</a>
+                    <div class="progress">
+                        <div class="bar shadow bars"></div>
+                    </div>
                     <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
 
                             <button class="test-button" type="button" id="prevBtn"  onclick="prev()">Previous</button>

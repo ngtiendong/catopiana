@@ -5,6 +5,7 @@ $('.modal').on('hide.bs.modal', function (e) {
     $('.modal .modal-dialog').attr('class', 'modal-dialog  zoomOut faster animated');
 })
 
+
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
     $('.answer label').removeClass('animated rubberBand')
@@ -38,4 +39,16 @@ function play_sound(src) {
         format: 'mp3'
     });
     sound.play();
+}
+
+function wait_load() {
+    $('.progress').css('display','block')
+    const randomTiming = Math.floor((Math.random() * 2) + 0.5);
+    bar.style.width = 100+'%';
+    bar.style.transitionDuration = `${randomTiming}s`;
+
+}
+
+function allImagesLoaded() {
+    $('.progress').css('display','none')
 }
