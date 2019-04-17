@@ -148,10 +148,10 @@
     <script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
     <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
     <script>
-        @if (session()->has('buy_package_light border-danger'))
+        @if (session()->has('buy_package_light'))
             Swal.fire({
-                type: 'light border-danger',
-                title: '{{session('buy_package_light border-danger')}}',
+                type: 'info',
+                title: '{{session('buy_package_light')}}',
                 showConfirmButton: false,
               timer: 3000
             })
