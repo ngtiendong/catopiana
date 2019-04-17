@@ -2,17 +2,7 @@
 /**
  * Handle here
  */
-$(document).on('click', 'label',function (event) {
-    event.preventDefault();
-    $(this).css('opacity', '1');
-    $(this).find('input').eq(0).prop('checked', true);
-    console.log("checked here", $(this))
 
-    $(this).siblings('label').each(function (index, el) {
-        $(el).find('input').eq(0).prop('checked', false);
-        $(el).css('opacity', '0.3');
-    });
-});
 
 /**
  * 1. Submit Event
@@ -35,6 +25,7 @@ $(function(){
                 text: 'Please answer the question!'
             });
         } else {
+            play_sound("sounds/demand.mp3")
             just_answer = just_answer.data('position')
             if (this_question.answers.length > this_question.current_index) {
                 this_question.answers.pop()
@@ -62,9 +53,10 @@ $(function(){
  */
 $('.startBtn').click(async function () {
     //Check local storage
+    play_sound("sounds/demand.mp3")
     if (typeof(test_level) === 'undefined') {
         await swal.fire({
-            title: 'Please add level',f
+            title: 'Please add level',
             input: 'number',
             inputPlaceholder: 'Chose your level',
             confirmButtonText: 'Look up',
@@ -116,7 +108,7 @@ function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
     var html = ''
     var length_answered = current_data.answers.length;
-    console.log('length answer', length_answered)
+    console.log('length answer', length_answered, $('.tab').length)
     // gen lai html, 
     if(current_data.html_arr.length == 0){
         current_data.type = current_data.type.toString()
@@ -232,10 +224,21 @@ function generateUnfinishedTest(current_data) {
     current_index_max = current_data.current_index;
     showTab(current_data.current_index)
 
+    /**
+     * Show line of last Tab Position
+     */
+    if (type == '2' && length_answered == total_question) {
+        setTimeout(function () {
+            line_array.length = 0
+            var old_line_array = current_data.answers[length_answered-1]
+            gen_line_from_localstorage(old_line_array, length_answered-1)
+        }, 1000)
+
+    }
+
     if(current_data.level_temp > minLv){
         setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
-
     if(topic === '6'){
         //Memory
         if(timerId != null){
@@ -353,6 +356,7 @@ function displayTest() {
     setTimeout(function () {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
+
 }
 
 function showTab(current_index) {
@@ -365,8 +369,11 @@ function showTab(current_index) {
     }
     if (topic == '8') {
         tab_number[current_index].style.display = "block";
+        $(tab_number[current_index]).addClass('animated rubberBand')
     } else {
         tab_number[current_index].style.display = "flex";
+        $(tab_number[current_index]).addClass('animated fadeInDown faster')
+
     }
 
     // console.log(n, currentTab, total_question)
@@ -565,6 +572,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 }
 
 function next() {
+    play_sound("/sounds/oh-really.mp3")
     if(type == "3" && buttonMemoryChecked == false){
         // MEMORY
         return false;
@@ -580,6 +588,8 @@ function next() {
 }
 
 function prev() {
+    play_sound("/sounds/oh-really.mp3")
+
     if(type == '3' && buttonMemoryChecked == false)
     {
         // MEMORY
@@ -599,9 +609,6 @@ function prev() {
 
         var old_line_array = this_question.answers.pop()
 
-        //Save into local storage
-        localStorage.setItem('testing', JSON.stringify(testing_data))
-
         console.log('Old line array : ' ,old_line_array);
         console.log('line array', line_array)
         console.log('current tag ', this_question.current_index)
@@ -614,31 +621,16 @@ function prev() {
         }
 
         this_question.current_index += -1;
-
+        while(this_question.answers.length > this_question.current_index){
+            this_question.answers.pop()
+        }
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
         showTab(this_question.current_index);
 
         //Show line already in prev
-        line_array.length = 0
         var currentTab = this_question.current_index
-
-        for (var j = 0; j < 3; j++) {
-            if (jQuery.isEmptyObject(old_line_array[j][2])) {
-                //Create line
-                var left = old_line_array[j][0]
-                var right = old_line_array[j][1]
-                var left_element = document.getElementsByClassName('tab')[currentTab]
-                    .getElementsByClassName('column-left')[0].getElementsByClassName('clicked-img')[left]
-                var right_element = document.getElementsByClassName('tab')[currentTab]
-                    .getElementsByClassName('column-right')[0].getElementsByClassName('clicked-img')[right]
-
-                //Push to line array
-                line_array.push([$(left_element).data('index'), $(right_element).data('index'), createLine(left_element, right_element)])
-
-            } else {
-                line_array = [...old_line_array]
-                old_line_array[j][2].show()
-            }
-        }
+        gen_line_from_localstorage(old_line_array, currentTab)
 
     } else {
         x[this_question.current_index].style.display = "none";
@@ -654,6 +646,7 @@ function prev() {
 
         showTab(this_question.current_index);
     }
+
 
 
 }
@@ -886,17 +879,17 @@ function updateDataTesting()
                 // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
                 localStorage.setItem('testing', JSON.stringify(testing_data));               
-                if(response.givePackage == true ){
-                    Swal.fire({
-                        title: 'Notice',
-                        text: 'You have completed all free test!',
-                        background: 'orange',
-                        display: 'flex',
-                    }).then(() =>{
-                        window.location.href = '/free-test-results'
-                    });
+                // if(response.givePackage == true ){
+                //     Swal.fire({
+                //         title: 'Notice',
+                //         text: 'You have completed all free test!',
+                //         background: 'orange',
+                //         display: 'flex',
+                //     }).then(() =>{
+                //         window.location.href = '/free-test-results'
+                //     });
 
-                } else {
+                // } else {
                     // $('#modal-after-answertoppic-logined').modal();
                     Swal.fire({
                         title: 'Great job!',
@@ -910,7 +903,7 @@ function updateDataTesting()
                             continueTest();
                         }
                     });
-                }
+                // }
 
             }
         })
@@ -919,49 +912,59 @@ function updateDataTesting()
         })
 }
 
-$(document).on('click', '.continues-test', function(event) {
-    event.preventDefault();
-    continueTest();
-});
-// chi voi 8 bai test free
 function continueTest()
 {
     if(!list_test_finished.includes(parseInt(topic))){
         list_test_finished.push(parseInt(topic))
     }
-    var next_quiz = 0;
-    var count_free_package = 0;
-    for (var i=1; i<9; i++) {
-        if (list_test_finished.indexOf(i) < 0) {
-            //Chua thi
-            next_quiz = i
-            break;
+    // check 8 bài free
+    if(parseInt(topic) < 9){
+        var next_quiz = 0;
+        var count_free_package = 0;
+        for (var i=1; i<9; i++) {
+            if (list_test_finished.indexOf(i) < 0) {
+                //Chua thi
+                next_quiz = i
+                break;
+            }
+            count_free_package++;
         }
-        count_free_package++;
-    }
-    // console.log(list_test_finished);
-    // đã làm sang bài test tặng
-    if(count_free_package == 8){
-        next_quiz = -1;
-    }
-    
-    // call server last time when have many curriculum
-    // now use variables topic_arr_free[]
-    if (count_free_package == 0 && list_test_finished.indexOf(parseInt(topic)) > 0) {
-        Swal.fire({
-            title: 'Notice',
-            text: 'You have completed all your free test!!',
-            background: 'orange',
-            display: 'flex',
-        }).then(() => {
-            window.location.href = '/free-test-results'
-        });
-    }  
-    if (next_quiz > 1 && next_quiz < 9) {
-        // làm xong bài khác bài free
-        var next_topic = topic_arr_free[next_quiz - 1];
-        window.location.href = '/'+next_topic;
+        // console.log(list_test_finished);
+        
+        // now use variables topic_arr_free[]
+        if (count_free_package == 8 && list_test_finished.indexOf(parseInt(topic)) > 0) {
+            Swal.fire({
+                title: 'Notice',
+                text: 'You have completed all your free test!!',
+                background: 'orange',
+                display: 'flex',
+            }).then(() => {
+                window.location.href = '/free-test-results'
+            });
+        }  
+        if (next_quiz > 0) {
+            // làm xong bài khác bài free
+            var next_topic = topic_arr_free[next_quiz - 1];
+            window.location.href = '/'+next_topic;
+        }
     } else {
-        window.location.href = '/';
+        // topic k free thì chỉ có 1 curriculum, mảng 1 phần tử
+        // curriculum_id = this_question.curriculum_id[0];
+        // $.ajax({
+        //     url: '/getTopicOfPackage',
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     data: {'curriculum_id': curriculum_id},
+        // })
+        // .done(function(response) {
+        //     console.log(response);
+        // })
+        // .fail(function() {
+        //     console.log("error");
+        // })
+        // .always(function() {
+        //     console.log("complete");
+        // });
+        window.history.back();
     }
 }

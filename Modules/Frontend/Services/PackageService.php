@@ -70,4 +70,10 @@ class PackageService
         $curriculums = $package->curriculums;
         return $curriculums;
     }
+
+    // public function getTopicOfPackage($customer, $curriculum_id)
+    // {
+    //     $curriculum = Curriculum::find($curriculum_id);
+    //     $package_have_curriculums = $curriculum->packages;
+    // }
 }

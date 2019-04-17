@@ -26,16 +26,19 @@ Route::group(/**
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('position');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
+    //
+    // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
 
     // free package
     Route::get('/physics', 'FrontendController@test')->name('physics')->middleware('test');
     Route::get('/chemistry', 'FrontendController@test')->name('chemistry')->middleware('test');
     Route::get('/math', 'FrontendController@test')->name('math')->middleware('test');
     Route::get('/animal', 'FrontendController@test')->name('animal')->middleware('test');
-    Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('test');
-    Route::get('/plant', 'FrontendController@test')->name('plant')->middleware('test');
-    Route::get('/fruit', 'FrontendController@test')->name('fruit')->middleware('test');
-    Route::get('/sport', 'FrontendController@test')->name('sport')->middleware('test');
+    // paid
+    Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('auth:customers');
+    Route::get('/plant', 'FrontendController@test')->name('plant')->middleware('auth:customers');
+    Route::get('/fruit', 'FrontendController@test')->name('fruit')->middleware('auth:customers');
+    Route::get('/sport', 'FrontendController@test')->name('sport')->middleware('auth:customers');
 
     Route::post('/get-list-question', 'FrontendController@getListQuestion');
     Route::post('/get-list-less-level-question', 'FrontendController@getListLessLevelQuestion');

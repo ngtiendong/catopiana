@@ -298,4 +298,14 @@ class FrontendController extends Controller
         $free = false;
         return view('frontend::test_package',compact('package','free'));
     }
+
+    // public function getTopicOfPackage(Request $request)
+    // {
+    //     $customer = auth()->guard('customers')->user();
+    //     $topic_array = $this->packageService->getTopicOfPackage($customer, $request->input('curriculum_id'));
+    //     return response()->json([
+    //         'status' => 200,
+    //         'topic_array' => $topic_array
+    //     ]);
+    // }
 }

@@ -3,56 +3,61 @@ var all_line_array = []
 
 // Variable to solve prev button
 
-    $(document).on('click', '.list-l-item img',function(e){
-        e.preventDefault()
-        if ($(this).hasClass("clicked-img")){
-            // Already click
-            // 1. Check line of this element => if has => remove line and class "clicked-img" of both in 2 column as well
-            var this_img = this
-            if (line_array.length > 0) {
-                //Check left or right column
-                var flag_column_position = parseInt($(this_img).closest('ul').data('position'))
-                line_array.forEach(function(value, index) {
-                    console.log(index, value, flag_column_position)
-                    // console.log(value[flag_column_position], $(this_img).data('index'))
-                    if (value[flag_column_position] == $(this_img).data('index')){
-                        //remove data array line
-                        line_array.splice(index,1)
-                        //remove svg line
-                        value[2].remove()
-                        //Remove clicked img class
-                        // console.log('img[data-index='+value[0]+']', $('img[data-index='+value[0]+']'))
-                        $(this_img).closest('.matching').find('.column-left img[data-index='+value[0]+']').removeClass('clicked-img').addClass('unlock-selection')
-                        $(this_img).closest('.matching').find('.column-right img[data-index='+value[1]+']').removeClass('clicked-img').addClass('unlock-selection')
-                    }
-                })
-            }
-            // 2. If not line => just remove class "clicked-img" of this element
-
-
-        } else {
-            //Remove class clicked in same column
-            $(this).closest('ul').find('.clicked-img.unlock-selection').removeClass('clicked-img')
-            //Add clicked this image
-            $(this).addClass('clicked-img')
-        }
-
-        // Check clicked on 2 column to create line
-        // Class unlink-selection to avoid case that 2 img which had already line before
-        var elements_click = $(this).closest('.matching').find('.clicked-img.unlock-selection')
-        if (elements_click.length == 2) {
-            //Create line
-            var left_element = document.getElementsByClassName('clicked-img unlock-selection')[0]
-            var right_element = document.getElementsByClassName('clicked-img unlock-selection')[1]
-
-            //Push to line array
-            line_array.push([$('.column-left .clicked-img.unlock-selection').data('index'), $('.column-right .clicked-img.unlock-selection').data('index'), createLine(left_element, right_element)])
-            //Delete unlock-selection class
-            $(elements_click).each(function(){
-                $(this).removeClass('unlock-selection')
+$(document).on('click', '.list-l-item img', function (e) {
+    play_sound("sounds/demand.mp3")
+    // $('.list-l-item img').removeClass('animated rubberBand')
+    // $(this).addClass('animated rubberBand');
+    e.preventDefault()
+    if ($(this).hasClass("clicked-img")) {
+        // Already click
+        // 1. Check line of this element => if has => remove line and class "clicked-img" of both in 2 column as well
+        var this_img = this
+        if (line_array.length > 0) {
+            //Check left or right column
+            var flag_column_position = parseInt($(this_img).closest('ul').data('position'))
+            line_array.forEach(function (value, index) {
+                console.log(index, value, flag_column_position)
+                // console.log(value[flag_column_position], $(this_img).data('index'))
+                if (value[flag_column_position] == $(this_img).data('index')) {
+                    //remove data array line
+                    line_array.splice(index, 1)
+                    //remove svg line
+                    value[2].remove()
+                    //Remove clicked img class
+                    // console.log('img[data-index='+value[0]+']', $('img[data-index='+value[0]+']'))
+                    $(this_img).closest('.matching').find('.column-left img[data-index=' + value[0] + ']').removeClass('clicked-img').addClass('unlock-selection')
+                    $(this_img).closest('.matching').find('.column-right img[data-index=' + value[1] + ']').removeClass('clicked-img').addClass('unlock-selection')
+                }
             })
         }
-    })
+        // 2. If not line => just remove class "clicked-img" of this element
+
+
+    } else {
+        //Remove class clicked in same column
+        $(this).closest('ul').find('.clicked-img.unlock-selection').removeClass('clicked-img')
+        //Add clicked this image
+        $(this).addClass('clicked-img')
+    }
+
+    // Check clicked on 2 column to create line
+    // Class unlink-selection to avoid case that 2 img which had already line before
+    var elements_click = $(this).closest('.matching').find('.clicked-img.unlock-selection')
+    if (elements_click.length == 2) {
+        //Create line
+        var start = ($(this).closest('ul').attr('class') == 'column-left' ? 1 : 0)
+        var left_element = document.getElementsByClassName('clicked-img unlock-selection')[0]
+        var right_element = document.getElementsByClassName('clicked-img unlock-selection')[1]
+
+        //Push to line array
+        line_array.push([$('.column-left .clicked-img.unlock-selection').data('index'),
+            $('.column-right .clicked-img.unlock-selection').data('index'), createLine(left_element, right_element, start)])
+        //Delete unlock-selection class
+        $(elements_click).each(function () {
+            $(this).removeClass('unlock-selection')
+        })
+    }
+})
 
 function nextButtonPosition () {
     //Position
@@ -191,23 +196,78 @@ Array.prototype.compare = function(array) {
     return true;
 }
 
-function createLine(left_element, right_element) {
-    var line = new LeaderLine(
-        LeaderLine.pointAnchor(left_element, {
+function gen_line_from_localstorage(old_line_array, current_tab) {
+    line_array.length = 0
+    for (var j = 0; j < 3; j++) {
+        if (jQuery.isEmptyObject(old_line_array[j][2])) {
+            //Create line
+            var left = old_line_array[j][0]
+            var right = old_line_array[j][1]
+            var left_element = document.getElementsByClassName('tab')[current_tab]
+                .getElementsByClassName('column-left')[0].getElementsByClassName('clicked-img')[left]
+            var right_element = document.getElementsByClassName('tab')[current_tab]
+                .getElementsByClassName('column-right')[0].getElementsByClassName('clicked-img')[right]
+
+            //Push to line array
+            line_array.push([$(left_element).data('index'), $(right_element).data('index'), createLine(left_element, right_element, 0)])
+        }
+        else {
+            line_array = [...old_line_array]
+            old_line_array[j][2].show('draw', {
+                animOptions: {
+                    duration: 1000,
+                    timing: 'cubic-bezier(0.58, 0, 0.42, 1)'
+                }
+            })
+
+        }
+    }
+}
+
+function createLine(left_element, right_element, start=0) {
+    var first, end, param;
+    console.log(left_element.width, left_element.height, right_element.width, right_element.height)
+    if (start == 0) {
+        first = LeaderLine.pointAnchor(left_element, {
             x: left_element.width,
             y: left_element.height/2
         })
-        ,
-        LeaderLine.pointAnchor(right_element, {
+        end = LeaderLine.pointAnchor(right_element, {
             x: 0,
             y: right_element.height/2
         })
-        , { size: 4, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+        param = { size: 4, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
                 startColor: 'rgb(17, 148, 51)',
                 endColor: 'rgb(17, 148, 51)'
-            }
+            }, hide: true
         }
+    } else {
+        first = LeaderLine.pointAnchor(right_element, {
+            x: 0,
+            y: right_element.height/2
+        })
+        end = LeaderLine.pointAnchor(left_element, {
+            x: left_element.width,
+            y: left_element.height/2
+        })
+        param = { size: 4, dropShadow: true, startSocket: 'left', endSocket: 'right', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+                startColor: 'rgb(17, 148, 51)',
+                endColor: 'rgb(17, 148, 51)'
+            }, hide: true
+        }
+
+    }
+    var line = new LeaderLine(
+        first, end
+        , param
     );
+
+    line.show('draw', {
+        animOptions: {
+            duration: 1000,
+            timing: 'cubic-bezier(.1, -0.6, 0.2, 0)'
+        }
+    })
 
     return line
 
@@ -219,7 +279,9 @@ function submitPosition() {
 
         //Lock and save answered
         let just_answer = [...line_array]
-
+        if (this_question.answers.length === this_question.question_data.length) {
+            this_question.answers.pop()
+        }
         this_question.answers.push(just_answer)
         this_question.status = 1
         localStorage.setItem('testing', JSON.stringify(testing_data))

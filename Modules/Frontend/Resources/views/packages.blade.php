@@ -94,19 +94,19 @@
     <script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
     <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
     <script>
-        @if (session()->has('buy_package_light'))
+        @if (session()->has('buy_package_success'))
             Swal.fire({
                 type: 'info',
-                title: '{{session('buy_package_light')}}',
+                title: '{{session('buy_package_success')}}',
                 showConfirmButton: false,
-              timer: 5000
+              timer: 300
             })
         @elseif (session()->has('buy_package_error'))
             Swal.fire({
                 type: 'error',
                 title: '{{session('buy_package_error')}}',
                 showConfirmButton: false,
-              timer: 5000
+              timer: 3000
             })
         @endif
         $(document).on('click', '.checkout', function(event) {

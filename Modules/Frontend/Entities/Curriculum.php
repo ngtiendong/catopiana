@@ -13,4 +13,9 @@ class Curriculum extends Model
     {
     	return $this->belongsTo(Topic::class,'topic_id');
     }
+
+    public function packages()
+    {
+    	return $this->belongsToMany(Package::class,'package_curriculum');
+    }
 }

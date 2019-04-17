@@ -66,7 +66,7 @@
         <img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
     </div>
     @else
-    <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; margin: 50px; text-align: center;">
+    <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; text-align: center;">
         <div class="row">
             @if($freePackage != null)
                 <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your free curriculum:</h2>
@@ -285,7 +285,7 @@
             // test_status = 1 la lam xong =2 la lam xong va da nhan thong bao, =0 la chua xong
             Swal.fire({
                 title: 'Congratulations!',
-                text: 'You have received a few free tests! Let\'s  them',
+                text: "You have received a few free tests!",
                 type: 'info',
                 confirmButtonText: 'Go!'
             }).then(() => {
