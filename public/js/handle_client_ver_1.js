@@ -46,7 +46,6 @@ $(function(){
             displayTestUnFinishedAfterSubmit()
         }
     })
-})
 
 /**
  * Click start button to load data from server
@@ -76,40 +75,42 @@ $('.startBtn').click(async function () {
             allowOutsideClick: () => !Swal.isLoading()
         })
     }
+        else {
+            //Check history
+            let flag = 1;
+            for (var i = 0; i < testing_data.question.length; i++) {
+                this_question = testing_data.question[i];
+                // console.log('current', current_data)
 
-    else {
-        //Check history
-        let flag = 1; 
-        for (var i = 0; i < testing_data.question.length; i++) {
-            this_question = testing_data.question[i];
-            // console.log('current', current_data)
+                if (this_question.topic == topic) {
+                    // Da ton tai bai test type nay trong lich su
+                    position_this_question = i
+                    console.log('current', this_question)
+                    // this_question = current_data
+                    total_question = parseInt(this_question.question_data.length)
+                    generateUnfinishedTest(this_question)
+                    flag = -1;
+                    break
 
-            if (this_question.topic == topic) {
-                // Da ton tai bai test type nay trong lich su
-                position_this_question = i
-                console.log('current', this_question)
-                // this_question = current_data
-                total_question = parseInt(this_question.question_data.length)
-                generateUnfinishedTest(this_question)
-                flag = -1;
-                break
-
+                }
+            }
+            if (flag !== -1) {
+                //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
+                getNewQuestionData(position_in_local_storage)
             }
         }
-        if (flag !== -1) {
-            //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
-            getNewQuestionData(position_in_local_storage)
-        }
-    }
 
-});
+    });
+})
+
+
 
 function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
     var html = ''
     var length_answered = current_data.answers.length;
     console.log('length answer', length_answered, $('.tab').length)
-    // gen lai html, 
+    // gen lai html,
     if(current_data.html_arr.length == 0){
         current_data.type = current_data.type.toString()
         console.log(current_data.type, topic, test_level)
@@ -319,6 +320,7 @@ function getNewQuestionData(position) {
 
 
                 displayTest()
+
                 //Display html all
                 var html_gen_all = ''
                 html_arr.forEach( function(html_arr_element, index) {
@@ -356,6 +358,10 @@ function displayTest() {
     setTimeout(function () {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
+    wait_load()
+    $('#testForm').waitForImages(function(){
+        $('.progress').css('display','none')
+    });
 
 }
 
@@ -759,7 +765,7 @@ function nextButton() {
             type: 'error',
             title: 'Oops...',
             text: 'Please answer the question!',
-        })    
+        })
     } else {
         tab_number[this_question.current_index].style.display = "none";
         this_question.current_index += 1
@@ -843,11 +849,11 @@ function showDialogScore(correct, total, login = false) {
                     });
                 }
             })
-            
+
         } else {
             // Login roi => Update du lieu len
             updateDataTesting()
-            
+
         }
     });
 }
@@ -888,7 +894,6 @@ function updateDataTesting()
                 //     }).then(() =>{
                 //         window.location.href = '/free-test-results'
                 //     });
-
                 // } else {
                     // $('#modal-after-answertoppic-logined').modal();
                     Swal.fire({
