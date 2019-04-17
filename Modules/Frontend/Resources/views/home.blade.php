@@ -66,7 +66,7 @@
         <img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
     </div>
     @else
-    <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; margin: 50px; text-align: center;">
+    <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; text-align: center;">
         <div class="row">
                 <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your gift:</h2>
              <div class="top text-center">

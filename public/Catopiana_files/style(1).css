@@ -904,11 +904,11 @@ header {
 }
 
 #signin, #signup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%
+    /*position: fixed;*/
+    top: 10%;
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    /*width: 50%*/
     /*background: rgb(25, 136, 187);*/
     /*z-index: 20;*/
     /*color: #fff;*/
