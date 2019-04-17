@@ -2,17 +2,7 @@
 /**
  * Handle here
  */
-$(document).on('click', 'label',function (event) {
-    event.preventDefault();
-    $(this).css('opacity', '1');
-    $(this).find('input').eq(0).prop('checked', true);
-    console.log("checked here", $(this))
 
-    $(this).siblings('label').each(function (index, el) {
-        $(el).find('input').eq(0).prop('checked', false);
-        $(el).css('opacity', '0.3');
-    });
-});
 
 /**
  * 1. Submit Event
@@ -35,6 +25,7 @@ $(function(){
                 text: 'Please answer the question!'
             });
         } else {
+            play_sound("sounds/demand.mp3")
             just_answer = just_answer.data('position')
             if (this_question.answers.length > this_question.current_index) {
                 this_question.answers.pop()
@@ -62,6 +53,8 @@ $(function(){
  */
 $('.startBtn').click(async function () {
     //Check local storage
+    play_sound("sounds/demand.mp3")
+
     const level_obj = {'4': 'level 4','5': 'level 5','6': 'level 6' }
     if (typeof(test_level) === 'undefined') {
         await swal.fire({
@@ -353,6 +346,7 @@ function displayTest() {
     setTimeout(function () {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
+
 }
 
 function showTab(current_index) {
@@ -365,8 +359,11 @@ function showTab(current_index) {
     }
     if (topic == '8') {
         tab_number[current_index].style.display = "block";
+        $(tab_number[current_index]).addClass('animated rubberBand')
     } else {
         tab_number[current_index].style.display = "flex";
+        $(tab_number[current_index]).addClass('animated fadeInDown faster')
+
     }
 
     // console.log(n, currentTab, total_question)
@@ -565,6 +562,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 }
 
 function next() {
+    play_sound("/sounds/oh-really.mp3")
     if(type == "3" && buttonMemoryChecked == false){
         // MEMORY
         return false;
@@ -580,6 +578,7 @@ function next() {
 }
 
 function prev() {
+    play_sound("/sounds/oh-really.mp3")
     if(type == '3' && buttonMemoryChecked == false)
     {
         // MEMORY
@@ -636,7 +635,13 @@ function prev() {
 
             } else {
                 line_array = [...old_line_array]
-                old_line_array[j][2].show()
+                old_line_array[j][2].show('draw', {
+                    animOptions: {
+                        duration: 1000,
+                        timing: 'cubic-bezier(0.58, 0, 0.42, 1)'
+                    }
+                })
+
             }
         }
 

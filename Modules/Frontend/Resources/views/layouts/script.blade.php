@@ -14,6 +14,10 @@
 <script src="{{asset('/Catopiana_files/js/calculation.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/mo-js@latest/build/mo.min.js"></script>
+<script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
+<script src="{{asset('/js/effect.js')}}"></script>
+
 <script>
 	$('.d-nav').hc_menu({
 			open: '.open-mnav',
