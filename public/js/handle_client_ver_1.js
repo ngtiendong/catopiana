@@ -109,7 +109,7 @@ function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
     var html = ''
     var length_answered = current_data.answers.length;
-    console.log('length answer', length_answered)
+    console.log('length answer', length_answered, $('.tab').length)
     // gen lai html, 
     if(current_data.html_arr.length == 0){
         current_data.type = current_data.type.toString()
@@ -225,10 +225,21 @@ function generateUnfinishedTest(current_data) {
     current_index_max = current_data.current_index;
     showTab(current_data.current_index)
 
+    /**
+     * Show line of last Tab Position
+     */
+    if (type == '2' && length_answered == total_question) {
+        setTimeout(function () {
+            line_array.length = 0
+            var old_line_array = current_data.answers[length_answered-1]
+            gen_line_from_localstorage(old_line_array, length_answered-1)
+        }, 1000)
+
+    }
+
     if(current_data.level_temp > minLv){
         setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
-
     if(topic === '6'){
         //Memory
         if(timerId != null){
@@ -579,6 +590,7 @@ function next() {
 
 function prev() {
     play_sound("/sounds/oh-really.mp3")
+
     if(type == '3' && buttonMemoryChecked == false)
     {
         // MEMORY
@@ -598,9 +610,6 @@ function prev() {
 
         var old_line_array = this_question.answers.pop()
 
-        //Save into local storage
-        localStorage.setItem('testing', JSON.stringify(testing_data))
-
         console.log('Old line array : ' ,old_line_array);
         console.log('line array', line_array)
         console.log('current tag ', this_question.current_index)
@@ -613,37 +622,16 @@ function prev() {
         }
 
         this_question.current_index += -1;
-
+        while(this_question.answers.length > this_question.current_index){
+            this_question.answers.pop()
+        }
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
         showTab(this_question.current_index);
 
         //Show line already in prev
-        line_array.length = 0
         var currentTab = this_question.current_index
-
-        for (var j = 0; j < 3; j++) {
-            if (jQuery.isEmptyObject(old_line_array[j][2])) {
-                //Create line
-                var left = old_line_array[j][0]
-                var right = old_line_array[j][1]
-                var left_element = document.getElementsByClassName('tab')[currentTab]
-                    .getElementsByClassName('column-left')[0].getElementsByClassName('clicked-img')[left]
-                var right_element = document.getElementsByClassName('tab')[currentTab]
-                    .getElementsByClassName('column-right')[0].getElementsByClassName('clicked-img')[right]
-
-                //Push to line array
-                line_array.push([$(left_element).data('index'), $(right_element).data('index'), createLine(left_element, right_element)])
-
-            } else {
-                line_array = [...old_line_array]
-                old_line_array[j][2].show('draw', {
-                    animOptions: {
-                        duration: 1000,
-                        timing: 'cubic-bezier(0.58, 0, 0.42, 1)'
-                    }
-                })
-
-            }
-        }
+        gen_line_from_localstorage(old_line_array, currentTab)
 
     } else {
         x[this_question.current_index].style.display = "none";
@@ -659,6 +647,7 @@ function prev() {
 
         showTab(this_question.current_index);
     }
+
 
 
 }
