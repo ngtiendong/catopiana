@@ -360,23 +360,10 @@ function displayTest() {
     setTimeout(function () {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
-
     wait_load()
-    // When we begin, assume no images are loaded.
-    var imagesLoaded = 0;
-    // Count the total number of images on the page when the page has loaded.
-    var totalImages = $('img').length;
-    $('img').each(function() {
-        var tmpImg = new Image() ;
-        tmpImg.onload =  function() {
-            imagesLoaded++;
-            // console.log(imagesLoaded, totalImages,  $(this))
-            if (imagesLoaded == totalImages) {
-                allImagesLoaded();
-            }
-        }
-        tmpImg.src = $(this).attr('src') ;
-    }) ;
+    $('#testForm').imagesLoaded().then(function(){
+        $('.progress').css('display','none')
+    });
 
 }
 
