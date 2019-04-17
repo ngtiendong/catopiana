@@ -45,7 +45,7 @@ function wait_load() {
     $('.progress').css('display','block')
     const randomTiming = Math.floor((Math.random() * 2) + 0.5);
     bar.style.width = 100+'%';
-    bar.style.transitionDuration = `${randomTiming}s`;
+    // bar.style.transitionDuration = `${randomTiming}s`;
 
 }
 

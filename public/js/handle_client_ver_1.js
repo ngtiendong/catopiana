@@ -261,27 +261,7 @@ function getNewQuestionData(position) {
             'topic': topic,
             'level': test_level
         },
-        beforeSend: function() {
-          $('.progress').css('display','block')
-        },
-        xhr: function() {
-            var myXhr = $.ajaxSettings.xhr();
-            if (myXhr.upload) {
-                myXhr.upload.addEventListener('progress', function(e) {
-                    var percent_loaded = Math.ceil((e.loaded / e.total)*100);
-                    bar.style.width = percent_loaded+'%';
-                    if (e.lengthComputable) {
-                        $('progress').attr({
-                            value: e.loaded,
-                            max: e.total,
-                        });
-                    }
-                } , false);
-            }
-            return myXhr;
-        },
         success: function (response) {
-            $('.progress').css('display','none')
             if (response.status === 1) {
                 if (typeof testing_data == 'undefined') {
                     testing_data = {
@@ -390,6 +370,7 @@ function displayTest() {
         var tmpImg = new Image() ;
         tmpImg.onload =  function() {
             imagesLoaded++;
+            // console.log(imagesLoaded, totalImages,  $(this))
             if (imagesLoaded == totalImages) {
                 allImagesLoaded();
             }
