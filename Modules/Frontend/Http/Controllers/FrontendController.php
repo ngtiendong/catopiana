@@ -251,4 +251,10 @@ class FrontendController extends Controller
         return view('frontend::free_test_result');
     }
 
+    public function updateTestStatus()
+    {   
+        $customer = auth()->guard('customers')->user();
+        $customer->update(['test_status' => 2]); // bằng 2 là đã nhận thông báo ở home
+        return response()->json(['status' => 200]);
+    }
 }

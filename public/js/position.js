@@ -121,8 +121,11 @@ function nextButtonPosition () {
             }
         }
     } else {
-        // alert("Please answer the question")
-        Swal.fire('Please answer the question')
+         Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Please answer the question!',
+        })
 
     }
 }

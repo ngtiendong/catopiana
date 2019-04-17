@@ -261,4 +261,30 @@
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/local-storage.js')}}" ></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
+<script>
+    // in home side to check free Package
+    $(document).ready(function() {
+        @if (isset($freePackage) && auth()->guard('customers')->user() !== null && auth()->guard('customers')->user()->test_status == 1 )
+            // test_status = 1 la lam xong =2 la lam xong va da nhan thong bao, =0 la chua xong
+            Swal.fire({
+                title: 'Congratulations!',
+                text: 'You have received a few free tests! Let\'s  them',
+                type: 'info',
+                confirmButtonText: 'Go!'
+            }).then(() => {
+                $.ajax({
+                    url: '{{ route('update-test-status') }}',
+                    type: 'GET',
+                    dataType: 'json',
+                })
+                .done(function(response) {
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+            });
+        @endif
+    });
+</script>
 @endsection

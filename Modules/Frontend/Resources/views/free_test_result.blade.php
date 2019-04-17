@@ -58,8 +58,16 @@
             // console.log('current', current_data)
 
             if (this_question.status == 1) {
-               total_question = parseInt(this_question.question_data.length);
-               correct = this_question.answers.filter(answer => answer == 0).length;
+                if(parseInt(this_question.type) == 2) {
+                    max_images_in_column = this_question.question_data[0].length
+                    total_question = parseInt(this_question.question_data.length) * max_images_in_column;
+                    correct = filterCorrectPosition(this_question, max_images_in_column);
+                } else {
+                    total_question = parseInt(this_question.question_data.length);
+                    correct = this_question.answers.filter(answer => answer == 0).length;
+                }
+
+
                result = correct+'/'+total_question;
                topic = parseInt(this_question.topic)
                if(i < 4) {
@@ -70,5 +78,17 @@
             }
         }
     });
+
+    function filterCorrectPosition(this_question) {
+    let result = 0
+    this_question.answers.forEach(function(value, index){
+        for (var k=0; k<max_images_in_column; k++) {
+            if (value[k][0] == value[k][1] ) {
+                result += 1
+            }
+        }
+    })
+    return result
+}
 </script>
 @endsection
