@@ -15,7 +15,7 @@ $(document).on('mouseenter', '.audio-image', function(event) {
     let music = $(this).siblings('.audio').attr('src');
     if (sound != null) {
         sound.stop();
-        sound.unload();
+        // sound.unload();
         sound = null;
     }
     sound = new Howl({
@@ -33,3 +33,11 @@ $(document).on('mouseleave', '.tab[style="display: flex;"] .audio-image', functi
 });
 
 
+
+function audioReady(){
+    return $.when.apply($, $('audio').map(function(){
+        var ready = new $.Deferred();
+        $(this).one('canplay', ready.resolve);
+        return ready.promise();
+    }));
+}
