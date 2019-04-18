@@ -26,7 +26,7 @@ class FrontendController extends Controller
         $freePackage = null;
         $paidPackage = null;
         if(auth()->guard('customers')->user()){
-            $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
+            $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getFreePackage()->take(4) : null;
             $paidPackage = $this->packageService->getPaidPackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
         }
         return view('frontend::home',compact('freePackage','paidPackage'));
