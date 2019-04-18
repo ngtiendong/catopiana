@@ -360,7 +360,7 @@ function displayTest() {
     }, 100)
     wait_load()
 
-    $('#container').imagesLoaded()
+    $('#testForm img').imagesLoaded()
         .done( function( instance ) {
             $('.progress').css('display','none')
         })
