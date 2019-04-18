@@ -226,7 +226,7 @@ function gen_line_from_localstorage(old_line_array, current_tab) {
 
 function createLine(left_element, right_element, start=0) {
     var first, end, param;
-    console.log(left_element.width, left_element.height, right_element.width, right_element.height)
+    // console.log(left_element.width, left_element.height, right_element.width, right_element.height)
     if (start == 0) {
         first = LeaderLine.pointAnchor(left_element, {
             x: left_element.width,

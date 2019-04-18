@@ -62,10 +62,10 @@ $('.startBtn').click(async function () {
             inputValidator: (value) => {
                 if (!value) {
                     return 'You need to add your level !'
-                } 
+                }
                 if(value < 1) {
                     return 'Your level must be greater than 0!'
-                } 
+                }
             },
             showLoaderOnConfirm: true,
             preConfirm: (value) => {
@@ -359,9 +359,16 @@ function displayTest() {
         $('#testForm').css('display', 'block').css('opacity', '1')
     }, 100)
     wait_load()
-    $('#testForm').waitForImages(function(){
-        $('.progress').css('display','none')
-    });
+
+    $('#container').imagesLoaded()
+        .done( function( instance ) {
+            $('.progress').css('display','none')
+        })
+
+
+    // $('#testForm').waitForImages(function(){
+    //     $('.progress').css('display','none')
+    // });
 
 }
 
@@ -884,7 +891,7 @@ function updateDataTesting()
             }else {
                 // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
-                localStorage.setItem('testing', JSON.stringify(testing_data));               
+                localStorage.setItem('testing', JSON.stringify(testing_data));
                 // if(response.givePackage == true ){
                 //     Swal.fire({
                 //         title: 'Notice',
@@ -935,7 +942,7 @@ function continueTest()
             count_free_package++;
         }
         // console.log(list_test_finished);
-        
+
         // now use variables topic_arr_free[]
         if (count_free_package == 8 && list_test_finished.indexOf(parseInt(topic)) > 0) {
             Swal.fire({
@@ -946,7 +953,7 @@ function continueTest()
             }).then(() => {
                 window.location.href = '/free-test-results'
             });
-        }  
+        }
         if (next_quiz > 0) {
             // làm xong bài khác bài free
             var next_topic = topic_arr_free[next_quiz - 1];

@@ -17,6 +17,9 @@
             <div class="col-md-12">
                 <div class="testOverlay">
                     <a class="startBtn">Click To Start!</a>
+                    <div class="progress">
+                        <div class="bar shadow bars"></div>
+                    </div>
                     <input id="type" value="{{$type_and_topic['type']}}" hidden>
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
 
