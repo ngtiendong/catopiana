@@ -50,29 +50,29 @@ function allImagesLoaded() {
     $('.progress').css('display','none')
 }
 
-// // Fn to allow an event to fire after all images are loaded
-// $.fn.imagesLoaded = function () {
-//
-//     // get all the images (excluding those with no src attribute)
-//     var $imgs = this.find('img[src!=""]');
-//     // if there's no images, just return an already resolved promise
-//     if (!$imgs.length) {return $.Deferred().resolve().promise();}
-//
-//     // for each image, add a deferred object to the array which resolves when the image is loaded (or if loading fails)
-//     var dfds = [];
-//     $imgs.each(function(){
-//
-//         var dfd = $.Deferred();
-//         dfds.push(dfd);
-//         var img = new Image();
-//         img.onload = function(){dfd.resolve();}
-//         img.onerror = function(){dfd.resolve();}
-//         img.src = this.src;
-//
-//     });
-//
-//     // return a master promise object which will resolve when all the deferred objects have resolved
-//     // IE - when all the images are loaded
-//     return $.when.apply($,dfds);
-//
-// }
+function waiting_element_load() {
+    $('#testForm').css('display', 'none')
+    wait_load()
+    $('#testForm img').imagesLoaded()
+        .always(function( instance ) {
+            // setTimeout(function () {
+            //     $('.progress').css('display','none')
+            // }, 3000)
+
+            $('.progress').css('display','none')
+            $('#testForm').css('display', 'block').css('opacity', '1')
+        })
+        .progress(function() {
+            var w,w2, bias
+            bias = Math.ceil(95/$('#testForm img').length)
+            setTimeout(()=>{
+                w = (bar.style.width).replace("%","");
+                w2= Math.round(parseInt(w)+ bias);
+                // console.log(image, w, w2, bar.style.width, bias, $('#testForm img').length)
+                bar.style.transitionDuration = `0.5s`;
+                bar.style.width = w2+'%'
+
+            }, 100)
+
+        })
+}

@@ -42,8 +42,18 @@ $(progress).on('mouseover', () => {
     setTimeout(()=>{
         // const randomTiming = Math.floor((Math.random() * 2)+1.5);
         // console.log(randomTiming);
-        // bar.style.transitionDuration = `${randomTiming}s`;
-
+        bar.style.transitionDuration = `0.5s`;
+        bar.style.width = '5%'
     }, 100)
 
 });
+
+function loadAudio(url, vol){
+    var audio = new Audio();
+    audio.src = url;
+    audio.preload = "auto";
+    audio.volume = vol;
+    $(audio).on("loadeddata", launchApp);  // jQuery checking
+    return audio;
+}
+

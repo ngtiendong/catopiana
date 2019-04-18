@@ -3,13 +3,29 @@
  * Handle here
  */
 
+$(window).on('load', function(){
+    /**
+     * Load mp3 here
+     */
+    function preloadAudio(url) {
+        var audio = new Audio();
+        // once this file loads, it will call loadedAudio()
+        // the file will be kept by the browser as cache
+        audio.src = url;
+        audio.play()
+    }
 
+    preloadAudio("sounds/demand.mp3")
+    preloadAudio("sounds/oh-really.mp3")
+    preloadAudio("sounds/plucky.mp3")
+
+})
 /**
  * 1. Submit Event
  * 2. Click Image in topic Position
  */
-$(function(){
-    $('#testForm').on('submit', function(event){
+$(function () {
+    $('#testForm').on('submit', function (event) {
         //update local storage
         event.preventDefault()
         if (type == '2') {
@@ -17,7 +33,7 @@ $(function(){
             return submitPosition()
         }
         let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
-        if (typeof $(just_answer).val() === 'undefined'){
+        if (typeof $(just_answer).val() === 'undefined') {
             //Chua tra loi
             Swal.fire({
                 type: 'error',
@@ -41,40 +57,42 @@ $(function(){
             let correct = candidate_answers.filter(answer => answer == 0).length
             // let login = false;
             var login = $(this).data('login');
-            showDialogScore(correct, total_question, login )
+            showDialogScore(correct, total_question, login)
             //Display test not finished
             displayTestUnFinishedAfterSubmit()
         }
     })
 
-/**
- * Click start button to load data from server
- */
-$('.startBtn').click(async function () {
-    //Check local storage
-    play_sound("sounds/demand.mp3")
-    if (typeof(test_level) === 'undefined') {
-        await swal.fire({
-            title: 'Please add level',
-            input: 'number',
-            inputPlaceholder: 'Chose your level',
-            confirmButtonText: 'Look up',
-            inputValidator: (value) => {
-                if (!value) {
-                    return 'You need to add your level !'
-                }
-                if(value < 1) {
-                    return 'Your level must be greater than 0!'
-                }
-            },
-            showLoaderOnConfirm: true,
-            preConfirm: (value) => {
-                test_level = value
-                return getNewQuestionData(position_in_local_storage)
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-        })
-    }
+
+
+    /**
+     * Click start button to load data from server
+     */
+    $('.startBtn').click(async function () {
+        //Check local storage
+        play_sound("sounds/demand.mp3")
+        if (typeof(test_level) === 'undefined') {
+            await swal.fire({
+                title: 'Please add level',
+                input: 'number',
+                inputPlaceholder: 'Chose your level',
+                confirmButtonText: 'Look up',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to add your level !'
+                    }
+                    if (value < 1) {
+                        return 'Your level must be greater than 0!'
+                    }
+                },
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    test_level = value
+                    return getNewQuestionData(position_in_local_storage)
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            })
+        }
         else {
             //Check history
             let flag = 1;
@@ -355,22 +373,8 @@ function getNewQuestionData(position) {
 
 function displayTest() {
     $('.startBtn').css('opacity', '0').css('z-index', '-1');
-    // setTimeout(function () {
-    // }, 100)
-    wait_load()
-    $('#testForm img').imagesLoaded()
-        .done( function( instance ) {
-            $('.progress').css('display','none')
-            $('#testForm').css('display', 'block').css('opacity', '1')
-        })
-        .progress(function() {
-            $('.progress').css('display','block')
-            w = bar.style.width.replace("%","");
-            var w2= Math.round(w+ (w/10));
-            bar.style.width += w2+'%'
-        })
 
-
+    waiting_element_load()
 }
 
 function showTab(current_index) {
@@ -467,7 +471,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     console.log('html_arr_gen_again ', html_arr_gen_again)
                     console.log('indexIncorrect ', indexIncorrect)
                     console.log('current_index ', this_question.current_index)
-                    console.log('this_questionlength ', this_question.question_data.length)
+                    console.log('this_question_length ', this_question.question_data.length)
 
                     Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
@@ -483,6 +487,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                     });
 
                     $('#prevBtn').before(html_gen_again)
+                    waiting_element_load()
                 }
                 // trừ lv khi sai
                 this_question.level_temp = test_level

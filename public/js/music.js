@@ -31,3 +31,5 @@ $(document).on('mouseleave', '.tab[style="display: flex;"] .audio-image', functi
     sound.unload();
     sound = null;
 });
+
+
