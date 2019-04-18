@@ -287,6 +287,8 @@
                 title: 'Congratulations!',
                 text: "You have received a few free tests!",
                 type: 'info',
+                background: 'orange',
+                backdrop: `rgba(0,0,123,0.4)`,
                 confirmButtonText: 'Go!'
             }).then(() => {
                 $.ajax({

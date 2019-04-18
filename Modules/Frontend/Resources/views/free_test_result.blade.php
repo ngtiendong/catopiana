@@ -94,6 +94,8 @@ $(document).on('click', '.button-recevie-package', function(event) {
             confirmButtonText: 'Sign In',
             cancelButtonText: 'Sign up',
             cancelButtonColor :'#3085d6',
+            background: 'orange',
+            backdrop: `rgba(0,0,123,0.4)`,
         }).then((result) => {
             if (result.value) {
                 $('#modal-sign-in').modal();
