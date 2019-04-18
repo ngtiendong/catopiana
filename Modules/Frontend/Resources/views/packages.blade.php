@@ -144,7 +144,7 @@
             url = $(this).data('route');
             if(test_status == 0) {
                 Swal.fire({
-                    type: 'notice',
+                    type: 'info',
                     title: 'Opps...',
                     text: "You haven't completed 8 original quiz!"
                 });
