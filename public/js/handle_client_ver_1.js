@@ -355,14 +355,14 @@ function getNewQuestionData(position) {
 
 function displayTest() {
     $('.startBtn').css('opacity', '0').css('z-index', '-1');
-    setTimeout(function () {
-        $('#testForm').css('display', 'block').css('opacity', '1')
-    }, 100)
+    // setTimeout(function () {
+    // }, 100)
     wait_load()
-
     $('#testForm img').imagesLoaded()
         .done( function( instance ) {
             $('.progress').css('display','none')
+            $('#testForm').css('display', 'block').css('opacity', '1')
+
         })
 
 
