@@ -24,6 +24,9 @@
                         </div>
                         <div class="bot text-center" style="margin-bottom: 15px">
                         </div>
+                        <div  style=" text-align: center; margin-top: 46px;">
+                            <button type="button" data-login="{{ auth()->guard('customers')->check() ? true : false }}" class="btn-outline-danger btn-warning btn-lg button-recevie-package">Receive Package</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,6 +82,28 @@
         }
     });
 
+$(document).on('click', '.button-recevie-package', function(event) {
+    if($(this).data('login')){
+        window.location.href = '/packages'
+    } else {
+        Swal.fire({
+            title: 'Receive package',
+            text: "Must you want to register or sign in?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sign In',
+            cancelButtonText: 'Sign up',
+            cancelButtonColor :'#3085d6',
+        }).then((result) => {
+            if (result.value) {
+                $('#modal-sign-in').modal();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                $('#modal-sign-up').modal();
+            }
+        });
+    }
+    
+}); 
     function filterCorrectPosition(this_question) {
     let result = 0
     this_question.answers.forEach(function(value, index){

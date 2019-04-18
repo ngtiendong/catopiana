@@ -56,7 +56,24 @@ class PackageService
         if ($package == null){
             return null;
         }
-        $curriculums = $package->curriculums->take(4);
+        $curriculums = $package->curriculums;
         return $curriculums;
     }
+
+    public function getPaidPackage()
+    {
+        $this->customer = auth()->guard('customers')->user();
+        $package = $this->customer->packages()->with('curriculums','curriculums.topic')->where('type',1)->first();
+        if ($package == null){
+            return null;
+        }
+        $curriculums = $package->curriculums;
+        return $curriculums;
+    }
+
+    // public function getTopicOfPackage($customer, $curriculum_id)
+    // {
+    //     $curriculum = Curriculum::find($curriculum_id);
+    //     $package_have_curriculums = $curriculum->packages;
+    // }
 }

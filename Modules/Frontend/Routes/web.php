@@ -26,14 +26,19 @@ Route::group(/**
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('position');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
+    //
+    // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
 
     // free package
     Route::get('/physics', 'FrontendController@test')->name('physics')->middleware('test');
-    Route::get('/chemistry', 'FrontendController@position')->name('chemistry')->middleware('test');
+    Route::get('/chemistry', 'FrontendController@test')->name('chemistry')->middleware('test');
     Route::get('/math', 'FrontendController@test')->name('math')->middleware('test');
-    Route::get('/animal', 'FrontendController@position')->name('animal')->middleware('test');
-    Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('test');
-    Route::get('/plant', 'FrontendController@position')->name('plant')->middleware('test');
+    Route::get('/animal', 'FrontendController@test')->name('animal')->middleware('test');
+    // paid
+    Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('auth:customers');
+    Route::get('/plant', 'FrontendController@test')->name('plant')->middleware('auth:customers');
+    Route::get('/fruit', 'FrontendController@test')->name('fruit')->middleware('auth:customers');
+    Route::get('/sport', 'FrontendController@test')->name('sport')->middleware('auth:customers');
 
     Route::post('/get-list-question', 'FrontendController@getListQuestion');
     Route::post('/get-list-less-level-question', 'FrontendController@getListLessLevelQuestion');
@@ -53,9 +58,13 @@ Route::group(/**
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
 
-    Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');
+
+
+    // Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');
+    Route::get('/packages','FrontendController@getPackages')->middleware('auth:customers')->name('packages');
+    Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->middleware('auth:customers')->name('getCurriculumsFreePackage');
+    Route::get('/paid-packages','FrontendController@getCurriculumsPaidPackage')->middleware('auth:customers')->name('getCurriculumsPaidPackage');
     
-    //  payment
     Route::get('/execute-payment', 'PaymentController@execute');
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
 });

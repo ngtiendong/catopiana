@@ -47,36 +47,34 @@ $(function(){
         }
     })
 
-    /**
-     * Click start button to load data from server
-     */
-    $('.startBtn').click(async function () {
-        //Check local storage
-        play_sound("sounds/demand.mp3")
-
-        const level_obj = {'4': 'level 4','5': 'level 5','6': 'level 6' }
-        if (typeof(test_level) === 'undefined') {
-            await swal.fire({
-                title: 'Please add level',
-                input: 'radio',
-                inputPlaceholder: 'Chose your level',
-                confirmButtonText: 'Look up',
-                input: 'radio',
-                inputOptions: level_obj,
-                inputValidator: (value) => {
-                    if (!value) {
-                        return 'You need to choose your level!'
-                    }
-                },
-                showLoaderOnConfirm: true,
-                preConfirm: (level) => {
-                    test_level = level
-                    return getNewQuestionData(position_in_local_storage)
-                },
-                allowOutsideClick: () => !Swal.isLoading()
-            })
-        }
-
+/**
+ * Click start button to load data from server
+ */
+$('.startBtn').click(async function () {
+    //Check local storage
+    play_sound("sounds/demand.mp3")
+    if (typeof(test_level) === 'undefined') {
+        await swal.fire({
+            title: 'Please add level',
+            input: 'number',
+            inputPlaceholder: 'Chose your level',
+            confirmButtonText: 'Look up',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to add your level !'
+                } 
+                if(value < 1) {
+                    return 'Your level must be greater than 0!'
+                } 
+            },
+            showLoaderOnConfirm: true,
+            preConfirm: (value) => {
+                test_level = value
+                return getNewQuestionData(position_in_local_storage)
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        })
+    }
         else {
             //Check history
             let flag = 1;
@@ -886,18 +884,17 @@ function updateDataTesting()
             }else {
                 // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                if(response.givePackage == true){
-                    Swal.fire({
-                        title: 'Notice',
-                        text: 'You have completed all free test! You will be receviced free package!',
-                        background: 'orange',
-                        display: 'flex',
-                    }).then(() =>{
-                        window.location.href = '/free-test-results'
-                    });
-
-                } else {
+                localStorage.setItem('testing', JSON.stringify(testing_data));               
+                // if(response.givePackage == true ){
+                //     Swal.fire({
+                //         title: 'Notice',
+                //         text: 'You have completed all free test!',
+                //         background: 'orange',
+                //         display: 'flex',
+                //     }).then(() =>{
+                //         window.location.href = '/free-test-results'
+                //     });
+                // } else {
                     // $('#modal-after-answertoppic-logined').modal();
                     Swal.fire({
                         title: 'Great job!',
@@ -911,7 +908,7 @@ function updateDataTesting()
                             continueTest();
                         }
                     });
-                }
+                // }
 
             }
         })
@@ -920,46 +917,59 @@ function updateDataTesting()
         })
 }
 
-$(document).on('click', '.continues-test', function(event) {
-    event.preventDefault();
-    continueTest();
-});
-// chi voi 8 bai test free
 function continueTest()
 {
     if(!list_test_finished.includes(parseInt(topic))){
         list_test_finished.push(parseInt(topic))
     }
-    var next_quiz = 0;
-    for (var i=1; i<9; i++) {
-        if (list_test_finished.indexOf(i) < 0) {
-            //Chua thi
-            next_quiz = i
-            break;
+    // check 8 bài free
+    if(parseInt(topic) < 9){
+        var next_quiz = 0;
+        var count_free_package = 0;
+        for (var i=1; i<9; i++) {
+            if (list_test_finished.indexOf(i) < 0) {
+                //Chua thi
+                next_quiz = i
+                break;
+            }
+            count_free_package++;
         }
-    }
-    // console.log(list_test_finished);
-    // đã làm sang bài test tặng
-    if(list_test_finished.length > 8){
-        next_quiz = -1;
-    }
-
-    // call server last time when have many curriculum
-    // now use variables topic_arr_free[]
-    if (next_quiz == 0){
-        Swal.fire({
-            title: 'Notice',
-            text: 'You have completed all free test! You will be receviced free package!',
-            background: 'orange',
-            display: 'flex',
-        }).then(() => {
-            window.location.href = '/free-test-results'
-        });
-    } else if (next_quiz == -1) {
-        // làm xong bài khác bài free
-        window.location.href = '/';
+        // console.log(list_test_finished);
+        
+        // now use variables topic_arr_free[]
+        if (count_free_package == 8 && list_test_finished.indexOf(parseInt(topic)) > 0) {
+            Swal.fire({
+                title: 'Notice',
+                text: 'You have completed all your free test!!',
+                background: 'orange',
+                display: 'flex',
+            }).then(() => {
+                window.location.href = '/free-test-results'
+            });
+        }  
+        if (next_quiz > 0) {
+            // làm xong bài khác bài free
+            var next_topic = topic_arr_free[next_quiz - 1];
+            window.location.href = '/'+next_topic;
+        }
     } else {
-        var next_topic = topic_arr_free[next_quiz - 1];
-        window.location.href = '/'+next_topic;
+        // topic k free thì chỉ có 1 curriculum, mảng 1 phần tử
+        // curriculum_id = this_question.curriculum_id[0];
+        // $.ajax({
+        //     url: '/getTopicOfPackage',
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     data: {'curriculum_id': curriculum_id},
+        // })
+        // .done(function(response) {
+        //     console.log(response);
+        // })
+        // .fail(function() {
+        //     console.log("error");
+        // })
+        // .always(function() {
+        //     console.log("complete");
+        // });
+        window.history.back();
     }
 }

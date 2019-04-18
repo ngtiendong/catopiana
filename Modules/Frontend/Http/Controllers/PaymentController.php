@@ -27,11 +27,11 @@ class PaymentController extends Controller
 
     public function create(Request $request)
     {   
-        $data = $this->payment_service->getCurriculumData();
+        $data = $this->payment_service->getCurriculumData($request->price);
         // fix cung du lieu nen check custome đã mua package này chưa! hiện tại fix cứng package id 2
         $customer_package = CustomerPackage::where('customer_id', auth()->guard('customers')->user()->id)->where('package_id',2)->first();
         if($customer_package){
-            return redirect('buy-package')->with('buy_package_error' ,'You already have this package before!');
+            return redirect('packages')->with('buy_package_error' ,'You already have this package before!');
         }
         $payment = new CreatePayment;
         return $payment->create($data);
@@ -42,6 +42,6 @@ class PaymentController extends Controller
         $payment = new ExecutePayment;
         $execute = $this->payment_service->saveData($payment->execute());
         // dd($execute);
-        return redirect('buy-package')->with('buy_package_success' ,'You have bought the question package successfully!');
+        return redirect('packages')->with('buy_package_success' ,'You have bought the question package successfully!');
     }
 }

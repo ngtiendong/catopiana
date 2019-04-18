@@ -24,13 +24,12 @@ class FrontendController extends Controller
     public function index()
     {
         $freePackage = null;
+        $paidPackage = null;
         if(auth()->guard('customers')->user()){
-            $freePackage = $this->packageService->getFreePackage();
+            $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
+            $paidPackage = $this->packageService->getPaidPackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
         }
-        if($freePackage == null) {
-            return view('frontend::home');
-        }
-        return view('frontend::home',compact('freePackage'));
+        return view('frontend::home',compact('freePackage','paidPackage'));
     }
 
     /**
@@ -76,6 +75,12 @@ class FrontendController extends Controller
     {
         $params = $request->all();
         if (!empty($params['type']) || !empty($params['level'])) {
+
+            // fix level vì chưa có các level < 3 trong db:
+            if($params['level'] < 4) {
+                $params['level'] = 4;
+            }
+
             if ($params['topic'] == "1"){
                 //Audio
                 $raw_data = Question::getListQuestionAudio($params['topic'], $params['level']);
@@ -224,16 +229,23 @@ class FrontendController extends Controller
                 ];
                 break;
 
-            case 'plan':
+            case 'plant':
                 return [
                     'topic' => "14",
                     'type' => "0"
                 ];
                 break;
 
-            case 'position':
+            case 'fruit':
                 return [
                     'topic' => "15",
+                    'type' => "0"
+                ];
+                break;
+
+            case 'sport':
+                return [
+                    'topic' => "16",
                     'type' => "0"
                 ];
                 break;
@@ -257,4 +269,43 @@ class FrontendController extends Controller
         $customer->update(['test_status' => 2]); // bằng 2 là đã nhận thông báo ở home
         return response()->json(['status' => 200]);
     }
+
+    public function getPackages()
+    {
+        // pass packages to view
+        $customer = auth()->guard('customers')->user();
+        $package_paid = $customer->packages()->where('type',1)->first();
+        $can_receive_free_package = $customer->test_status;
+        return view('frontend::packages',compact('package_paid','can_receive_free_package'));
+    }
+
+    public function getCurriculumsFreePackage()
+    {
+        $package = null;
+        if(auth()->guard('customers')->user()){
+            $package = $this->packageService->getFreePackage();
+        }
+        $free = true;
+        return view('frontend::test_package',compact('package','free'));
+    }
+
+    public function getCurriculumsPaidPackage()
+    {
+        $package = null;
+        if(auth()->guard('customers')->user()){
+            $package = $this->packageService->getPaidPackage();
+        }
+        $free = false;
+        return view('frontend::test_package',compact('package','free'));
+    }
+
+    // public function getTopicOfPackage(Request $request)
+    // {
+    //     $customer = auth()->guard('customers')->user();
+    //     $topic_array = $this->packageService->getTopicOfPackage($customer, $request->input('curriculum_id'));
+    //     return response()->json([
+    //         'status' => 200,
+    //         'topic_array' => $topic_array
+    //     ]);
+    // }
 }
