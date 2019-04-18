@@ -362,13 +362,14 @@ function displayTest() {
         .done( function( instance ) {
             $('.progress').css('display','none')
             $('#testForm').css('display', 'block').css('opacity', '1')
-
+        })
+        .progress(function() {
+            $('.progress').css('display','block')
+            w = bar.style.width.replace("%","");
+            var w2= Math.round(w+ (w/10));
+            bar.style.width += w2+'%'
         })
 
-
-    // $('#testForm').waitForImages(function(){
-    //     $('.progress').css('display','none')
-    // });
 
 }
 
