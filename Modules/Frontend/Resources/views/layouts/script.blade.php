@@ -13,8 +13,10 @@
 <script src="{{asset('/Catopiana_files/js/script.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/calculation.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/mo-js@latest/build/mo.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/mo-js@latest/build/mo.min.js"></script>--}}
 <script src="{{asset('/Catopiana_files/js/howler.min.js')}}"></script>
 <script src="{{asset('/js/effect.js')}}"></script>
 <script src="{{asset('/js/waitForImages.js')}}"></script>
