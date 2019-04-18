@@ -59,9 +59,9 @@ function waiting_element_load() {
         setTimeout(()=>{
             // const randomTiming = Math.floor((Math.random() * 2)+1.5);
             // console.log(randomTiming);
-            bar.style.transitionDuration = `1.5s`;
+            bar.style.transitionDuration = `1s`;
             bar.style.width = '90%'
-        }, 100)
+        }, 1)
         audioReady().then(function(){
             // do something
             setTimeout(()=>{
@@ -69,9 +69,12 @@ function waiting_element_load() {
                 // console.log(randomTiming);
                 bar.style.transitionDuration = `0.5s`;
                 bar.style.width = '100%'
-            }, 100)
-            $('.progress').css('display', 'none')
-            $('#testForm').css('display', 'block').css('opacity', '1')
+
+            }, 1)
+            setTimeout(()=>{
+                $('.progress').css('display', 'none')
+                $('#testForm').css('display', 'block').css('opacity', '1')
+            }, 200)
         });
     } else {
         alert(123)
