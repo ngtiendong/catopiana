@@ -77,7 +77,6 @@ function waiting_element_load() {
             }, 200)
         });
     } else {
-        alert(123)
         // Not music test
         $('#testForm img').imagesLoaded()
             .always(function (instance) {
