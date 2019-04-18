@@ -153,7 +153,7 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-        
+
         $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
 
         foreach ($list_question as $question) {
