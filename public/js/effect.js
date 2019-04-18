@@ -53,26 +53,54 @@ function allImagesLoaded() {
 function waiting_element_load() {
     $('#testForm').css('display', 'none')
     wait_load()
-    $('#testForm img').imagesLoaded()
-        .always(function( instance ) {
-            // setTimeout(function () {
-            //     $('.progress').css('display','none')
-            // }, 3000)
 
-            $('.progress').css('display','none')
-            $('#testForm').css('display', 'block').css('opacity', '1')
-        })
-        .progress(function() {
-            var w,w2, bias
-            bias = Math.ceil(95/$('#testForm img').length)
+    if ($('audio').length > 0) {
+        $('.progress').css('display','block')
+        setTimeout(()=>{
+            // const randomTiming = Math.floor((Math.random() * 2)+1.5);
+            // console.log(randomTiming);
+            bar.style.transitionDuration = `1.5s`;
+            bar.style.width = '90%'
+        }, 100)
+        audioReady().then(function(){
+            // do something
             setTimeout(()=>{
-                w = (bar.style.width).replace("%","");
-                w2= Math.round(parseInt(w)+ bias);
-                // console.log(image, w, w2, bar.style.width, bias, $('#testForm img').length)
+                // const randomTiming = Math.floor((Math.random() * 2)+1.5);
+                // console.log(randomTiming);
                 bar.style.transitionDuration = `0.5s`;
-                bar.style.width = w2+'%'
-
+                bar.style.width = '100%'
             }, 100)
+            $('.progress').css('display', 'none')
+            $('#testForm').css('display', 'block').css('opacity', '1')
+        });
+    } else {
+        alert(123)
+        // Not music test
+        $('#testForm img').imagesLoaded()
+            .always(function (instance) {
+                // setTimeout(function () {
+                //     $('.progress').css('display','none')
+                // }, 3000)
 
-        })
+                $('.progress').css('display', 'none')
+                $('#testForm').css('display', 'block').css('opacity', '1')
+            })
+            .progress(function () {
+                var w, w2, bias
+                bias = Math.ceil(95 / $('#testForm img').length)
+                setTimeout(() => {
+                    w = (bar.style.width).replace("%", "");
+                    w2 = Math.round(parseInt(w) + bias);
+                    // console.log(image, w, w2, bar.style.width, bias, $('#testForm img').length)
+                    bar.style.transitionDuration = `0.5s`;
+                    bar.style.width = w2 + '%'
+
+                }, 100)
+
+            })
+    }
+
+
 }
+
+

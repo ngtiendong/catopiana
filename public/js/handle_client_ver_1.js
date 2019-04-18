@@ -12,7 +12,6 @@ $(window).on('load', function(){
         // once this file loads, it will call loadedAudio()
         // the file will be kept by the browser as cache
         audio.src = url;
-        audio.play()
     }
 
     preloadAudio("sounds/demand.mp3")
