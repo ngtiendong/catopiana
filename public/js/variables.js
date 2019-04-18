@@ -40,10 +40,10 @@ const progress = document.querySelector('.progress');
 bar.style.width = '0%'
 $(progress).on('mouseover', () => {
     setTimeout(()=>{
-        const randomTiming = Math.floor((Math.random() * 1.5)+0.5);
-        console.log(randomTiming);
-        bar.style.transitionDuration = `0.6s`;
-        bar.style.width = '98%';
+        // const randomTiming = Math.floor((Math.random() * 2)+1.5);
+        // console.log(randomTiming);
+        // bar.style.transitionDuration = `${randomTiming}s`;
+
     }, 100)
 
 });
