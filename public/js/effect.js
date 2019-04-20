@@ -80,12 +80,12 @@ function waiting_element_load() {
         // Not music test
         $('#testForm img').imagesLoaded()
             .always(function (instance) {
-                // setTimeout(function () {
-                //     $('.progress').css('display','none')
-                // }, 3000)
+                setTimeout(function () {
+                    $('.progress').css('display', 'none')
+                    $('#testForm').css('display', 'block').css('opacity', '1')
+                }, 500)
 
-                $('.progress').css('display', 'none')
-                $('#testForm').css('display', 'block').css('opacity', '1')
+
             })
             .progress(function () {
                 var w, w2, bias
@@ -97,7 +97,7 @@ function waiting_element_load() {
                     bar.style.transitionDuration = `0.5s`;
                     bar.style.width = w2 + '%'
 
-                }, 100)
+                }, 1)
 
             })
     }
