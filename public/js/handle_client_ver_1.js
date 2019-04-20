@@ -404,7 +404,12 @@ function showTab(current_index) {
     // console.log(n, currentTab, total_question)
 
     if (current_index === 0) {
-        document.getElementById("nextBtn").style.display = "inline";
+        if(current_index_max > current_index ) {
+            document.getElementById("nextBtn").style.display = "inline";
+        } else {
+            document.getElementById("nextBtn").style.display = "none";
+        }
+        // document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
 
@@ -417,7 +422,12 @@ function showTab(current_index) {
     else {
         document.getElementById("submitBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "inline";
-        document.getElementById("nextBtn").style.display = "inline";
+        // document.getElementById("nextBtn").style.display = "inline";
+        if(current_index_max > current_index ) {
+            document.getElementById("nextBtn").style.display = "inline";
+        } else {
+            document.getElementById("nextBtn").style.display = "none";
+        }
     }
 
 }
