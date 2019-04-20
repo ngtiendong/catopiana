@@ -366,3 +366,13 @@ $(document).ready(function() {
         console.log('change local_storage')
     }
 });
+
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+    FB.init({
+      appId: '2347313838633207', // sua lai ip app
+      version: 'v3.0' // or v2.1, v2.2, v2.3, ...
+    });     
+  });
+});
