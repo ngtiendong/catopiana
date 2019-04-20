@@ -34,10 +34,32 @@ $(document).on('mouseleave', '.tab[style="display: flex;"] .audio-image', functi
 
 
 
-function audioReady(){
+function audioReady2(){
     return $.when.apply($, $('audio').map(function(){
         var ready = new $.Deferred();
         $(this).one('canplay', ready.resolve);
         return ready.promise();
     }));
+}
+
+function audioReady() {
+    return $.when($('audio').each(function(index){
+        document.getElementsByTagName('audio')[index].addEventListener('canplaythrough', ()=>{
+            setTimeout(()=>{
+                w = (bar.style.width).replace("%", "");
+                w2 = Math.round(parseInt(w) + bias);
+                console.log(w, w2, bar.style.width, bias, $('audio').length)
+                bar.style.transitionDuration = `0.5s`;
+                bar.style.width = w2 + '%'
+            }, 1)
+        })
+    })).then(function(){
+        setTimeout(()=>{
+            $('.progress').css('display', 'none')
+            $('#testForm').css('display', 'block').css('opacity', '1')
+
+            //Reset loading progress bar
+            bar.style.width='0%'
+        }, 10)
+    })
 }

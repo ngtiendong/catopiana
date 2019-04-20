@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="psy-section section-test"" id="id2">
+<section class="psy-section section-test" id="id2">
     <div class="container">
         <div class="row tn">
             <div class="md-lg-12">
@@ -17,6 +17,8 @@
                 <h3></h3>
             </div>
             <div class="col-md-12">
+                {{--<img src="{{asset('/Catopiana_files/images/iconwin1.png')}}" class="after-submit iconwin1">--}}
+                {{--<img src="{{asset('/Catopiana_files/images/iconwin2.png')}}" class="after-submit iconwin2">--}}
                 <div class="testOverlay">
                     <input id="type" value="{{$type_and_topic['type']}}" hidden>
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
@@ -25,6 +27,7 @@
                     <div class="progress">
                         <div class="bar shadow bars"></div>
                     </div>
+
                     <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
 
                             <button class="test-button" type="button" id="prevBtn"  onclick="prev()">Previous</button>

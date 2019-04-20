@@ -345,14 +345,14 @@ function getNewQuestionData(position) {
                 localStorage.setItem('testing', JSON.stringify(testing_data));
 
 
-                displayTest()
-
                 //Display html all
                 var html_gen_all = ''
                 html_arr.forEach( function(html_arr_element, index) {
                     html_gen_all += html_arr_element;
                 });
                 $('#prevBtn').before(html_gen_all)
+
+                displayTest()
 
                 current_index_max = this_question.current_index;
                 showTab(this_question.current_index)
@@ -381,7 +381,6 @@ function getNewQuestionData(position) {
 
 function displayTest() {
     $('.startBtn').css('opacity', '0').css('z-index', '-1');
-
     waiting_element_load()
 }
 
@@ -836,16 +835,18 @@ function nextButton() {
 
 function showDialogScore(correct, total, login = false) {
     play_sound("sounds/win.mp3")
+    console.log(123,burstPolygon)
+    const tl = new mojs.Timeline({
+        repeat: 999
+    }).add(fw1, fws1, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
     Swal.fire({
           title: 'You have completed this test!',
           padding: '3em',
           background: 'orange',
           allowOutsideClick: false,
           backdrop: `
-            rgba(255, 255, 255, 0.61)
-            url("/Catopiana_files/images/cat.gif")
-            30% center
-            no-repeat
+            rgba(0,0,0,0.1)
+            
           `
         }).then(() => {
         if(!login){
@@ -887,7 +888,6 @@ function showDialogScore(correct, total, login = false) {
         } else {
             // Login roi => Update du lieu len
             updateDataTesting()
-
         }
     });
 }
