@@ -25,6 +25,11 @@ $(window).on('load', function(){
  * 2. Click Image in topic Position
  */
 $(function () {
+    //Auto scroll when into test page
+    $('html,body').stop().animate({
+        scrollTop: $('.testOverlay').eq(0).offset().top
+    }, 500);
+
     $('#testForm').on('submit', function (event) {
         //update local storage
         event.preventDefault()
