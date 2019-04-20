@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row tn justify-content-center">
                 <div class="col-md-12 justify-content-center" style="position: relative;width: 1000px;height: 800px; left: 50px; top: 110px;">
-                        
+
                 <form id="form-payment" method="POST" action="{{route('create-payment')}}">
                     @csrf
                     <input name="price" type="text" class="hidden">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                </div>  
+                </div>
             </div>
             <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
             <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
@@ -99,7 +99,7 @@
                 type: 'info',
                 title: '{{session('buy_package_success')}}',
                 background: 'orange',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
                 showConfirmButton: false,
               timer: 300
             })
@@ -108,7 +108,7 @@
                 type: 'error',
                 title: '{{session('buy_package_error')}}',
                 background: 'orange',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
                 showConfirmButton: false,
               timer: 3000
             })
@@ -135,13 +135,13 @@
                 '<i class="fa fa-ban"></i>',
                 cancelButtonAriaLabel: 'Cancel',
                 background: 'orange',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
             }).then((result) => {
                 if(result.value) {
                     $('input[name="price"]').val(price)
                     $('#form-payment').submit();
                 }
-            })        
+            })
         });
 
         $(document).on('click', '.receive-free-package', function(event) {
@@ -152,9 +152,9 @@
                 Swal.fire({
                     type: 'info',
                     title: 'Opps...',
-                    text: "You haven't completed 8 original quiz!"
+                    text: "You haven't completed 8 original quiz!",
                     background: 'orange',
-                    backdrop: `rgba(0,0,123,0.4)`,
+                    backdrop: `rgba(255, 255, 255, 0.61)`,
                 });
             } else {
                 window.location.href = url;
@@ -166,9 +166,9 @@
                 Swal.fire({
                     type: 'warning',
                     title: 'Opps...',
-                    text: "This package is not really ready"
+                    text: "This package is not really ready",
                     background: 'orange',
-                    backdrop: `rgba(0,0,123,0.4)`,
+                    backdrop: `rgba(255, 255, 255, 0.61)`,
                 });
         });
 

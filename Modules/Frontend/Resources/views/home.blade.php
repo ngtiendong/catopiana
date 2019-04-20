@@ -57,7 +57,7 @@
     @if (!auth()->guard('customers')->user() || auth()->guard('customers')->user()->test_status == 0)
     <div class="container list-test free_topic"><!-- free_topic_here -->
         <div class="row">
-            <div class="top"> 
+            <div class="top">
             </div>
             <div class="bot">
             </div>
@@ -288,7 +288,7 @@
                 text: "You have received a few free tests!",
                 type: 'info',
                 background: 'orange',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
                 confirmButtonText: 'Go!'
             }).then(() => {
                 $.ajax({
