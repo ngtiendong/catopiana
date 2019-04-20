@@ -18,7 +18,7 @@ $(window).on('load', function(){
     preloadAudio("sounds/oh-really.mp3")
     preloadAudio("sounds/plucky.mp3")
     preloadAudio("sounds/win.mp3")
-
+    preloadAudio("sounds/applause3.mp3")
 })
 /**
  * 1. Submit Event
@@ -835,7 +835,7 @@ function nextButton() {
 
 function showDialogScore(correct, total, login = false) {
     play_sound("sounds/win.mp3")
-    console.log(123,burstPolygon)
+    play_sound("sounds/applause3.mp3")
     const tl = new mojs.Timeline({
         repeat: 999
     }).add(fw1, fws1, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
