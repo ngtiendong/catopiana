@@ -28,7 +28,7 @@ $(function () {
     //Auto scroll when into test page
     $('html,body').stop().animate({
         scrollTop: $('.testOverlay').eq(0).offset().top
-    }, 1000);
+    }, 500);
 
     $('#testForm').on('submit', function (event) {
         //update local storage
