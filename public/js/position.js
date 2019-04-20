@@ -129,6 +129,8 @@ function nextButtonPosition () {
          Swal.fire({
             type: 'error',
             title: 'Oops...',
+            background: 'orange',
+            backdrop: `rgba(0,0,123,0.4)`,
             text: 'Please answer the question!',
         })
 
@@ -276,7 +278,6 @@ function createLine(left_element, right_element, start=0) {
 function submitPosition() {
     console.log("condition line array / just answer", line_array)
     if (line_array.length == 3) {
-
         //Lock and save answered
         let just_answer = [...line_array]
         if (this_question.answers.length === this_question.question_data.length) {
@@ -298,7 +299,9 @@ function submitPosition() {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
+            background: 'orange',
             text: 'Please answer the question!',
+            backdrop: `rgba(0,0,123,0.4)`,
         })
     }
 }

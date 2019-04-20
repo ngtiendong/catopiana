@@ -1,5 +1,7 @@
 var checkClick = true
 $(document).on('click', '#submitLog', function(event) {
+    loading = $(this).find('.loading');
+    loading.addClass('lds-dual-ring');
     if(!checkClick){
         return false;
     }
@@ -52,13 +54,20 @@ $(document).on('click', '#submitLog', function(event) {
             }
         })
         .always(function() {
+            loading.removeClass('lds-dual-ring');
             checkClick = true;
         });
 });
 
 // genButton
 $(document).on('click', '#genButton', function(event) {
+    loading = $(this).find('.loading');
+    loading.addClass('lds-dual-ring');
     event.preventDefault();
+    if(!checkClick){
+        return false;
+    }
+    checkClick = false;
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
@@ -91,7 +100,9 @@ $(document).on('click', '#genButton', function(event) {
             Swal.fire({
                 type: 'success',
                 title: 'Your account:',
+                // background: 'orange',
                 text: 'Username: '+response.username+'\n Password: '+response.password,
+                backdrop: `rgba(0,0,123,0.4)`,
                 footer: 'Please save your account!',
                 allowOutsideClick: false
             }).then(()=>{
@@ -111,13 +122,22 @@ $(document).on('click', '#genButton', function(event) {
                 console.log(response)
                 alert('Server Errors: 500!!')
             }
-        });
+        }).always(function(response) {
+            loading.removeClass('lds-dual-ring');
+            checkClick = true;
+        });;
 
 });
 
 $('form#form-sign-up').on('submit', function(event) {
     event.preventDefault()
-    $('button#regButton').prop('disabled', true)
+    loading = $(this).find('.loading');
+    loading.addClass('lds-dual-ring');
+    if(!checkClick){
+        return false;
+    }
+    checkClick = false;
+    // $('button#regButton').prop('disabled', true)
     url = $('#regButton').data('route');
     //Check repassword
     if(testing_data == undefined){
@@ -180,8 +200,10 @@ $('form#form-sign-up').on('submit', function(event) {
                 alert('Server Errors')
             }
         })
-        .always(function() {
-            $('button#regButton').prop('disabled', false);
+        .always(function(response) {
+            loading.removeClass('lds-dual-ring');
+            checkClick = true;
+            // $('button#regButton').prop('disabled', false);
         });
 });
 
@@ -214,39 +236,17 @@ changeLocalStorage = (response) =>
         return;
     }
     console.log('res', response)
-    // console.log('start:' , testing_data)
-    // localStorage.removeItem('testing');
-    // console.log('mid:' , testing_data)
-    // if (typeof testing_data == 'undefined') {
         testing_data = {
             level: response[0].level,
             question: []
         };
-    // }
-    // console.log('local_storage:' , testing_data)
+
     // save html -> localstorage
     response.forEach( function(response_element, index) {
         console.log('for', index)
         html_arr = [];
         response_element.type = response_element.type.toString()
-        // console.log(response_element.type, response_element.topic, response_element.level)
-        // if (response_element.type === '1'){
-        //     response_element.question_data.forEach( function(question_data_element, index) {
-        //         html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
-        //             question_data_element.question_image, question_data_element.answer_image))
-        //     });
-        // } else if (response_element.type === '2'){
-        //     max_images_in_column = response_element.question_data[0].length
-        //     response_element.question_data.forEach( function(question_data_element, index) {
-        //         html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
-        //     });
-        // }
-        // else {
-        //     response_element.question_data.forEach( function(question_data_element, index) {
-        //         html_arr.push(render(question_data_element.question, question_data_element.answers))
-        //     });
 
-        // }
         if(response_element.type === '2'){
             answers = response_element.answers;
         } else {
@@ -278,6 +278,10 @@ changeLocalStorage = (response) =>
 
 $(document).on('click', '#logoutBtn', function(event) {
     event.preventDefault();
+    if(!checkClick){
+        return false;
+    }
+    checkClick = false;
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
@@ -298,16 +302,26 @@ $(document).on('click', '#logoutBtn', function(event) {
     })
     .done(function(response) {
         localStorage.removeItem('testing');
+
         window.location.href ='/'
     })
     .fail(function(response) {
         console.log(response);
-    });
+    })
+    .always(function(response) {
+        checkClick = true;
+    });;
 
 });
 
 $(document).on('click', '.social-link', function(event) {
     event.preventDefault();
+    loading = $(this).find('.loading');
+    loading.addClass('lds-dual-ring');
+    if(!checkClick){
+        return false;
+    }
+    checkClick = false;
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
@@ -335,7 +349,8 @@ $(document).on('click', '.social-link', function(event) {
         console.log(response);
     })
     .always(function(response) {
-        console.log(response);
+        loading.removeClass('lds-dual-ring');
+        checkClick = true;
     });
     
 });

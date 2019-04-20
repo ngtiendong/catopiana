@@ -98,6 +98,8 @@
             Swal.fire({
                 type: 'info',
                 title: '{{session('buy_package_success')}}',
+                background: 'orange',
+                backdrop: `rgba(0,0,123,0.4)`,
                 showConfirmButton: false,
               timer: 300
             })
@@ -105,6 +107,8 @@
             Swal.fire({
                 type: 'error',
                 title: '{{session('buy_package_error')}}',
+                background: 'orange',
+                backdrop: `rgba(0,0,123,0.4)`,
                 showConfirmButton: false,
               timer: 3000
             })
@@ -130,6 +134,8 @@
                 cancelButtonText:
                 '<i class="fa fa-ban"></i>',
                 cancelButtonAriaLabel: 'Cancel',
+                background: 'orange',
+                backdrop: `rgba(0,0,123,0.4)`,
             }).then((result) => {
                 if(result.value) {
                     $('input[name="price"]').val(price)
@@ -147,6 +153,8 @@
                     type: 'info',
                     title: 'Opps...',
                     text: "You haven't completed 8 original quiz!"
+                    background: 'orange',
+                    backdrop: `rgba(0,0,123,0.4)`,
                 });
             } else {
                 window.location.href = url;
@@ -159,6 +167,8 @@
                     type: 'warning',
                     title: 'Opps...',
                     text: "This package is not really ready"
+                    background: 'orange',
+                    backdrop: `rgba(0,0,123,0.4)`,
                 });
         });
 

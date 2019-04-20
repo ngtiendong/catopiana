@@ -25,14 +25,14 @@
                         {{-- <a href="#" class="pull-right">Forgot Password?</a> --}}
                     </div>
                     <div class="form-group text-center div-login">
-                        <button type="submit" data-route="{{route('login')}}" id="submitLog" class="btn login-btn btn-inline-block">Sign in</button>
+                        <button type="submit" data-route="{{route('login')}}" id="submitLog" class="btn login-btn btn-inline-block">Sign in<i class="loading"></i></button>
                     </div>
                 </div>
                 <div class="or-seperator"><i>or</i></div>
                 <p class="text-center">Login with your social media account</p>
                 <div class="text-center social-btn">
-                    <a data-route="{{route('social',['facebook'])}}" type="button" class="btn btn-primary social-link"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-                    <a data-route="{{route('social',['google'])}}" type="button" class="btn btn-danger social-link"><i class="fa fa-google-plus"></i>&nbsp; Google</a>
+                    <a data-route="{{route('social',['facebook'])}}" type="button" class="btn btn-primary social-link"><i class="fa fa-facebook"></i>&nbsp; Facebook <i class="loading"></i></a>
+                    <a data-route="{{route('social',['google'])}}" type="button" class="btn btn-danger social-link"><i class="fa fa-google-plus"></i>&nbsp; Google <i class="loading"></i></a>
                 </div>
             </div>
         </div>
@@ -56,7 +56,8 @@
                         <small class="text-danger genNameError"></small>
                     </div>
                     <div class="form-group text-center div-login">
-                        <button type="button" data-route="{{route('generate')}}" id="genButton" class="btn login-btn btn-inline-block">Generate</button>
+                        <button type="button" data-route="{{route('generate')}}" id="genButton" class="btn login-btn btn-inline-block">Generate
+                            <i class="loading"></i></button>
                         {{-- <a type="button" href="{{route('generate')}}" class="btn login-btn btn-inline-block gen-btn">Generate</a> --}}
                     </div>
                 </div>
@@ -109,7 +110,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group text-center div-register">
-                            <button type="submit" data-route="{{route('register')}}" id="regButton" class="btn register-btn btn-inline-block">Register</button>
+                            <button type="submit" data-route="{{route('register')}}" id="regButton" class="btn register-btn btn-inline-block">Register<i class="loading"></i></button>
                         </div>
                     </div>
                 </form>

@@ -37,10 +37,12 @@ $(function () {
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'Please answer the question!'
+                background: 'orange',
+                text: 'Please answer the question!',
+                backdrop: `rgba(0,0,123,0.4)`,
             });
         } else {
-            play_sound("sounds/demand.mp3")
+            // play_sound("sounds/win.mp3")
             just_answer = just_answer.data('position')
             if (this_question.answers.length > this_question.current_index) {
                 this_question.answers.pop()
@@ -76,6 +78,7 @@ $(function () {
                 input: 'number',
                 inputPlaceholder: 'Chose your level',
                 confirmButtonText: 'Look up',
+                backdrop: `rgba(0,0,123,0.4)`,  
                 inputValidator: (value) => {
                     if (!value) {
                         return 'You need to add your level !'
@@ -776,7 +779,9 @@ function nextButton() {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
+            background: 'orange',
             text: 'Please answer the question!',
+            backdrop: `rgba(0,0,123,0.4)`,
         })
     } else {
         tab_number[this_question.current_index].style.display = "none";
@@ -824,22 +829,31 @@ function nextButton() {
 }
 
 function showDialogScore(correct, total, login = false) {
+    play_sound("sounds/win.mp3")
     Swal.fire({
-        title: ` \n Your score: `+ correct +' / '+total,
-        text: 'You have completed this test!',
-        background: 'orange',
-        display: 'flex',
-    }).then(() => {
+          title: 'You have completed this test!',
+          padding: '3em',
+          background: 'orange',
+          allowOutsideClick: false,
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("/Catopiana_files/images/cat.gif")
+            center left
+            no-repeat
+          `
+        }).then(() => {
         if(!login){
             Swal.fire({
-              title: 'Great Job!',
-              text: "Will you do the next lesson?",
-              type: 'question',
-              showCancelButton: true,
-              confirmButtonText: 'Continue Test',
-              cancelButtonText: 'Sign up',
-              cancelButtonColor :'#3085d6',
-              reverseButtons: true
+                title: 'Great Job!',
+                text: "Will you do the next lesson?",
+                background: 'orange',
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Continue Test',
+                cancelButtonText: 'Sign up',
+                cancelButtonColor :'#3085d6',
+                reverseButtons: true,
+                backdrop: `rgba(0,0,123,0.4)`
             }).then((result) => {
                 if (result.value) {
                     continueTest();
@@ -848,10 +862,12 @@ function showDialogScore(correct, total, login = false) {
                         title: 'Great Job!',
                         text: "Do you want to register or sign in?",
                         type: 'question',
+                        background: 'orange',
                         showCancelButton: true,
                         confirmButtonText: 'Sign In',
                         cancelButtonText: 'Sign up',
                         cancelButtonColor :'#3085d6',
+                        backdrop: `rgba(0,0,123,0.4)`
                     }).then((result) => {
                         if (result.value) {
                             $('#modal-sign-in').modal();
@@ -911,9 +927,11 @@ function updateDataTesting()
                     Swal.fire({
                         title: 'Great job!',
                         text: 'Will you do the next lesson?',
+                        background: 'orange',
                         type:'question',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Continue',
+                        backdrop: `rgba(0,0,123,0.4)`,
                         allowOutsideClick: () => !Swal.isLoading()
                     }).then((result) => {
                         if (result.value) {
@@ -955,6 +973,7 @@ function continueTest()
                 text: 'You have completed all your free test!!',
                 background: 'orange',
                 display: 'flex',
+                backdrop: `rgba(0,0,123,0.4)`,
             }).then(() => {
                 window.location.href = '/free-test-results'
             });
@@ -982,6 +1001,6 @@ function continueTest()
         // .always(function() {
         //     console.log("complete");
         // });
-        window.history.back();
+        window.location.href = document.referrer;
     }
 }
