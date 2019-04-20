@@ -73,6 +73,9 @@ function waiting_element_load() {
             setTimeout(()=>{
                 $('.progress').css('display', 'none')
                 $('#testForm').css('display', 'block').css('opacity', '1')
+                
+                //Reset loading progress bar
+                bar.style.width='0%'
             }, 600)
         });
     } else {
@@ -83,6 +86,9 @@ function waiting_element_load() {
                 setTimeout(function () {
                     $('.progress').css('display', 'none')
                     $('#testForm').css('display', 'block').css('opacity', '1')
+
+                    //Reset loading progress bar
+                    bar.style.width='0%'
                 }, 500)
 
 
