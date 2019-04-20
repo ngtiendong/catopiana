@@ -43,7 +43,13 @@ function play_sound(src) {
 
 function wait_load() {
     $('.progress').css('display','block')
-    $('.progress').trigger('mouseover')
+    // $('.progress').trigger('mouseover')
+    setTimeout(()=>{
+//         // const randomTiming = Math.floor((Math.random() * 2)+1.5);
+//         // console.log(randomTiming);
+        bar.style.transitionDuration = `0.5s`;
+        bar.style.width = '5%'
+    }, 1)
 }
 
 function allImagesLoaded() {
@@ -60,20 +66,20 @@ function waiting_element_load() {
             // console.log(randomTiming);
             bar.style.transitionDuration = `1.5s`;
             bar.style.width = '90%'
-        }, 1)
+        }, 100)
         audioReady().then(function(){
             // do something
             setTimeout(()=>{
                 // const randomTiming = Math.floor((Math.random() * 2)+1.5);
                 // console.log(randomTiming);
-                bar.style.transitionDuration = `0.5s`;
+                bar.style.transitionDuration = `1s`;
                 bar.style.width = '100%'
 
             }, 1)
             setTimeout(()=>{
                 $('.progress').css('display', 'none')
                 $('#testForm').css('display', 'block').css('opacity', '1')
-                
+
                 //Reset loading progress bar
                 bar.style.width='0%'
             }, 600)
@@ -89,7 +95,7 @@ function waiting_element_load() {
 
                     //Reset loading progress bar
                     bar.style.width='0%'
-                }, 500)
+                }, 300)
 
 
             })
@@ -100,7 +106,7 @@ function waiting_element_load() {
                     w = (bar.style.width).replace("%", "");
                     w2 = Math.round(parseInt(w) + bias);
                     // console.log(image, w, w2, bar.style.width, bias, $('#testForm img').length)
-                    bar.style.transitionDuration = `0.5s`;
+                    bar.style.transitionDuration = `1s`;
                     bar.style.width = w2 + '%'
 
                 }, 1)

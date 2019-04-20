@@ -38,15 +38,15 @@ var topic_arr_free = [
 const bar = document.querySelector('.bar');
 const progress = document.querySelector('.progress');
 bar.style.width = '0%'
-$(progress).on('mouseover', () => {
-    setTimeout(()=>{
-        // const randomTiming = Math.floor((Math.random() * 2)+1.5);
-        // console.log(randomTiming);
-        bar.style.transitionDuration = `0.5s`;
-        bar.style.width = '5%'
-    }, 100)
-
-});
+// $(progress).on('mouseover', () => {
+//     setTimeout(()=>{
+//         // const randomTiming = Math.floor((Math.random() * 2)+1.5);
+//         // console.log(randomTiming);
+//         bar.style.transitionDuration = `0.5s`;
+//         bar.style.width = '5%'
+//     }, 100)
+//
+// });
 
 function loadAudio(url, vol){
     var audio = new Audio();
