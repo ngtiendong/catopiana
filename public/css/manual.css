@@ -121,3 +121,21 @@ svg {
 body:not(.modal-open){
     padding-right: 0px !important;
 }
+
+.iconwin1 {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    z-index: 13;
+}
+
+.iconwin2 {
+    position: absolute;
+    top: 40%;
+    left: 70%;
+    z-index: 13;
+}
+
+.after-submit {
+    display: none;
+}
