@@ -17,6 +17,7 @@ $(window).on('load', function(){
     preloadAudio("sounds/demand.mp3")
     preloadAudio("sounds/oh-really.mp3")
     preloadAudio("sounds/plucky.mp3")
+    preloadAudio("sounds/win.mp3")
 
 })
 /**
@@ -39,7 +40,7 @@ $(function () {
                 title: 'Oops...',
                 background: 'orange',
                 text: 'Please answer the question!',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
             });
         } else {
             // play_sound("sounds/win.mp3")
@@ -78,7 +79,7 @@ $(function () {
                 input: 'number',
                 inputPlaceholder: 'Chose your level',
                 confirmButtonText: 'Look up',
-                backdrop: `rgba(0,0,123,0.4)`,  
+                // backdrop: `rgba(255, 255, 255, 0.61)`,
                 inputValidator: (value) => {
                     if (!value) {
                         return 'You need to add your level !'
@@ -781,7 +782,7 @@ function nextButton() {
             title: 'Oops...',
             background: 'orange',
             text: 'Please answer the question!',
-            backdrop: `rgba(0,0,123,0.4)`,
+            backdrop: `rgba(255, 255, 255, 0.61)`,
         })
     } else {
         tab_number[this_question.current_index].style.display = "none";
@@ -836,9 +837,9 @@ function showDialogScore(correct, total, login = false) {
           background: 'orange',
           allowOutsideClick: false,
           backdrop: `
-            rgba(0,0,123,0.4)
+            rgba(255, 255, 255, 0.61)
             url("/Catopiana_files/images/cat.gif")
-            center left
+            30% center
             no-repeat
           `
         }).then(() => {
@@ -853,7 +854,7 @@ function showDialogScore(correct, total, login = false) {
                 cancelButtonText: 'Sign up',
                 cancelButtonColor :'#3085d6',
                 reverseButtons: true,
-                backdrop: `rgba(0,0,123,0.4)`
+                backdrop: `rgba(255, 255, 255, 0.61)`
             }).then((result) => {
                 if (result.value) {
                     continueTest();
@@ -867,7 +868,7 @@ function showDialogScore(correct, total, login = false) {
                         confirmButtonText: 'Sign In',
                         cancelButtonText: 'Sign up',
                         cancelButtonColor :'#3085d6',
-                        backdrop: `rgba(0,0,123,0.4)`
+                        backdrop: `rgba(255, 255, 255, 0.61)`
                     }).then((result) => {
                         if (result.value) {
                             $('#modal-sign-in').modal();
@@ -931,7 +932,7 @@ function updateDataTesting()
                         type:'question',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Continue',
-                        backdrop: `rgba(0,0,123,0.4)`,
+                        backdrop: `rgba(255, 255, 255, 0.61)`,
                         allowOutsideClick: () => !Swal.isLoading()
                     }).then((result) => {
                         if (result.value) {
@@ -973,7 +974,7 @@ function continueTest()
                 text: 'You have completed all your free test!!',
                 background: 'orange',
                 display: 'flex',
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
             }).then(() => {
                 window.location.href = '/free-test-results'
             });

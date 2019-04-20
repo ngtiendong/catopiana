@@ -130,7 +130,7 @@ function nextButtonPosition () {
             type: 'error',
             title: 'Oops...',
             background: 'orange',
-            backdrop: `rgba(0,0,123,0.4)`,
+            backdrop: `rgba(255, 255, 255, 0.61)`,
             text: 'Please answer the question!',
         })
 
@@ -266,7 +266,7 @@ function createLine(left_element, right_element, start=0) {
 
     line.show('draw', {
         animOptions: {
-            duration: 1000,
+            duration: 500,
             timing: 'cubic-bezier(.1, -0.6, 0.2, 0)'
         }
     })
@@ -301,7 +301,7 @@ function submitPosition() {
             title: 'Oops...',
             background: 'orange',
             text: 'Please answer the question!',
-            backdrop: `rgba(0,0,123,0.4)`,
+            backdrop: `rgba(255, 255, 255, 0.61)`,
         })
     }
 }

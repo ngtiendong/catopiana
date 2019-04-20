@@ -97,12 +97,13 @@ $(document).on('click', '#genButton', function(event) {
                 changeLocalStorage(response.local_storage)
             }
             // Show account:
+            $('.modal').hide()
             Swal.fire({
                 type: 'success',
                 title: 'Your account:',
                 // background: 'orange',
                 text: 'Username: '+response.username+'\n Password: '+response.password,
-                backdrop: `rgba(0,0,123,0.4)`,
+                backdrop: `rgba(255, 255, 255, 0.61)`,
                 footer: 'Please save your account!',
                 allowOutsideClick: false
             }).then(()=>{
@@ -352,7 +353,7 @@ $(document).on('click', '.social-link', function(event) {
         loading.removeClass('lds-dual-ring');
         checkClick = true;
     });
-    
+
 });
 // get localstorgae from session
 $(document).ready(function() {

@@ -52,14 +52,13 @@ function allImagesLoaded() {
 
 function waiting_element_load() {
     $('#testForm').css('display', 'none')
-    wait_load()
 
     if ($('audio').length > 0) {
         $('.progress').css('display','block')
         setTimeout(()=>{
             // const randomTiming = Math.floor((Math.random() * 2)+1.5);
             // console.log(randomTiming);
-            bar.style.transitionDuration = `1s`;
+            bar.style.transitionDuration = `1.5s`;
             bar.style.width = '90%'
         }, 1)
         audioReady().then(function(){
@@ -74,9 +73,10 @@ function waiting_element_load() {
             setTimeout(()=>{
                 $('.progress').css('display', 'none')
                 $('#testForm').css('display', 'block').css('opacity', '1')
-            }, 200)
+            }, 600)
         });
     } else {
+        wait_load()
         // Not music test
         $('#testForm img').imagesLoaded()
             .always(function (instance) {

@@ -2019,7 +2019,7 @@ footer .col {
 
 .section-test .tab > img,
 .section-test .question > img {
-    width: 200px;
+    width: 210px;
 }
 
 .section-test .question {
@@ -2069,7 +2069,7 @@ footer .col {
 }
 
 .section-test .tab .answer label img {
-    width: 100px;
+    width: 120px;
     border: 1px solid deepskyblue;
     border-radius: 20px;
 }

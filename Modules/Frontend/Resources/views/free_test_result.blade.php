@@ -20,7 +20,7 @@
                 <div class="testOverlay free_test_result">
                     <div class="row">
                         <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your free test results</h2>
-                        <div class="top text-center" style="margin-bottom: 15px"> 
+                        <div class="top text-center" style="margin-bottom: 15px">
                         </div>
                         <div class="bot text-center" style="margin-bottom: 15px">
                         </div>
@@ -95,7 +95,7 @@ $(document).on('click', '.button-recevie-package', function(event) {
             cancelButtonText: 'Sign up',
             cancelButtonColor :'#3085d6',
             background: 'orange',
-            backdrop: `rgba(0,0,123,0.4)`,
+            backdrop: `rgba(255, 255, 255, 0.61)`,
         }).then((result) => {
             if (result.value) {
                 $('#modal-sign-in').modal();
@@ -104,8 +104,8 @@ $(document).on('click', '.button-recevie-package', function(event) {
             }
         });
     }
-    
-}); 
+
+});
     function filterCorrectPosition(this_question) {
     let result = 0
     this_question.answers.forEach(function(value, index){
