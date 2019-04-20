@@ -288,6 +288,7 @@ const burstCross = new mojs.Burst({
     },
 });
 const swirls = {
+    parent: el6,
     radius: 5,
     direction: -1,
     swirlSize: 85,
@@ -296,6 +297,7 @@ const swirls = {
 };
 const swirl = new mojs.ShapeSwirl({
     ...swirls,
+    parent: el6,
     fill: 'papayawhip',
     top: '10%',
     y: { 0: -150 },
@@ -303,14 +305,16 @@ const swirl = new mojs.ShapeSwirl({
 });
 const swirl2 = new mojs.ShapeSwirl({
     ...swirls,
+    parent: el6,
     fill: 'mediumvioletred',
-    top: '80%',
+    top: '90%',
     left: '80%',
     y: { 0: 50 },
     duration: 3000,
 });
 const swirl3 = new mojs.ShapeSwirl({
     ...swirls,
+    parent: el6,
     fill: 'yellow',
     top: '80%',
     left: '20%',
@@ -318,6 +322,7 @@ const swirl3 = new mojs.ShapeSwirl({
     duration: 3000,
 });
 const circs = {
+    parent: el6,
     fill: 'none',
     opacity: { 1 : 0 },
     duration: 1800,
@@ -325,13 +330,15 @@ const circs = {
 };
 const circ = new mojs.Shape({
     ...circs,
+    parent: el6,
     radius: { 0 : 100 },
-    top: '40%',
+    top: '90%',
     left: '80%',
     stroke: 'peachpuff',
 });
 const circ2 = new mojs.Shape({
     ...circs,
+    parent: el6,
     radius: { 0 : 250 },
     top: '30%',
     left: '20%',
