@@ -24,7 +24,19 @@ $(document).on('click', 'label',function (event) {
         play_sound("/sounds/plucky.mp3")
 
     }
+    // auto next when click button
+    autonext()
+
 });
+
+function autonext()
+{
+    if( this_question.current_index < this_question.question_data.length - 1 && current_index_max == this_question.current_index ) {
+        setTimeout(()=>{
+                next()
+        },1000)
+    }
+}
 
 function play_sound(src) {
     var sound = null

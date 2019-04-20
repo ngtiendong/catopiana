@@ -404,7 +404,12 @@ function showTab(current_index) {
     // console.log(n, currentTab, total_question)
 
     if (current_index === 0) {
-        document.getElementById("nextBtn").style.display = "inline";
+        if(current_index_max > current_index ) {
+            document.getElementById("nextBtn").style.display = "inline";
+        } else {
+            document.getElementById("nextBtn").style.display = "none";
+        }
+        // document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
 
@@ -417,7 +422,12 @@ function showTab(current_index) {
     else {
         document.getElementById("submitBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "inline";
-        document.getElementById("nextBtn").style.display = "inline";
+        // document.getElementById("nextBtn").style.display = "inline";
+        if(current_index_max > current_index ) {
+            document.getElementById("nextBtn").style.display = "inline";
+        } else {
+            document.getElementById("nextBtn").style.display = "none";
+        }
     }
 
 }
@@ -955,6 +965,7 @@ function updateDataTesting()
 
 function continueTest()
 {
+
     if(!list_test_finished.includes(parseInt(topic))){
         list_test_finished.push(parseInt(topic))
     }
@@ -974,14 +985,35 @@ function continueTest()
 
         // now use variables topic_arr_free[]
         if (count_free_package == 8 && list_test_finished.indexOf(parseInt(topic)) > 0) {
+            // share
             Swal.fire({
-                title: 'Notice',
-                text: 'You have completed all your free test!!',
-                background: 'orange',
-                display: 'flex',
+                title: '<strong>Share to receive your result. Share on <u> Facebook</u></strong>',
+                type: 'success',
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: '<i class="fa fa-facebook"></i> Share on Facebook',
+                cancelButtonText:'Cancel',
                 backdrop: `rgba(255, 255, 255, 0.61)`,
-            }).then(() => {
-                window.location.href = '/free-test-results'
+            }).then((result) => {
+                if(result.value) {
+                    FB.ui({
+                        method: 'share',
+                        href: 'https://beta.catopiana.com/',
+                        layout: 'button_count',
+                        size: 'large',
+                    }, function(response){
+                        if (response && !response.error_code) {
+                            window.location.href = '/free-test-results'
+                        } else {
+                            Swal.fire({
+                                title: 'Notice',
+                                text: "You haven't share on Facebook",
+                                display: 'flex',
+                                backdrop: `rgba(255, 255, 255, 0.61)`,
+                            })
+                        }
+                  });
+                }
             });
         }
         if (next_quiz > 0) {
@@ -990,23 +1022,6 @@ function continueTest()
             window.location.href = '/'+next_topic;
         }
     } else {
-        // topic k free thì chỉ có 1 curriculum, mảng 1 phần tử
-        // curriculum_id = this_question.curriculum_id[0];
-        // $.ajax({
-        //     url: '/getTopicOfPackage',
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     data: {'curriculum_id': curriculum_id},
-        // })
-        // .done(function(response) {
-        //     console.log(response);
-        // })
-        // .fail(function() {
-        //     console.log("error");
-        // })
-        // .always(function() {
-        //     console.log("complete");
-        // });
         window.location.href = document.referrer;
     }
 }

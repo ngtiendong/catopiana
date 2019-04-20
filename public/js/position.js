@@ -57,6 +57,9 @@ $(document).on('click', '.list-l-item img', function (e) {
             $(this).removeClass('unlock-selection')
         })
     }
+    if (line_array.length == 3) {
+        autonext()
+    }
 })
 
 function nextButtonPosition () {
