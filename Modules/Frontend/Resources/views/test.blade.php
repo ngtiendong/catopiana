@@ -53,13 +53,15 @@
 
         </div>
     </div>
+    {{-- comment image to test not lag --}}
+    @include('frontend::layouts.background')
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">
         <div class="row"></div>
     </div>
 </section>
-@include('frontend::layouts.modal_in_testing')
+{{-- @include('frontend::layouts.modal_in_testing') --}}
 @endsection
 
 

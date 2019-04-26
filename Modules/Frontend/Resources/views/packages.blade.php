@@ -87,7 +87,9 @@
             <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
             <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
         </div>
-</section>
+        {{-- comment image to test not lag --}}
+        @include('frontend::layouts.background')
+    </section>
 @endsection
 
 @section('js')
