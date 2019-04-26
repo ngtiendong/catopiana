@@ -147,15 +147,15 @@ jQuery(function($) {
 	f51 = new TimelineMax({ repeat: -1, yoyo: true });
 	f51.fromTo('.f5', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
-	// f6 = new TimelineMax({ repeat: -1, yoyo: false });
-	// f6.fromTo('.f6', 40, {css:{'left':'100%'}}, {css:{'left':'-200px'}}, 0)
-	// f61 = new TimelineMax({ repeat: -1, yoyo: true });
-	// f61.fromTo('.f6' , 1, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
-	//
-	// f7 = new TimelineMax({ repeat: -1, yoyo: false });
-	// f7.fromTo('.f7', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
-	// f71 = new TimelineMax({ repeat: -1, yoyo: true });
-	// f71.fromTo('.f7', 1, {skewY:"-12deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-15deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	f6 = new TimelineMax({ repeat: -1, yoyo: false });
+	f6.fromTo('.f6', 40, {css:{'left':'100%'}}, {css:{'left':'-200px'}}, 0)
+	f61 = new TimelineMax({ repeat: -1, yoyo: true });
+	f61.fromTo('.f6' , 1, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	
+	f7 = new TimelineMax({ repeat: -1, yoyo: false });
+	f7.fromTo('.f7', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
+	f71 = new TimelineMax({ repeat: -1, yoyo: true });
+	f71.fromTo('.f7', 1, {skewY:"-12deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-15deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	// submarine
 	s1 = new TimelineMax({ repeat: -1, yoyo: true });

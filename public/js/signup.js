@@ -25,7 +25,7 @@ $(document).on('click', '#submitLog', function(event) {
                     // alert('somethings wrongs');
                 }else {
                     changeLocalStorage(response.local_storage)
-                    window.location.reload(true)
+                    redirectPage();
                 }
 
             }
@@ -107,7 +107,8 @@ $(document).on('click', '#genButton', function(event) {
                 footer: 'Please save your account!',
                 allowOutsideClick: false
             }).then(()=>{
-                window.location.reload(true);
+                // check if at free-test result
+                redirectPage()
             })
 
         })
@@ -167,7 +168,8 @@ $('form#form-sign-up').on('submit', function(event) {
                     localStorage.removeItem('testing');
                     changeLocalStorage(response.local_storage);
                 }
-                    window.location.reload(true);
+                    // check if at free-test result
+                    redirectPage()
 
             }
         })
@@ -376,3 +378,11 @@ $(document).ready(function() {
     });     
   });
 });
+
+redirectPage = () => {
+    if(window.location.pathname === '/free-test-results') {
+        window.location.href = '/packages'
+    } else {
+        window.location.reload(true)
+    }
+}
