@@ -62,8 +62,8 @@
             <div class="bot">
             </div>
         </div>
-        <img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
-        <img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
+{{--         <img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
+        <img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt=""> --}}
     </div>
     @else
     <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; text-align: center;">
@@ -97,7 +97,16 @@
         </div>
     </div>
     @endif
+    <img class="f6 fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
+    <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
+    <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+    <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
     <img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
+    <img class="b1 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b2 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b3 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b4 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">

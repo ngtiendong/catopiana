@@ -32,6 +32,7 @@ $(document).on('click', 'label',function (event) {
 function autonext()
 {
     if( this_question.current_index < this_question.question_data.length - 1 && current_index_max == this_question.current_index ) {
+        $('#nextBtn').prop('disabled', true);
         setTimeout(()=>{
                 next()
         },1000)

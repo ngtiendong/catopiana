@@ -1093,11 +1093,6 @@ header {
     opacity: 0;
 }
 
-.f6,
-.f7 {
-    width: 200px;
-}
-
 footer {
     padding: 130px 0 70px;
     min-height: 390px;
@@ -1177,12 +1172,13 @@ footer .col {
 }
 
 #id1 {
-    margin-top: -20px;
+    margin-top: -3%;
     position: relative;
-    padding: 100px 0;
+    /*padding: 100px 0;*/
+    padding-bottom: 100px;
     z-index: 3
 }
-
+/*
 #id1 .f1 {
     position: absolute;
     width: 100px;
@@ -1212,9 +1208,9 @@ footer .col {
     bottom: 100px;
     left: 50px;
     z-index: 2
-}
+}*/
 
-#id1 .bubble {
+.bubble {
     position: absolute;
     z-index: 5
 }
@@ -1409,7 +1405,7 @@ footer .col {
 #id2 .container .row.tn {
     position: relative;
     z-index: 3;
-    padding-top: 13%;
+    padding-top: 20%;
     width: 100%
 }
 
@@ -1521,7 +1517,7 @@ footer .col {
 #id2 #island {
     width: 160vw;
     position: relative;
-    margin-top: -70px;
+    margin-top: 15%;
     z-index: 4
 }
 
