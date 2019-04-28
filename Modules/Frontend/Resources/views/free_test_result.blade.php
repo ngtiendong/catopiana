@@ -39,6 +39,8 @@
 
         </div>
     </div>
+    {{-- comment image to test not if lag --}}
+    @include('frontend:layouts.background')
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">

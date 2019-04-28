@@ -188,6 +188,30 @@ jQuery(function($) {
 	b4 = new TimelineMax({ repeat: -1 });
 	b4.from('.b4', 0.5, {y:150, opacity: 0}, 1)
 		.to('.b4', 5, {y:-50, opacity: 1}, 1)
+	// new bubble
+	b5 = new TimelineMax({ repeat: -1 });
+	b5.from('.b5', 6, {y:200, x: 10, opacity: 0}, 0.5)
+		.to('.b5', 4, {y:-500, opacity: 1}, 0.1)
+
+	b6 = new TimelineMax({ repeat: -1 });
+	b6.from('.b6', 6, {y:300, opacity: 0}, .6)
+		.to('.b6', 7, {y:-600, opacity: 1}, 0.3)	
+
+	b7 = new TimelineMax({ repeat: -1 });
+	b7.from('.b7', 6, {y:300, opacity: 0}, 1)
+		.to('.b7', 8, {y:-700, opacity: 1}, 0.2)
+
+	b8 = new TimelineMax({ repeat: -1 });
+	b8.from('.b8', 6, {y:300, opacity: 0}, 1)
+		.to('.b8', 9, {y:-500, opacity: 1}, 0.2)
+
+	b9 = new TimelineMax({ repeat: -1 });
+	b9.from('.b9', 6, {y:300, opacity: 0}, 0.9)
+		.to('.b9', 6, {y:-500, opacity: 1}, 0.1)
+
+	b10 = new TimelineMax({ repeat: -1 });
+	b10.from('.b10', 6, {y:300, opacity: 0}, 0.2)
+		.to('.b10', 7, {y:-500, opacity: 1}, 0.2)
 
 
 	var tl, tl2;
@@ -242,10 +266,6 @@ jQuery(function($) {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
 	// });
-	
-	
-	
-
 });
 
 

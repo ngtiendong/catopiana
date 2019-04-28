@@ -1210,12 +1210,12 @@ footer .col {
     z-index: 2
 }*/
 
-.bubble {
+/*.bubble {
     position: absolute;
     z-index: 5
-}
+}*/
 
-#id1 .bubble.b1 {
+/*#id1 .bubble.b1 {
     top: 100px;
     left: 100px;
     width: 50px
@@ -1237,7 +1237,7 @@ footer .col {
     top: 600px;
     right: 100px;
     width: 50px
-}
+}*/
 
 #id1 .board {
     color: #066b7c;
@@ -1341,7 +1341,7 @@ footer .col {
     left: -85px
 }
 
-#id1 .cta a {
+/*#id1 .cta a {
     color: #000000;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1365,7 +1365,7 @@ footer .col {
     font-weight: bold;
     color: #066b7c;
     z-index: 3
-}
+}*/
 
 #id2 {
     position: relative;
@@ -1512,13 +1512,6 @@ footer .col {
 .test-item:hover {
     transform: scale(1.3);
     transition: .3s;
-}
-
-#id2 #island {
-    width: 160vw;
-    position: relative;
-    margin-top: 15%;
-    z-index: 4
 }
 
 #for-parent {

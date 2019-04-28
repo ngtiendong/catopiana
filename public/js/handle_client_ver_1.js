@@ -75,27 +75,78 @@ $(function () {
     /**
      * Click start button to load data from server
      */
+    // $('.startBtn').click(async function () {
+    //     //Check local storage
+    //     play_sound("sounds/demand.mp3")
+    //     if (typeof(test_level) === 'undefined') {
+    //         await swal.fire({
+    //             title: 'Please add level',
+    //             input: 'number',
+    //             inputPlaceholder: 'Chose your level',
+    //             confirmButtonText: 'Look up',
+    //             // backdrop: `rgba(255, 255, 255, 0.61)`,
+    //             inputValidator: (value) => {
+    //                 if (!value) {
+    //                     return 'You need to add your level !'
+    //                 }
+    //                 if (value < 1) {
+    //                     return 'Your level must be greater than 0!'
+    //                 }
+    //             },
+    //             showLoaderOnConfirm: true,
+    //             preConfirm: (value) => {
+    //                 test_level = value
+    //                 return getNewQuestionData(position_in_local_storage)
+    //             },
+    //             allowOutsideClick: () => !Swal.isLoading()
+    //         })
+    //     }
+    //     else {
+    //         //Check history
+    //         let flag = 1;
+    //         for (var i = 0; i < testing_data.question.length; i++) {
+    //             this_question = testing_data.question[i];
+    //             // console.log('current', current_data)
+
+    //             if (this_question.topic == topic) {
+    //                 // Da ton tai bai test type nay trong lich su
+    //                 position_this_question = i
+    //                 console.log('current', this_question)
+    //                 // this_question = current_data
+    //                 total_question = parseInt(this_question.question_data.length)
+    //                 generateUnfinishedTest(this_question)
+    //                 flag = -1;
+    //                 break
+
+    //             }
+    //         }
+    //         if (flag !== -1) {
+    //             //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
+    //             getNewQuestionData(position_in_local_storage)
+    //         }
+    //     }
+
+    // });
     $('.startBtn').click(async function () {
         //Check local storage
-        play_sound("sounds/demand.mp3")
         if (typeof(test_level) === 'undefined') {
+            inputOptions = {'1': 'level 1', '2': 'level 2', '3': 'level 3', '4': 'level 4', '5': 'level 5', '6': 'level 6'}
             await swal.fire({
-                title: 'Please add level',
-                input: 'number',
-                inputPlaceholder: 'Chose your level',
-                confirmButtonText: 'Look up',
-                // backdrop: `rgba(255, 255, 255, 0.61)`,
+                title: 'Please chosse level',
+                width: '40%',
+                input: 'radio',
+                inputOptions: inputOptions,
                 inputValidator: (value) => {
                     if (!value) {
-                        return 'You need to add your level !'
-                    }
-                    if (value < 1) {
-                        return 'Your level must be greater than 0!'
+                      return 'You need to choose your level!';
                     }
                 },
+                confirmButtonText: 'Look up',
+                // backdrop: `rgba(255, 255, 255, 0.61)`,
                 showLoaderOnConfirm: true,
                 preConfirm: (value) => {
                     test_level = value
+                    play_sound("sounds/demand.mp3")
                     return getNewQuestionData(position_in_local_storage)
                 },
                 allowOutsideClick: () => !Swal.isLoading()
@@ -127,6 +178,7 @@ $(function () {
         }
 
     });
+
 })
 
 
@@ -866,34 +918,35 @@ function showDialogScore(correct, total, login = false) {
                 text: "Will you do the next lesson?",
                 background: 'orange',
                 type: 'question',
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonText: 'Continue Test',
-                cancelButtonText: 'Sign up',
-                cancelButtonColor :'#3085d6',
-                reverseButtons: true,
+                // cancelButtonText: 'Sign up',
+                // cancelButtonColor :'#3085d6',
+                // reverseButtons: true,
                 backdrop: `rgba(255, 255, 255, 0.61)`
             }).then((result) => {
                 if (result.value) {
                     continueTest();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire({
-                        title: 'Great Job!',
-                        text: "Do you want to register or sign in?",
-                        type: 'question',
-                        background: 'orange',
-                        showCancelButton: true,
-                        confirmButtonText: 'Sign In',
-                        cancelButtonText: 'Sign up',
-                        cancelButtonColor :'#3085d6',
-                        backdrop: `rgba(255, 255, 255, 0.61)`
-                    }).then((result) => {
-                        if (result.value) {
-                            $('#modal-sign-in').modal();
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            $('#modal-sign-up').modal();
-                        }
-                    });
-                }
+                } 
+                // else if (result.dismiss === Swal.DismissReason.cancel) {
+                //     Swal.fire({
+                //         title: 'Great Job!',
+                //         text: "Do you want to register or sign in?",
+                //         type: 'question',
+                //         background: 'orange',
+                //         showCancelButton: true,
+                //         confirmButtonText: 'Sign In',
+                //         cancelButtonText: 'Sign up',
+                //         cancelButtonColor :'#3085d6',
+                //         backdrop: `rgba(255, 255, 255, 0.61)`
+                //     }).then((result) => {
+                //         if (result.value) {
+                //             $('#modal-sign-in').modal();
+                //         } else if (result.dismiss === Swal.DismissReason.cancel) {
+                //             $('#modal-sign-up').modal();
+                //         }
+                //     });
+                // }
             })
 
         } else {
