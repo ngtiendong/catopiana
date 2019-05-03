@@ -3250,3 +3250,39 @@ a.psy-btn:hover {
     bottom: 35%;
     right: 10%;
 }
+
+button.start_memory {
+    color: #494949 !important;
+    background: #ffffff;
+    padding: 5px 20px;
+    border: 2px solid #494949 !important;
+    border-radius: 6px;
+    display: inline-block;
+    box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+    margin-top: 2%;
+}
+
+button.start_memory:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
+    box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+}
+
+.testOverlay.continue_test {
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,39,121,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+.button-continue {
+    position: relative;
+    border: 2px solid rgba(2,0,36,1);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,39,121,1) 0%, rgba(0,212,255,1) 100%);
+    padding: 15px 25px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+}

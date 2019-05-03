@@ -64,9 +64,17 @@ $(function () {
             let correct = candidate_answers.filter(answer => answer == 0).length
             // let login = false;
             var login = $(this).data('login');
-            showDialogScore(correct, total_question, login)
+            if(login) {
+                updateDataTesting();
+            }
+            
+            if(!list_test_finished.includes(parseInt(topic))){
+                list_test_finished.push(parseInt(topic))
+            }
+            window.location.href = '/continue-test/'+parseInt(topic)
+            // showDialogScore(correct, total_question, login)
             //Display test not finished
-            displayTestUnFinishedAfterSubmit()
+            // displayTestUnFinishedAfterSubmit()
         }
     })
 
@@ -287,12 +295,12 @@ function generateUnfinishedTest(current_data) {
 
     else {
         for (var i = 0; i<length_answered; i++) {
-            var visibility = '';
+            var style = '';
             if (topic == '6') {
-                visibility = 'visibility: hidden;'
+                style = 'style ="display: none;"'
             }
-            html += '<div class="tab" style="display: none;"><img class="question" style="'+visibility+'" src="/test/images/'+current_data.question_data[i].question+'" alt="">'
-                + '<p class="countDownTimer"></p>' +
+            html += '<div class="tab" style="display: none;"><img class="question" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
+                + '<button class="start_memory" '+style+'></button>' +
                 "<div class='answer'>" ;
 
             var answer = ""
@@ -346,15 +354,15 @@ function generateUnfinishedTest(current_data) {
     if(current_data.level_temp > minLv){
         setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
-    if(topic === '6'){
-        //Memory
-        if(timerId != null){
-            clearTimeout(timerId);
-            timeout = 5;
-        }
-        buttonMemoryChecked = false;
-        hideQuestion(current_data.current_index);
-    }
+    // if(topic === '6'){
+    //     //Memory
+    //     if(timerId != null){
+    //         clearTimeout(timerId);
+    //         timeout = 5;
+    //     }
+    //     buttonMemoryChecked = false;
+    //     hideQuestion(current_data.current_index);
+    // }
 }
 
 function getNewQuestionData(position) {
@@ -440,15 +448,15 @@ function getNewQuestionData(position) {
                 if(this_question.level_temp > minLv){
                     setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 }
-                if(topic === '6'){
-                    //Memory
-                    if(timerId != null){
-                        clearTimeout(timerId);
-                        timeout = 5;
-                    }
-                    buttonMemoryChecked = false;
-                    hideQuestion(this_question.current_index);
-                }
+                // if(topic === '6'){
+                //     //Memory
+                //     if(timerId != null){
+                //         clearTimeout(timerId);
+                //         timeout = 5;
+                //     }
+                //     buttonMemoryChecked = false;
+                //     hideQuestion(this_question.current_index);
+                // }
 
 
             } else {
@@ -593,15 +601,15 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 localStorage.setItem('testing', JSON.stringify(testing_data));
                 console.log('current: ', indexIncorrect, 'data', this_question)
                 showTab(indexIncorrect)
-                if(topic === '6'){
-                    //Memory
-                    if(timerId != null){
-                        clearTimeout(timerId);
-                        timeout = 5;
-                    }
-                    buttonMemoryChecked = false;
-                    hideQuestion(indexIncorrect);
-                }
+                // if(topic === '6'){
+                //     //Memory
+                //     if(timerId != null){
+                //         clearTimeout(timerId);
+                //         timeout = 5;
+                //     }
+                //     buttonMemoryChecked = false;
+                //     hideQuestion(indexIncorrect);
+                // }
 
                 flagChange = 0;
                 if(this_question.level_temp > minLv){
@@ -778,22 +786,19 @@ function render(question, answers) {
             "</label>"
 
     });
-
+    normal = 'style="display : none;"';
     if(topic === "6" ){
-        style = 'style="visibility : hidden;"';
+        style = 'style="display : none;"';
+        normal = 'style="display : inline-block;"'
     }
 
     let content = "<div class='tab' style='display: none;'>" +
         "<img class='question' src='/test/images/" + question + "' alt=''>" +
-        '<p class="countDownTimer"></p>' +
+        '<button class="start_memory"'+normal+' >Start</button>'+
         "<div class='answer'"+ style +">" +
         answerHTML +
         "</div>" +
         "</div>";
-
-    // $('.button-np').before(content);
-    // console.log("conent", content)
-    // $('#prevBtn').before(content)
     return content
 }
 
@@ -817,6 +822,15 @@ function renderAudio(question, answers, question_image, answer_image){
     // $('#prevBtn').before(content);
     return content
 }
+
+$(document).on('click', '.start_memory', function(event) {
+    event.preventDefault();
+    current_index = this_question.current_index;
+    var x = document.getElementsByClassName("tab");
+    $(x[current_index]).children('.answer').css('display' ,'block');
+    $(x[current_index]).children('img').css('display' ,'none');
+    $(x[current_index]).children('.start_memory').css('display' ,'none');
+});
 
 function hideQuestion(current_index){
     var x = document.getElementsByClassName("tab");
@@ -904,15 +918,15 @@ function nextButton() {
                 //Save into local storage
                 // console.log (testing_data, 'test')
                 localStorage.setItem('testing', JSON.stringify(testing_data))
-                if(topic === '6'){
-                    //Memory
-                    if(timerId != null){
-                        clearTimeout(timerId);
-                        timeout = 5;
-                    }
-                    buttonMemoryChecked = false;
-                    hideQuestion(this_question.current_index);
-                }
+                // if(topic === '6'){
+                //     //Memory
+                //     if(timerId != null){
+                //         clearTimeout(timerId);
+                //         timeout = 5;
+                //     }
+                //     buttonMemoryChecked = false;
+                //     hideQuestion(this_question.current_index);
+                // }
                 showTab(this_question.current_index)
                 flagChange = 0
                 // sau khi render 20s k next thì sẽ => câu hỏi thấp
@@ -1009,33 +1023,20 @@ function updateDataTesting()
                 // console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
                 localStorage.setItem('testing', JSON.stringify(testing_data));
-                // if(response.givePackage == true ){
-                //     Swal.fire({
-                //         title: 'Notice',
-                //         text: 'You have completed all free test!',
-                //         background: 'orange',
-                //         display: 'flex',
-                //     }).then(() =>{
-                //         window.location.href = '/free-test-results'
-                //     });
-                // } else {
-                    // $('#modal-after-answertoppic-logined').modal();
-                    Swal.fire({
-                        title: 'Great job!',
-                        text: 'Will you do the next lesson?',
-                        background: 'orange',
-                        type:'question',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Continue',
-                        backdrop: `rgba(0,0,0,0.1)`,
-                        allowOutsideClick: () => !Swal.isLoading()
-                    }).then((result) => {
-                        if (result.value) {
-                            continueTest();
-                        }
-                    });
-                // }
-
+                // Swal.fire({
+                //     title: 'Great job!',
+                //     text: 'Will you do the next lesson?',
+                //     background: 'orange',
+                //     type:'question',
+                //     confirmButtonColor: '#3085d6',
+                //     confirmButtonText: 'Continue',
+                //     backdrop: `rgba(0,0,0,0.1)`,
+                //     allowOutsideClick: () => !Swal.isLoading()
+                // }).then((result) => {
+                //     if (result.value) {
+                //         continueTest();
+                //     }
+                // });
             }
         })
         .fail(function(response) {

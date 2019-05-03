@@ -294,9 +294,17 @@ function submitPosition() {
         console.log('answer', candidate_answers, this_question, just_answer)
         let correct = filterCorrectPosition()
         var login = $('#testForm').data('login');
-        showDialogScore(correct, total_question*max_images_in_column, login)
+        if(login) {
+            updateDataTesting();
+        }
+        
+        if(!list_test_finished.includes(parseInt(topic))){
+            list_test_finished.push(parseInt(topic))
+        }
+        window.location.href = '/continue-test/'+parseInt(topic)
+        // showDialogScore(correct, total_question*max_images_in_column, login)
         //Display test not finished
-        displayTestUnFinishedAfterSubmit()
+        // displayTestUnFinishedAfterSubmit()
 
     } else {
         Swal.fire({

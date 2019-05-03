@@ -57,6 +57,7 @@ Route::group(/**
     Route::post('/sendLocalStorageSocial', 'Auth\SocialAccountController@sendLocalStorageSocial');
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
+    Route::get('/continue-test/{topic}', 'FrontendController@continueTest');
 
 
 
