@@ -1178,7 +1178,7 @@ footer .col {
 }
 
 #id1 {
-    margin-top: -3%;
+    margin-top: -2%;
     position: relative;
     /*padding: 100px 0;*/
     padding-bottom: 100px;
@@ -1356,7 +1356,7 @@ footer .col {
 }
 
 #id1 .board #sub1 {
-    width: 240px;
+    width: 220px;
     position: absolute;
     left: 0;
     top: 0;
@@ -1367,17 +1367,17 @@ footer .col {
 }
 
 #id1 .board #sub2 {
-    width: 180px;
+    width: 160px;
     position: absolute;
-    top: 0;
+    top: 2%;
     left: 45%;
     z-index: 3
 }
 
 #id1 .board #sub3 {
-    width: 200px;
+    width: 180px;
     position: absolute;
-    top: -100px;
+    top: -80px;
     left: 90%;
     z-index: 1
 }
@@ -3229,4 +3229,24 @@ a.psy-btn:hover {
         transform: scale(1, 1);
     }
 
+}
+
+.bt1 {
+    position: absolute;
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    z-index: 5;
+    bottom: 20%;
+    left: 10%;
+}
+
+.whale1 {
+    position: absolute;
+    width: 310px;
+    /*max-width: 200px;*/
+    height: 170px;
+    z-index: 3;
+    bottom: 35%;
+    right: 10%;
 }

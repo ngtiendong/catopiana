@@ -241,7 +241,8 @@ changeLocalStorage = (response) =>
     console.log('res', response)
         testing_data = {
             level: response[0].level,
-            question: []
+            question: [],
+            received_free_package_status : parseInt(response[0].received_free_package_status)
         };
 
     // save html -> localstorage

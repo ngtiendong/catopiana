@@ -22,24 +22,16 @@
                 <div class="testOverlay">
                     <input id="type" value="{{$type_and_topic['type']}}" hidden>
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
-
-                    <a class="startBtn">Click To Start!</a>
+                    {{-- <a class="startBtn">Click To Start!</a> --}}
                     <div class="progress">
                         <div class="bar shadow bars"></div>
                     </div>
-
-                    <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
-
+                    <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}" >
                             <button class="test-button" type="button" id="prevBtn"  onclick="prev()">Previous</button>
                             <button class="test-button" type="button" id="nextBtn" onclick="next()">Next</button>
                             <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
                         <div class="dot">
                             <span class="badge badge-pill badge-primary"></span>
-
-
-                            {{--<span class="step active" onclick="currentQ(0)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(1)"></span>--}}
-                            {{--<span class="step" onclick="currentQ(2)"></span>--}}
                         </div>
                     </form>
                 </div>
@@ -61,7 +53,6 @@
         <div class="row"></div>
     </div>
 </section>
-{{-- @include('frontend::layouts.modal_in_testing') --}}
 @endsection
 
 

@@ -67,20 +67,21 @@ class RegistrationController extends Controller
         }
         $this->guard()->login($user);
         $local_storage_response = [];
-        $givePackage = false;
+        // $givePackage = false;
         if(!empty($local_storage))
         {
             $this->localStorageService->createTesting($local_storage);
-            if(auth()->guard('customers')->user()->test_status == 0){
-                $givePackage = $this->packageService->checkDoneFreeQuestion();
+            $this->packageService->checkDoneInitAndFree();
+            // if(auth()->guard('customers')->user()->test_status == 0){
+                // $givePackage = $this->packageService->checkDoneFreeQuestion();
                 $local_storage_response = $this->localStorageService->getTesting();
-            }
+            // }
         }
         return response()->json([
                 'status' => 200,
                 'success' => 'registed',
-                'local_storage' => $local_storage_response,
-                'givePackage' => $givePackage
+                'local_storage' => $local_storage_response
+                // 'givePackage' => $givePackage
             ],200);
 
         // return redirect()->route('home');
@@ -148,19 +149,20 @@ class RegistrationController extends Controller
         $this->guard()->login($customer);
         // tạo và trả về
         $local_storage = [];
-        $givePackage = false;
+        // $givePackage = false;
         if(!empty($request->input('local_storage')))
         {
             $this->localStorageService->createTesting($request->input('local_storage'));
             $local_storage = $this->localStorageService->getTesting();
-            $givePackage = $this->packageService->checkDoneFreeQuestion();
+            $this->packageService->checkDoneInitAndFree();
+            // $givePackage = $this->packageService->checkDoneFreeQuestion();
         }
         return response()->json([
             'status' => 200,
             'username' => $data_account['username'],
             'password' => $data_account['password'],
-            'local_storage' => $local_storage,
-            'givePackage' => $givePackage
+            'local_storage' => $local_storage
+            // 'givePackage' => $givePackage
         ]);
     }
 

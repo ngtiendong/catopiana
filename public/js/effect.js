@@ -8,7 +8,8 @@ $('.modal').on('hide.bs.modal', function (e) {
 
 $(document).on('click', 'label',function (event) {
     event.preventDefault();
-    $('.answer label').removeClass('animated rubberBand')
+    // $('.answer label').removeClass('animated rubberBand')
+    $('label').removeClass('animated rubberBand')
     $(this).addClass('animated rubberBand');
 
     $(this).css('opacity', '1');
@@ -102,7 +103,6 @@ function waiting_element_load() {
                 $('#testForm').css('display', 'block').css('opacity', '1')
                 //Reset loading progress bar
                 bar.style.width = '0%'
-
                 clearInterval(loop)
             }}, 100);
 

@@ -18,7 +18,8 @@ class LocalStorageService
                 'level_temp' => $local_storage_item['level_temp'],
                 'type' => $local_storage_item['type'],
                 'topic' => $local_storage_item['topic'],
-                'test_level' => $local_storage['level']
+                'test_level' => $local_storage['level'],
+                'received_free_package_status' => $local_storage['received_free_package_status']
             ];
             CustomerTesting::create([
                 'customer_id' => auth()->guard('customers')->user()->id,
@@ -58,7 +59,8 @@ class LocalStorageService
                 'type' => $type,
                 'topic' => $topic,
                 'level' => json_decode($testing_item->content)->test_level,
-                'customer_testing_id' => $testing_item->id
+                'customer_testing_id' => $testing_item->id,
+                'received_free_package_status' => json_decode($testing_item->content)->received_free_package_status
             ]; 
         }
         return $data_response;
@@ -74,7 +76,8 @@ class LocalStorageService
                 'level_temp' => $local_storage_item['level_temp'],
                 'type' => $local_storage_item['type'],
                 'topic' => $local_storage_item['topic'],
-                'test_level' => $local_storage['level']
+                'test_level' => $local_storage['level'],
+                'received_free_package_status' => $local_storage['received_free_package_status']
             ];
             CustomerTesting::updateOrCreate(
                 ['id' => $local_storage_item['customer_testing_id'] ,'customer_id' => $customer->id ],
@@ -91,7 +94,7 @@ class LocalStorageService
     }
 
     // update 1 topic khi nguoi dung da sign in 
-    public function updateThisQuestion($local_storage_item,$level)
+    public function updateThisQuestion($local_storage_item, $level)
     {
         $customer = auth()->guard('customers')->user();
         $content = [

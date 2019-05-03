@@ -23,10 +23,16 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        $freePackage = null;
+        // $freePackage = null;
+        // $paidPackage = null;
+        // if(auth()->guard('customers')->user()){
+        //     $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getFreePackage()->take(4) : null;
+        //     $paidPackage = $this->packageService->getPaidPackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
+        // }
+        // return view('frontend::home',compact('freePackage','paidPackage'));
         $paidPackage = null;
+        $freePackage = $this->packageService->getFreePackageWithoutLogin() != null ? $this->packageService->getFreePackageWithoutLogin()->take(4) : null;
         if(auth()->guard('customers')->user()){
-            $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getFreePackage()->take(4) : null;
             $paidPackage = $this->packageService->getPaidPackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
         }
         return view('frontend::home',compact('freePackage','paidPackage'));
@@ -281,12 +287,15 @@ class FrontendController extends Controller
 
     public function getCurriculumsFreePackage()
     {
-        $package = null;
-        if(auth()->guard('customers')->user()){
-            $package = $this->packageService->getFreePackage();
-        }
+        // $package = null;
+        // if(auth()->guard('customers')->user()){
+        //     $package = $this->packageService->getFreePackage();
+        // }
+        // $free = true;
+        // return view('frontend::test_package',compact('package','free'));
         $free = true;
-        return view('frontend::test_package',compact('package','free'));
+        $package = $this->packageService->getFreePackageWithoutLogin();
+        return view('frontend::test_package', compact('package','free'));
     }
 
     public function getCurriculumsPaidPackage()
@@ -296,7 +305,7 @@ class FrontendController extends Controller
             $package = $this->packageService->getPaidPackage();
         }
         $free = false;
-        return view('frontend::test_package',compact('package','free'));
+        return view('frontend::test_package', compact('package','free'));
     }
 
     // public function getTopicOfPackage(Request $request)

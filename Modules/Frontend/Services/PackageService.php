@@ -18,10 +18,47 @@ class PackageService
     }
 
 
-    public function checkDoneFreeQuestion()
+    // public function checkDoneFreeQuestion()
+    // {
+    //     $this->customer = auth()->guard('customers')->user();
+    //     $topic_init_free_id = Topic::where('type',0)->pluck('id')->toArray();
+    //     $testings = $this->customer->customer_testing->where('status', 1);
+    //     $test_free_id_done = [];
+    //     foreach ($testings as $testing) {
+    //         $test_free_id_done[] = Curriculum::where('id',json_decode($testing->curriculum_id)[0])->first()->topic_id;
+    //     }
+    //     $diff = collect($topic_init_free_id)->diff($test_free_id_done);
+    //     if($diff->count() == 0)
+    //     {
+    //         return $this->giveFreePackage();
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // protected function giveFreePackage()
+    // {
+    //     $package = Package::where('type', 0)->first(); // package 0 free - 1 paid
+    //     $this->customer->update(['test_status' => 1]);
+    //     $this->customer->packages()->attach($package->id,[
+    //         'payment_amount' => 0,
+    //         'payment_info' => 'free for customer',
+    //         'payment_type' => null,
+    //         'payment_status' => null
+    //     ]);
+    //     return true;
+    // }
+
+    public function checkDoneInitAndFree()
     {
+        if(auth()->guard('customers')->user()->test_status == 1) {
+            return;
+        }
+        $package = Package::where('type', 0)->first();
+        $topic_curriculums = $package->curriculums->pluck('topic_id')->toArray();
         $this->customer = auth()->guard('customers')->user();
         $topic_init_free_id = Topic::where('type',0)->pluck('id')->toArray();
+        $topic_init_free_id = array_merge($topic_init_free_id, $topic_curriculums );
         $testings = $this->customer->customer_testing->where('status', 1);
         $test_free_id_done = [];
         foreach ($testings as $testing) {
@@ -30,29 +67,26 @@ class PackageService
         $diff = collect($topic_init_free_id)->diff($test_free_id_done);
         if($diff->count() == 0)
         {
-            return $this->giveFreePackage();
+            auth()->guard('customers')->user()->update(['test_status' => 1]);
         } else {
-            return false;
+            return;
         }
-    }
-
-    protected function giveFreePackage()
-    {
-        $package = Package::where('type', 0)->first(); // package 0 free - 1 paid
-        $this->customer->update(['test_status' => 1]);
-        $this->customer->packages()->attach($package->id,[
-            'payment_amount' => 0,
-            'payment_info' => 'free for customer',
-            'payment_type' => null,
-            'payment_status' => null
-        ]);
-        return true;
     }
 
     public function getFreePackage()
     {
         $this->customer = auth()->guard('customers')->user();
         $package = $this->customer->packages()->with('curriculums','curriculums.topic')->where('type',0)->first();
+        if ($package == null){
+            return null;
+        }
+        $curriculums = $package->curriculums;
+        return $curriculums;
+    }
+
+    public function getFreePackageWithoutLogin()
+    {
+        $package = Package::with('curriculums','curriculums.topic')->where('type',0)->first();
         if ($package == null){
             return null;
         }
