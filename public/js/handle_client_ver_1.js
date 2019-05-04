@@ -300,7 +300,7 @@ function generateUnfinishedTest(current_data) {
                 style = 'style ="display: none;"'
             }
             html += '<div class="tab" style="display: none;"><img class="question" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
-                + '<button class="start_memory" '+style+'></button>' +
+                + '<button class="start_memory" style ="display: none;">Start</button>' +
                 "<div class='answer'>" ;
 
             var answer = ""
