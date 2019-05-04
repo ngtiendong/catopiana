@@ -29,11 +29,11 @@ Route::group(/**
     //
     // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
 
-    // free package
-    Route::get('/physics', 'FrontendController@test')->name('physics')->middleware('test');
-    Route::get('/chemistry', 'FrontendController@test')->name('chemistry')->middleware('test');
-    Route::get('/math', 'FrontendController@test')->name('math')->middleware('test');
-    Route::get('/animal', 'FrontendController@test')->name('animal')->middleware('test');
+    // free package ->middleware('test');
+    Route::get('/physics', 'FrontendController@test')->name('physics');
+    Route::get('/chemistry', 'FrontendController@test')->name('chemistry');
+    Route::get('/math', 'FrontendController@test')->name('math');
+    Route::get('/animal', 'FrontendController@test')->name('animal');
     // paid
     Route::get('/weather', 'FrontendController@test')->name('weather')->middleware('auth:customers');
     Route::get('/plant', 'FrontendController@test')->name('plant')->middleware('auth:customers');
@@ -57,12 +57,13 @@ Route::group(/**
     Route::post('/sendLocalStorageSocial', 'Auth\SocialAccountController@sendLocalStorageSocial');
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
+    Route::get('/continue-test/{topic}', 'FrontendController@continueTest');
 
 
 
     // Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');
-    Route::get('/packages','FrontendController@getPackages')->middleware('auth:customers')->name('packages');
-    Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->middleware('auth:customers')->name('getCurriculumsFreePackage');
+    Route::get('/packages','FrontendController@getPackages')->middleware('test')->name('packages');
+    Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->name('getCurriculumsFreePackage');
     Route::get('/paid-packages','FrontendController@getCurriculumsPaidPackage')->middleware('auth:customers')->name('getCurriculumsPaidPackage');
     
     Route::get('/execute-payment', 'PaymentController@execute');

@@ -51,15 +51,16 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
         if ($this->attemptLogin($request)) {
-            $givePackage = false;
-            if(auth()->guard('customers')->user()->test_status == 0){
-                $givePackage = $this->packageService->checkDoneFreeQuestion();
-            }
+            $this->packageService->checkDoneInitAndFree();
+            // $givePackage = false;
+            // if(auth()->guard('customers')->user()->test_status == 0){
+                // $givePackage = $this->packageService->checkDoneFreeQuestion();
+            // }
             $local_storage = $this->localStorageService->getTesting();
             return response()->json([
                 'status' => 200,
-                'local_storage' => $local_storage,
-                'givePackage' => $givePackage
+                'local_storage' => $local_storage
+                // 'givePackage' => $givePackage
             ],200);
         }
         return response()->json([
@@ -131,14 +132,15 @@ class LoginController extends Controller
         {
             $customer_testing_id = $this->localStorageService->updateThisQuestion($request->input('local_storage_this_question'),$request->input('level'));
         }
-        $givePackage = false;
-        if(auth()->guard('customers')->user()->test_status == 0){
-            $givePackage = $this->packageService->checkDoneFreeQuestion();
-        }
+        // $givePackage = false;
+        // if(auth()->guard('customers')->user()->test_status == 0){
+            // $givePackage = $this->packageService->checkDoneFreeQuestion();
+            $this->packageService->checkDoneInitAndFree();
+        // }
         return response()->json([
             'status' => 200,
-            'customer_testing_id' => $customer_testing_id,
-            'givePackage' => $givePackage
+            'customer_testing_id' => $customer_testing_id
+            // 'givePackage' => $givePackage
         ],200);
     }
 }

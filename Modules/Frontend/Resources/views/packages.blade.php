@@ -148,19 +148,19 @@
 
         $(document).on('click', '.receive-free-package', function(event) {
             event.preventDefault();
-            test_status = $(this).data('test_status');
-            url = $(this).data('route');
-            if(test_status == 0) {
-                Swal.fire({
-                    type: 'info',
-                    title: 'Opps...',
-                    text: "You haven't completed 8 original quiz!",
-                    background: 'orange',
-                    backdrop: `rgba(255, 255, 255, 0.61)`,
-                });
-            } else {
+            // test_status = $(this).data('test_status');
+            // url = $(this).data('route');
+            // if(test_status == 0) {
+            //     Swal.fire({
+            //         type: 'info',
+            //         title: 'Opps...',
+            //         text: "You haven't completed 8 original quiz!",
+            //         background: 'orange',
+            //         backdrop: `rgba(255, 255, 255, 0.61)`,
+            //     });
+            // } else {
                 window.location.href = url;
-            }
+            // }
         });
 
         $(document).on('click', '.checkout-not-ready', function(event) {

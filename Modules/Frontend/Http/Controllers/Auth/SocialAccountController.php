@@ -71,7 +71,7 @@ class SocialAccountController extends Controller
         } else {
             auth()->guard('customers')->login($user, true);
         }
-        
+        $this->packageService->checkDoneInitAndFree();
         $local_storage_response = [];
         $local_storage = session('local_storage');
         $local_storage_response = $this->localStorageService->getTesting();

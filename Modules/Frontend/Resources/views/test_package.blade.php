@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-12">
                 <div class="testOverlay free_test_result">
-                    <div class="row">
+                    <div class="row package_free">
                         <h2 class="text-center col-md-12" style=" font-size: 30px; margin-bottom: 25px;">{{$free == true ? 'Your free curriculum in package' : 'Quiz curriculum '}}</h2>
                         @if($package != null)
                             @foreach($package as $key => $curriculum)
@@ -59,6 +59,10 @@
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
-
+    $(document).ready(function() {
+        if(!received_free_package_status) {
+            $('.package_free').css('display','none');    
+        }
+    });
 </script>
 @endsection

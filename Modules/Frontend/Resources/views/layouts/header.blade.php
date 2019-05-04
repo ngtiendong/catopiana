@@ -15,17 +15,17 @@
                 <a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-up">sign up</a>
             </li>
 			@else
-			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
-                 <a class="smooth" href="{{ route('packages') }}">Buy</a>
-            </li>
+			@if(auth()->guard('customers')->user()->test_status == 1) 
+			{{-- da lam xong bai free --}}
+				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+	                 <a class="smooth" href="{{ route('packages') }}">Packages</a>
+	            </li>
+            @endif
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
                 <a class="smooth" href="#">{{auth()->guard('customers')->user()->username}}</a>
             </li>
 			<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
                 <a class="smooth" style="cursor: pointer;" id="logoutBtn" data-route="{{ route('logout') }}"">log out</a>
-                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form> --}}
 			</li>
 			@endguest
 		</ul>
@@ -50,6 +50,12 @@
 					<a type="button" class="smooth btn" data-toggle="modal" data-target="#modal-sign-up">sign up</a>
 				</li>
 				@else
+				@if(auth()->guard('customers')->user()->test_status == 1) 
+				{{-- da lam xong bai free --}}
+					<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
+		                 <a class="smooth" href="{{ route('packages') }}">Packages</a>
+		            </li>
+	            @endif
 				<li class="sign"><img src="{{asset('./Catopiana_files/images/sign.png')}}" alt="">
                 	<a class="smooth" style="cursor: pointer;" id="logoutBtn" data-route="{{ route('logout') }}"">log out</a>
 				</li>

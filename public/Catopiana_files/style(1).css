@@ -1171,13 +1171,13 @@ footer .col {
     width: 100%;
 }
 
-#id1 {
+/*#id1 {
     margin-top: 0%;
     position: relative;
-    /*padding: 100px 0;*/
+    padding: 100px 0;
     padding-bottom: 100px;
     z-index: 3
-}
+}*/
 /*
 #id1 .f1 {
     position: absolute;
@@ -1284,7 +1284,7 @@ footer .col {
     padding: 0 10vw 0 0
 }
 
-#id1 .board #sub1 {
+/*#id1 .board #sub1 {
     width: 240px;
     position: absolute;
     left: 0;
@@ -1309,7 +1309,7 @@ footer .col {
     top: -100px;
     left: 90%;
     z-index: 1
-}
+}*/
 
 #id1 .cta {
     width: 100%;

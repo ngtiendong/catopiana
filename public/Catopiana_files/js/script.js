@@ -126,6 +126,13 @@ jQuery(function($) {
 	boy = new TimelineMax({ repeat: -1, yoyo: true });
 	boy.fromTo('.boy', 1.37, {rotation:-10, transformOrigin:"50% 50%", ease:Power0.easeNone}, {rotation:10, transformOrigin:"50% 50%", ease:Power0.easeNone}, 0.33)
 
+
+	//whale
+	whale1 = new TimelineMax({ repeat: -1 });
+	whale1.from('.whale1', 40, {css:{'left':'100%', 'bottom':'40%'}}, 0.1)
+		.to('.whale1',30, {css:{'left':'-300px', 'bottom':'20%'}}, 0.1)
+	whale11 = new TimelineMax({ repeat: -1, yoyo: true });
+	whale11.fromTo('.whale1', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease: SlowMo.ease.config(0.7, 0.7, false)}, {skewY:"5deg", transformOrigin:"50% 50%", ease: SlowMo.ease.config(0.7, 0.7, false)}, 0)
 	// fish
 	f1 = new TimelineMax({ repeat: -1, yoyo: false });
 	f1.fromTo('.f1', 100, {css:{'left':'100%'}}, {css:{'left':'-300px'}}, 0)

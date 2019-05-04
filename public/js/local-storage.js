@@ -3,6 +3,7 @@
  */
 
 var list_test_finished = []
+var received_free_package_status = 0;
 var testing_data
 if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')
@@ -16,7 +17,13 @@ if (localStorage.getItem('testing')) {
             list_test_finished.push(parseInt(value.topic))
         }
     })
-    // console.log(list_test_finished);
+    // array_free = [1,2,3,4,5,6,7,8];
+    // received_free_package_status = array_free.every(function(val) {
+    //     return list_test_finished.indexOf(val) !== -1;
+    // });
+    received_free_package_status = testing_data.received_free_package_status;
+
+    console.log(received_free_package_status);
 }
 
 $(function(){

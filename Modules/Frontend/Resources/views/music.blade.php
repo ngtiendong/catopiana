@@ -16,7 +16,7 @@
 
             <div class="col-md-12">
                 <div class="testOverlay">
-                    <a class="startBtn">Click To Start!</a>
+                    {{-- <a class="startBtn">Click To Start!</a> --}}
                     <div class="progress">
                         <div class="bar shadow bars"></div>
                     </div>
