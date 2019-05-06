@@ -3286,3 +3286,38 @@ button.start_memory:hover {
     color: white;
     border-radius: 10px;
 }
+
+#id2 .container .button_reset {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%
+}
+
+#id2 .reset_data {
+    display: block;
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    z-index: 5;
+    right: 20%;
+    color: #494949 !important;
+    background: #ffffff;
+    border: 2px solid #494949 !important;
+    border-radius: 6px;
+    box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+}
+
+#id2 .reset_data:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0.2s;
+    box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+}

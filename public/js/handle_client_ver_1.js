@@ -164,47 +164,46 @@ $(function () {
         else {
             //Check history
             let flag = 1;
-            login = $('#testForm').data('login');
-            testStatus = $('#testForm').data('testStatus');
+            // login = $('#testForm').data('login');
+            // testStatus = $('#testForm').data('testStatus');
             for (var i = 0; i < testing_data.question.length; i++) {
                 this_question = testing_data.question[i];
                 if (this_question.topic == topic) {
                     // Da ton tai bai test type nay trong lich su
-                    if(!login){ // checklogin thi k reset data
-                        Swal.fire({
-                            title: 'Do you want to continue?',
-                            text: "This test has someone doing it!",
-                            type: 'warning',
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Continue test!',
-                            cancelButtonText: 'Reset data',
-                            backdrop: `rgba(0,0,0,0.1)`,
-                            allowOutsideClick: false
-                        }).then((result) => {
-                            if (result.value) {
-                                position_this_question = i
-                                console.log('current', this_question)
-                                // this_question = current_data
-                                total_question = parseInt(this_question.question_data.length)
-                                generateUnfinishedTest(this_question)
-                            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                resetData();
-
-                                window.location.reload(true)
-                            }
-                        })
-                    } else {
+                    // if(!login){ // checklogin thi k reset data
+                    //     Swal.fire({
+                    //         title: 'Do you want to continue?',
+                    //         text: "This test has someone doing it!",
+                    //         type: 'warning',
+                    //         showCancelButton: true,
+                    //         reverseButtons: true,
+                    //         confirmButtonColor: '#3085d6',
+                    //         cancelButtonColor: '#d33',
+                    //         confirmButtonText: 'Continue test!',
+                    //         cancelButtonText: 'Reset data',
+                    //         backdrop: `rgba(0,0,0,0.1)`,
+                    //         allowOutsideClick: false
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             position_this_question = i
+                    //             console.log('current', this_question)
+                    //             // this_question = current_data
+                    //             total_question = parseInt(this_question.question_data.length)
+                    //             generateUnfinishedTest(this_question)
+                    //         } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    //             resetData();
+                    //             window.location.reload(true)
+                    //         }
+                    //     })
+                    // } else {
                         position_this_question = i
                         console.log('current', this_question)
                         // this_question = current_data
                         total_question = parseInt(this_question.question_data.length)
                         generateUnfinishedTest(this_question)
-                    }
-                    flag = -1;
-                    break;
+                    // }
+                        flag = -1;
+                        break;
                 }
             }
             if (flag !== -1) {
@@ -1122,5 +1121,4 @@ resetData = () => {
     } else {
         localStorage.removeItem('testing');
     }
-
 }
