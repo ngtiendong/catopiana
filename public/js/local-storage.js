@@ -3,7 +3,7 @@
  */
 
 var list_test_finished = []
-var received_free_package_status = 0;
+var received_free_package_status = 0; // 0 là chưa nhận, 1 là đã nhận, 2 là đã share or paid nhưng chưa nhận.
 var testing_data
 if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')

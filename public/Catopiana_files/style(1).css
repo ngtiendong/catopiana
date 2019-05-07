@@ -17,7 +17,7 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
 */
-object,
+/*object,
 iframe,
 h1,
 h2,
@@ -94,9 +94,9 @@ video {
     font-family: inherit;
     font-weight: inherit;
     font-style: inherit;
-}
+}*/
 
-b,
+/*b,
 strong,
 th {
     font-weight: bold;
@@ -110,9 +110,9 @@ em {
 sub,
 sup {
     font-size: 75%;
-}
+}*/
 
-article,
+/*article,
 aside,
 details,
 figcaption,
@@ -124,8 +124,8 @@ menu,
 nav,
 section {
     display: block;
-}
-
+}*/
+/*
 a {
     margin: 0;
     padding: 0;
@@ -133,8 +133,8 @@ a {
     vertical-align: baseline;
     background: transparent;
 }
-
-del {
+*/
+/*del {
     text-decoration: line-through;
 }
 
@@ -147,8 +147,8 @@ dfn[title] {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-
+}*/
+/*
 hr {
     display: block;
     height: 1px;
@@ -170,17 +170,17 @@ a:active {
     text-decoration: none;
     color: inherit;
     outline: none;
-}
+}*/
 
-ol,
+/*ol,
 ul,
 li {
     padding: 0;
     list-style: none;
     margin: 0;
-}
+}*/
 
-label {
+/*label {
     font-weight: normal;
 }
 
@@ -189,22 +189,22 @@ input[type="email"],
 input[type="password"] {
     padding-left: 12px;
     padding-right: 12px;
-}
+}*/
 
-select {
+/*select {
     padding-left: 8px;
     cursor: pointer;
-}
+}*/
 
-input[type="number"] {
+/*input[type="number"] {
     padding-left: 5px;
-}
+}*/
 
-textarea {
+/*textarea {
     padding: 8px 12px 5px 12px;
-}
+}*/
 
-input,
+/*input,
 textarea,
 select,
 button,
@@ -227,9 +227,9 @@ img {
     vertical-align: middle;
     -o-object-fit: cover;
     object-fit: cover;
-}
+}*/
 
-.pad-0 {
+/*.pad-0 {
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -247,9 +247,9 @@ img {
 .pad-10 {
     padding-left: 10px;
     padding-right: 10px;
-}
+}*/
 
-.margin-auto {
+/*.margin-auto {
     margin-left: auto;
     margin-right: auto;
 }
@@ -339,9 +339,9 @@ img {
     content: '';
     display: block;
     clear: both;
-}
+}*/
 
-.bg {
+/*.bg {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -353,9 +353,9 @@ img {
     transition: all 0.2s ease-in-out;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-}
+}*/
 
-.popupResult {
+/*.popupResult {
     background: orange;
     font-size: 30px;
     display: flex;
@@ -369,17 +369,17 @@ img {
     transform: translate(-50%, -50%);
     width: 400px;
     padding: 50px 0;
-}
+}*/
 
-.popupResult p {
+/*.popupResult p {
     font-weight: bold;
 }
 
 .popupResult p.small {
     font-size: 18px;
-}
+}*/
 
-.regUser {
+/*.regUser {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -403,14 +403,14 @@ img {
     color: #fff !important;
     width: 100px;
     text-align: center;
-}
+}*/
 
-.countdown-disabled {
+/*.countdown-disabled {
     cursor: not-allowed !important;
     opacity: .65;
-}
+}*/
 
-@media all and (max-width:991px) {
+/*@media all and (max-width:991px) {
     .md-pad-7 {
         margin: 0 -7px;
     }
@@ -498,9 +498,9 @@ img {
         padding: 0 5px;
     }
 
-}
+}*/
 
-.s-content {
+/*.s-content {
     word-break: break-word;
 }
 
@@ -662,7 +662,7 @@ img {
 
 .hc-upload .hc-del:hover {
     background: rgba(0, 0, 0, 0.85);
-}
+}*/
 
 @font-face {
     font-family: 'comic';
@@ -701,7 +701,7 @@ img {
     src: url("/fonts/Tw Cen MT Condensed Extra Bold.TTF") format("truetype");
 }
 
-@-webkit-keyframes name {
+/*@-webkit-keyframes name {
     0% {
     }
 
@@ -744,9 +744,9 @@ img {
     100% {
     }
 
-}
+}*/
 
-.animated {
+/*.animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
@@ -773,21 +773,21 @@ img {
         opacity: 1;
     }
 
-}
+}*/
 
-.fadeIn {
+/*.fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
-}
+}*/
 
-body {
+/*body {
     font-size: 14px;
     font-family: "comic", sans-serif;
     line-height: 1.5;
     color: #2e2e2e;
-}
+}*/
 
-body.overlay {
+/*body.overlay {
     position: relative;
 }
 
@@ -800,21 +800,21 @@ body.overlay::before {
     height: 100%;
     top: 0;
     left: 0;
-}
+}*/
 
-::-moz-selection {
+/*::-moz-selection {
     background: #18c1df;    /* WebKit/Blink Browsers */
 }
 
-::selection {
+/*::selection {
     background: #18c1df;    /* WebKit/Blink Browsers */
 }
 
-::-moz-selection {
+/*::-moz-selection {
     background: #18c1df;    /* Gecko Browsers */
-}
+}*/*/*/
 
-.wrap {
+/*.wrap {
     overflow: hidden;
     background: -webkit-gradient(linear, left top, left bottom, from(#007ebe), color-stop(51%, #00c2f3), to(#6c2888));
     background: -webkit-linear-gradient(top, #007ebe 0%, #00c2f3 51%, #6c2888 100%);
@@ -835,7 +835,7 @@ body.overlay::before {
 .hover-box-shadow:hover {
     -webkit-box-shadow: 5px 5px 5px 0px #9c9c9c;
     box-shadow: 5px 5px 5px 0px #9c9c9c;
-}
+}*/
 
 header {
     /*position: fixed;*/
@@ -1376,7 +1376,7 @@ footer .col {
     position: relative
 }
 
-#id2 .container .whale {
+/*#id2 .container .whale {
     position: absolute;
     top: 0;
     left: calc(50% + 10px);
@@ -1384,7 +1384,7 @@ footer .col {
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     z-index: 2
-}
+}*/
 
 #id2 .container .girl {
     position: absolute;
@@ -1415,7 +1415,7 @@ footer .col {
     font-size: 20px
 }
 
-#id2 .container .bigwhale {
+/*#id2 .container .bigwhale {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1430,7 +1430,7 @@ footer .col {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center
-}
+}*/
 
 .section-test#id2 .container .whale {
     position: relative;
@@ -1487,7 +1487,7 @@ footer .col {
     position: relative;
     z-index: 5;
 }
-
+/*
 .list-after-finished {
     text-align: center;
 }
@@ -1499,7 +1499,7 @@ footer .col {
 .list-after-finished .test-item {
     margin: 0 10px !important;
     display: inline-block !important;
-}
+}*/
 
 #id2 .test-item {
     display: block;
@@ -1953,7 +1953,7 @@ footer .col {
     margin-top: 70px;
 }
 
-.testOverlay {
+/*.testOverlay {
     width: 800px;
     height: 600px;
     z-index: 12;
@@ -1965,7 +1965,7 @@ footer .col {
     transform: translateX(-15px);
     border-radius: 20px;
     margin: 35px auto 0;
-}
+}*/
 
 #testForm {
     width: 100%;

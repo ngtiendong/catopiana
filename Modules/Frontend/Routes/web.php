@@ -58,6 +58,7 @@ Route::group(/**
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
     Route::get('/continue-test/{topic}', 'FrontendController@continueTest');
+    Route::get('/congratulation', 'FrontendController@congratulation');
 
 
 

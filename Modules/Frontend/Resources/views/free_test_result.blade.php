@@ -25,7 +25,7 @@
                         <div class="bot text-center" style="margin-bottom: 15px">
                         </div>
                         <div  style=" text-align: center; margin-top: 46px;">
-                            <button type="button" data-route="{{ route('getCurriculumsFreePackage') }}" data-login="{{ auth()->guard('customers')->check() ? true : false }}" class="btn-outline-danger btn-warning btn-lg button-recevie-package">Receive Package</button>
+                            <button type="button" data-route="{{ route('getCurriculumsFreePackage') }}" class="btn-outline-danger btn-warning btn-lg button-recevie-package hidden">Receive Package</button>
                         </div>
                     </div>
                 </div>
@@ -57,41 +57,58 @@
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
     $(document).ready(function() {
-        console.log()
-        for (var i = 0; i < testing_data.question.length; i++) {
-            this_question = testing_data.question[i];
-            // console.log('current', current_data)
-
-            if (this_question.status == 1) {
-                if(parseInt(this_question.type) == 2) {
-                    max_images_in_column = this_question.question_data[0].length
-                    total_question = parseInt(this_question.question_data.length) * max_images_in_column;
-                    correct = filterCorrectPosition(this_question, max_images_in_column);
-                } else {
-                    total_question = parseInt(this_question.question_data.length);
-                    correct = this_question.answers.filter(answer => answer == 0).length;
+            var count_free_package = 0;
+            for (var i=1; i<9; i++) {
+                if (list_test_finished.indexOf(i) < 0) {
+                    // có bài Chưa thi
+                    break;
                 }
-
-
-               result = correct+'/'+total_question;
-               topic = parseInt(this_question.topic)
-               if(i < 4) {
-                    $('.free_test_result .top').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
-                } else if ( i < 8) {
-                    $('.free_test_result .bot').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
-                }
+                count_free_package++;
             }
-        }
+            if (count_free_package == 8) {
+                for (var i = 0; i < testing_data.question.length; i++) {
+                    this_question = testing_data.question[i];
+                    // console.log('current', current_data)
+
+                    if (this_question.status == 1) {
+                        if(parseInt(this_question.type) == 2) {
+                            max_images_in_column = this_question.question_data[0].length
+                            total_question = parseInt(this_question.question_data.length) * max_images_in_column;
+                            correct = filterCorrectPosition(this_question, max_images_in_column);
+                        } else {
+                            total_question = parseInt(this_question.question_data.length);
+                            correct = this_question.answers.filter(answer => answer == 0).length;
+                        }
+
+
+                       result = correct+'/'+total_question;
+                       topic = parseInt(this_question.topic)
+                       if(i < 4) {
+                            $('.free_test_result .top').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
+                        } else if ( i < 8) {
+                            $('.free_test_result .bot').append('<div>'+array_svg[topic-1]+'<p><b>'+result+'</b></p></div>')
+                        }
+                        $('.button-recevie-package').removeClass('hidden')
+                    }
+                }
+            } 
     });
 
 $(document).on('click', '.button-recevie-package', function(event) {
         // add status đã nhận package to localstorage
-        if(received_free_package_status == 0) {
+        if(received_free_package_status == 2) {
             testing_data.received_free_package_status = 1;
             localStorage.setItem('testing', JSON.stringify(testing_data));
+            url = $(this).data('route');
+            window.location.href = url
+        } else if(received_free_package_status == 1) {
+            url = $(this).data('route');
+            window.location.href = url
+        } else {
+            return false;
         }
-        url = $(this).data('route');
-        window.location.href = url
+
+
     // if($(this).data('login')){
         // window.location.href = '/packages'
     // } else {

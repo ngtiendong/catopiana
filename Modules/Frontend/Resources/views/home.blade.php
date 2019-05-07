@@ -299,6 +299,32 @@
             $('.package-give-free').css('display', 'block');
             $('.free_topic').css('display', 'none');
         }
+        var count_free_package = 0;
+        for (var i=1; i<9; i++) {
+            if (list_test_finished.indexOf(i) < 0) {
+                // có bài Chưa thi
+                break;
+            }
+            count_free_package++;
+        }
+        if (count_free_package == 8 && received_free_package_status == 0 ) {
+            Swal.fire({
+                title: 'Receive the test results?',
+                text: "You haven't received the test results yet!",
+                type: 'warning',
+                showCancelButton: true,
+                reverseButtons: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Receive it',
+                cancelButtonText: 'No',
+                backdrop: `rgba(0,0,0,0.1)`,
+            }).then((result) => {
+                if (result.value) {
+                        window.location.href = '/congratulation';
+                    }
+            });
+        }
     });
 </script>
 @endsection
