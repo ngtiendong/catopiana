@@ -837,8 +837,8 @@ body.overlay::before {
     box-shadow: 5px 5px 5px 0px #9c9c9c;
 }*/
 
-/*header {
-    position: fixed;
+header {
+    /*position: fixed;*/
     top: 0;
     left: 0;
     width: 100%;
@@ -846,9 +846,9 @@ body.overlay::before {
     background: url(/Catopiana_files/images/navbg@2x.png) top center/100% fixed no-repeat;
     height: 180px;
     pointer-events: auto;
-}*/
+}
 
-/*.d-nav {
+.d-nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -867,7 +867,7 @@ body.overlay::before {
     -webkit-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
-}*/
+}
 
 /*@media all and (max-width:1440px) {
     .d-nav {
@@ -885,24 +885,24 @@ body.overlay::before {
 .d-nav .psy-pane li {
     margin-right: 30px;
     position: relative;
-}
+}*/
 
-@media all and (max-width:1440px) {
+/*@media all and (max-width:1440px) {
     .d-nav .psy-pane li {
         margin-right: 10px;
     }
 
-}
+}*/
 
-.d-nav .psy-pane li a {
+/*.d-nav .psy-pane li a {
     position: absolute;
     top: 40%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-}
+}*/
 
-.d-nav .psy-pane li a.active {
+/*.d-nav .psy-pane li a.active {
     color: #fd6c1e;
 }*/
 
