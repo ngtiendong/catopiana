@@ -664,7 +664,7 @@ img {
     background: rgba(0, 0, 0, 0.85);
 }*/
 
-@font-face {
+/*@font-face {
     font-family: 'comic';
     src: url("/fonts/comic.ttf") format("truetype");
 }
@@ -699,7 +699,7 @@ img {
 @font-face {
     font-family: 'Tw Cen MT Condensed Extra Bold';
     src: url("/fonts/Tw Cen MT Condensed Extra Bold.TTF") format("truetype");
-}
+}*/
 
 /*@-webkit-keyframes name {
     0% {
@@ -837,8 +837,8 @@ body.overlay::before {
     box-shadow: 5px 5px 5px 0px #9c9c9c;
 }*/
 
-header {
-    /*position: fixed;*/
+/*header {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -846,9 +846,9 @@ header {
     background: url(/Catopiana_files/images/navbg@2x.png) top center/100% fixed no-repeat;
     height: 180px;
     pointer-events: auto;
-}
+}*/
 
-.d-nav {
+/*.d-nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -867,16 +867,16 @@ header {
     -webkit-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
-}
+}*/
 
-@media all and (max-width:1440px) {
+/*@media all and (max-width:1440px) {
     .d-nav {
         font-size: 14px;
     }
 
-}
+}*/
 
-.d-nav .psy-pane {
+/*.d-nav .psy-pane {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -904,7 +904,7 @@ header {
 
 .d-nav .psy-pane li a.active {
     color: #fd6c1e;
-}
+}*/
 
 /*.d-nav .psy-pane li.home a {*/
 
@@ -1367,14 +1367,14 @@ footer .col {
     z-index: 3
 }*/
 
-#id2 {
+/*#id2 {
     position: relative;
     z-index: 3
 }
 
 #id2 .container {
     position: relative
-}
+}*/
 
 /*#id2 .container .whale {
     position: absolute;
@@ -1386,7 +1386,7 @@ footer .col {
     z-index: 2
 }*/
 
-#id2 .container .girl {
+/*#id2 .container .girl {
     position: absolute;
     top: 50px;
     left: -100px;
@@ -1400,20 +1400,20 @@ footer .col {
     left: 70%;
     z-index: 3;
     width: 400px
-}
+}*/
 
-#id2 .container .row.tn {
+/*#id2 .container .row.tn {
     position: relative;
     z-index: 3;
     padding-top: 20%;
     width: 100%
-}
+}*/
 
-#id2 .container .row.tn h3 {
+/*#id2 .container .row.tn h3 {
     color: #066b7c;
     font-weight: bold;
     font-size: 20px
-}
+}*/
 
 /*#id2 .container .bigwhale {
     width: 100%;
@@ -1918,14 +1918,14 @@ footer .col {
         width: 200px;
         right: -20px;
     }
-
+/*
     #id2 .container .row.tn {
         padding-top: 150px;
     }
 
     #id2 .container .row.tn h3 {
         padding: 0 50px;
-    }
+    }*/
 
     #id2 .container .bigwhale .bg {
         width: calc(100% - 20px);
@@ -2225,7 +2225,7 @@ footer .col {
 }
 
 .section-test button:hover {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     box-shadow: 0 0 0;
 }
 

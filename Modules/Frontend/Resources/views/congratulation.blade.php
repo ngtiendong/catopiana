@@ -5,15 +5,15 @@
 <section class="psy-section section-test" id="id2">
 {{-- <section class="continue_section"> --}}
     <div class="container continue_container">
-        <div class="row tn">
+        <div class="continue_row tn">
             <div class="col-md-12">
                 <div class="continue_test"">
                     <div class="row">
-                        <h2 class="text-center title1" style=" font-size: 35px; color: white; margin-bottom: 25px;">Congratulation!</h2>
-                        <h2 class="text-center title2" style=" font-size: 25px; color: white; ">Get your result and receive free test here</h2>
+                        <h1 class="text-center title1">Congratulation!</h1>
+                        <h2 class="text-center title2">Get your result and receive free test here</h2>
                         <div  class="final">
-                            <button type="button" class="btn-info btn-lg button-congratulation btn-share"><i class="fa fa-facebook"></i> Share on facebook</button>
-                            <button type="button"  class=" btn-info btn-lg button-congratulation btn-paid">or 1.99$</button>
+                            <button type="button" class="btn-lg button-congratulation btn-share"><i class="fa fa-facebook"></i> Share on facebook</button>
+                            <button type="button"  class=" btn-lg button-congratulation btn-paid">or 1.99$</button>
                         </div>
                     </div>
                 </div>

@@ -3280,36 +3280,32 @@ button.start_memory:hover {
 }
 
 .continue_test {
-    height: 600px;
-    width: 800px;
     z-index: 12;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
     position: relative;
-    transform: translateX(-15px);
     border-radius: 45px;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%);
     border: 13px solid #34318e;
-    margin: auto;
+    margin: 20% auto 40% auto;
+    padding: 5%;
 }
 
 .button-continue {
     position: relative;
     border: 2px solid rgba(2,0,36,1);
     background: linear-gradient(90deg, rgb(96, 6, 134) 0%, rgb(10, 189, 234) 50%, rgb(96, 6, 134) 100%);
-    padding: 15px 25px;
+    padding: 10px 30px;
     display: inline-block;
     text-align: center;
     text-transform: uppercase;
     color: white;
     border: 4px solid #34318e;
     border-radius: 20%;
-    width: 120px;
-    height: 60px;
-    margin: auto 100px;
+    margin: auto;
 }
 
 .button-congratulation {
@@ -3323,7 +3319,7 @@ button.start_memory:hover {
     color: white;
     border: 4px solid #34318e;
     border-radius: 25px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 #id2 .container .button_reset {
@@ -3361,13 +3357,21 @@ button.start_memory:hover {
     box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
 }
 
-#id2 .continue_container {
-    height: 1000px;
+.continue_container .continue {
+    margin-top: 5%;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    padding: 10px;
 }
 
-.continue_container .continue, .continue_container .final {
-    margin-top: 46px;
+.continue_container .final {
+    margin-top: 5%;
     text-align: center;
+    width: 100%;
+    padding: 10px;
 }
 
 .list-test-unfinished {
@@ -3383,4 +3387,34 @@ button.start_memory:hover {
 .list-test-unfinished .test-item {
     margin: 0 10px !important;
     display: inline-block !important;
+}
+
+#id2 .container .continue_row {
+    position: relative;
+    z-index: 3;
+    padding-top: 20%;
+    width: 100%
+}
+
+#id2 .container .continue_row h3 {
+    color: #066b7c;
+    font-weight: bold;
+    font-size: 20px
+}
+
+#id2 .continue_container .girl {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    z-index: 3;
+}
+
+.continue_container .continue_test h1 {
+    color: white;
+    font-size: 35px;
+}
+
+.continue_container .continue_test h2 {
+    color: white;
+    font-size: 25px;
 }

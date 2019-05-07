@@ -3,24 +3,22 @@
 @section('content')
 
 <section class="psy-section section-test" id="id2">
-{{-- <section class="continue_section"> --}}
     <div class="container continue_container">
-        <div class="row tn">
+        <div class="continue_row tn">
             <div class="col-md-12">
                 <div class="continue_test" data-topic="{{ $prev_topic }}">
                     <div class="row">
-                        <h2 class="text-center title1" style=" font-size: 30px; color: white; margin-bottom: 25px;">You did a great job !</h2>
-                        <h2 class="text-center title2" style=" font-size: 30px; color: white; ">Do You want to continue?</h2>
+                        <h1 class="text-center title1" >You did a great job !</h1>
+                        <h2 class="text-center title2" >Do You want to continue?</h2>
                         <div class="continue">
-                            <button type="button" class="btn-outline-info btn-info btn-lg button-continue btn-continue">Yes</button>
-                            <button type="button"  class="btn-outline-info btn-info btn-lg button-continue btn-back">No</button>
+                            <button type="button" class=" btn-lg button-continue btn-continue">Yes</button>
+                            <button type="button"  class=" btn-lg button-continue btn-back">No</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        {{-- <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt=""> --}}
     </div>
     <div class="container list-test">
         <div class="row">
@@ -32,11 +30,6 @@
     {{-- comment image to test not if lag --}}
     @include('frontend::layouts.background')
 </section>
-{{-- <section class="psy-section" id="id3">
-    <div class="container-fluid">
-        <div class="row"></div>
-    </div>
-</section> --}}
 @endsection
 
 
