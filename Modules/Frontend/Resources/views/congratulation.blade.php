@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="psy-section section-test" id="id2">
+<section class="psy-section section-test continue_section" id="id2">
 {{-- <section class="continue_section"> --}}
     <div class="container continue_container">
         <div class="continue_row tn">
@@ -20,7 +20,11 @@
             </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        {{-- <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt=""> --}}
+        <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
+        <img class="f1-1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+        <img class="f1-2 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+        <img class="sea-horse1" src="{{asset('./Catopiana_files/images/sea-horse1.png')}}" alt="">
+        <img class="new-fish1" src="{{asset('./Catopiana_files/images/new-fish1.png')}}" alt="">
     </div>
     <div class="container list-test">
         <div class="row">
@@ -29,12 +33,14 @@
     </div>
     {{-- comment image to test not if lag --}}
     @include('frontend::layouts.background')
+    <img class="boy" src="{{asset('./Catopiana_files/images/boy-blue.png')}}" alt="">
+    <img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
+    <img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
 </section>
-{{-- <section class="psy-section" id="id3">
-    <div class="container-fluid">
-        <div class="row"></div>
-    </div>
-</section> --}}
 @endsection
 
 

@@ -1966,10 +1966,10 @@ footer .col {
         left: -20px;
     }
 
-    #id2 .container .boy {
+/*    #id2 .container .boy {
         width: 200px;
         right: -20px;
-    }
+    }*/
 
     #id2 .container .row.tn {
         padding-top: 150px;
@@ -3117,9 +3117,9 @@ footer .col {
     opacity: 1;
 }
 
-.section-test #island {
+/*.section-test #island {
     margin-top: 3% !important;
-}
+}*/
 
 .section-test .f3 {
     z-index: 2 !important;
@@ -3377,7 +3377,7 @@ button.start_memory:hover {
 .list-test-unfinished {
     text-align: center;
     position: absolute;
-    bottom: 0%;
+    bottom: 50%;
 }
 
 .list-test-unfinished h3 {
@@ -3404,17 +3404,111 @@ button.start_memory:hover {
 
 #id2 .continue_container .girl {
     position: absolute;
-    top: 10%;
+    top: 18%;
     left: 30%;
     z-index: 3;
 }
 
 .continue_container .continue_test h1 {
     color: white;
-    font-size: 35px;
+    font-size: 60px;
 }
 
 .continue_container .continue_test h2 {
     color: white;
-    font-size: 25px;
+    font-size: 40px;
+}
+
+.continue_container .btn-share {
+    margin-bottom: 3%;
+}
+
+.continue_section .boy {
+    position: absolute;
+    bottom: 25%;
+    left: 60%;
+    z-index: 3;
+    width: 400px
+}
+.continue_section .many-fish1 {
+    position: absolute;
+    bottom: 40%;
+    left: 65%;
+    z-index: 3;
+    width: 100px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.continue_section .many-fish2 {
+    position: absolute;
+    bottom: 42%;
+    left: 58%;
+    z-index: 3;
+    width: 60px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.continue_section .many-fish3 {
+    position: absolute;
+    bottom: 44%;
+    left: 60%;
+    z-index: 3;
+    width: 80px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.continue_section .many-fish4 {
+    position: absolute;
+    bottom: 46%;
+    left: 62%;
+    z-index: 3;
+    width: 50px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.continue_section .bach-tuoc {
+    position: absolute;
+    bottom: 20%;
+    left: 30%;
+    z-index: 3;
+    width: 200px
+}
+
+.continue_section .con-sua {
+    position: absolute;
+    bottom: 35%;
+    left: 20%;
+    z-index: 3;
+    width: 300px
+}
+
+.continue_container .f1-2 {
+    position: absolute;
+    width: 60px;
+    top: -10%;
+    z-index: 5;
+    left: 90%
+}
+.continue_container .f1-1 {
+    position: absolute;
+    width: 70px;
+    top: 0;
+    z-index: 5;
+    left: 70%
+}
+.continue_container .sea-horse1 {
+    position: absolute;
+    width: 200px;
+    top: 8%;
+    z-index: 4;
+    left: 60%
+}
+.continue_container .new-fish1 {
+    position: absolute;
+    width: 200px;
+    top: -5%;
+    z-index: 4;
+    left: 5%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
