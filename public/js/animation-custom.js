@@ -25,7 +25,7 @@
 	f3.fromTo('.f3', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
 	f31 = new TimelineMax({ repeat: -1, yoyo: true });
 	f31.fromTo('.f3', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
-	
+
 	f0 = new TimelineMax({ repeat: -1, yoyo: false });
 	f0.to('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 80, {css:{'left':'-200px'}}, 0)
 	f01 = new TimelineMax({ repeat: -1, yoyo: true });
@@ -45,7 +45,7 @@
 	f6.fromTo('.f6', 40, {css:{'left':'100%'}}, {css:{'left':'-200px'}}, 0)
 	f61 = new TimelineMax({ repeat: -1, yoyo: true });
 	f61.fromTo('.f6' , 1, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
-	
+
 	f7 = new TimelineMax({ repeat: -1, yoyo: false });
 	f7.fromTo('.f7', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
 	f71 = new TimelineMax({ repeat: -1, yoyo: true });
@@ -89,7 +89,7 @@
 
 	b6 = new TimelineMax({ repeat: -1 });
 	b6.from('.b6', 6, {y:300, opacity: 0}, .6)
-		.to('.b6', 7, {y:-600, opacity: 1}, 0.3)	
+		.to('.b6', 7, {y:-600, opacity: 1}, 0.3)
 
 	b7 = new TimelineMax({ repeat: -1 });
 	b7.from('.b7', 6, {y:300, opacity: 0}, 1)
@@ -116,3 +116,4 @@
 	f4.fromTo('.new-fish1', 80, {css:{'left':'-200px'}}, {css:{'right':'-200px'}}, 0)
 	f41 = new TimelineMax({ repeat: -1, yoyo: true });
 	f41.fromTo('.new-fish1', 1.5, {skewY:"2deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+

@@ -139,3 +139,11 @@ body:not(.modal-open){
 .after-submit {
     display: none;
 }
+
+#id2 .continue_container .congratulation-girl {
+    left: 0%;
+}
+
+.bubble {
+    max-width: 40px;
+}
