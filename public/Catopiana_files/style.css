@@ -3512,3 +3512,37 @@ button.start_memory:hover {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
+.swal-pop-custom-error {
+    border-radius: 20px !important;
+    border: 4px solid #34318e !important;
+    background: linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%) !important;
+}
+
+.swal-title-custom-error, .swal-content-custom-error {
+    color: white !important;
+}
+
+.swal-button-custom-error, .swal-button-chosse-level  {
+    background: linear-gradient(to right top, #d8692d, #df7a2b, #e48a2a, #e89b2a, #eaac2d, #eaac2d, #eaac2d, #eaac2d, #e89b2a, #e48a2a, #df7a2b, #d8692d) !important;
+    box-shadow: 2px 2px #343130 !important;
+}
+
+.swal-pop-chosse-level {
+    border-radius: 20px !important;
+    border: 3px solid #34318e !important;
+    background: linear-gradient(180deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
+}
+
+.swal-title-chosse-level {
+    color: white !important;
+}
+
+.swal-content-chosse-level .swal2-radio {
+    color: white !important;
+}
+
+.swal-pop-chosse-level .swal2-validation-message {
+    background: inherit !important;
+    color: #eee !important;
+}

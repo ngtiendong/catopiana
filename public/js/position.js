@@ -132,9 +132,15 @@ function nextButtonPosition () {
          Swal.fire({
             type: 'error',
             title: 'Oops...',
-            background: 'orange',
+            // background: 'orange',
             backdrop: `rgba(255, 255, 255, 0.61)`,
             text: 'Please answer the question!',
+            customClass: {
+                popup: 'swal-pop-custom-error',
+                title:'swal-title-custom-error',
+                content: 'swal-content-custom-error',
+                confirmButton:'swal-button-custom-error'
+            }
         })
 
     }
@@ -310,9 +316,15 @@ function submitPosition() {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            background: 'orange',
+            // background: 'orange',
             text: 'Please answer the question!',
             backdrop: `rgba(255, 255, 255, 0.61)`,
+            customClass: {
+                popup: 'swal-pop-custom-error',
+                title:'swal-title-custom-error',
+                content: 'swal-content-custom-error',
+                confirmButton:'swal-button-custom-error'
+            }
         })
     }
 }
