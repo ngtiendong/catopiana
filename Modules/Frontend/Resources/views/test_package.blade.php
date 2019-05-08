@@ -60,7 +60,7 @@
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
     $(document).ready(function() {
-        if(!received_free_package_status) {
+        if(received_free_package_status == 1) {
             $('.package_free').css('display','none');    
         }
     });

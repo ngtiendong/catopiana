@@ -313,4 +313,9 @@ class FrontendController extends Controller
         $prev_topic = $topic;
         return view('frontend::continue_test',compact('prev_topic'));
     }
+
+    public function congratulation()
+    {
+        return view('frontend::congratulation');
+    }
 }

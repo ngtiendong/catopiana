@@ -13,11 +13,11 @@ use PayPal\Api\Transaction;
 
 class CreatePayment extends Paypal
 {
-    public function create($data)
+    public function create($data, $value)
     {
         $itemList = $this->createItemList($data);
 
-        $payment = $this->payment($itemList);
+        $payment = $this->payment($itemList, $value);
         // Create payment with valid API context
         try {
             $payment->create($this->apiContext);
@@ -28,10 +28,10 @@ class CreatePayment extends Paypal
             // echo $e->getCode();
             // echo $e->getData();
             // die($e);
-            return redirect()->route('packages')->with('buy_package_error' ,'There was an error! Please try again later');
+            return redirect()->route($value['routeBackError'])->with('buy_package_error' ,'There was an error! Please try again later');
         } catch (\Exception $e) {
             // die($e);
-            return redirect()->route('packages')->with('buy_package_error' ,'There was an error! Please try again later');
+            return redirect()->route($value['routeBackError'])->with('buy_package_error' ,'There was an error! Please try again later');
         }
         return redirect($approvalUrl);
     }
@@ -50,12 +50,12 @@ class CreatePayment extends Paypal
      * @param $itemList
      * @return Transaction
      */
-    protected function transaction( $itemList): Transaction
+    protected function transaction( $itemList, $value): Transaction
     {
         $transaction = new Transaction();
         $transaction->setAmount($this->amount())
             ->setItemList($itemList)
-            ->setDescription('Payment description: "Buy Curriculum at Catopiana"')
+            ->setDescription($value['description'])
             ->setInvoiceNumber(uniqid());
         return $transaction;
     }
@@ -63,11 +63,11 @@ class CreatePayment extends Paypal
     /**
      * @return RedirectUrls
      */
-    protected function redirectUrls(): RedirectUrls
+    protected function redirectUrls($value): RedirectUrls
     {
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(config('services.paypal.url.redirect'))
-            ->setCancelUrl(config('services.paypal.url.cancel'));
+        $redirectUrls->setReturnUrl($value['returnUrl'])
+            ->setCancelUrl($value['cancelUrl']);
         return $redirectUrls;
     }
 
@@ -75,13 +75,13 @@ class CreatePayment extends Paypal
      * @param $itemList
      * @return Payment
      */
-    protected function payment($itemList): Payment
+    protected function payment($itemList, $value): Payment
     {
         $payment = new Payment();
         $payment->setIntent('sale')
             ->setPayer($this->payer())
-            ->setRedirectUrls($this->redirectUrls())
-            ->setTransactions([$this->transaction($itemList)]);
+            ->setRedirectUrls($this->redirectUrls($value))
+            ->setTransactions([$this->transaction($itemList, $value)]);
         return $payment;
     }
 

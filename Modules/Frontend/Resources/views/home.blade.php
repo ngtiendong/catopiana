@@ -61,16 +61,17 @@
             </div>
             <div class="bot">
             </div>
+            <div class="button_reset">
+                <button class="reset_data reset_init_data">Reset Data</button>
+            </div>
         </div>
-{{--         <img class="f6" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
-        <img class="f7" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt=""> --}}
     </div>
     {{-- @else --}}
-    <div class="container list-test package-give-free" style="z-index: 9; font-size: 40px; text-align: center; display: none">
+    <div class="container list-test package-give-free" style="z-index: 9; text-align: center; display: none">
         <div class="row">
-            @if(isset($freePackage) &&  $freePackage != null)
+{{--             @if(isset($freePackage) &&  $freePackage != null)
                 <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your free curriculum:</h2>
-            @endif
+            @endif --}}
             <div class="top text-center">
                 @if(isset($freePackage) && $freePackage != null)
                 @foreach($freePackage as $key => $curriculum)
@@ -81,9 +82,9 @@
                 @endforeach
                 @endif
             </div>
-            @if( isset($paidPackage) && $paidPackage != null)
+{{--             @if( isset($paidPackage) && $paidPackage != null)
                 <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your paid curriculum:</h2>
-            @endif
+            @endif --}}
             <div class="bot text-center">
                 @if( isset($paidPackage) && $paidPackage != null)
                 @foreach($paidPackage as $key => $curriculum)
@@ -93,6 +94,9 @@
                 </a>
                 @endforeach
                 @endif
+            </div>
+            <div class="button_reset">
+                <button class="reset_data reset_free_topic_data">Reset Data</button>
             </div>
         </div>
     </div>
@@ -295,30 +299,32 @@
             $('.package-give-free').css('display', 'block');
             $('.free_topic').css('display', 'none');
         }
-
-        {{-- @if (isset($freePackage) && auth()->guard('customers')->user() !== null && auth()->guard('customers')->user()->test_status == 1 ) --}}
-            // test_status = 1 la lam xong =2 la lam xong va da nhan thong bao, =0 la chua xong
-            // Swal.fire({
-            //     title: 'Congratulations!',
-            //     text: "You have received a few free tests!",
-            //     type: 'info',
-            //     background: 'orange',
-            //     backdrop: `rgba(255, 255, 255, 0.61)`,
-            //     confirmButtonText: 'Go!'
-            // }).then(() => {
-            //     $.ajax({
-            //         url: '{{ route('update-test-status') }}',
-            //         type: 'GET',
-            //         dataType: 'json',
-            //     })
-            //     .done(function(response) {
-            //         console.log("success");
-            //     })
-            //     .fail(function() {
-            //         console.log("error");
-            //     })
-            // });
-        {{-- @endif --}}
+        var count_free_package = 0;
+        for (var i=1; i<9; i++) {
+            if (list_test_finished.indexOf(i) < 0) {
+                // có bài Chưa thi
+                break;
+            }
+            count_free_package++;
+        }
+        if (count_free_package == 8 && received_free_package_status == 0 ) {
+            Swal.fire({
+                title: 'Receive the test results?',
+                text: "You haven't received the test results yet!",
+                type: 'warning',
+                showCancelButton: true,
+                reverseButtons: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Receive it',
+                cancelButtonText: 'No',
+                backdrop: `rgba(0,0,0,0.1)`,
+            }).then((result) => {
+                if (result.value) {
+                        window.location.href = '/congratulation';
+                    }
+            });
+        }
     });
 </script>
 @endsection

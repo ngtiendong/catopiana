@@ -52,7 +52,7 @@ return [
         'secret' => env('PAYPAL_CLIENT_SECRET'),
         'url' => [
             'redirect' => 'https://beta.catopiana.com/execute-payment',
-            'cancel'=>'https://beta.catopiana.com/payment-test',
+            'cancel'=>'https://beta.catopiana.com/packages',
         ],
         'currency' => 'USD',
         'settings' => [

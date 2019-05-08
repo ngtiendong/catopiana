@@ -71,7 +71,7 @@ $(function () {
             if(!list_test_finished.includes(parseInt(topic))){
                 list_test_finished.push(parseInt(topic))
             }
-            window.location.href = '/continue-test/'+parseInt(topic)
+            redirectAfterSubmit(parseInt(topic))
             // showDialogScore(correct, total_question, login)
             //Display test not finished
             // displayTestUnFinishedAfterSubmit()
@@ -164,47 +164,46 @@ $(function () {
         else {
             //Check history
             let flag = 1;
-            login = $('#testForm').data('login');
-            testStatus = $('#testForm').data('testStatus');
+            // login = $('#testForm').data('login');
+            // testStatus = $('#testForm').data('testStatus');
             for (var i = 0; i < testing_data.question.length; i++) {
                 this_question = testing_data.question[i];
                 if (this_question.topic == topic) {
                     // Da ton tai bai test type nay trong lich su
-                    if(!login){ // checklogin thi k reset data
-                        Swal.fire({
-                            title: 'Do you want to continue?',
-                            text: "This test has someone doing it!",
-                            type: 'warning',
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Continue test!',
-                            cancelButtonText: 'Reset data',
-                            backdrop: `rgba(0,0,0,0.1)`,
-                            allowOutsideClick: false
-                        }).then((result) => {
-                            if (result.value) {
-                                position_this_question = i
-                                console.log('current', this_question)
-                                // this_question = current_data
-                                total_question = parseInt(this_question.question_data.length)
-                                generateUnfinishedTest(this_question)
-                            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                resetData();
-
-                                window.location.reload(true)
-                            }
-                        })
-                    } else {
+                    // if(!login){ // checklogin thi k reset data
+                    //     Swal.fire({
+                    //         title: 'Do you want to continue?',
+                    //         text: "This test has someone doing it!",
+                    //         type: 'warning',
+                    //         showCancelButton: true,
+                    //         reverseButtons: true,
+                    //         confirmButtonColor: '#3085d6',
+                    //         cancelButtonColor: '#d33',
+                    //         confirmButtonText: 'Continue test!',
+                    //         cancelButtonText: 'Reset data',
+                    //         backdrop: `rgba(0,0,0,0.1)`,
+                    //         allowOutsideClick: false
+                    //     }).then((result) => {
+                    //         if (result.value) {
+                    //             position_this_question = i
+                    //             console.log('current', this_question)
+                    //             // this_question = current_data
+                    //             total_question = parseInt(this_question.question_data.length)
+                    //             generateUnfinishedTest(this_question)
+                    //         } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    //             resetData();
+                    //             window.location.reload(true)
+                    //         }
+                    //     })
+                    // } else {
                         position_this_question = i
                         console.log('current', this_question)
                         // this_question = current_data
                         total_question = parseInt(this_question.question_data.length)
                         generateUnfinishedTest(this_question)
-                    }
-                    flag = -1;
-                    break;
+                    // }
+                        flag = -1;
+                        break;
                 }
             }
             if (flag !== -1) {
@@ -300,7 +299,7 @@ function generateUnfinishedTest(current_data) {
                 style = 'style ="display: none;"'
             }
             html += '<div class="tab" style="display: none;"><img class="question" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
-                + '<button class="start_memory" '+style+'></button>' +
+                + '<button class="start_memory" style ="display: none;">Start</button>' +
                 "<div class='answer'>" ;
 
             var answer = ""
@@ -1122,5 +1121,35 @@ resetData = () => {
     } else {
         localStorage.removeItem('testing');
     }
+}
 
+redirectAfterSubmit = (topic) => {
+        if(topic < 9){
+        flag = 0;
+        var count_free_package = 0;
+        for (var i=1; i<9; i++) {
+            if (list_test_finished.indexOf(i) < 0) {
+                // có bài Chưa thi
+                flag = 1 
+                break;
+            }
+            count_free_package++;
+        }
+        if (flag == 1) {
+            window.location.href = '/continue-test/'+topic
+        }
+        // now use variables topic_arr_free[]
+        if (count_free_package == 8) {
+            window.location.href = '/congratulation'
+
+        }
+    } else {
+        // free_package_arr = [9,10,11,12];
+        // if(free_package_arr.includes(topic) ) {
+        //     window.location.href = '/free-packages';
+        // } else {
+        //     window.location.href = '/paid-packages';
+        // }
+        window.location.href = '/continue-test/'+topic
+    }
 }

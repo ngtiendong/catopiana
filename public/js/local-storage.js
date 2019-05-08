@@ -3,7 +3,7 @@
  */
 
 var list_test_finished = []
-var received_free_package_status = 0;
+var received_free_package_status = 0; // 0 là chưa nhận, 1 là đã nhận, 2 là đã share or paid nhưng chưa nhận.
 var testing_data
 if (localStorage.getItem('testing')) {
     // localStorage.removeItem('testing')
@@ -40,6 +40,54 @@ $(function(){
     // displayTestUnFinishedAfterSubmit()
 });
 
+// reset data
+ $(document).on('click', '.reset_init_data', function(event) {
+     event.preventDefault();
+     Swal.fire({
+        title: 'Are you sure?',
+        text: "You will have to redo it!",
+        type: 'warning',
+        showCancelButton: true,
+        reverseButtons: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Reset data',
+        cancelButtonText: 'No',
+        backdrop: `rgba(0,0,0,0.1)`,
+    }).then((result) => {
+        if (result.value) {
+            localStorage.removeItem('testing');
+            window.location.reload(true)
+        }
+     });
+ });
+
+
+ $(document).on('click', '.reset_free_topic_data', function(event) {
+     event.preventDefault();
+     Swal.fire({
+        title: 'Are you sure?',
+        text: "You will have to redo it!",
+        type: 'warning',
+        showCancelButton: true,
+        reverseButtons: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Reset data',
+        cancelButtonText: 'No',
+        backdrop: `rgba(0,0,0,0.1)`,
+    }).then((result) => {
+        if (result.value) {
+            if(received_free_package_status == 1) {
+                // clear data except với 4 curri tặng, chưa rõ cách giải quyết, cần dữ liệu chuẩn để thêm vào localstorage -> xác định được các test thuộc loại nào
+                testing_data.question.splice(8, 4); 
+                localStorage.setItem('testing', JSON.stringify(testing_data));
+                // hàm chưa xử lý được khi có cả paid package và freepackage
+            }
+            window.location.reload(true)
+        }
+     });
+ });
 /**
  * Event to click button add to cart
  * @param product_id

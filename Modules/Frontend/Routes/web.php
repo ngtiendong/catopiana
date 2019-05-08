@@ -24,7 +24,7 @@ Route::group(/**
     Route::get('/memory', 'FrontendController@test')->name('memory');
     Route::get('/language', 'FrontendController@test')->name('language');
     Route::get('/position', 'FrontendController@position')->name('position');
-    Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('position');
+    Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('free-test-results');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
     //
     // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
@@ -58,14 +58,18 @@ Route::group(/**
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
     Route::get('/continue-test/{topic}', 'FrontendController@continueTest');
+    Route::get('/congratulation', 'FrontendController@congratulation');
 
 
 
     // Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');
-    Route::get('/packages','FrontendController@getPackages')->middleware('test')->name('packages');
+    Route::get('/packages','FrontendController@getPackages')->name('packages');
     Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->name('getCurriculumsFreePackage');
     Route::get('/paid-packages','FrontendController@getCurriculumsPaidPackage')->middleware('auth:customers')->name('getCurriculumsPaidPackage');
     
     Route::get('/execute-payment', 'PaymentController@execute');
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+
+    Route::get('/executePayForResult', 'PaymentController@executePayForResult');
+    Route::get('/payForResult', 'PaymentController@payForResult')->name('payForResult');
 });
