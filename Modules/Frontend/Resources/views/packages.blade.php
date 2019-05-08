@@ -103,7 +103,7 @@
                 background: 'orange',
                 backdrop: `rgba(255, 255, 255, 0.61)`,
                 showConfirmButton: false,
-              timer: 300
+              timer: 3000
             })
         @elseif (session()->has('buy_package_error'))
             Swal.fire({

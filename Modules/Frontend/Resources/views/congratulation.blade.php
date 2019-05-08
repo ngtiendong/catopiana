@@ -13,7 +13,7 @@
                         <h2 class="text-center title2">Get your result and receive free test here</h2>
                         <div  class="final">
                             <button type="button" class="btn-lg button-congratulation btn-share"><i class="fa fa-facebook"></i> Share on facebook</button>
-                            <button type="button"  class=" btn-lg button-congratulation btn-paid">or 1.99$</button>
+                            <button type="button" onclick="location.href='{{route('payForResult')}}'"  class=" btn-lg button-congratulation btn-paid">or 1.99$</button>
                         </div>
                     </div>
                 </div>
