@@ -54,6 +54,13 @@ $(function(){
         confirmButtonText: 'Reset data',
         cancelButtonText: 'No',
         backdrop: `rgba(0,0,0,0.1)`,
+        customClass: {
+            popup: 'swal-pop-reset',
+            title:'swal-title-reset',
+            content: 'swal-content-reset',
+            confirmButton:'swal-button-reset',
+            cancelButton: 'swal-button-cancel-reset'
+        }
     }).then((result) => {
         if (result.value) {
             localStorage.removeItem('testing');
@@ -76,6 +83,13 @@ $(function(){
         confirmButtonText: 'Reset data',
         cancelButtonText: 'No',
         backdrop: `rgba(0,0,0,0.1)`,
+        customClass: {
+            popup: 'swal-pop-reset',
+            title:'swal-title-reset',
+            content: 'swal-content-reset',
+            confirmButton:'swal-button-reset',
+            cancelButton: 'swal-button-cancel-reset'
+        }
     }).then((result) => {
         if (result.value) {
             if(received_free_package_status == 1) {
