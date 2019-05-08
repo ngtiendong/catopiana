@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
+        <img class="girl congratulation-girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
         <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
         <img class="f1-1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
         <img class="f1-2 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
@@ -54,6 +54,22 @@
         $('html,body').stop().animate({
             scrollTop: $('.continue_test').eq(0).offset().top
         }, 500);
+        girl = new TimelineMax({ repeat: -1});
+        girl.fromTo('.girl', 15, {x:0, rotationY: -10}, {x:700, rotationY: 10, ease:Power1.easeOut})
+        girl.fromTo('.girl', 0.1, {scaleX:1}, {scaleX:-1} )
+        girl.fromTo('.girl', 15, {x:700, rotationY: -20}, {x:0, rotationY: 10})
+
+        seahorse = new TimelineMax({repeat: -1});
+        seahorse.fromTo(".sea-horse1", 1, {rotation: -10, repeat: -1, yoyo: true}, {rotation: 20, ease: Power0.easeNone, repeat:-1, yoyo: true}, 0)
+            .to(".sea-horse1", 20, {x: Math.floor(Math.random() * -1000), y: Math.floor(Math.random() * 1000)+100, repeat: -1, yoyo: true},0)
+            .to('.sea-horse1', 0.2, {scaleX:-1},20)
+            .to(".sea-horse1", 20, {x: Math.floor(Math.random() * 200)+100, y: Math.floor(Math.random() * 100), ease: Power4.easeOut, repeat: -1, yoyo: true},20)
+            .to('.sea-horse1', 0.2, {scaleX:1},40)
+        var item=$('.bubble-top')
+        for (var i=0; i<item.length; i++) {
+            bubbles = new TimelineMax({repeat: -1})
+            bubbles.fromTo(item[i], Math.floor(Math.random()*15)+10, {y: Math.floor(Math.random() * 200) + 100}, {y: Math.floor(Math.random() * -1500)-1000, opacity: 0.2})
+        }
     });
     $('.btn-share').click(function(event) {
         /* Act on the event */
