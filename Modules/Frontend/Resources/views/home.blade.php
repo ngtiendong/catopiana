@@ -318,7 +318,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Receive it',
                 cancelButtonText: 'No',
-                backdrop: `rgba(0,0,0,0.1)`,
+                backdrop: `rgba(0,0,0,0.1)`
             }).then((result) => {
                 if (result.value) {
                         window.location.href = '/congratulation';

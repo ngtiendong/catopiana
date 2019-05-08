@@ -3523,7 +3523,7 @@ button.start_memory:hover {
     color: white !important;
 }
 
-.swal-button-custom-error, .swal-button-chosse-level  {
+.swal-button-custom-error, .swal-button-chosse-level, .swal-button-facebook  {
     background: linear-gradient(to right top, #d8692d, #df7a2b, #e48a2a, #e89b2a, #eaac2d, #eaac2d, #eaac2d, #eaac2d, #e89b2a, #e48a2a, #df7a2b, #d8692d) !important;
     box-shadow: 2px 2px #343130 !important;
 }
@@ -3545,4 +3545,16 @@ button.start_memory:hover {
 .swal-pop-chosse-level .swal2-validation-message {
     background: inherit !important;
     color: #eee !important;
+}
+
+.swal-pop-facebook {
+    border-radius: 20px !important;
+    border: 4px solid #34318e !important;
+    background: linear-gradient(90deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
+    /*width: 60% !important;*/
+    padding: 3.25em !important;
+}
+
+.swal-title-facebook, .swal-content-facebook {
+    color: white !important;
 }

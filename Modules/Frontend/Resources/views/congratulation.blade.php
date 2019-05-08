@@ -71,6 +71,12 @@
                     text: "You haven't shared on Facebook",
                     display: 'flex',
                     backdrop: `rgba(0,0,0,0.1)`,
+                    customClass: {
+                        popup: 'swal-pop-facebook',
+                        title:'swal-title-facebook',
+                        content: 'swal-content-facebook',
+                        confirmButton:'swal-button-facebook'
+                    }
                 })
             }
       });
