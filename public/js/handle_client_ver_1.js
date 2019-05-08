@@ -43,9 +43,15 @@ $(function () {
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                background: 'orange',
+                // background: 'orange',
                 text: 'Please answer the question!',
                 backdrop: `rgba(255, 255, 255, 0.61)`,
+                customClass: {
+                    popup: 'swal-pop-custom-error',
+                    title:'swal-title-custom-error',
+                    content: 'swal-content-custom-error',
+                    confirmButton:'swal-button-custom-error'
+                }
             });
         } else {
             // play_sound("sounds/win.mp3")
@@ -139,7 +145,7 @@ $(function () {
     $(document).ready(function() {
         //Check local storage
         if (typeof(test_level) === 'undefined') {
-            inputOptions = {'1': 'level 1', '2': 'level 2', '3': 'level 3', '4': 'level 4', '5': 'level 5', '6': 'level 6'}
+            inputOptions = {'3': 'level 3', '4': 'level 4', '5': 'level 5', '6': 'level 6'}
             swal.fire({
                 title: 'Please chosse level',
                 width: '40%',
@@ -158,7 +164,14 @@ $(function () {
                     play_sound("sounds/demand.mp3")
                     return getNewQuestionData(position_in_local_storage)
                 },
-                allowOutsideClick: false
+                allowOutsideClick: false,
+                customClass: {
+                    popup: 'swal-pop-chosse-level',
+                    header:'swal-header-chosse-level',
+                    title:'swal-title-chosse-level',
+                    content: 'swal-content-chosse-level',
+                    confirmButton:'swal-button-chosse-level'
+                }
             })
         }
         else {
@@ -889,9 +902,15 @@ function nextButton() {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            background: 'orange',
+            // background: 'linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%)',
             text: 'Please answer the question!',
             backdrop: `rgba(255, 255, 255, 0.61)`,
+            customClass: {
+                popup: 'swal-pop-custom-error',
+                title:'swal-title-custom-error',
+                content: 'swal-content-custom-error',
+                confirmButton:'swal-button-custom-error'
+            }
         })
     } else {
         tab_number[this_question.current_index].style.display = "none";
