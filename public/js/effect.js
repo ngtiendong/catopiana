@@ -151,7 +151,7 @@ d2.fromTo('.iconwin2', 10, {css:{'left':'20%'}}, {css:{'left':'23%'}}, 0)
 
 
 // burst animation
-var el6 = document.querySelector('div.testOverlay')
+var el6 = document.querySelector('div.continue_test')
 const fw1 = new mojs.Burst({
     parent: el6,
     top: '10%',
@@ -175,7 +175,7 @@ const fw1 = new mojs.Burst({
 const fws1 = new mojs.Shape({
     top: '10%',
     left: '10%',
-    parent: document.querySelector('div.testOverlay'),
+    parent: el6,
     radius: {10: 60},
     fill: 'transparent',
     stroke: '#fff34b',
