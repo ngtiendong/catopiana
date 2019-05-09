@@ -3306,7 +3306,10 @@ button.start_memory:hover {
     border: 4px solid #34318e;
     border-radius: 20%;
     margin: auto;
+    animation: gradient 2.5s infinite 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
+    transition: all .2s ease-in-out;
 }
+.button-continue:hover { transform: scale(1.5); }
 
 .button-congratulation {
     position: relative;
@@ -3393,7 +3396,7 @@ button.start_memory:hover {
 #id2 .container .continue_row {
     position: relative;
     z-index: 3;
-    padding-top: 20%;
+    /*padding-top: 20%;*/
     width: 100%
 }
 
@@ -3405,7 +3408,7 @@ button.start_memory:hover {
 
 #id2 .continue_container .girl {
     position: absolute;
-    top: 18%;
+    /*top: 18%;*/
     left: 30%;
     z-index: 3;
 }

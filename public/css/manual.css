@@ -147,3 +147,17 @@ body:not(.modal-open){
 .bubble {
     max-width: 40px;
 }
+
+@keyframes gradient {
+    0% { background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%) }
+    10% { background: linear-gradient(90deg, #d53369 0%, #daae51 100%) }
+    20% { background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%) }
+    30% { background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%) }
+    40% { background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%) }
+    50% { background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%) }
+    60% { background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%) }
+    70% { background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%) }
+    80% { background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%) }
+    90% { background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%) }
+    100% { background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%) }
+}

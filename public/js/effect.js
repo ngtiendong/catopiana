@@ -170,28 +170,72 @@ var el6 = document.querySelector('div.continue_test')
 const fw1 = new mojs.Burst({
     parent: el6,
     top: '10%',
-    left: '10%',
-    radius: {40: 110},
-    count: 20,
-    repeat: 9999,
+    left: '-10%',
+    radius: {40: 150},
+    count: 50,
+    duration: 1500,
     children: {
         shape: 'line',
         fill: 'white',
-        radius: {12: 0},
+        radius: {20: 0},
         scale: 1,
         stroke: '#ff0e00',
-        strokeWidth: 2,
+        strokeWidth: 1,
         duration: 1500,
         easing: mojs.easing.bezier(0.1, 1, 0.3, 1),
-        repeat: 9999,
     },
+    onComplete () {
+        this.generate().replay();
+    }
+});
+
+const fw20 = new mojs.Burst({
+    parent: 	el6,
+    top: '-20%',
+    left: '15%',
+    count: 		15,
+    radius: 	{20:80},
+    angle: 		{ 0: 140, easing: mojs.easing.bezier(0.1, 1, 0.3, 1) },
+    children: {
+        fill: 			'#988ADE',
+        radius: 		20,
+        opacity: 		0.6,
+        duration: 	1500,
+        easing: 		mojs.easing.bezier(0.1, 1, 0.3, 1)
+    },
+    onComplete () {
+        this.generate().replay();
+    }
+})
+
+const fw21 = new mojs.Burst({
+    parent: el6,
+    top: '10%',
+    left: '-10%',
+    radius: {40: 150},
+    count: 20,
+    angle: 	{ 0:360, easing: mojs.easing.bezier(0.1, 1, 0.3, 1) },
+    yoyo: true,
+    children: {
+        shape: 'polygon',
+        radius: {15: 5},
+        scale: 1,
+        stroke: '#f70e00',
+        strokeWidth: 0.5,
+        duration: 1500,
+        easing: mojs.easing.bezier(0.1, 1.5, 0.3, 1),
+        // repeat: 9999,
+    },
+    onComplete () {
+        this.generate().replay();
+    }
 });
 // ring animation
 const fws1 = new mojs.Shape({
     top: '10%',
-    left: '10%',
+    left: '-10%',
     parent: el6,
-    radius: {10: 60},
+    radius: {10: 100},
     fill: 'transparent',
     stroke: '#fff34b',
     strokeWidth: {30: 0},
@@ -288,9 +332,9 @@ const fw5 = new mojs.Burst({
 
 const burstPolygon = new mojs.Burst({
     parent: el6,
-    radius: { 0 : 180 },
+    radius: { 0 : 150 },
     top: '60%',
-    left: '20%',
+    left: '-10%',
     count: 30,
     children: {
         shape: 'polygon',
@@ -367,8 +411,8 @@ const circ = new mojs.Shape({
 const circ2 = new mojs.Shape({
     ...circs,
     parent: el6,
-    radius: { 0 : 250 },
-    top: '30%',
+    radius: { 0 : 150 },
+    top: '-10%',
     left: '20%',
     stroke: 'magenta'
 });
