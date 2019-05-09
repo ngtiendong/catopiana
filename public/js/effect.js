@@ -47,11 +47,13 @@ $(document).on('click', '.swal2-radio label',function (event) {
 
 function autonext()
 {
-    if( this_question.current_index < this_question.question_data.length - 1 && current_index_max == this_question.current_index ) {
+    if( this_question.current_index < this_question.question_data.length - 1 && current_index_max == this_question.current_index && !disabled_label_click ) {
         $('#nextBtn').prop('disabled', true);
+        disabled_label_click = true;
         setTimeout(()=>{
                 next()
         },1000)
+
     }
 }
 

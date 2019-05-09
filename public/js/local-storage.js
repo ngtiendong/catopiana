@@ -51,7 +51,7 @@ $(function(){
         reverseButtons: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Reset data',
+        confirmButtonText: 'Reset',
         cancelButtonText: 'No',
         backdrop: `rgba(0,0,0,0.1)`,
         customClass: {
@@ -80,7 +80,7 @@ $(function(){
         reverseButtons: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Reset data',
+        confirmButtonText: 'Reset',
         cancelButtonText: 'No',
         backdrop: `rgba(0,0,0,0.1)`,
         customClass: {

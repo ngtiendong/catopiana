@@ -27,11 +27,11 @@
         <img class="sea-horse1" src="{{asset('./Catopiana_files/images/sea-horse1.png')}}" alt="">
         {{-- <img class="new-fish1" src="{{asset('./Catopiana_files/images/new-fish1.png')}}" alt=""> --}}
     </div>
-    <div class="list-test continue-list-test">
+    {{-- <div class="list-test continue-list-test"> --}}
         <div class="col-md-12 list-test-unfinished" id="list-test-unfinished">
             <h3></h3>
         </div>
-    </div>
+    {{-- </div> --}}
     {{-- comment image to test not if lag --}}
     @include('frontend::layouts.background')
     <img class="boy" src="{{asset('./Catopiana_files/images/boy-blue.png')}}" alt="">
@@ -57,9 +57,9 @@
         }, 500);
         play_sound("sounds/win.mp3")
         play_sound("sounds/applause3.mp3")
-        const tl1 = new mojs.Timeline({
-            repeat: 999
-        }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
+        // const tl1 = new mojs.Timeline({
+        //     repeat: 999
+        // }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
 
 
 
@@ -70,49 +70,15 @@
         window.location.href = '/';
     });
     $('.btn-continue').click(function(event) {
-        /* Act on the event */
-    var topic = $('.continue_test').data('topic');
-    displayTestUnFinishedAfterSubmit(parseInt(topic))
-    // if(parseInt(topic) < 9){
-    //     var next_quiz = 0;
-    //     var count_free_package = 0;
-    //     for (var i=1; i<9; i++) {
-    //         if (list_test_finished.indexOf(i) < 0) {
-    //             //Chua thi
-    //             next_quiz = i
-    //             break;
-    //         }
-    //         count_free_package++;
-    //     }
-    //     if (next_quiz > 0) {
-    //         // làm xong bài khác bài free
-    //         var topic_arr_free = [
-    //             'music',
-    //             'iq',
-    //             'creative',
-    //             'difference',
-    //             'common',
-    //             'memory',
-    //             'language',
-    //             'position'
-    //         ];
-    //         var next_topic = topic_arr_free[next_quiz - 1];
-    //         window.location.href = '/'+next_topic;
-    //     }
-    // } else {
-    //     free_package_arr = [9,10,11,12];
-    //     if(free_package_arr.includes(parseInt(topic)) ) {
-    //         window.location.href = '/free-packages';
-    //     } else {
-    //         window.location.href = '/paid-packages';
-    //     }
-    // }
-
+            /* Act on the event */
+        $('div.list-test-unfinished').css('display', 'flex');
+        var topic = $('.continue_test').data('topic');
+        displayTestUnFinishedAfterSubmit(parseInt(topic))
     });
 
     function displayTestUnFinishedAfterSubmit(topic) {
         console.log(list_test_finished);
-        let gen_html = '<div style="margin-top:25px; padding-right: 40px">'
+        let gen_html = '<div>'
         if(topic < 9){
             for (var i=1; i<9; i++) {
                 if (list_test_finished.indexOf(i) < 0) {
@@ -138,7 +104,7 @@
         $('div.list-test-unfinished').fadeIn(1000)
 
         $('html,body').animate({
-            scrollTop: $('#list-test-unfinished').offset().top
+            scrollTop: $('#list-test-unfinished').offset().top - $('#list-test-unfinished').height()
         }, 700);
     }
 </script>

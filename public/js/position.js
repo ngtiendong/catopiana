@@ -307,16 +307,12 @@ function submitPosition() {
         if(!list_test_finished.includes(parseInt(topic))){
             list_test_finished.push(parseInt(topic))
         }
-        window.location.href = '/continue-test/'+parseInt(topic)
-        // showDialogScore(correct, total_question*max_images_in_column, login)
-        //Display test not finished
-        // displayTestUnFinishedAfterSubmit()
-
+        redirectAfterSubmit(parseInt(topic))
+        
     } else {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            // background: 'orange',
             text: 'Please answer the question!',
             backdrop: `rgba(255, 255, 255, 0.61)`,
             customClass: {

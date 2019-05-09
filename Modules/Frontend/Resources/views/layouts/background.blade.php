@@ -23,4 +23,4 @@
 <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
 <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
 <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
+<img id="island" src="{{asset('./Catopiana_files/images/island1.png')}}" alt="">

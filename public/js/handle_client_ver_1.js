@@ -84,68 +84,10 @@ $(function () {
         }
     })
 
-
-
-    /**
-     * Click start button to load data from server
-     */
-    // $('.startBtn').click(async function () {
-    //     //Check local storage
-    //     play_sound("sounds/demand.mp3")
-    //     if (typeof(test_level) === 'undefined') {
-    //         await swal.fire({
-    //             title: 'Please add level',
-    //             input: 'number',
-    //             inputPlaceholder: 'Chose your level',
-    //             confirmButtonText: 'Look up',
-    //             // backdrop: `rgba(255, 255, 255, 0.61)`,
-    //             inputValidator: (value) => {
-    //                 if (!value) {
-    //                     return 'You need to add your level !'
-    //                 }
-    //                 if (value < 1) {
-    //                     return 'Your level must be greater than 0!'
-    //                 }
-    //             },
-    //             showLoaderOnConfirm: true,
-    //             preConfirm: (value) => {
-    //                 test_level = value
-    //                 return getNewQuestionData(position_in_local_storage)
-    //             },
-    //             allowOutsideClick: () => !Swal.isLoading()
-    //         })
-    //     }
-    //     else {
-    //         //Check history
-    //         let flag = 1;
-    //         for (var i = 0; i < testing_data.question.length; i++) {
-    //             this_question = testing_data.question[i];
-    //             // console.log('current', current_data)
-
-    //             if (this_question.topic == topic) {
-    //                 // Da ton tai bai test type nay trong lich su
-    //                 position_this_question = i
-    //                 console.log('current', this_question)
-    //                 // this_question = current_data
-    //                 total_question = parseInt(this_question.question_data.length)
-    //                 generateUnfinishedTest(this_question)
-    //                 flag = -1;
-    //                 break
-
-    //             }
-    //         }
-    //         if (flag !== -1) {
-    //             //Da ton tai nhung da hoan thanh bai test HOAC chua ton tai trong local storage
-    //             getNewQuestionData(position_in_local_storage)
-    //         }
-    //     }
-
-    // });
-    // $('.startBtn').click(async function () {
     $(document).ready(function() {
         //Check local storage
         if (typeof(test_level) === 'undefined') {
-            inputOptions = {'3': 'level 3', '4': 'level 4', '5': 'level 5', '6': 'level 6'}
+            inputOptions = {'3': '3', '4': '4', '5': '5', '6': '6'}
             swal.fire({
                 title: 'Choose your level',
                 width: '40%',
@@ -723,6 +665,7 @@ function next() {
     }
     // for auto next
     $('#nextBtn').prop('disabled', false);
+    disabled_label_click = false;
 }
 
 function prev() {
