@@ -153,3 +153,22 @@
 	nf4.to('.f2-1', 60, {x:3000}, 0);
 	nf41 = new TimelineMax({ repeat: -1, yoyo: true });
 	nf41.fromTo('.f2-1', 2, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+
+	jellyfish = new TimelineMax({repeat: -1});
+	jellyfish.fromTo(".con-sua",10, {y: 10, rotation: -10,}, {y:100, rotation: 20, ease: Power0.easeNone}, 0)
+
+	octopus = new TimelineMax({repeat: -1, yoyo:true});
+	octopus.to(".bach-tuoc",5, {rotationY:10, y:getRandom(100, 110), ease: Power0.easeNone})
+
+	function getRandom(max, min){
+		return Math.floor(Math.random() * (1 + max - min) + min);
+	}
+
+	$("#play_btn").click(function(){
+
+		if(threeDTimeline.progress()==1){
+			threeDTimeline.restart();
+		}else{
+			threeDTimeline.play();
+		}
+	})

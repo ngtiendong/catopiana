@@ -52,9 +52,9 @@
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
     $(document).ready(function() {
-        // $('html,body').stop().animate({
-        //     scrollTop: $('.continue_container .continue_test').eq(0).offset().top
-        // }, 500);
+        $('html,body').stop().animate({
+            scrollTop: $('.continue_container').eq(0).offset().top
+        }, 500);
         play_sound("sounds/win.mp3")
         play_sound("sounds/applause3.mp3")
         const tl1 = new mojs.Timeline({
@@ -137,9 +137,9 @@
         $('.fadeOut').hide()
         $('div.list-test-unfinished').fadeIn(1000)
 
-        // $('html,body').animate({
-        //     scrollTop: $('#list-test-unfinished').offset().top
-        // }, 700);
+        $('html,body').animate({
+            scrollTop: $('#list-test-unfinished').offset().top
+        }, 700);
     }
 </script>
 @endsection

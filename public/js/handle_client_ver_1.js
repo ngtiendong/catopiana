@@ -27,7 +27,7 @@ $(window).on('load', function(){
 $(function () {
     //Auto scroll when into test page
     $('html,body').stop().animate({
-        scrollTop: $('.testOverlay').eq(0).offset().top
+        scrollTop: $('#id2 > div:nth-child(1) > div > div.md-lg-12').eq(0).offset().top
     }, 500);
 
     $('#testForm').on('submit', function (event) {
@@ -147,7 +147,7 @@ $(function () {
         if (typeof(test_level) === 'undefined') {
             inputOptions = {'3': 'level 3', '4': 'level 4', '5': 'level 5', '6': 'level 6'}
             swal.fire({
-                title: 'Please chosse level',
+                title: 'Choose your level',
                 width: '40%',
                 input: 'radio',
                 inputOptions: inputOptions,

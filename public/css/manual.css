@@ -161,3 +161,15 @@ body:not(.modal-open){
     90% { background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%) }
     100% { background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%) }
 }
+
+input[type='radio'] {
+    display: block;
+    border: 0px;
+    width: 50%;
+    height: 2em;
+    margin: auto !important;
+}
+
+.swal2-radio label {
+    margin: 0 1em !important;
+}

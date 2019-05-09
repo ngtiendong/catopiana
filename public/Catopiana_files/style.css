@@ -3290,7 +3290,7 @@ button.start_memory:hover {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%);
     border: 13px solid #34318e;
-    margin: 20% auto 40% auto;
+    margin: 20% auto 0% auto;
     padding: 5%;
 }
 
@@ -3309,7 +3309,7 @@ button.start_memory:hover {
     animation: gradient 2.5s infinite 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
     transition: all .2s ease-in-out;
 }
-.button-continue:hover { transform: scale(1.5); }
+.button-continue:hover, .button-congratulation:hover { transform: scale(1.3); }
 
 .button-congratulation {
     position: relative;
@@ -3323,7 +3323,9 @@ button.start_memory:hover {
     border: 4px solid #34318e;
     border-radius: 25px;
     margin: 10px auto;
+    transition: all ease 1s;
 }
+
 
 #id2 .container .button_reset {
     display: -webkit-box;
@@ -3349,17 +3351,20 @@ button.start_memory:hover {
     border: 2px solid #494949 !important;
     border-radius: 6px;
     box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(90deg, #682e8c 0%, #03bdef 50%, #682e8c 100%);
+    background-image: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
+    transition: all 1s ease-out;
+    background-size: 200% auto;
 }
 
-#id2 .reset_data:hover {
-    color: #ffffff !important;
-    background: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
-    border-color: #00578c !important;
-    transition: all 0.4s ease 0.2s;
-    box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+#id2 .reset_data:hover{
+    background-image: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
+    transition: all 0.5s ease-out;
+    z-index: 4;
+    background-position: right center;
+    transform: scale(1.2);
 }
+
+
 
 .continue_container .continue {
     margin-top: 5%;
@@ -3483,7 +3488,7 @@ button.start_memory:hover {
     bottom: 35%;
     left: 20%;
     z-index: 3;
-    width: 300px
+    width: 200px
 }
 
 .continue_container .f1-2 {
