@@ -27,7 +27,7 @@ $(window).on('load', function(){
 $(function () {
     //Auto scroll when into test page
     $('html,body').stop().animate({
-        scrollTop: $('#id2 > div:nth-child(1) > div > div.md-lg-12').eq(0).offset().top
+        scrollTop: $('#id2 div.col-md-12').eq(0).offset().top
     }, 500);
 
     $('#testForm').on('submit', function (event) {
