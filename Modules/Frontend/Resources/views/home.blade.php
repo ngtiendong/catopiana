@@ -96,7 +96,7 @@
                 @endif
             </div>
             <div class="button_reset">
-                <button class="reset_data reset_free_topic_data">Reset Data</button>
+                <button class="reset_data reset_free_topic_data smooth">Reset Data</button>
             </div>
         </div>
     </div>
