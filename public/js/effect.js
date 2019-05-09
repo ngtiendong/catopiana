@@ -31,14 +31,11 @@ $(document).on('click', '.answer label',function (event) {
 });
 
 $(document).on('click', '.swal2-radio label',function (event) {
-    event.preventDefault();
+    event.stopPropagation();
     $('.swal2-radio label').removeClass('animated rubberBand')
     $(this).addClass('animated rubberBand');
-
     $(this).css('opacity', '1');
-    $(this).find('input').eq(0).prop('checked', true);
     $(this).siblings(' .swal2-radio  label').each(function (index, el) {
-        $(el).find('input').eq(0).prop('checked', false);
         $(el).css('opacity', '0.3');
     });
 
