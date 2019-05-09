@@ -6,7 +6,7 @@ $('.modal').on('hide.bs.modal', function (e) {
 })
 
 
-$(document).on('click', 'label',function (event) {
+$(document).on('click', '.answer label',function (event) {
     event.preventDefault();
     // $('.answer label').removeClass('animated rubberBand')
     $('label').removeClass('animated rubberBand')
@@ -28,6 +28,24 @@ $(document).on('click', 'label',function (event) {
     // auto next when click button
     autonext()
 
+});
+
+$(document).on('click', '.swal2-radio label',function (event) {
+    event.preventDefault();
+    $('.swal2-radio label').removeClass('animated rubberBand')
+    $(this).addClass('animated rubberBand');
+
+    $(this).css('opacity', '1');
+    $(this).find('input').eq(0).prop('checked', true);
+    $(this).siblings(' .swal2-radio  label').each(function (index, el) {
+        $(el).find('input').eq(0).prop('checked', false);
+        $(el).css('opacity', '0.3');
+    });
+
+    if ($(this).find('img.audio-image').length == 0) {
+        play_sound("/sounds/plucky.mp3")
+
+    }
 });
 
 function autonext()
