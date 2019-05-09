@@ -26,9 +26,6 @@ const shape_1 = new mojs.Shape({
 
 })
 
-
-
-
 </script>
 </body>
 </html>

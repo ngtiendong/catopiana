@@ -34,13 +34,9 @@
     {{-- </div> --}}
     {{-- comment image to test not if lag --}}
     @include('frontend::layouts.background')
+    <img id="island" src="{{asset('./Catopiana_files/images/island1.png')}}" alt="">
     <img class="boy" src="{{asset('./Catopiana_files/images/boy-blue.png')}}" alt="">
-    <img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
-    <img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
+
 </section>
 @endsection
 
@@ -57,9 +53,9 @@
         }, 500);
         play_sound("sounds/win.mp3")
         play_sound("sounds/applause3.mp3")
-        // const tl1 = new mojs.Timeline({
-        //     repeat: 999
-        // }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
+        const tl1 = new mojs.Timeline({
+            repeat: 999
+        }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
 
 
 

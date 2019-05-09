@@ -1435,9 +1435,19 @@ footer .col {
 .section-test#id2 .container .whale {
     position: relative;
 }
+.section-test#id2 .container .layout-test {
+    position: relative;
+    top: 0;
+    left: calc(50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 2
+}
 
 .section-test#id2 .container .row.tn {
     position: absolute;
+    height: 100%;
 }
 
 .section-test#id2 .container .bigwhale {
