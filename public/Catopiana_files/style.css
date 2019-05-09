@@ -3336,25 +3336,26 @@ button.start_memory:hover {
 }
 
 #id2 .reset_data {
+    margin-top: 2%;
     display: block;
-    width: 100px;
-    height: 35px;
+    padding: 15px 35px;
     position: absolute;
     z-index: 5;
-    right: 20%;
-    color: #494949 !important;
-    background: #ffffff;
+    text-transform: uppercase;
+    color: #fff;
     border: 2px solid #494949 !important;
     border-radius: 6px;
     box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(90deg, #682e8c 0%, #03bdef 50%, #682e8c 100%);
 }
 
 #id2 .reset_data:hover {
     color: #ffffff !important;
-    background: #f6b93b;
-    border-color: #f6b93b !important;
+    background: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
+    border-color: #00578c !important;
     transition: all 0.4s ease 0.2s;
     box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .continue_container .continue {
@@ -3435,7 +3436,7 @@ button.start_memory:hover {
     bottom: 40%;
     left: 65%;
     z-index: 3;
-    width: 100px;
+    width: 70px;
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
@@ -3444,16 +3445,16 @@ button.start_memory:hover {
     bottom: 42%;
     left: 58%;
     z-index: 3;
-    width: 60px;
+    width: 100px;
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
 .continue_section .many-fish3 {
     position: absolute;
     bottom: 44%;
-    left: 60%;
+    left: 65%;
     z-index: 3;
-    width: 80px;
+    width: 50px;
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
@@ -3462,7 +3463,7 @@ button.start_memory:hover {
     bottom: 46%;
     left: 62%;
     z-index: 3;
-    width: 50px;
+    width: 30px;
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
@@ -3496,12 +3497,28 @@ button.start_memory:hover {
     z-index: 5;
     left: 70%
 }
+.continue_container .f2-2 {
+    position: absolute;
+    width: 90px;
+    top: 5%;
+    z-index: 5;
+    left: 10%;
+    transform: scaleX(-1);
+}
+.continue_container .f2-1 {
+    position: absolute;
+    width: 30px;
+    top: 10%;
+    z-index: 5;
+    left: 0%;
+    transform: scaleX(-1);
+}
 .continue_container .sea-horse1 {
     position: absolute;
     width: 120px;
     top: 8%;
     z-index: 2;
-    left: 60%
+    left: 60%;
 }
 .continue_container .new-fish1 {
     position: absolute;
@@ -3523,7 +3540,7 @@ button.start_memory:hover {
     color: white !important;
 }
 
-.swal-button-custom-error, .swal-button-chosse-level  {
+.swal-button-custom-error, .swal-button-chosse-level, .swal-button-facebook  {
     background: linear-gradient(to right top, #d8692d, #df7a2b, #e48a2a, #e89b2a, #eaac2d, #eaac2d, #eaac2d, #eaac2d, #e89b2a, #e48a2a, #df7a2b, #d8692d) !important;
     box-shadow: 2px 2px #343130 !important;
 }
@@ -3545,4 +3562,33 @@ button.start_memory:hover {
 .swal-pop-chosse-level .swal2-validation-message {
     background: inherit !important;
     color: #eee !important;
+}
+
+.swal-pop-facebook {
+    border-radius: 20px !important;
+    border: 4px solid #34318e !important;
+    background: linear-gradient(90deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
+    padding: 3.25em !important;
+}
+
+.swal-title-facebook, .swal-content-facebook {
+    color: white !important;
+}
+
+.swal-title-reset, .swal-content-reset {
+    color: #082560 !important;
+}
+
+.swal-pop-reset {
+    border-radius: 20px !important;
+    border: 4px solid #00578c !important;
+    background: #4aa9ff !important;
+    /*width: 60% !important;*/
+    padding: 3.25em !important;
+}
+
+.swal-button-cancel-reset, .swal-button-reset {
+    border-radius: 10px !important;
+    border: 2px solid #34318e !important;
+    background: linear-gradient(90deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
 }

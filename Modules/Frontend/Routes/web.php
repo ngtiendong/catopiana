@@ -63,7 +63,7 @@ Route::group(/**
 
 
     // Route::get('/buy-package','PaymentController@buyPackage')->middleware('auth:customers')->name('buy-package');
-    Route::get('/packages','FrontendController@getPackages')->name('packages');
+    Route::get('/packages','FrontendController@getPackages')->middleware('test')->name('packages');
     Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->name('getCurriculumsFreePackage');
     Route::get('/paid-packages','FrontendController@getCurriculumsPaidPackage')->middleware('auth:customers')->name('getCurriculumsPaidPackage');
     

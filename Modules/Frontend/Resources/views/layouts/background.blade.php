@@ -19,7 +19,7 @@
 <img class="b19 bubble-top bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="" style="left: 91%">
 <img class="b20 bubble-top bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="" style="left: 80%">
 <img class="f6 fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
-<img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
+{{-- <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt=""> --}}
 <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
 <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
 <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
