@@ -18,13 +18,14 @@
                 </div>
             </div>
         </div>
-        <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
+        <img class="girl congratulation-girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
+        {{-- <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt=""> --}}
         <img class="f1-1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
         <img class="f1-2 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+        <img class="f2-1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+        <img class="f2-2 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
         <img class="sea-horse1" src="{{asset('./Catopiana_files/images/sea-horse1.png')}}" alt="">
-        <img class="new-fish1" src="{{asset('./Catopiana_files/images/new-fish1.png')}}" alt="">
+        {{-- <img class="new-fish1" src="{{asset('./Catopiana_files/images/new-fish1.png')}}" alt=""> --}}
     </div>
     <div class="list-test continue-list-test">
         <div class="col-md-12 list-test-unfinished" id="list-test-unfinished">
@@ -54,6 +55,11 @@
         $('html,body').stop().animate({
             scrollTop: $('.continue_container .continue_test').eq(0).offset().top
         }, 500);
+        play_sound("sounds/win.mp3")
+        play_sound("sounds/applause3.mp3")
+        const tl = new mojs.Timeline({  
+            repeat: 999
+        }).add(fw1, fws1, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
     });
     $('.btn-back').click(function(event) {
         /* Act on the event */

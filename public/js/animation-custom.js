@@ -27,7 +27,7 @@
 	f31.fromTo('.f3', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	f0 = new TimelineMax({ repeat: -1, yoyo: false });
-	f0.to('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 80, {css:{'left':'-200px'}}, 0)
+	f0.to('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 40, {css:{'left':'-200px'}}, 0)
 	f01 = new TimelineMax({ repeat: -1, yoyo: true });
 	f01.fromTo('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
 
@@ -115,5 +115,41 @@
 	f4 = new TimelineMax({ repeat: -1, yoyo: false });
 	f4.fromTo('.new-fish1', 80, {css:{'left':'-200px'}}, {css:{'right':'-200px'}}, 0)
 	f41 = new TimelineMax({ repeat: -1, yoyo: true });
-	f41.fromTo('.new-fish1', 1.5, {skewY:"2deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	f41.fromTo('.new-fish1', 1.5, {skew:"0", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skew:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
+    congratulationgirl = new TimelineMax({ repeat: -1});
+    congratulationgirl.fromTo('.congratulation-girl', 15, {x:0, rotationY: -10}, {x:700, rotationY: 10, ease:Power1.easeOut})
+    congratulationgirl.fromTo('.congratulation-girl', 0.1, {scaleX:1}, {scaleX:-1} )
+    congratulationgirl.fromTo('.congratulation-girl', 15, {x:700, rotationY: -20}, {x:0, rotationY: 10})
+
+    seahorse = new TimelineMax({repeat: -1});
+    seahorse.fromTo(".sea-horse1", 1, {rotation: -10, repeat: -1, yoyo: true}, {rotation: 20, ease: Power0.easeNone, repeat:-1, yoyo: true}, 0)
+        .to(".sea-horse1", 20, {x: Math.floor(Math.random() * -1000), y: Math.floor(Math.random() * 1000)+100, repeat: -1, yoyo: true},0)
+        .to('.sea-horse1', 0.2, {scaleX:-1},20)
+        .to(".sea-horse1", 20, {x: Math.floor(Math.random() * 200)+100, y: Math.floor(Math.random() * 100), ease: Power4.easeOut, repeat: -1, yoyo: true},20)
+        .to('.sea-horse1', 0.2, {scaleX:1},40)
+    var item=$('.bubble-top')
+    for (var i=0; i<item.length; i++) {
+        bubbles = new TimelineMax({repeat: -1})
+        bubbles.fromTo(item[i], Math.floor(Math.random()*15)+10, {y: Math.floor(Math.random() * 200) + 100}, {y: Math.floor(Math.random() * -1500)-1000, opacity: 0.2})
+    }
+
+    nf1 = new TimelineMax({ repeat: -1, yoyo: false });
+	nf1.fromTo('.f1-2', 60, {css:{'right':'-200px'}}, {css:{'left':'-300px'}}, 0)
+	nf11 = new TimelineMax({ repeat: -1, yoyo: true });
+	nf11.fromTo('.f1-2', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"6deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)    
+
+	nf2 = new TimelineMax({ repeat: -1, yoyo: false });
+	nf2.fromTo('.f1-1', 50, {css:{'right':'-300px'}}, {css:{'left':'-300px'}}, 0)
+	nf21 = new TimelineMax({ repeat: -1, yoyo: true });
+	nf21.fromTo('.f1-1', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+
+    nf3 = new TimelineMax({ repeat: -1, yoyo: false });
+	nf3.to('.f2-2', 50, {x:3000}, 0);
+	nf31 = new TimelineMax({ repeat: -1, yoyo: true });
+	nf31.fromTo('.f2-2', 1, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)    
+
+	nf4 = new TimelineMax({ repeat: -1, yoyo: false });
+	nf4.to('.f2-1', 60, {x:3000}, 0);
+	nf41 = new TimelineMax({ repeat: -1, yoyo: true });
+	nf41.fromTo('.f2-1', 2, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
