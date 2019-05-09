@@ -3592,3 +3592,8 @@ button.start_memory:hover {
     border: 2px solid #34318e !important;
     background: linear-gradient(90deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
 }
+
+.swal2-popup .swal2-radio label {
+    cursor: pointer;
+}
+
