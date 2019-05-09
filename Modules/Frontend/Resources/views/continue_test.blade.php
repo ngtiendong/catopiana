@@ -11,8 +11,8 @@
                         <h1 class="text-center title1" >You did a great job !</h1>
                         <h2 class="text-center title2" >Do You want to continue?</h2>
                         <div class="continue">
-                            <button type="button" class=" btn-lg button-continue btn-continue">Yes</button>
-                            <button type="button"  class=" btn-lg button-continue btn-back">No</button>
+                            <button type="button" class=" btn-lg button-continue btn-continue button">Yes</button>
+                            <button type="button"  class=" btn-lg button-continue btn-back button">No</button>
                         </div>
                     </div>
                 </div>
@@ -52,14 +52,18 @@
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('html,body').stop().animate({
-            scrollTop: $('.continue_container .continue_test').eq(0).offset().top
-        }, 500);
+        // $('html,body').stop().animate({
+        //     scrollTop: $('.continue_container .continue_test').eq(0).offset().top
+        // }, 500);
         play_sound("sounds/win.mp3")
         play_sound("sounds/applause3.mp3")
-        const tl = new mojs.Timeline({  
+        const tl1 = new mojs.Timeline({
             repeat: 999
-        }).add(fw1, fws1, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
+        }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
+
+
+
+
     });
     $('.btn-back').click(function(event) {
         /* Act on the event */
@@ -133,9 +137,9 @@
         $('.fadeOut').hide()
         $('div.list-test-unfinished').fadeIn(1000)
 
-        $('html,body').animate({
-            scrollTop: $('#list-test-unfinished').offset().top
-        }, 700);
+        // $('html,body').animate({
+        //     scrollTop: $('#list-test-unfinished').offset().top
+        // }, 700);
     }
 </script>
 @endsection
