@@ -2114,6 +2114,7 @@ footer .col {
 }
 
 .section-test .tab .question {
+    transition: all linear 0.3s;
     /*margin-top: 45px;*/
     display: -webkit-box;
     display: -ms-flexbox;
