@@ -33,6 +33,17 @@
                     </form>
                 </div>
             </div>
+            <div class="below-test">
+                <div class="button-below-test col-md-12">
+                    <button class="button-below previous" data-url="{{ route('home') }}">previous</button>                    
+                    <button class="button-below next">next</button>              
+                </div>
+                <div class="list-below-test col-md-12">
+                    <div class="row row-list-below-test">
+  
+                    </div>           
+                </div>
+            </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" >
          <img class="layout-test" src="{{asset('./Catopiana_files/images/test.png')}}" alt="">
