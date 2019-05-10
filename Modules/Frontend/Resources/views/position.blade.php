@@ -34,9 +34,9 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-12 list-after-finished" id="list-after-finished">
+{{--             <div class="col-md-12 list-after-finished" id="list-after-finished">
                 <h3></h3>
-            </div>
+            </div> --}}
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" >
         <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" >

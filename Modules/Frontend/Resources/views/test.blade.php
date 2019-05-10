@@ -13,9 +13,9 @@
             <div class="col-md-6 col-md-offset-3 fadeOut">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. </h3>
             </div>
-            <div class="col-md-12 list-after-finished" id="list-after-finished">
+{{--             <div class="col-md-12 list-after-finished" id="list-after-finished">
                 <h3></h3>
-            </div>
+            </div> --}}
             <div class="col-md-12">
                 {{--<img src="{{asset('/Catopiana_files/images/iconwin1.png')}}" class="after-submit iconwin1">--}}
                 {{--<img src="{{asset('/Catopiana_files/images/iconwin2.png')}}" class="after-submit iconwin2">--}}

@@ -27,7 +27,7 @@
 	f31.fromTo('.f3', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	f0 = new TimelineMax({ repeat: -1, yoyo: false });
-	f0.to('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 40, {css:{'left':'-200px'}}, 0)
+	f0.to('.many-fish1, .many-fish3 ', 40, {css:{'left':'-200px'}}, 0).to('.many-fish2', 35, {css:{'left':'-200px'}}, 0).to('.many-fish4', 37, {css:{'left':'-200px'}}, 0.1)
 	f01 = new TimelineMax({ repeat: -1, yoyo: true });
 	f01.fromTo('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
 

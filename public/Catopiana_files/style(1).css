@@ -2008,7 +2008,7 @@ footer .col {
 
 .section-test .tab > img,
 .section-test .question > img {
-    width: 210px;
+    width: 230px;
 }
 
 .section-test .question {
@@ -2024,7 +2024,7 @@ footer .col {
 }
 
 .section-test .tab .answer {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2051,6 +2051,7 @@ footer .col {
     align-items: center;
     cursor: pointer;
     margin-bottom: 2px;
+    padding: 10px 10px 0 10px;
 }
 
 .section-test .tab .answer label:hover span:before {
@@ -2058,7 +2059,7 @@ footer .col {
 }
 
 .section-test .tab .answer label img {
-    width: 120px;
+    width: 150px;
     border: 1px solid deepskyblue;
     border-radius: 20px;
 }
@@ -2103,7 +2104,7 @@ footer .col {
 }
 
 .section-test .tab .question {
-    margin-top: 45px;
+    /*margin-top: 45px;*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

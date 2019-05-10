@@ -104,7 +104,6 @@
     <img class="whale1" src="{{asset('./Catopiana_files/images/whale-1.svg')}}" alt="">
     <img class="f6 fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
     <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt="">
-    <img class="f1 fish" src="{{asset('./Catopiana_files/images/ca.svg')}}" alt="">
     <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
     <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
     <img id="island" src="{{asset('./Catopiana_files/images/island.png')}}" alt="">
@@ -314,11 +313,16 @@
                 type: 'warning',
                 showCancelButton: true,
                 reverseButtons: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Receive it',
                 cancelButtonText: 'No',
-                backdrop: `rgba(0,0,0,0.1)`
+                backdrop: `rgba(0,0,0,0.5)`,
+                customClass: {
+                    popup: 'swal-pop-havent-shared',
+                    title:'swal-title-havent-shared',
+                    content: 'swal-content-havent-shared',
+                    confirmButton:'swal-button-havent-shared',
+                    cancelButton: 'swal-button-cancel-havent-shared'
+                }
             }).then((result) => {
                 if (result.value) {
                         window.location.href = '/congratulation';

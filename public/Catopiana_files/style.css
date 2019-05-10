@@ -3262,19 +3262,21 @@ a.psy-btn:hover {
 
 button.start_memory {
     color: #494949 !important;
-    background: #ffffff;
-    padding: 5px 20px;
+    background-image: linear-gradient(to right, #1bdce5, #00d0ef, #00c2f7, #00b4fb, #00a3f9, #2698f1, #398ee8, #4683df, #3a7dd5, #2e78ca, #2172c0, #116cb5);
+    padding: 10px 25px;
     border: 2px solid #494949 !important;
     border-radius: 6px;
     display: inline-block;
     box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease 0s;
     margin-top: 2%;
 }
 
 button.start_memory:hover {
+    background-image: linear-gradient(to left, #1bdce5, #00d0ef, #00c2f7, #00b4fb, #00a3f9, #2698f1, #398ee8, #4683df, #3a7dd5, #2e78ca, #2172c0, #116cb5);
+    transform: scale(1.1);
     color: #ffffff !important;
-    background: #f6b93b;
-    border-color: #f6b93b !important;
+    border-color: #c777b9 !important;
     transition: all 0.4s ease 0s;
     box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
 }
@@ -3382,11 +3384,28 @@ button.start_memory:hover {
     width: 100%;
     padding: 10px;
 }
-
+/*
 .list-test-unfinished {
     text-align: center;
     position: absolute;
     bottom: 50%;
+}*/
+
+.list-test-unfinished {
+    text-align: center;
+    position: absolute;
+    /*bottom: 50%;*/
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 45px;
+    /*background: rgb(2,0,36);*/
+    background: rgb(24, 96, 150);
+    border: 8px solid rgb(3, 73, 107);
+    margin: 5% auto 0% auto;
+    padding: 5%;
+    display: none;
 }
 
 .list-test-unfinished h3 {
@@ -3479,7 +3498,7 @@ button.start_memory:hover {
     position: absolute;
     bottom: 20%;
     left: 30%;
-    z-index: 3;
+    z-index:5;
     width: 200px
 }
 
@@ -3538,6 +3557,29 @@ button.start_memory:hover {
     transform: scaleX(-1);
 }
 
+/*sweet alert*/
+.swal2-popup {
+    font-family: Hobo !important;
+}
+.swal2-popup .swal2-content {
+    font-size: 1.525em !important;
+}
+.swal2-popup .swal2-title {
+    text-transform: uppercase !important;
+    font-size: 3.175em !important;
+}
+.swal2-popup .swal2-actions button {
+    font-size: 1.5625em !important;
+    text-transform: uppercase !important;
+    transition: all 0.5s ease-out;
+}
+.swal2-popup .swal2-actions button:hover {
+    transition: all 0.5s ease-out;
+    transform: scale(1.1);
+}
+
+/*sweet alert*/
+
 .swal-pop-custom-error {
     border-radius: 20px !important;
     border: 4px solid #34318e !important;
@@ -3556,20 +3598,31 @@ button.start_memory:hover {
 .swal-pop-chosse-level {
     border-radius: 20px !important;
     border: 3px solid #34318e !important;
-    background: linear-gradient(180deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
+    background: linear-gradient(180deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgba(71, 93, 173, 1) 100%) !important;
+    font-family: Hobo !important;
 }
 
 .swal-title-chosse-level {
     color: white !important;
+    padding-top: 5% !important;
+    text-transform: uppercase !important;
+    font-size: 3.175em !important;
+    text-shadow: 6px 0px 0px #000 !important;
+    font-family: inherit;
 }
-
+.swal-button-chosse-level {
+    font-size: 1.5625em !important;
+    font-family: inherit;
+    text-transform: uppercase !important;
+}
 .swal-content-chosse-level .swal2-radio {
     color: white !important;
 }
 
-.swal-pop-chosse-level .swal2-validation-message {
+.swal2-validation-message {
     background: inherit !important;
     color: #eee !important;
+    font-size: 1.5em !important;
 }
 
 .swal-pop-facebook {
@@ -3603,5 +3656,29 @@ button.start_memory:hover {
 
 .swal2-popup .swal2-radio label {
     cursor: pointer;
+    text-align: center !important;
+    margin: 0 1em !important;
+    font-size: 1.975em !important;
 }
 
+button {
+    font-family: Hobo !important;
+}
+
+.swal-pop-havent-shared {
+    border-radius: 20px !important;
+    border: 4px solid #00578c !important;
+    background: #4aa9ff !important;
+    width: 40% !important;
+    padding: 3.25em !important;
+}
+
+.swal-title-havent-shared, .swal-content-havent-shared {
+    color: #082560 !important;
+}
+
+.swal-button-cancel-havent-shared, .swal-button-havent-shared {
+    border-radius: 10px !important;
+    border: 2px solid #34318e !important;
+    background: linear-gradient(90deg, rgb(0, 199, 255) 0%, rgb(43, 141, 187) 50%, rgb(130, 59, 227) 100%) !important;
+}
