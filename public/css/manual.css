@@ -10,11 +10,12 @@
     margin-bottom: 5px;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 0.4s ease-out;
 }
 
 .clicked-img {
     opacity: 0.5;
-    transition: ease 0.1s;
+    transition: all 0.4s ease-out;
 }
 
 .test-button {
@@ -291,4 +292,81 @@ body:not(.modal-open){
     right: -15%;
     z-index: 4;
     width: 80px;
+}
+
+ .section-test .below-test .button-below {
+    width: 246px;
+    height: 72px;
+    border-radius: 18px;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #0b1153, #2d1c74, #4f2695, #742fb5, #9d35d4, #9d35d4, #9d35d4, #9d35d4, #742fb5, #4f2695, #2d1c74, #0b1153);
+    transition: all 1s ease-out;
+}
+
+.section-test .below-test .button-below-test {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+}
+
+.section-test .below-test .button-below:hover {
+    transform: scale(1.1);
+}
+
+.section-test .below-test {
+    
+}
+
+.section-test .list-below-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: relative;
+    margin-top: 5%;
+}
+
+.section-test .row.row-list-below-test {
+    width: 660px;
+    height: 345px;
+    background: rgb(173, 116, 247);
+    border-radius: 50px;
+    /*margin-top: 5%;*/
+    text-align: center;
+}
+
+.section-test .row-list-below-test .below-list-test-f {
+    margin: 4% 0;
+}
+.section-test .row-list-below-test .below-list-test-f .test-item {
+    display: block;
+    width: 100px;
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin: 10% auto !important;
+}
+
+.section-test .tab .answer label:hover {
+    transform: scale(1.1);
+}
+
+.section-test .tab .question:hover {
+    transform: scale(1.1);
+}
+
+img.image-point-l:hover {
+    transform: scale(1.1); 
+}
+
+.column-left img.image-point-l {
+    box-shadow: -5px 3px 2px 1px #9d8080;
+}
+
+.column-right img.image-point-l {
+    box-shadow: 5px 3px 2px 1px #9d8080;
 }

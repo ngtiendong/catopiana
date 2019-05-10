@@ -40,20 +40,7 @@ $(function () {
         let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
         if (typeof $(just_answer).val() === 'undefined') {
             //Chua tra loi
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                // background: 'orange',
-                text: 'Please answer the question!',
-                backdrop: `rgba(255, 255, 255, 0.61)`,
-                animation: false,
-                customClass: {
-                    popup: 'swal-pop-custom-error animated tada',
-                    title:'swal-title-custom-error',
-                    content: 'swal-content-custom-error',
-                    confirmButton:'swal-button-custom-error'
-                }
-            });
+            errorAnswer()
         } else {
             // play_sound("sounds/win.mp3")
             just_answer = just_answer.data('position')
@@ -167,7 +154,7 @@ $(function () {
                 getNewQuestionData(position_in_local_storage)
             }
         }
-
+        displayTestUnFinishedInit();
     });
 
 })
@@ -810,30 +797,19 @@ function hideQuestion(current_index){
     }, 1000);
 }
 
-function displayTestUnFinishedAfterSubmit() {
-    if(!list_test_finished.includes(parseInt(topic))){
-        list_test_finished.push(parseInt(topic))
-    }
-    console.log(list_test_finished);
-    let gen_html = '<div style="margin-top:25px; padding-right: 40px">'
+function displayTestUnFinishedInit() {
 
+    let gen_html = '';
+    let style = '';
     for (var i=1; i<9; i++) {
-        if (list_test_finished.indexOf(i) < 0) {
-            //Chua thi
-            gen_html += array_svg[i-1]
+        if (list_test_finished.indexOf(i) > -1) {
+            gen_html += '<div class="col-md-3 below-list-test-f" style="opacity:0.4;">' + array_svg[i-1] + '</div>'
+        } else {
+            gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[i-1] + '</div>'
         }
+
     }
-
-    gen_html += '</div>'
-    $('div.list-after-finished > h3').text("Next test: ")
-    $('div.list-after-finished').hide()
-    $('div.list-after-finished').empty()
-    $('div.list-after-finished').append(gen_html)
-
-    $('.fadeOut').hide()
-    $('div.list-after-finished').fadeIn(1000)
-
-
+    $('.below-test .row-list-below-test').append(gen_html)
 }
 
 function nextButton() {
@@ -843,20 +819,7 @@ function nextButton() {
     if (typeof $(just_answer).val() === 'undefined'){
         // Chua tra loi hide
         // console.log(tab_number[currentTab], currentTab, tab_number, just_answer, just_answer.val())
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            // background: 'linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%)',
-            text: 'Please answer the question!',
-            backdrop: `rgba(255, 255, 255, 0.61)`,
-            animation: false,
-            customClass: {
-                popup: 'swal-pop-custom-error animated tada',
-                title:'swal-title-custom-error',
-                content: 'swal-content-custom-error',
-                confirmButton:'swal-button-custom-error'
-            }
-        })
+        errorAnswer();
     } else {
         tab_number[this_question.current_index].style.display = "none";
         this_question.current_index += 1
@@ -1088,7 +1051,7 @@ resetData = () => {
 }
 
 redirectAfterSubmit = (topic) => {
-        if(topic < 9){
+    if(topic < 9) {
         flag = 0;
         var count_free_package = 0;
         for (var i=1; i<9; i++) {
@@ -1117,3 +1080,31 @@ redirectAfterSubmit = (topic) => {
         window.location.href = '/continue-test/'+topic
     }
 }
+
+errorAnswer = () => {
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Please answer the question!',
+        backdrop: `rgba(255, 255, 255, 0.61)`,
+        animation: false,
+        customClass: {
+            popup: 'swal-pop-custom-error animated tada',
+            title:'swal-title-custom-error',
+            content: 'swal-content-custom-error',
+            confirmButton:'swal-button-custom-error'
+        }
+    });
+}
+
+$(document).on('click', '.button-below.next', function(event) {
+    event.preventDefault();
+        $('html,body').animate({
+            scrollTop: $('.row-list-below-test').offset().top - $('.row-list-below-test').height()/2
+        }, 200);
+});
+
+$(document).on('click', '.button-below.previous', function(event) {
+    event.preventDefault();
+    window.location.href = $(this).data('url');
+});

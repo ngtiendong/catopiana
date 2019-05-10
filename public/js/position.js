@@ -129,21 +129,7 @@ function nextButtonPosition () {
             }
         }
     } else {
-         Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            // background: 'orange',
-            backdrop: `rgba(255, 255, 255, 0.61)`,
-            text: 'Please answer the question!',
-            animation: false,
-            customClass: {
-                popup: 'swal-pop-custom-error animated tada',
-                title:'swal-title-custom-error',
-                content: 'swal-content-custom-error',
-                confirmButton:'swal-button-custom-error'
-            }
-        })
-
+        errorAnswer();
     }
 }
 
@@ -311,18 +297,7 @@ function submitPosition() {
         redirectAfterSubmit(parseInt(topic))
         
     } else {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Please answer the question!',
-            backdrop: `rgba(255, 255, 255, 0.61)`,
-            customClass: {
-                popup: 'swal-pop-custom-error',
-                title:'swal-title-custom-error',
-                content: 'swal-content-custom-error',
-                confirmButton:'swal-button-custom-error'
-            }
-        })
+        errorAnswer();
     }
 }
 
