@@ -137,7 +137,7 @@
     nf1 = new TimelineMax({ repeat: -1, yoyo: false });
 	nf1.fromTo('.f1-2', 60, {css:{'right':'-200px'}}, {css:{'left':'-300px'}}, 0)
 	nf11 = new TimelineMax({ repeat: -1, yoyo: true });
-	nf11.fromTo('.f1-2', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"6deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)    
+	nf11.fromTo('.f1-2', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"6deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	nf2 = new TimelineMax({ repeat: -1, yoyo: false });
 	nf2.fromTo('.f1-1', 50, {css:{'right':'-300px'}}, {css:{'left':'-300px'}}, 0)
@@ -147,14 +147,14 @@
     nf3 = new TimelineMax({ repeat: -1, yoyo: false });
 	nf3.to('.f2-2', 50, {x:3000}, 0);
 	nf31 = new TimelineMax({ repeat: -1, yoyo: true });
-	nf31.fromTo('.f2-2', 1, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)    
+	nf31.fromTo('.f2-2', 1, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	nf4 = new TimelineMax({ repeat: -1, yoyo: false });
 	nf4.to('.f2-1', 60, {x:3000}, 0);
 	nf41 = new TimelineMax({ repeat: -1, yoyo: true });
 	nf41.fromTo('.f2-1', 2, {skewY:"-1deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"-3deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
-	jellyfish = new TimelineMax({repeat: -1});
+	jellyfish = new TimelineMax({repeat: -1, yoyo:true});
 	jellyfish.fromTo(".con-sua",10, {y: 10, rotation: -10,}, {y:100, rotation: 20, ease: Power0.easeNone}, 0)
 
 	octopus = new TimelineMax({repeat: -1, yoyo:true});
@@ -173,9 +173,12 @@
 		}
 	})
 
+    var nemo_ease = Circ.easeOut
 	nemo = new TimelineMax({ repeat: -1, yoyo: false });
-	nemo.to('.new-fish5-1', 40, {css:{'left':'-200px'}}, 0);
-	nemo.to('.new-fish5-2', 45, {css:{'left':'-200px'}}, 0);
-	nemo.to('.new-fish5-3', 46, {css:{'left':'-200px'}}, 0);
+	nemo.to('.new-fish5-1', 30, {css:{'left':'-200px'}, ease: nemo_ease}, 0);
+	nemo.to('.new-fish5-2', 35, {css:{'left':'-200px'}, ease: nemo_ease}, 0);
+	nemo.to('.new-fish5-3', 33, {css:{'left':'-200px'}, ease: nemo_ease}, 0);
 	nemo1 = new TimelineMax({ repeat: -1, yoyo: true });
-	nemo1.fromTo('.new-fish5-1, .new-fish5-2, .new-fish5-3', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
+	nemo1.fromTo('.new-fish5-1, .new-fish5-2, .new-fish5-3', 1,
+        {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone},
+        {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
