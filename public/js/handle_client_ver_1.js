@@ -46,8 +46,9 @@ $(function () {
                 // background: 'orange',
                 text: 'Please answer the question!',
                 backdrop: `rgba(255, 255, 255, 0.61)`,
+                animation: false,
                 customClass: {
-                    popup: 'swal-pop-custom-error',
+                    popup: 'swal-pop-custom-error animated tada',
                     title:'swal-title-custom-error',
                     content: 'swal-content-custom-error',
                     confirmButton:'swal-button-custom-error'
@@ -848,8 +849,9 @@ function nextButton() {
             // background: 'linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%)',
             text: 'Please answer the question!',
             backdrop: `rgba(255, 255, 255, 0.61)`,
+            animation: false,
             customClass: {
-                popup: 'swal-pop-custom-error',
+                popup: 'swal-pop-custom-error animated tada',
                 title:'swal-title-custom-error',
                 content: 'swal-content-custom-error',
                 confirmButton:'swal-button-custom-error'

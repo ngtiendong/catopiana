@@ -29,3 +29,6 @@
 <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
 <img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
 <img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
+<img class="new-fish5-1" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+<img class="new-fish5-2" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+<img class="new-fish5-3" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">

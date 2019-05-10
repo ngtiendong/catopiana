@@ -316,8 +316,9 @@
                 confirmButtonText: 'Receive it',
                 cancelButtonText: 'No',
                 backdrop: `rgba(0,0,0,0.5)`,
+                animation: false,
                 customClass: {
-                    popup: 'swal-pop-havent-shared',
+                    popup: 'swal-pop-havent-shared animated zoomInUp',
                     title:'swal-title-havent-shared',
                     content: 'swal-content-havent-shared',
                     confirmButton:'swal-button-havent-shared',

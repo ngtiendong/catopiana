@@ -195,7 +195,7 @@ body:not(.modal-open){
 
 .test .many-fish1 {
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     left: 65%;
     z-index: 3;
     width: 70px;
@@ -204,7 +204,7 @@ body:not(.modal-open){
 }
 .test .many-fish2 {
     position: absolute;
-    bottom: 12%;
+    bottom: 22%;
     left: 58%;
     z-index: 3;
     width: 100px;
@@ -213,7 +213,7 @@ body:not(.modal-open){
 }
 .test .many-fish3 {
     position: absolute;
-    bottom: 14%;
+    bottom: 24%;
     left: 65%;
     z-index: 3;
     width: 50px;
@@ -222,7 +222,7 @@ body:not(.modal-open){
 }
 .test .many-fish4 {
     position: absolute;
-    bottom: 16%;
+    bottom: 26%;
     left: 62%;
     z-index: 3;
     width: 30px;
@@ -243,5 +243,52 @@ body:not(.modal-open){
     bottom: 5%;
     left: 20%;
     z-index: 4;
-    width: 200px
+    width: 200px;
+}
+
+.test .new-fish5-1 {
+    position: absolute;
+    bottom: 1%;
+    right: 20%;
+    z-index: 4;
+    width: 150px;
+}
+
+.test .new-fish5-2 {
+    position: absolute;
+    bottom: 3%;
+    right: 13%;
+    z-index: 4;
+    width: 80px;
+}
+
+.test .new-fish5-3 {
+    position: absolute;
+    bottom: 0;
+    right: 15%;
+    z-index: 4;
+    width: 80px;
+}
+.continue_section .new-fish5-1 {
+    position: absolute;
+    bottom: 51%;
+    right: 23%;
+    z-index: 4;
+    width: 150px;
+}
+
+.continue_section .new-fish5-2 {
+    position: absolute;
+    bottom: 53%;
+    right: 18%;
+    z-index: 4;
+    width: 80px;
+}
+
+.continue_section .new-fish5-3 {
+    position: absolute;
+    bottom: 50%;
+    right: 15%;
+    z-index: 4;
+    width: 80px;
 }

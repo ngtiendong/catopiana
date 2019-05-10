@@ -135,8 +135,9 @@ function nextButtonPosition () {
             // background: 'orange',
             backdrop: `rgba(255, 255, 255, 0.61)`,
             text: 'Please answer the question!',
+            animation: false,
             customClass: {
-                popup: 'swal-pop-custom-error',
+                popup: 'swal-pop-custom-error animated tada',
                 title:'swal-title-custom-error',
                 content: 'swal-content-custom-error',
                 confirmButton:'swal-button-custom-error'

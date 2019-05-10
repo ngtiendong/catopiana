@@ -172,3 +172,10 @@
 			threeDTimeline.play();
 		}
 	})
+
+	nemo = new TimelineMax({ repeat: -1, yoyo: false });
+	nemo.to('.new-fish5-1', 40, {css:{'left':'-200px'}}, 0);
+	nemo.to('.new-fish5-2', 45, {css:{'left':'-200px'}}, 0);
+	nemo.to('.new-fish5-3', 46, {css:{'left':'-200px'}}, 0);
+	nemo1 = new TimelineMax({ repeat: -1, yoyo: true });
+	nemo1.fromTo('.new-fish5-1, .new-fish5-2, .new-fish5-3', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)

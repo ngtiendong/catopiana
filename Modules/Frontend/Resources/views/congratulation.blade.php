@@ -36,12 +36,7 @@
     {{-- comment image to test not if lag --}}
     @include('frontend::layouts.background')
     <img class="boy" src="{{asset('./Catopiana_files/images/boy-blue.png')}}" alt="">
-    <img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
-    <img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
+    <img id="island" src="{{asset('./Catopiana_files/images/island1.png')}}" alt="">
 </section>
 @endsection
 
@@ -73,8 +68,9 @@
                     text: "You haven't shared on Facebook",
                     display: 'flex',
                     backdrop: `rgba(0,0,0,0.1)`,
+                    animation: false,
                     customClass: {
-                        popup: 'swal-pop-facebook',
+                        popup: 'swal-pop-facebook animated bounce',
                         title:'swal-title-facebook',
                         content: 'swal-content-facebook',
                         confirmButton:'swal-button-facebook'

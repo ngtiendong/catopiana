@@ -41,6 +41,7 @@
     </div>
     {{-- comment image to test not lag --}}
     @include('frontend::layouts.background')
+    <img class="new-fish6" src="{{asset('./Catopiana_files/images/new-fish6.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">
