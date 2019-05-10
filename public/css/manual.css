@@ -175,7 +175,7 @@ body:not(.modal-open){
 }
 
 .section-test .tab .audio-image {
-    margin-bottom: 5% ; 
+    margin-bottom: 5% ;
 }
 
 .fadeOut {
@@ -257,7 +257,7 @@ body:not(.modal-open){
 .test .new-fish5-2 {
     position: absolute;
     bottom: 3%;
-    right: 13%;
+    right: -13%;
     z-index: 4;
     width: 80px;
 }
@@ -265,14 +265,14 @@ body:not(.modal-open){
 .test .new-fish5-3 {
     position: absolute;
     bottom: 0;
-    right: 15%;
+    right: -12%;
     z-index: 4;
     width: 80px;
 }
 .continue_section .new-fish5-1 {
     position: absolute;
     bottom: 51%;
-    right: 23%;
+    right: -12%;
     z-index: 4;
     width: 150px;
 }
@@ -280,7 +280,7 @@ body:not(.modal-open){
 .continue_section .new-fish5-2 {
     position: absolute;
     bottom: 53%;
-    right: 18%;
+    right: -18%;
     z-index: 4;
     width: 80px;
 }
@@ -288,7 +288,7 @@ body:not(.modal-open){
 .continue_section .new-fish5-3 {
     position: absolute;
     bottom: 50%;
-    right: 15%;
+    right: -15%;
     z-index: 4;
     width: 80px;
 }

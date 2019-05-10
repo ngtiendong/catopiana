@@ -3519,7 +3519,7 @@ button.start_memory:hover {
     position: absolute;
     bottom: 20%;
     left: 30%;
-    z-index:5;
+    z-index:2;
     width: 200px
 }
 
