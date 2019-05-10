@@ -33,7 +33,7 @@ $(function(){
             var this_type = $(this).data('topic')
             // console.log (this_type, list_test_finished)
             if (list_test_finished.indexOf(this_type) > -1) {
-                $(this).css('opacity',0.4)
+                $(this).css('opacity', 0.4)
             }
         })
     }

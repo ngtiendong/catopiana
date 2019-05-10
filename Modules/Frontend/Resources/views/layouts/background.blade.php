@@ -23,4 +23,9 @@
 <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
 <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
 <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img id="island" src="{{asset('./Catopiana_files/images/island1.png')}}" alt="">
+<img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
+<img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">

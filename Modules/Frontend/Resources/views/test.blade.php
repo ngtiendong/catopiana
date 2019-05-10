@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="psy-section section-test" id="id2">
+<section class="psy-section test section-test" id="id2">
     <div class="container">
         <div class="row tn">
             <div class="md-lg-12">
@@ -13,16 +13,10 @@
             <div class="col-md-6 col-md-offset-3 fadeOut">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. </h3>
             </div>
-{{--             <div class="col-md-12 list-after-finished" id="list-after-finished">
-                <h3></h3>
-            </div> --}}
-            <div class="col-md-12">
-                {{--<img src="{{asset('/Catopiana_files/images/iconwin1.png')}}" class="after-submit iconwin1">--}}
-                {{--<img src="{{asset('/Catopiana_files/images/iconwin2.png')}}" class="after-submit iconwin2">--}}
-                <div class="testOverlay">
+            <div class="col-md-12 testOver">
+                <div class="newTestOverlay">
                     <input id="type" value="{{$type_and_topic['type']}}" hidden>
                     <input id="topic" value="{{$type_and_topic['topic']}}" hidden>
-                    {{-- <a class="startBtn">Click To Start!</a> --}}
                     <div class="progress">
                         <div class="bar shadow bars"></div>
                     </div>
@@ -38,7 +32,7 @@
             </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
-        <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
+        <img class="layout-test" src="{{asset('./Catopiana_files/images/test.png')}}" alt="">
     </div>
     <div class="container list-test">
         <div class="row">

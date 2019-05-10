@@ -1422,11 +1422,7 @@ footer .col {
     height: 100%;
     text-align: center;
     position: absolute;
-    /*top: 50%;*/
-    /*bottom: 25px;*/
-    /*-webkit-transform: translateY(-50%);*/
-    /*-ms-transform: translateY(-50%);*/
-    /*transform: translateY(-50%);*/
+    font-family: Hobo;
     font-size: 30px;
     font-weight: bold;
     color: #066b7c;
@@ -1440,6 +1436,16 @@ footer .col {
 
 #id2 .container {
     position: relative
+}
+
+#id2 .container .whale {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 10px);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 2
 }
 
 #id2 .container .whale {
@@ -2017,6 +2023,21 @@ footer .col {
     transform: translateX(-15px);
     border-radius: 20px;
     margin: 35px auto 0;
+}
+
+.newTestOverlay {
+    z-index: 12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    position: relative;
+    border-radius: 20px;
+    margin: 35px auto 0;
+    padding: 35px;
+    top: 440px;
+    width: 750px;
+    height: 625px;
 }
 
 .list-after-finished {

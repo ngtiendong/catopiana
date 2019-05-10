@@ -27,8 +27,8 @@ $(window).on('load', function(){
 $(function () {
     //Auto scroll when into test page
     $('html,body').stop().animate({
-        scrollTop: $('#id2 div.col-md-12').eq(0).offset().top
-    }, 500);
+        scrollTop: $('#id2 div.newTestOverlay').eq(0).offset().top
+    }, 700);
 
     $('#testForm').on('submit', function (event) {
         //update local storage

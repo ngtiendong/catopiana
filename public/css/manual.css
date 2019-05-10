@@ -43,6 +43,8 @@ svg {
 
 #id2 .container .icon-in-test-page .test-item {
     margin: 0 10px 10px;
+    width: 20%;
+    opacity: 0.8;
 }
 
 .answer label{
@@ -174,4 +176,72 @@ body:not(.modal-open){
 
 .section-test .tab .audio-image {
     margin-bottom: 5% ; 
+}
+
+.fadeOut {
+    top: 260px;
+}
+
+#id2.section-test .container .girl {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 3;
+    width: 400px;
+}
+#id2.section-test .container .testOver {
+    height: 57%;
+}
+
+.test .many-fish1 {
+    position: absolute;
+    bottom: 10%;
+    left: 65%;
+    z-index: 3;
+    width: 70px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.test .many-fish2 {
+    position: absolute;
+    bottom: 12%;
+    left: 58%;
+    z-index: 3;
+    width: 100px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.test .many-fish3 {
+    position: absolute;
+    bottom: 14%;
+    left: 65%;
+    z-index: 3;
+    width: 50px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+.test .many-fish4 {
+    position: absolute;
+    bottom: 16%;
+    left: 62%;
+    z-index: 3;
+    width: 30px;
+        -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.test .bach-tuoc {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    z-index:5;
+    width: 200px
+}
+
+.test .con-sua {
+    position: absolute;
+    bottom: 5%;
+    left: 20%;
+    z-index: 4;
+    width: 200px
 }
