@@ -5,9 +5,9 @@
 <section class="psy-section test section-test" id="id2">
     <div class="container">
         <div class="row tn">
-            <div class="md-lg-12">
+            <div class="col-lg-12">
                 <div class="bigwhale icon-in-test-page">
-
+                    
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 fadeOut">
