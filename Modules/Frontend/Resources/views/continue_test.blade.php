@@ -47,18 +47,28 @@
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
+    $(window).on('load', function(){
+        /**
+         * Load mp3 here
+         */
+        function preloadAudio(url) {
+            var audio = new Audio();
+            // once this file loads, it will call loadedAudio()
+            // the file will be kept by the browser as cache
+            audio.src = url;
+        }
+        preloadAudio("/sounds/win.mp3")
+        preloadAudio("/sounds/applause3.mp3")
+    })
     $(document).ready(function() {
         $('html,body').stop().animate({
             scrollTop: $('.continue_container').eq(0).offset().top
         }, 500);
-        play_sound("sounds/win.mp3")
-        play_sound("sounds/applause3.mp3")
+        play_sound("/sounds/win.mp3")
+        play_sound("/sounds/applause3.mp3")
         const tl1 = new mojs.Timeline({
             repeat: 999
         }).add(fw1, fws1, fw21, fw20, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
-
-
-
 
     });
     $('.btn-back').click(function(event) {

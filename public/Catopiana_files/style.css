@@ -3297,7 +3297,7 @@ button.start_memory:hover {
     background-image: linear-gradient(to left, #1bdce5, #00d0ef, #00c2f7, #00b4fb, #00a3f9, #2698f1, #398ee8, #4683df, #3a7dd5, #2e78ca, #2172c0, #116cb5);
     transform: scale(1.1);
     color: #ffffff !important;
-    border-color: #c777b9 !important;
+    border-color: #494949 !important;
     transition: all 0.4s ease 0s;
     box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
 }

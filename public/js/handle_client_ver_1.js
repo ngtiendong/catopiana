@@ -77,13 +77,13 @@ $(function () {
         if (typeof(test_level) === 'undefined') {
             inputOptions = {'3': '3', '4': '4', '5': '5', '6': '6'}
             swal.fire({
-                title: 'Choose your level',
+                title: 'Choose your age',
                 width: '40%',
                 input: 'radio',
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
                     if (!value) {
-                      return 'You need to choose your level!';
+                      return 'You need to choose your age!';
                     }
                 },
                 confirmButtonText: 'Look up',
@@ -238,10 +238,12 @@ function generateUnfinishedTest(current_data) {
     else {
         for (var i = 0; i<length_answered; i++) {
             var style = '';
+            var classMemory = '';
             if (topic == '6') {
-                style = 'style ="display: none;"'
+                style = 'style ="display: none;"';
+                classMemory = 'memoryImage';
             }
-            html += '<div class="tab" style="display: none;"><img class="question" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
+            html += '<div class="tab" style="display: none;"><img class="question ' + classMemory + '" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
                 + '<button class="start_memory" style ="display: none;">Start</button>' +
                 "<div class='answer'>" ;
 
@@ -730,13 +732,15 @@ function render(question, answers) {
 
     });
     normal = 'style="display : none;"';
+    classMemory = ''
     if(topic === "6" ){
         style = 'style="display : none;"';
         normal = 'style="display : inline-block;"'
+        classMemory = 'memoryImage'
     }
 
     let content = "<div class='tab' style='display: none;'>" +
-        "<img class='question' src='/test/images/" + question + "' alt=''>" +
+        "<img class='question "+ classMemory +"' src='/test/images/" + question + "' alt=''>" +
         '<button class="start_memory"'+normal+' >Start</button>'+
         "<div class='answer'"+ style +">" +
         answerHTML +
@@ -773,6 +777,7 @@ $(document).on('click', '.start_memory', function(event) {
     $(x[current_index]).children('.answer').css('display' ,'block');
     $(x[current_index]).children('img').css('display' ,'none');
     $(x[current_index]).children('.start_memory').css('display' ,'none');
+    play_sound("sounds/plucky.mp3")
 });
 
 function hideQuestion(current_index){
