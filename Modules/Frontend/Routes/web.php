@@ -26,7 +26,7 @@ Route::group(/**
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('free-test-results');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
-//    Route::get('/generate_db', 'FrontendController@generate');
+    Route::get('/generate_db', 'FrontendController@generate');
 
     //
     // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
