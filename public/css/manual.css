@@ -378,9 +378,6 @@ img.image-point-l:hover {
     border: 3px solid #494949 !important;
     border-radius: 10px;
     box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
-    background-image: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
-    transition: all 1s ease-out;
-    cursor: pointer;
     font-size: 18px;
     z-index: 12;
     top: 50%;
@@ -388,13 +385,34 @@ img.image-point-l:hover {
     height: 30px;
 }
 
-#id2.section-test .test-button:hover{
+.memoryImage {
+    width: 300px !important;
+}
+
+.button-gradient {
+    background-image: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
+    transition: all 1s ease-out;
+    cursor: pointer;
+}
+
+.button-gradient:hover{
     background-image: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
     transition: all 0.5s ease-out;
     background-position: right center;
     transform: scale(1.2);
 }
 
-.memoryImage {
-    width: 300px !important;
+
+.thankforSummit {
+    width: 670px;
+    height: 345px;
+    z-index: 12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
+    position: relative;
+    transform: translateX(-15px);
+    border-radius: 20px;
+    margin: 35px auto 0;
 }
