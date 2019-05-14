@@ -26,12 +26,12 @@
                         <button class="test-button button-gradient" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
                         <button class="test-button button-gradient" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>
                         <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
-
-                        <div class="dot">
-                            <span class="badge badge-pill badge-primary"></span>
-                        </div>
                     </form>
                 </div>
+                <div class="dot">
+                    <span class="badge badge-pill badge-primary"></span>
+                </div>
+
             </div>
             <div class="below-test">
                 <div class="button-below-test col-md-12">

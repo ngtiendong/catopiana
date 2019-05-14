@@ -128,7 +128,7 @@ class FrontendController extends Controller
             } elseif($params['type'] == "2") {
                 //Position
                 $raw_data = Question::getLessLevelQuestionPosition($params['topic'], $params['level'], $params['index']);
-            } elseif($params['topic'] == "4") {
+            } elseif($params['type'] == "4") {
                 //Iq
                 $raw_data = Question::getLessLevelQuestionIq($params['topic'], $params['level'], $params['index']);
             }
@@ -176,13 +176,13 @@ class FrontendController extends Controller
             case 'creative':
                 return [
                     'topic' => "3",
-                    'type' => "0"
+                    'type' => "5"
                 ];
                 break;
             case 'difference':
                 return [
                     'topic' => "4",
-                    'type' => "0"
+                    'type' => "5"
                 ];
                 break;
             case 'common':

@@ -57,7 +57,7 @@ $(document).on('click', '.list-l-item img', function (e) {
             $(this).removeClass('unlock-selection')
         })
     }
-    if (line_array.length == 3) {
+    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
         autonext()
     }
 })
@@ -65,7 +65,7 @@ $(document).on('click', '.list-l-item img', function (e) {
 function nextButtonPosition () {
     //Position
     console.log("condition line array / just answer", line_array)
-    if (line_array.length == 3) {
+    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
         tab_number[this_question.current_index].style.display = "none";
         this_question.current_index += 1
         var currentTab = parseInt(this_question.current_index)
@@ -73,17 +73,15 @@ function nextButtonPosition () {
         //Lock and save answered
         let just_answer = [...line_array]
 
-        let compare_just_answer = [
-            [just_answer[0][0],just_answer[0][1]],
-            [just_answer[1][0],just_answer[1][1]],
-            [just_answer[2][0],just_answer[2][1]],
-        ]
+        let compare_just_answer = [];
 
+        // check answer
+        countCorrectAnswerPosition(just_answer)
         // Hide all line previous position tab
-        line_array[0][2].hide()
-        line_array[1][2].hide()
-        line_array[2][2].hide()
-
+        for (var i = 0; i < this_question.question_data[this_question.current_index-1][0].length;  i++) {
+            compare_just_answer.push([just_answer[i][0],just_answer[i][1]])
+            line_array[i][2].hide()
+        }
         this_question.answers.push(just_answer)
         console.log('answers', this_question.answers)
         localStorage.setItem('testing', JSON.stringify(testing_data))
@@ -105,7 +103,7 @@ function nextButtonPosition () {
         } else {
             current_index_max += 1
              // dừng việc check20s tránh đuplicate lặp timeout
-            stopTimeToChange()
+            // stopTimeToChange()
             // compare answer
             all_line_array.push(just_answer)
             console.log('all push', all_line_array)
@@ -113,9 +111,15 @@ function nextButtonPosition () {
             line_array.length = 0
 
             // console.log(flagChange)
-            if(compare_just_answer.compare(fakeAnswer) && parseInt(testing_data.level) > minLv && flagChange == 0 ){
-                console.log('w answer');
-                changeDynamicQuestion(parseInt(testing_data.level) -1 , this_question.answers.length)
+            if(this_question.count_correct_answer == 5 && this_question.level_temp == 1){
+                // dung 5 cau trong 1 level 1
+                changeDynamicQuestion(this_question.level_temp + 1 , this_question.current_index)
+            } else if(this_question.count_correct_answer == 3 && this_question.level_temp == 2){
+                // dung 3 cau level 2
+                changeDynamicQuestion(this_question.level_temp + 1 , this_question.current_index)
+            } else if(doubleFalse && this_question.level_temp != 1 ){
+                // sai 2 cau lien tiep khac level 1
+                changeDynamicQuestion(this_question.level_temp -1 , this_question.current_index)
             } else {
                 // Save into local storage
                 console.log (testing_data, 'test')
@@ -123,9 +127,9 @@ function nextButtonPosition () {
 
                 showTab(currentTab)
                 // sau khi render 20s k next thì sẽ => câu hỏi thấp
-                if(parseInt(testing_data.level) > minLv){
-                    setTimeToChange(testing_data.level - 1 , currentTab + 1 );
-                }
+                // if(parseInt(testing_data.level) > minLv){
+                //     setTimeToChange(testing_data.level - 1 , currentTab + 1 );
+                // }
             }
         }
     } else {
@@ -134,35 +138,29 @@ function nextButtonPosition () {
 }
 
 function renderPosition(question_left, question_right, class_img, tab_css) {
-    var html = ''
-    var tab_class = 'image-point-l '+class_img
+    var html = '';
+    var tab_class = 'image-point-l '+class_img;
+    var li_left = '', li_right = '';
+    for (var i = 0; i < question_left.length; i++) {
+        li_left +=   '<li class="list-l-item">' +
+                        '<img class="'+tab_class+'" src="'+question_left[i]+'" data-index="'+ i +'">' +
+                    '</li>';
+        li_right +=   '<li class="list-l-item">' +
+                        '<img class="'+tab_class+'" src="'+question_right[i]+'" data-index="'+ i +'">' +
+                    '</li>';
+
+    }
     html += '<div class="tab" style="display: '+tab_css+'">' +
         '                            <div class="matching row" id="test-area">' +
         '                                <div class="div-l col-lg-3 col-md-3 col-sm-3 col-md-offset-1" style="padding-right: 0" >' +
         '                                    <ul class="column-left" data-position="0">' +
-        '                                        <li class="list-l-item">' +
-        '                                            <img class="'+tab_class+'" src="'+question_left[0]+'" data-index="0">' +
-        '                                        </li>' +
-        '                                        <li class="list-l-item" >' +
-        '                                            <img class="'+tab_class+'" src="'+question_left[1]+'" data-index="1">' +
-        '                                        </li>' +
-        '                                        <li class="list-l-item" >' +
-        '                                            <img class="'+tab_class+'" src="'+question_left[2]+'" data-index="2">' +
-        '                                        </li>' +
+                                                li_left +
         '                                    </ul>' +
         '                                </div>' +
         '                                <div class="div-m col-lg-4 col-md-4 col-sm-4"  style="padding: 0" ></div>' +
         '                                <div class="div-r col-lg-3 col-md-3 col-sm-3" style="padding-left: 0" >' +
         '                                    <ul class="column-right" data-position="1">' +
-        '                                        <li class="list-l-item">' +
-        '                                            <img class="'+tab_class+'" src="'+question_right[0]+'" data-index="0">' +
-        '                                        </li>' +
-        '                                        <li class="list-l-item" >' +
-        '                                            <img class="'+tab_class+'" src="'+question_right[1]+'" data-index="1">' +
-        '                                        </li>' +
-        '                                        <li class="list-l-item" >' +
-        '                                            <img class="'+tab_class+'" src="'+question_right[2]+'" data-index="2">' +
-        '                                        </li>' +
+                                                li_right +
         '                                    </ul>' +
         '                                </div>' +
         '                                <div class="col-lg-1"></div>' +
@@ -170,7 +168,6 @@ function renderPosition(question_left, question_right, class_img, tab_css) {
         '                            <div class="clearfix"></div>' +
         '                        </div>'
 
-    // $('#prevBtn').before(html);
     return html
 }
 
@@ -196,7 +193,7 @@ Array.prototype.compare = function(array) {
 
 function gen_line_from_localstorage(old_line_array, current_tab) {
     line_array.length = 0
-    for (var j = 0; j < 3; j++) {
+    for (var j = 0; j < old_line_array.length; j++) {
         if (jQuery.isEmptyObject(old_line_array[j][2])) {
             //Create line
             var left = old_line_array[j][0]
@@ -273,7 +270,7 @@ function createLine(left_element, right_element, start=0) {
 
 function submitPosition() {
     console.log("condition line array / just answer", line_array)
-    if (line_array.length == 3) {
+    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
         //Lock and save answered
         let just_answer = [...line_array]
         if (this_question.answers.length === this_question.question_data.length) {
@@ -304,7 +301,7 @@ function submitPosition() {
 function filterCorrectPosition() {
     let result = 0
     this_question.answers.forEach(function(value, index){
-        for (var k=0; k<max_images_in_column; k++) {
+        for (var k=0; k<value.length; k++) {
             if (value[k][0] == value[k][1] ) {
                 result += 1
             }
@@ -317,9 +314,34 @@ function convertAnswersPosition()
 {
     if(typeof this_question != 'undefined'){
         this_question.answers.forEach(function(value, index) {
-            for (var i=0; i<3; i++){
+            for (var i=0; i<value.length; i++){
                 value[i].splice(2,1)
             }
         });
     }
+}
+
+countCorrectAnswerPosition = (just_answer) => {
+    let correct_just = checkAnswer(just_answer)
+    if(correct_just == true) {
+        this_question.count_correct_answer += 1;
+        doubleFalse = false;
+    } else {
+        if(this_question.answers.length > 0 && !checkAnswer(this_question.answers[this_question.answers.length - 1 ])) {
+            doubleFalse = true;
+        }
+    }
+    console.log('anss:', this_question.count_correct_answer )
+    console.log('doubleFalse:', doubleFalse )
+}
+
+checkAnswer = (answer) => {
+    let correct = true;
+    for (var k=0; k<answer.length; k++) {
+        if (answer[k][0] != answer[k][1] ) {
+            correct = false;
+            break;
+        }
+    }
+    return correct;
 }

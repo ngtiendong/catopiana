@@ -109,16 +109,23 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', 1]
+            ['level', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
 
         if($curriculum == null){
             return $raw_data;
         }
-        $qty_question = 30 - (int)($index) ;
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
-
+        $qty_question = 10 - (int)($index) ;
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if(sizeof($list_question) < $qty_question){
+            $curriculum = Curriculum::where([
+                ['topic_id', $topic],
+                ['level','<=', $level - 1]
+            ])->orderBy('level', 'desc')->first();
+             $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
+            $list_question = array_merge($list_question, $list_question_more);
+        }
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
@@ -137,7 +144,7 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', 1]
+            ['level', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
 
@@ -145,8 +152,16 @@ class Question extends Model
             return $raw_data;
         }
         $qty_question = 30 - (int)($index) ;
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
 
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if(sizeof($list_question) < $qty_question){
+            $curriculum = Curriculum::where([
+                ['topic_id', $topic],
+                ['level','<=', $level - 1]
+            ])->orderBy('level', 'desc')->first();
+             $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
+            $list_question = array_merge($list_question, $list_question_more);
+        }
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             $raw_data[] = [
@@ -165,7 +180,7 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', 1]
+            ['level',  $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
 
@@ -173,8 +188,15 @@ class Question extends Model
             return $raw_data;
         }
         $qty_question = 10 - (int)($index) ;
-       $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
-
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if(sizeof($list_question) < $qty_question){
+            $curriculum = Curriculum::where([
+                ['topic_id', $topic],
+                ['level','<=', $level - 1]
+            ])->orderBy('level', 'desc')->first();
+             $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
+            $list_question = array_merge($list_question, $list_question_more);
+        }
        foreach ($list_question as $question) {
            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
            foreach($answers as $key => $answer){
@@ -199,15 +221,22 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level',  $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
         if($curriculum == null){
             return $raw_data;
         }
-
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take(10)->get()->toArray();
-
+        $qty_question = 10 - (int)($index) ;
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if(sizeof($list_question) < $qty_question){
+            $curriculum = Curriculum::where([
+                ['topic_id', $topic],
+                ['level','<=', $level - 1]
+            ])->orderBy('level', 'desc')->first();
+             $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
+            $list_question = array_merge($list_question, $list_question_more);
+        }
         foreach ($list_question as $question) {
 //            dd($question['question'], $topic, $curriculum, $list_question);
             $question = \GuzzleHttp\json_decode($question['question'], true);

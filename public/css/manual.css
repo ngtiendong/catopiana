@@ -402,17 +402,17 @@ img.image-point-l:hover {
     transform: scale(1.2);
 }
 
+.section-test .tab img.iq-question {
+    width: 400px;
+}
 
-.thankforSummit {
-    width: 670px;
-    height: 345px;
-    z-index: 12;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
-    position: relative;
-    transform: translateX(-15px);
-    border-radius: 20px;
-    margin: 35px auto 0;
+.dot .badge {
+    font-family: Hobo;
+    font-size: 30px;
+    background-color: inherit;
+    padding: unset;
+}
+
+.section-test .tab label.iq-answer.col-md-3 > img {
+    width: 120px !important;
 }
