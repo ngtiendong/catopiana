@@ -22,7 +22,7 @@ Route::group(/**
 
     Route::get('/common', 'FrontendController@test')->name('common');
     Route::get('/memory', 'FrontendController@test')->name('memory');
-    Route::get('/language', 'FrontendController@test')->name('language');
+    Route::get('/language', 'FrontendController@music')->name('language');
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('free-test-results');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');

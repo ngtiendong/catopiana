@@ -13,7 +13,29 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level', 1]
+        ])->orderBy('level', 'desc')->first();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
+        $raw_data = [];
+        foreach ($list_question as $question) {
+            $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            $raw_data[] = [
+                'question' => $question['question'],
+                'answers' => $answer
+            ];
+        }
+        return [
+            'curriculum_id' => $curriculum->id,
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
+    }
+
+    public static function getListQuestionIq ($topic, $level)
+    {
+        $curriculum = Curriculum::where([
+            ['topic_id', $topic],
+            ['level', 1]
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
         $raw_data = [];
@@ -35,9 +57,9 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level', 1]
         ])->orderBy('level', 'desc')->first();
-        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
         foreach ($list_question as $question) {
            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
@@ -47,8 +69,8 @@ class Question extends Model
            $raw_data[] = [
                'question' => $question['question'],
                'answers' => $answers,
-               'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-               'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+               'question_image' =>  asset($question['question_image']),
+               'answer_image' =>  asset($question['question_image'])
            ];
        }
         return [
@@ -62,10 +84,10 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level', 1]
         ])->orderBy('level', 'desc')->first();
 
-        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
 
         foreach ($list_question as $question) {
@@ -87,14 +109,43 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level', 1]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
 
         if($curriculum == null){
             return $raw_data;
         }
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+        $qty_question = 30 - (int)($index) ;
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
+
+        foreach ($list_question as $question) {
+            $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            $raw_data[] = [
+                'question' => $question['question'],
+                'answers' => $answer
+            ];
+        }
+        return [
+            'curriculum_id' => $curriculum->id,
+            'raw_data' => $raw_data,
+            'type' => $curriculum->type
+        ];
+    }
+
+    public static function getLessLevelQuestionIq($topic, $level, $index)
+    {
+        $curriculum = Curriculum::where([
+            ['topic_id', $topic],
+            ['level', 1]
+        ])->orderBy('level', 'desc')->first();
+        $raw_data = [];
+
+        if($curriculum == null){
+            return $raw_data;
+        }
+        $qty_question = 30 - (int)($index) ;
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
 
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
@@ -114,14 +165,15 @@ class Question extends Model
     {
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
-            ['level', '<=', $level]
+            ['level', 1]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
 
         if($curriculum == null){
             return $raw_data;
         }
-       $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+        $qty_question = 10 - (int)($index) ;
+       $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
 
        foreach ($list_question as $question) {
            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
@@ -131,8 +183,8 @@ class Question extends Model
            $raw_data[] = [
                'question' => $question['question'],
                'answers' => $answers,
-               'question_image' =>  asset('/Catopiana_files/images/sound.png'),
-               'answer_image' =>  asset('/Catopiana_files/images/sound-answer.jpg')
+               'question_image' =>  asset($question['question_image']),
+               'answer_image' =>  asset($question['question_image'])
            ];
        }
 
@@ -154,7 +206,7 @@ class Question extends Model
             return $raw_data;
         }
 
-        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->get()->toArray();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take(10)->get()->toArray();
 
         foreach ($list_question as $question) {
 //            dd($question['question'], $topic, $curriculum, $list_question);

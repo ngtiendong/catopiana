@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Curriculum extends Model
 {
     protected $guarded = [];
-    protected $table = 'curriculums';
+    protected $table = 'beta_curriculums';
 
     public function topic()
     {

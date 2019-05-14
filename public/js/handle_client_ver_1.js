@@ -180,8 +180,11 @@ function generateUnfinishedTest(current_data) {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
             });
-        }
-        else {
+        } else if(current_data.type === '4') {
+            current_data.question_data.forEach( function(question_data_element, index) {
+                current_data.html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+            });
+        }else {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(render(question_data_element.question, question_data_element.answers))
             });
@@ -235,6 +238,37 @@ function generateUnfinishedTest(current_data) {
         }
     }
 
+    else if(type == '4') {
+        for (var i = 0; i<length_answered; i++) {
+            html += '<div class="tab" style="display: none;"><img class="question" src="'+current_data.question_data[i].question+'" alt="">'
+                + "<div class='answer'>" ;
+
+            var answer = ""
+            for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                let layout = 'col-md-4';
+                if(current_data.question_data[i].answers.length == 8){
+                   layout = 'col-md-3'; 
+                } 
+                if (j == current_data.answers[i]) {
+                    answer += '<label class="'+ layout +'" style="opacity: 1">' +
+                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                        '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                        '</label>'
+                } else {
+                    answer += '<label class="'+ layout +'" style="opacity: 0.3"> ' +
+                        '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                        '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                        '</label>'
+                }
+            }
+
+            html += answer
+            html += '</div></div>'
+            // currentTab++
+        }
+        // console.log(current_data.question_data[length_answered])
+    }
+
     else {
         for (var i = 0; i<length_answered; i++) {
             var style = '';
@@ -243,7 +277,7 @@ function generateUnfinishedTest(current_data) {
                 style = 'style ="display: none;"';
                 classMemory = 'memoryImage';
             }
-            html += '<div class="tab" style="display: none;"><img class="question ' + classMemory + '" '+style+' src="/test/images/'+current_data.question_data[i].question+'" alt="">'
+            html += '<div class="tab" style="display: none;"><img class="question ' + classMemory + '" '+style+' src="'+current_data.question_data[i].question+'" alt="">'
                 + '<button class="start_memory" style ="display: none;">Start</button>' +
                 "<div class='answer'>" ;
 
@@ -251,14 +285,14 @@ function generateUnfinishedTest(current_data) {
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
-                    answer += '<label class="col-md-6" style="opacity: 1">' +
+                    answer += '<label class="col-md-4" style="opacity: 1">' +
                         '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
-                        '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
+                        '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 } else {
-                    answer += '<label class="col-md-6" style="opacity: 0.3"> ' +
+                    answer += '<label class="col-md-4" style="opacity: 0.3"> ' +
                         '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
-                        '<img src="/test/images/' + current_data.question_data[i].answers[j] + '" alt="">' +
+                        '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
                         '</label>'
                 }
             }
@@ -298,15 +332,6 @@ function generateUnfinishedTest(current_data) {
     if(current_data.level_temp > minLv){
         setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
     }
-    // if(topic === '6'){
-    //     //Memory
-    //     if(timerId != null){
-    //         clearTimeout(timerId);
-    //         timeout = 5;
-    //     }
-    //     buttonMemoryChecked = false;
-    //     hideQuestion(current_data.current_index);
-    // }
 }
 
 function getNewQuestionData(position) {
@@ -314,6 +339,7 @@ function getNewQuestionData(position) {
         method: "POST",
         url: "/get-list-question",
         data: {
+            'type' : type,
             'topic': topic,
             'level': test_level
         },
@@ -340,8 +366,11 @@ function getNewQuestionData(position) {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                     });
-                }
-                else {
+                } else if(response.type === '4') {
+                    response.question_data.forEach( function(question_data_element, index) {
+                        html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+                    });
+                }else {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(render(question_data_element.question, question_data_element.answers))
                     });
@@ -392,16 +421,6 @@ function getNewQuestionData(position) {
                 if(this_question.level_temp > minLv){
                     setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 }
-                // if(topic === '6'){
-                //     //Memory
-                //     if(timerId != null){
-                //         clearTimeout(timerId);
-                //         timeout = 5;
-                //     }
-                //     buttonMemoryChecked = false;
-                //     hideQuestion(this_question.current_index);
-                // }
-
 
             } else {
                 console.log("error", response)
@@ -484,21 +503,20 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
         method: "POST",
         url: "/get-list-less-level-question",
         data: {
+            'type' : type,
             'topic': topic,
             'level': test_level,
             'index' : indexIncorrect
         },
         success: function (response) {
             if (response.status === 1) {
-                // console.log(response.question_data)
                 // ghep cau hoi vao this_question
-                // html_arr_gen_again = [];
                 if(response.question_data.length != 0){
                     // add curriculum_ids
-                    if(!this_question.curriculum_ids.includes(response.curriculum_id)){
+                    if(!this_question.curriculum_ids.includes(response.curriculum_id)) {
                         this_question.curriculum_ids.push(response.curriculum_id)
                     }
-                    // gen laij html
+                    // gen lai html
                     //
                     html_arr_gen_again = [];
                     if (type === '1'){
@@ -511,17 +529,20 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                         });
-                    }
-                    else {
+                    } else if (type === '4') {
+                        response.question_data.forEach( function(question_data_element, index) {
+                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                        });
+                    } else {
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
                         });
 
                     }
-                    console.log('html_arr_gen_again ', html_arr_gen_again)
-                    console.log('indexIncorrect ', indexIncorrect)
-                    console.log('current_index ', this_question.current_index)
-                    console.log('this_question_length ', this_question.question_data.length)
+                    // console.log('html_arr_gen_again ', html_arr_gen_again)
+                    // console.log('indexIncorrect ', indexIncorrect)
+                    // console.log('current_index ', this_question.current_index)
+                    // console.log('this_question_length ', this_question.question_data.length)
 
                     Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
@@ -545,15 +566,6 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                 localStorage.setItem('testing', JSON.stringify(testing_data));
                 console.log('current: ', indexIncorrect, 'data', this_question)
                 showTab(indexIncorrect)
-                // if(topic === '6'){
-                //     //Memory
-                //     if(timerId != null){
-                //         clearTimeout(timerId);
-                //         timeout = 5;
-                //     }
-                //     buttonMemoryChecked = false;
-                //     hideQuestion(indexIncorrect);
-                // }
 
                 flagChange = 0;
                 if(this_question.level_temp > minLv){
@@ -574,6 +586,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
         method: "POST",
         url: "/get-list-less-level-question",
         data: {
+            'type' : type,
             'topic': topic,
             'level': test_level,
             'index' : indexIncorrect
@@ -598,12 +611,15 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
                         });
+                    } else if (type === '4') {
+                        response.question_data.forEach( function(question_data_element, index) {
+                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                        });
                     }
                     else {
                         response.question_data.forEach( function(question_data_element, index) {
                             html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
                         });
-
                     }
                     console.log('html_arr_gen_again ', html_arr_gen_again)
                     // console.log('indexIncorrect ', indexIncorrect)
@@ -725,9 +741,9 @@ function prev() {
 function render(question, answers) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
-        answerHTML += "<label class='col-md-6'>" +
+        answerHTML += "<label class='col-md-4'>" +
             "<input type='radio' value='"+el+index+"' data-position='"+index+"' hidden>" +
-            "<img src='/test/images/" + el + "' alt=''>" +
+            "<img src='" + el + "' alt=''>" +
             "</label>"
 
     });
@@ -740,9 +756,31 @@ function render(question, answers) {
     }
 
     let content = "<div class='tab' style='display: none;'>" +
-        "<img class='question "+ classMemory +"' src='/test/images/" + question + "' alt=''>" +
+        "<img class='question "+ classMemory +"' src='" + question + "' alt=''>" +
         '<button class="start_memory"'+normal+' >Start</button>'+
         "<div class='answer'"+ style +">" +
+        answerHTML +
+        "</div>" +
+        "</div>";
+    return content
+}
+function renderIQ(question, answers) {
+    let layout = 'col-md-4';
+    if(answers.length == 8) {
+        layout = 'col-md-3'; 
+    } 
+    let answerHTML = "";
+    answers.forEach(function (el, index) {
+        answerHTML += "<label class='"+ layout +"'>" +
+            "<input type='radio' value='"+el+index+"' data-position='"+index+"' hidden>" +
+            "<img src='" + el + "' alt=''>" +
+            "</label>"
+
+    });
+    normal = 'style="display : none;"';
+    let content = "<div class='tab' style='display: none;'>" +
+        "<img class='question' src='" + question + "' alt=''>" +
+        "<div class='answer'>" +
         answerHTML +
         "</div>" +
         "</div>";
