@@ -26,6 +26,8 @@ Route::group(/**
     Route::get('/position', 'FrontendController@position')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('free-test-results');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
+//    Route::get('/generate_db', 'FrontendController@generate');
+
     //
     // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
 
@@ -66,7 +68,7 @@ Route::group(/**
     Route::get('/packages','FrontendController@getPackages')->middleware('test')->name('packages');
     Route::get('/free-packages','FrontendController@getCurriculumsFreePackage')->name('getCurriculumsFreePackage');
     Route::get('/paid-packages','FrontendController@getCurriculumsPaidPackage')->middleware('auth:customers')->name('getCurriculumsPaidPackage');
-    
+
     Route::get('/execute-payment', 'PaymentController@execute');
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
 
