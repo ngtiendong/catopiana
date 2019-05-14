@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $guarded = [];
-    protected $table = 'questions';
+    protected $table = 'beta_curriculum_questions';
 
     public static function getListQuestion($topic, $level)
     {
