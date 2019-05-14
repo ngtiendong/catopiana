@@ -322,10 +322,19 @@ class FrontendController extends Controller
     }
 
     public function generate(){
+        /**
+         * IQ
+         */
+
 //        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
 //        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
 //        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
-//        for ($j = 1; $j < 25; $j++) {
+//        $curriculum = [
+//            "id" => 2,
+//            "level" => "1",
+//            "count" => 30
+//        ];
+//        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
 //            $temp = [];
 //            foreach ($all as $value ) {
 //                if ($value !== $correct[$j-1]) {
@@ -335,44 +344,50 @@ class FrontendController extends Controller
 //            Question::create([
 //                "curriculum_id" => 2,
 //                "index" => $j,
-//                "question" => "/data/iq/1/" . (string)$j . ".jpg",
-//                "correct_answer" => "/data/iq/1/" . (string)$j.$correct[$j-1] . ".jpg",
+//                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
+//                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
 //                "wrong_answer" => \GuzzleHttp\json_encode($temp)
 //            ]);
 //        }
 
         #difference
-//        $all = ["A", "B", "C", "D"];
-//        $correct = ["A", "B", "D", "C", "A", "D", "B", "B", "D", "D", "B", "C", "A", "D", "C", "C",
-//            "C", "B", "A", "C", "C", "B", "A", "B", "A", "B", "A"];
-//        $curriculum = [
-//            "id" => 4,
-//            "level" => "1",
-//            "count" => 27
-//        ];
-//        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
-//            $temp = "/data/difference/".$curriculum["level"]."/" . (string)$j;
-//            foreach ($all as $value ) {
-//                if ($value !== $correct[$j-1]) {
-//                    $temp .= $value;
-//                }
-//
-//            }
-//            $temp .= ".jpg";
-//            DB::beginTransaction();
-//            try {
+        $all = ["A", "B", "C", "D"];
+        $correct = ["A", "B", "D", "C", "A", "D", "B", "B", "D", "D", "B", "C", "A", "D", "C", "C",
+            "C", "B", "A", "C", "C", "B", "A", "B", "A", "B", "A"];
+        $curriculum = [
+            "id" => 4,
+            "level" => "1",
+            "count" => 27
+        ];
+        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
+            $temp = "/data/difference/".$curriculum["level"]."/" . (string)$j;
+            foreach ($all as $value ) {
+                if ($value !== $correct[$j-1]) {
+                    $temp .= $value;
+                }
+
+            }
+            $temp .= ".jpg";
+            DB::beginTransaction();
+            try {
+                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
+                for ($t=0; $t < count($questions); $t++) {
+                    $questions[$t]->question = $questions[$t]->correct_answer;
+                    $questions[$t]->save();
+                }
+//                dd($questions);
 //                Question::create([
 //                    "curriculum_id" => $curriculum["id"], #level3
 //                    "index" => $j,
 //                    "correct_answer" => "/data/difference/" . $curriculum["level"] . "/" . (string)$j . $correct[$j - 1] . ".jpg",
 //                    "wrong_answer" => \GuzzleHttp\json_encode([$temp, $temp, $temp])
 //                ]);
-//                DB::commit();
-//            } catch(Exception $e) {
-//                DB::rollback();
-//            }
-//
-//        }
+                DB::commit();
+            } catch(Exception $e) {
+                DB::rollback();
+            }
+
+        }
 
         #normal
 //        $all = ["a", "b", "c"];
@@ -465,57 +480,57 @@ class FrontendController extends Controller
          * Position
          */
 
-        $type = [6,4,4,4,4,4,4,4,6,4,4,4];
-        $name = [1,2,3,4,7,8,9,11,12,13,14,15];
-
-        $curriculum = [
-            "id" => 8,
-            "level" => "1",
-            "count" => 12
-        ];
-        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
-            $str = "/data/position/1/".(string)$name[$j-1];
-            if ($type[$j-1] == 4) {
-                $left = [$str.".1.jpg", $str.".2.jpg"];
-                $right = [$str."a.jpg", $str."b.jpg"];
-                $question = [
-                    "left" => $left,
-                    "right" => $right
-                ];
-
-                $answer = [
-                    [$str.".1.jpg", $str."a.jpg"],
-                    [$str.".2.jpg", $str."b.jpg"],
-                ];
-
-            } else {
-                $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
-                $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
-                $question = [
-                    "left" => $left,
-                    "right" => $right
-                ];
-
-                $answer = [
-                    [$str.".1.jpg", $str."a.jpg"],
-                    [$str.".2.jpg", $str."b.jpg"],
-                    [$str.".3.jpg", $str."c.jpg"]
-                ];
-            }
-
-            DB::beginTransaction();
-            try {
-                Question::create([
-                    "curriculum_id" => $curriculum["id"], #level3
-                    "index" => $j,
-                    "question" => \GuzzleHttp\json_encode($question),
-                    "correct_answer" => \GuzzleHttp\json_encode($answer),
-                ]);
-                DB::commit();
-            } catch(Exception $e) {
-                DB::rollback();
-            }
-        }
+//        $type = [6,4,4,4,4,4,4,4,6,4,4,4];
+//        $name = [1,2,3,4,7,8,9,11,12,13,14,15];
+//
+//        $curriculum = [
+//            "id" => 8,
+//            "level" => "1",
+//            "count" => 12
+//        ];
+//        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
+//            $str = "/data/position/1/".(string)$name[$j-1];
+//            if ($type[$j-1] == 4) {
+//                $left = [$str.".1.jpg", $str.".2.jpg"];
+//                $right = [$str."a.jpg", $str."b.jpg"];
+//                $question = [
+//                    "left" => $left,
+//                    "right" => $right
+//                ];
+//
+//                $answer = [
+//                    [$str.".1.jpg", $str."a.jpg"],
+//                    [$str.".2.jpg", $str."b.jpg"],
+//                ];
+//
+//            } else {
+//                $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
+//                $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
+//                $question = [
+//                    "left" => $left,
+//                    "right" => $right
+//                ];
+//
+//                $answer = [
+//                    [$str.".1.jpg", $str."a.jpg"],
+//                    [$str.".2.jpg", $str."b.jpg"],
+//                    [$str.".3.jpg", $str."c.jpg"]
+//                ];
+//            }
+//
+//            DB::beginTransaction();
+//            try {
+//                Question::create([
+//                    "curriculum_id" => $curriculum["id"], #level3
+//                    "index" => $j,
+//                    "question" => \GuzzleHttp\json_encode($question),
+//                    "correct_answer" => \GuzzleHttp\json_encode($answer),
+//                ]);
+//                DB::commit();
+//            } catch(Exception $e) {
+//                DB::rollback();
+//            }
+//        }
 
     }
 }
