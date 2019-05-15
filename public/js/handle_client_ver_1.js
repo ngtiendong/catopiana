@@ -930,13 +930,14 @@ function nextButton() {
         just_answer = just_answer.data('position')
 
         // checkAnswer
-        countCorrectAnswer(just_answer);
 
         this_question.answers.push(just_answer)
         console.log("push here", this_question.answers)
         if (current_index_max >= this_question.current_index){
             showTab(this_question.current_index);
         } else {
+            countCorrectAnswer(just_answer);
+
             current_index_max += 1;
             // dừng việc check20s tránh đuplicate lặp timeout
             // stopTimeToChange()
@@ -1215,7 +1216,7 @@ countCorrectAnswer = (just_answer) => {
         this_question.count_correct_answer += 1;
         doubleFalse = false;
     } else {
-        if(this_question.answers.length > 0 && this_question.answers[this_question.answers.length - 1 ] != fakeAnswer) {
+        if(this_question.answers.length > 1 && this_question.answers[this_question.answers.length - 2 ] != fakeAnswer) {
             doubleFalse = true;
         }
     }

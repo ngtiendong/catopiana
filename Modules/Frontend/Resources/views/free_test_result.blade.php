@@ -31,7 +31,7 @@
                 <div class="list_icon">
                 </div>
                 <div class="button_save">
-                    <button class="btn-save button-recevie-package">Receive Package</button>
+                    <button data-route='{{ route('home') }}' class="btn-save button-recevie-package">Receive Package</button>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
     let gen_html = '';
     let style = '';
     for (var i=1; i<9; i++) {
-        this_question = testing_data.question[i];
+        this_question = testing_data.question[i -1];
         if (this_question.status == 1) {
             if(parseInt(this_question.type) == 2) {
                 total_question = countTotalPosition(this_question)
@@ -130,8 +130,9 @@ jQuery(document).ready(function($) {
                 correct = this_question.answers.filter(answer => answer == 0).length;
             }
            result = correct+'/'+total_question ;
+           topic = parseInt(this_question.topic);
         }
-        gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[i-1] +'<p><b>'+result+'</b></p></div>'
+        gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[topic-1] +'<p><b>'+result+'</b></p></div>'
     }
     $('.free_test_result .list_icon').append(gen_html)
 });

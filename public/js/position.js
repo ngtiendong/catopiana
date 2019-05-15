@@ -75,8 +75,7 @@ function nextButtonPosition () {
 
         let compare_just_answer = [];
 
-        // check answer
-        countCorrectAnswerPosition(just_answer)
+
         // Hide all line previous position tab
         for (var i = 0; i < this_question.question_data[this_question.current_index-1][0].length;  i++) {
             compare_just_answer.push([just_answer[i][0],just_answer[i][1]])
@@ -102,6 +101,8 @@ function nextButtonPosition () {
 
         } else {
             current_index_max += 1
+            // check answer
+            countCorrectAnswerPosition(just_answer)
              // dừng việc check20s tránh đuplicate lặp timeout
             // stopTimeToChange()
             // compare answer
@@ -327,7 +328,7 @@ countCorrectAnswerPosition = (just_answer) => {
         this_question.count_correct_answer += 1;
         doubleFalse = false;
     } else {
-        if(this_question.answers.length > 0 && !checkAnswer(this_question.answers[this_question.answers.length - 1 ])) {
+        if(this_question.answers.length > 1 && !checkAnswer(this_question.answers[this_question.answers.length - 2 ])) {
             doubleFalse = true;
         }
     }
