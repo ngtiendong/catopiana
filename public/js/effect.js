@@ -25,6 +25,8 @@ $(document).on('click', '.answer label',function (event) {
         play_sound("/sounds/plucky.mp3")
 
     }
+    // Disable button
+    $('.test-button');
     // auto next when click button
     autonext()
 
@@ -52,7 +54,7 @@ function autonext()
         disabled_label_click = true;
         setTimeout(()=>{
                 next()
-        },1000)
+        },500)
 
     }
 }

@@ -357,43 +357,43 @@ class FrontendController extends Controller
 //        }
 
         #difference
-        $all = ["A", "B", "C", "D"];
-        $correct = ["A", "B", "D", "C", "A", "D", "B", "B", "D", "D", "B", "C", "A", "D", "C", "C",
-            "C", "B", "A", "C", "C", "B", "A", "B", "A", "B", "A"];
-        $curriculum = [
-            "id" => 4,
-            "level" => "1",
-            "count" => 27
-        ];
-        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
-            $temp = "/data/difference/".$curriculum["level"]."/" . (string)$j;
-            foreach ($all as $value ) {
-                if ($value !== $correct[$j-1]) {
-                    $temp .= $value;
-                }
-
-            }
-            $temp .= ".jpg";
-            DB::beginTransaction();
-            try {
-                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
-                for ($t=0; $t < count($questions); $t++) {
-                    $questions[$t]->question = $questions[$t]->correct_answer;
-                    $questions[$t]->save();
-                }
-//                dd($questions);
-//                Question::create([
-//                    "curriculum_id" => $curriculum["id"], #level3
-//                    "index" => $j,
-//                    "correct_answer" => "/data/difference/" . $curriculum["level"] . "/" . (string)$j . $correct[$j - 1] . ".jpg",
-//                    "wrong_answer" => \GuzzleHttp\json_encode([$temp, $temp, $temp])
-//                ]);
-                DB::commit();
-            } catch(Exception $e) {
-                DB::rollback();
-            }
-
-        }
+//        $all = ["A", "B", "C", "D"];
+//        $correct = ["A", "B", "D", "C", "A", "D", "B", "B", "D", "D", "B", "C", "A", "D", "C", "C",
+//            "C", "B", "A", "C", "C", "B", "A", "B", "A", "B", "A"];
+//        $curriculum = [
+//            "id" => 4,
+//            "level" => "1",
+//            "count" => 27
+//        ];
+//        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
+//            $temp = "/data/difference/".$curriculum["level"]."/" . (string)$j;
+//            foreach ($all as $value ) {
+//                if ($value !== $correct[$j-1]) {
+//                    $temp .= $value;
+//                }
+//
+//            }
+//            $temp .= ".jpg";
+//            DB::beginTransaction();
+//            try {
+//                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
+//                for ($t=0; $t < count($questions); $t++) {
+//                    $questions[$t]->question = $questions[$t]->correct_answer;
+//                    $questions[$t]->save();
+//                }
+////                dd($questions);
+////                Question::create([
+////                    "curriculum_id" => $curriculum["id"], #level3
+////                    "index" => $j,
+////                    "correct_answer" => "/data/difference/" . $curriculum["level"] . "/" . (string)$j . $correct[$j - 1] . ".jpg",
+////                    "wrong_answer" => \GuzzleHttp\json_encode([$temp, $temp, $temp])
+////                ]);
+//                DB::commit();
+//            } catch(Exception $e) {
+//                DB::rollback();
+//            }
+//
+//        }
 
         #normal
 //        $all = ["a", "b", "c"];
@@ -538,5 +538,40 @@ class FrontendController extends Controller
 //            }
 //        }
 
+        /**
+         * Creative
+         */
+
+        $curriculum = [
+            "id" => 3,
+            "level" => "1",
+            "count" => 10
+        ];
+        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
+
+            DB::beginTransaction();
+            try {
+//                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
+//                for ($t=0; $t < count($questions); $t++) {
+//                    $questions[$t]->question = $questions[$t]->correct_answer;
+//                    $questions[$t]->save();
+//                }
+//                dd($questions);
+                $temp = [];
+                for ($k=1; $k<7; $k++) {
+                    $temp[] = "/data/creative/1/".$j."/".$k.".jpg";
+                }
+                Question::create([
+                    "curriculum_id" => $curriculum["id"], #level3
+                    "index" => $j,
+                    "correct_answer" => \GuzzleHttp\json_encode([]),
+                    "wrong_answer" => \GuzzleHttp\json_encode($temp)
+                ]);
+                DB::commit();
+            } catch(Exception $e) {
+                DB::rollback();
+            }
+
+        }
     }
 }

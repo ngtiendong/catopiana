@@ -169,10 +169,11 @@ body:not(.modal-open){
 .swal2-popup .swal2-radio input[type='radio'] {
     display: block;
     border: 0px;
-    width: 2em;
+    /*width: 2em;*/
     height: 2em;
     margin: auto !important;
     cursor: pointer;
+    transform: scale(1.8);
 }
 
 .section-test .tab .audio-image {
@@ -318,7 +319,7 @@ body:not(.modal-open){
 }
 
 .section-test .below-test {
-    
+
 }
 
 .section-test .list-below-test {
@@ -360,7 +361,7 @@ body:not(.modal-open){
 }
 
 img.image-point-l:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
 .column-left img.image-point-l {
