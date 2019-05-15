@@ -53,7 +53,7 @@ $(function(){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Reset',
         cancelButtonText: 'No',
-        animation: false,
+        // animation: false,
         backdrop: `rgba(0,0,0,0.1)`,
         customClass: {
             popup: 'swal-pop-reset animated zoomIn',
