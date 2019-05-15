@@ -91,7 +91,6 @@ class Question extends Model
         $raw_data = [];
 
         foreach ($list_question as $question) {
-//            dd($question['question'], $topic, $curriculum, $list_question);
             $question = \GuzzleHttp\json_decode($question['question'], true);
             $raw_data[] = [
                 $question['left'],
@@ -116,8 +115,12 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-        $qty_question = 10 - (int)($index) ;
-        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        $qty_question = 10 - (int)($index);
+        if($level > 1) {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        } else {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
+        }
         if(sizeof($list_question) < $qty_question){
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
@@ -151,9 +154,13 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-        $qty_question = 30 - (int)($index) ;
+        $qty_question = 30 - (int)($index);
 
-        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if($level > 1) {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        } else {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
+        }
         if(sizeof($list_question) < $qty_question){
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
@@ -187,8 +194,12 @@ class Question extends Model
         if($curriculum == null){
             return $raw_data;
         }
-        $qty_question = 10 - (int)($index) ;
-        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        $qty_question = 10 - (int)($index);
+        if($level > 1) {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        } else {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
+        }
         if(sizeof($list_question) < $qty_question){
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
@@ -228,7 +239,11 @@ class Question extends Model
             return $raw_data;
         }
         $qty_question = 10 - (int)($index) ;
-        $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        if($level > 1) {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->take($qty_question)->get()->toArray();
+        } else {
+            $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
+        }
         if(sizeof($list_question) < $qty_question){
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
@@ -238,7 +253,6 @@ class Question extends Model
             $list_question = array_merge($list_question, $list_question_more);
         }
         foreach ($list_question as $question) {
-//            dd($question['question'], $topic, $curriculum, $list_question);
             $question = \GuzzleHttp\json_decode($question['question'], true);
             $raw_data[] = [
                 $question['left'],
