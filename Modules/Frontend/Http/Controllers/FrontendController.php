@@ -89,12 +89,15 @@ class FrontendController extends Controller
                 $params['level'] = 4;
             }
 
-            if ($params['topic'] == "1"){
+            if ($params['type'] == "1"){
                 //Audio
                 $raw_data = Question::getListQuestionAudio($params['topic'], $params['level']);
-            }elseif ($params['topic'] == "8") {
+            }elseif ($params['type'] == "2") {
                 //Position
                 $raw_data = Question::getListQuestionPosition($params['topic'], $params['level']);
+            }elseif ($params['type'] == "4") {
+                //iq
+                $raw_data = Question::getListQuestionIq($params['topic'], $params['level']);
             }
             else {
                 $raw_data = Question::getListQuestion($params['topic'], $params['level']);
@@ -118,13 +121,16 @@ class FrontendController extends Controller
     {
         $params = $request->all();
         if (!empty($params['topic']) && !empty($params['topic']) && !empty($params['index'])) {
-            if ($params['topic'] == "1"){
+            if ($params['type'] == "1"){
                 //Audio
                 $raw_data = Question::getLessLevelQuestionAudio($params['topic'], $params['level'], $params['index']);
 
-            } elseif($params['topic'] == "8") {
+            } elseif($params['type'] == "2") {
                 //Position
                 $raw_data = Question::getLessLevelQuestionPosition($params['topic'], $params['level'], $params['index']);
+            } elseif($params['type'] == "4") {
+                //Iq
+                $raw_data = Question::getLessLevelQuestionIq($params['topic'], $params['level'], $params['index']);
             }
             else {
                 $raw_data = Question::getLessLevelQuestion($params['topic'], $params['level'], $params['index']);
@@ -164,19 +170,19 @@ class FrontendController extends Controller
             case 'iq':
                 return [
                     'topic' => "2",
-                    'type' => "0"
+                    'type' => "4"
                 ];
                 break;
             case 'creative':
                 return [
                     'topic' => "3",
-                    'type' => "0"
+                    'type' => "5"
                 ];
                 break;
             case 'difference':
                 return [
                     'topic' => "4",
-                    'type' => "0"
+                    'type' => "5"
                 ];
                 break;
             case 'common':
@@ -194,7 +200,7 @@ class FrontendController extends Controller
             case 'language':
                 return [
                     'topic' => "7",
-                    'type' => "0"
+                    'type' => "1"
                 ];
                 break;
             case 'position':

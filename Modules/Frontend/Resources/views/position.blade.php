@@ -23,15 +23,15 @@
                     </div>
                     <form id="testForm" style="display: none" data-login="{{ auth()->guard('customers')->check() ? true : false }}">
 
-                        <button class="test-button" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
-                        <button class="test-button" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>
-                        <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
-
-                        <div class="dot">
-                            <span class="badge badge-pill badge-primary"></span>
-                        </div>
+                        <button class="test-button button-gradient" type="button" id="prevBtn" onclick="prev()" style="display: none;">Previous</button>
+                        <button class="test-button button-gradient" type="button" id="nextBtn" onclick="next()" style="display: none;">Next</button>
+                        <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
                     </form>
                 </div>
+                <div class="dot">
+                    <span class="badge badge-pill badge-primary"></span>
+                </div>
+
             </div>
             <div class="below-test">
                 <div class="button-below-test col-md-12">

@@ -5,9 +5,9 @@
 <section class="psy-section test section-test" id="id2">
     <div class="container">
         <div class="row tn">
-            <div class="md-lg-12">
+            <div class="col-lg-12">
                 <div class="bigwhale icon-in-test-page">
-
+                    
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 fadeOut">
@@ -21,13 +21,13 @@
                         <div class="bar shadow bars"></div>
                     </div>
                     <form id="testForm" data-login="{{ auth()->guard('customers')->check() ? true : false }}" >
-                            <button class="test-button" type="button" id="prevBtn"  onclick="prev()">Previous</button>
-                            <button class="test-button" type="button" id="nextBtn" onclick="next()">Next</button>
-                            <button class="test-button" type="submit" id="submitBtn" style="display: none">Submit</button>
-                        <div class="dot">
-                            <span class="badge badge-pill badge-primary"></span>
-                        </div>
+                            <button class="test-button button-gradient" type="button" id="prevBtn"  onclick="prev()">Previous</button>
+                            <button class="test-button button-gradient" type="button" id="nextBtn" onclick="next()">Next</button>
+                            <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
                     </form>
+                </div>
+                <div class="dot">
+                    <span class="badge badge-pill badge-primary"></span>
                 </div>
             </div>
             <div class="below-test">
