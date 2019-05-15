@@ -2048,7 +2048,7 @@ footer .col {
 }
 
 .section-test .tab .answer label {
-    transition: all linear 0.3s;
+    transition: all ease 0.2s;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;

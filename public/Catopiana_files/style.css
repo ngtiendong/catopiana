@@ -3370,13 +3370,13 @@ button.start_memory:hover {
     border-radius: 6px;
     box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
     background-image: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
-    transition: all 1s ease-out;
+    transition: all 0.3s ease;
     background-size: 200% auto;
 }
 
 #id2 .reset_data:hover{
     background-image: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
-    transition: all 0.5s ease-out;
+    transition: all 0.5s ease;
     z-index: 4;
     background-position: right center;
     transform: scale(1.2);

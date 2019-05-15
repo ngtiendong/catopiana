@@ -18,7 +18,11 @@ class Question extends Model
         $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
         foreach ($list_question as $question) {
-            $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            if ($question['correct_answer']) {
+                $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            } else {
+                $answer = \GuzzleHttp\json_decode($question['wrong_answer'], true);
+            }
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
