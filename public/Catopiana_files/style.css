@@ -3031,11 +3031,6 @@ footer .col {
     border: solid 1px dimgrey;
 }
 
-.button-recevie-package:hover {
-    margin-top: 0px !important;
-    box-shadow: 0 0 0 !important;
-}
-
 .pricing .card {
     border: none !important;
     border-radius: 1rem !important;
