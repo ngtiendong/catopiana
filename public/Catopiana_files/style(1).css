@@ -1492,8 +1492,8 @@ footer .col {
 
 #id2 .container .test-item {
     display: block;
-    width: 100px;
-    margin: 0 50px 40px;
+    width: 120px;
+    margin: 0 30px 40px;
     position: relative;
     z-index: 5;
 }

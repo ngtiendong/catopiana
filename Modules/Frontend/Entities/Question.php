@@ -17,20 +17,26 @@ class Question extends Model
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
+        $result = [];
         foreach ($list_question as $question) {
             if ($question['correct_answer']) {
                 $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
             } else {
                 $answer = \GuzzleHttp\json_decode($question['wrong_answer'], true);
             }
+            shuffle($answer);
+            //Save answer
+            array_push($result, array_search($question['correct_answer'], $answer));
             $raw_data[] = [
                 'question' => $question['question'],
-                'answers' => $answer
+                'answers' => $answer,
             ];
         }
+
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -43,8 +49,12 @@ class Question extends Model
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
         $raw_data = [];
+        $result = [];
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            shuffle($answer);
+            //Save answer
+            array_push($result, array_search($question['correct_answer'], $answer));
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
@@ -53,6 +63,7 @@ class Question extends Model
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -65,11 +76,16 @@ class Question extends Model
         ])->orderBy('level', 'desc')->first();
         $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
+        $result = [];
         foreach ($list_question as $question) {
            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            shuffle($answers);
+            //Save answer
+            array_push($result, array_search($question['correct_answer'], $answers));
            foreach($answers as $key => $answer){
                $answers[$key] = asset($answer);
            }
+
            $raw_data[] = [
                'question' => $question['question'],
                'answers' => $answers,
@@ -77,9 +93,11 @@ class Question extends Model
                'answer_image' =>  asset($question['question_image'])
            ];
        }
+
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -93,17 +111,26 @@ class Question extends Model
 
         $list_question = Question::where('curriculum_id', $curriculum->id)->take(10)->get()->toArray();
         $raw_data = [];
-
+        $result = [];
         foreach ($list_question as $question) {
-            $question = \GuzzleHttp\json_decode($question['question'], true);
-            $raw_data[] = [
-                $question['left'],
-                $question['right']
+            $question_content = \GuzzleHttp\json_decode($question['question'], true);
+            shuffle($question_content['left']);
+            shuffle($question_content['right']);
+            $item = [
+                $question_content['left'],
+                $question_content['right']
             ];
+            $raw_data[] = $item;
+            $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
+            foreach ($correct_answer as $pair) {
+                 array_push($result, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+            }
+
         }
         return [
             'curriculum_id' => $curriculum->id, // fix
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => 2
         ];
     }
@@ -115,7 +142,7 @@ class Question extends Model
             ['level', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
-
+        $result = [];
         if($curriculum == null){
             return $raw_data;
         }
@@ -135,14 +162,19 @@ class Question extends Model
         }
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            shuffle($answer);
+            //Save answer
+            array_push($result, array_search($question['correct_answer'], $answer));
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
             ];
+
         }
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -154,7 +186,7 @@ class Question extends Model
             ['level', $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
-
+        $result = [];
         if($curriculum == null){
             return $raw_data;
         }
@@ -175,6 +207,9 @@ class Question extends Model
         }
         foreach ($list_question as $question) {
             $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+            shuffle($answer);
+            //Save answer
+            array_push($result, array_search($question['correct_answer'], $answer));
             $raw_data[] = [
                 'question' => $question['question'],
                 'answers' => $answer
@@ -183,6 +218,7 @@ class Question extends Model
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -194,7 +230,7 @@ class Question extends Model
             ['level',  $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
-
+        $result = [];
         if($curriculum == null){
             return $raw_data;
         }
@@ -214,6 +250,9 @@ class Question extends Model
         }
        foreach ($list_question as $question) {
            $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+           shuffle($answers);
+           //Save answer
+           array_push($result, array_search($question['correct_answer'], $answers));
            foreach($answers as $key => $answer){
                $answers[$key] = asset($answer);
            }
@@ -228,6 +267,7 @@ class Question extends Model
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => $curriculum->type
         ];
     }
@@ -239,6 +279,7 @@ class Question extends Model
             ['level',  $level]
         ])->orderBy('level', 'desc')->first();
         $raw_data = [];
+        $result = [];
         if($curriculum == null){
             return $raw_data;
         }
@@ -257,15 +298,23 @@ class Question extends Model
             $list_question = array_merge($list_question, $list_question_more);
         }
         foreach ($list_question as $question) {
-            $question = \GuzzleHttp\json_decode($question['question'], true);
-            $raw_data[] = [
-                $question['left'],
-                $question['right']
+            $question_content = \GuzzleHttp\json_decode($question['question'], true);
+            shuffle($question_content['left']);
+            shuffle($question_content['right']);
+            $item = [
+                $question_content['left'],
+                $question_content['right']
             ];
+            $raw_data[] = $item;
+            $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
+            foreach ($correct_answer as $pair) {
+                array_push($result, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+            }
         }
         return [
             'curriculum_id' => $curriculum->id, // fix
             'raw_data' => $raw_data,
+            'result' => $result,
             'type' => 2
         ];
     }
