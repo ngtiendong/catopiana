@@ -6,7 +6,7 @@
 	girl = new TimelineMax({ repeat: -1, yoyo: true });
 	girl.fromTo('.girl', 2, {rotation:-10, transformOrigin:"50% 50%", ease:Power0.easeNone}, {rotation:10, transformOrigin:"50% 50%", ease:Power0.easeNone}, 0.1)
 	boy = new TimelineMax({ repeat: -1, yoyo: true });
-	boy.fromTo('.boy', 1.37, {rotation:-10, transformOrigin:"50% 50%", ease:Power0.easeNone}, {rotation:10, transformOrigin:"50% 50%", ease:Power0.easeNone}, 0.33)
+	boy.fromTo('.boy, .boy_result', 1.37, {rotation:-10, transformOrigin:"50% 50%", ease:Power0.easeNone}, {rotation:10, transformOrigin:"50% 50%", ease:Power0.easeNone}, 0.33)
 
 
 	//whale
@@ -24,13 +24,18 @@
 	f3 = new TimelineMax({ repeat: -1, yoyo: false });
 	f3.fromTo('.f3', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
 	f31 = new TimelineMax({ repeat: -1, yoyo: true });
-	f31.fromTo('.f3', 1, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
+	f31.fromTo('.f3 ', 0.5, {skewY:"-7deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, {skewY:"0deg", transformOrigin:"50% 50%", ease:Power0.easeNone}, 0)
 
 	f0 = new TimelineMax({ repeat: -1, yoyo: false });
 	f0.to('.many-fish1, .many-fish3 ', 40, {css:{'left':'-200px'}}, 0).to('.many-fish2', 35, {css:{'left':'-200px'}}, 0).to('.many-fish4', 37, {css:{'left':'-200px'}}, 0.1)
 	f01 = new TimelineMax({ repeat: -1, yoyo: true });
 	f01.fromTo('.many-fish1, .many-fish2, .many-fish3, .many-fish4', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
 
+	f_1 = new TimelineMax({ repeat: -1, yoyo: false });
+	f_1.to('.f1-result2, .f1-result1', 40, {css:{'right':'-100px'}}, 0)
+	f_11 = new TimelineMax({ repeat: -1, yoyo: true });
+	f_11.fromTo('.f1-result2, .f1-result1', 1, {skewY:"0deg", transformOrigin:"45% 55%", ease:Power0.easeNone}, {skewY:"-6deg", transformOrigin:"55% 45%", ease:Power0.easeNone}, 0)
+	
 	f4 = new TimelineMax({ repeat: -1, yoyo: false });
 	f4.fromTo('.f4', 50, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
 	f41 = new TimelineMax({ repeat: -1, yoyo: true });
