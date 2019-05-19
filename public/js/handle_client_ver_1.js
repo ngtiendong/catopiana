@@ -941,7 +941,7 @@ function nextButton() {
         if (current_index_max >= this_question.current_index){
             showTab(this_question.current_index);
         } else {
-            if(parseInt(type) != 5 && parseInt(topic) != 3) {
+            if(parseInt(topic) != 3) {
                 countCorrectAnswer(just_answer);
             }
             current_index_max += 1;
