@@ -252,7 +252,7 @@ body:not(.modal-open){
     position: absolute;
     bottom: 1%;
     right: 20%;
-    z-index: 4;
+    z-index: 2;
     width: 150px;
 }
 
@@ -260,7 +260,7 @@ body:not(.modal-open){
     position: absolute;
     bottom: 3%;
     right: -13%;
-    z-index: 4;
+    z-index: 2;
     width: 80px;
 }
 
@@ -268,30 +268,30 @@ body:not(.modal-open){
     position: absolute;
     bottom: 0;
     right: -12%;
-    z-index: 4;
+    z-index: 2;
     width: 80px;
 }
-.continue_section .new-fish5-1 {
+.continue_section .new-fish5-1, .psy-section .new-fish5-1 {
     position: absolute;
     bottom: 51%;
     right: -12%;
-    z-index: 4;
+    z-index: 2;
     width: 150px;
 }
 
-.continue_section .new-fish5-2 {
+.continue_section .new-fish5-2, .psy-section .new-fish5-2 {
     position: absolute;
     bottom: 53%;
     right: -18%;
-    z-index: 4;
+    z-index: 2;
     width: 80px;
 }
 
-.continue_section .new-fish5-3 {
+.continue_section .new-fish5-3, .psy-section .new-fish5-3 {
     position: absolute;
     bottom: 50%;
     right: -15%;
-    z-index: 4;
+    z-index: 2;
     width: 80px;
 }
 

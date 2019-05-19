@@ -28,7 +28,7 @@
                         <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
                     </form>
                 </div>
-                <div class="dot">
+                <div class="dot" style="bottom: 6%">
                     <span class="badge badge-pill badge-primary"></span>
                 </div>
 
@@ -46,7 +46,9 @@
             </div>
         </div>
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" >
-         <img class="layout-test" src="{{asset('./Catopiana_files/images/test.png')}}" alt="">
+{{--        <img class="layout-test" src="{{asset('./Catopiana_files/images/test.png')}}" alt="">--}}
+
+        <img class="layout-test" src="{{asset('./Catopiana_files/images/position2.png')}}" alt="">
     </div>
     <div class="container list-test">
         <div class="row">
