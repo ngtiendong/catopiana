@@ -95,7 +95,7 @@ function waiting_element_load() {
     if ($('audio').length > 0) {
         $('.progress').css('display','block')
         let audio_not_load =  $('audio')
-        let bias = Math.ceil(100 /$('audio').length), w,w2, count=0, total=0
+        let bias = Math.floor(100/$('audio').length), w,w2, count=0, total=0
         // console.log( $('audio').length, document.querySelectorAll('audio:not([readyState="4"])').length)
         $('audio[readyState!="4"]').each(function(index){
             if ($(this).prop('readyState') != 4) {
@@ -142,7 +142,7 @@ function waiting_element_load() {
             })
             .progress(function () {
                 var w, w2, bias
-                bias = Math.ceil(95 / $('#testForm img').length)
+                bias = Math.floor(95 / $('#testForm img').length)
                 setTimeout(() => {
                     w = (bar.style.width).replace("%", "");
                     w2 = Math.round(parseInt(w) + bias);
