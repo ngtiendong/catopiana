@@ -7,7 +7,7 @@
     <div class="container continue_container">
         <div class="continue_row tn">
             <div class="col-md-12">
-                <div class="continue_test"">
+                <div class="continue_test">
                     <div class="row">
                         <h1 class="text-center title1">Congratulation!</h1>
                         <h2 class="text-center title2">Get your result and receive free test here</h2>

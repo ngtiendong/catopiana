@@ -10,7 +10,7 @@
 <script src="{{asset('/Catopiana_files/js/animation.gsap.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/slick.min.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/user.js')}}"></script>
-<script src="{{asset('/Catopiana_files/js/script.js')}}"></script>
+<script src="{{asset('/Catopiana_files/js/script.js?v=1.2')}}"></script>
 <script src="{{asset('/Catopiana_files/js/calculation.js')}}"></script>
 <script src="{{asset('/Catopiana_files/js/sweetalert2.min.js')}}"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
