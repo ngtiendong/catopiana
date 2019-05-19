@@ -95,7 +95,7 @@ function waiting_element_load() {
     if ($('audio').length > 0) {
         $('.progress').css('display','block')
         let audio_not_load =  $('audio')
-        let bias = Math.floor(100/$('audio').length), w,w2, count=0, total=0
+        let bias = round(100/$('audio').length, 0.2), w,w2, count=0, total=0
         // console.log( $('audio').length, document.querySelectorAll('audio:not([readyState="4"])').length)
         $('audio[readyState!="4"]').each(function(index){
             if ($(this).prop('readyState') != 4) {
@@ -103,8 +103,8 @@ function waiting_element_load() {
                 document.querySelectorAll('audio')[index].addEventListener('canplaythrough', ()=>{
                     setTimeout(()=>{
                         w = (bar.style.width).replace("%", "");
-                        w2 = Math.round(parseInt(w) + bias);
-                        console.log(w, w2, bar.style.width, bias, $('audio').length)
+                        w2 = parseFloat(w) + bias;
+                        // console.log(w, w2, bar.style.width, bias, $('audio').length)
                         bar.style.transitionDuration = `0.5s`;
                         bar.style.width = w2 + '%'
                     }, 1)
@@ -142,12 +142,15 @@ function waiting_element_load() {
             })
             .progress(function () {
                 var w, w2, bias
-                bias = Math.floor(95 / $('#testForm img').length)
+                bias = round(95 / $('#testForm img').length, 0.2)
+                if (bias == 0) {bias = 0.1}
+                // console.log("bias", bias, round(95 / $('#testForm img').length, 0.2), 95 / $('#testForm img').length)
                 setTimeout(() => {
                     w = (bar.style.width).replace("%", "");
-                    w2 = Math.round(parseInt(w) + bias);
+                    // console.log("result", parseFloat(w) + bias)
+                    w2 = parseFloat(w) + bias;
                     // console.log(image, w, w2, bar.style.width, bias, $('#testForm img').length)
-                    bar.style.transitionDuration = `1s`;
+                    bar.style.transitionDuration = `0.5s`;
                     bar.style.width = w2 + '%'
 
                 }, 1)
@@ -156,7 +159,11 @@ function waiting_element_load() {
     }
 }
 
-
+function round(value, step) {
+    step || (step = 1.0);
+    var inv = 1.0 / step;
+    return Math.round(value * inv) / inv;
+}
 // Dog
 // d1 = new TimelineMax({ repeat: -1, yoyo: true });
 // d1.fromTo('.iconwin1', 10, {css:{'left':'70%'}}, {css:{'left':'68%'}}, 0)
