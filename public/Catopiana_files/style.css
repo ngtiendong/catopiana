@@ -3673,7 +3673,7 @@ button.start_memory:hover {
 .swal2-popup .swal2-radio label {
     cursor: pointer;
     text-align: center !important;
-    margin: 0 1em !important;
+    margin: 0 0.8em !important;
     font-size: 1.975em !important;
 }
 

@@ -75,7 +75,7 @@ $(function () {
     $(document).ready(function() {
         //Check local storage
         if (typeof(test_level) === 'undefined') {
-            inputOptions = {'3': '3', '4': '4', '5': '5', '6': '6'}
+            inputOptions = {'4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10'}
             swal.fire({
                 title: 'Choose your age',
                 width: '40%',
