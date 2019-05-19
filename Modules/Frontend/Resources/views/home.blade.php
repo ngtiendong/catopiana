@@ -111,6 +111,16 @@
     <img class="b2 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
     <img class="b3 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
     <img class="b4 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+    <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="new-fish5-1" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+    <img class="new-fish5-2" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+    <img class="new-fish5-3" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">

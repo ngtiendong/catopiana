@@ -2069,6 +2069,7 @@ footer .col {
 }
 
 .section-test .tab .answer label img {
+    max-height: 170px;
     width: 150px;
     border: 1px solid deepskyblue;
     border-radius: 20px;

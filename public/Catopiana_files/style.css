@@ -3274,6 +3274,7 @@ a.psy-btn:hover {
     z-index: 3;
     bottom: 35%;
     right: 10%;
+    transform: scale(-1, 1);
 }
 
 button.start_memory {
@@ -3474,7 +3475,7 @@ button.start_memory:hover {
     z-index: 3;
     width: 400px
 }
-.continue_section .many-fish1 {
+.continue_section .many-fish1, .psy-section .many-fish1 {
     position: absolute;
     bottom: 40%;
     left: 65%;
@@ -3483,7 +3484,7 @@ button.start_memory:hover {
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-.continue_section .many-fish2 {
+.continue_section .many-fish2, .psy-section .many-fish2 {
     position: absolute;
     bottom: 42%;
     left: 58%;
@@ -3492,7 +3493,7 @@ button.start_memory:hover {
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-.continue_section .many-fish3 {
+.continue_section .many-fish3, .psy-section .many-fish3 {
     position: absolute;
     bottom: 44%;
     left: 65%;
@@ -3501,7 +3502,7 @@ button.start_memory:hover {
         -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-.continue_section .many-fish4 {
+.continue_section .many-fish4, .psy-section .many-fish4 {
     position: absolute;
     bottom: 46%;
     left: 62%;
