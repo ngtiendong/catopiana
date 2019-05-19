@@ -122,10 +122,11 @@ class Question extends Model
             ];
             $raw_data[] = $item;
             $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
+            $result_item = [];
             foreach ($correct_answer as $pair) {
-                 array_push($result, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+                array_push($result_item, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
             }
-
+            array_push($result, $result_item);
         }
         return [
             'curriculum_id' => $curriculum->id, // fix
@@ -307,9 +308,11 @@ class Question extends Model
             ];
             $raw_data[] = $item;
             $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
+            $result_item = [];
             foreach ($correct_answer as $pair) {
-                array_push($result, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+                array_push($result_item, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
             }
+            array_push($result, $result_item);
         }
         return [
             'curriculum_id' => $curriculum->id, // fix

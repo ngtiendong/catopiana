@@ -267,6 +267,7 @@ changeLocalStorage = (response) =>
             html_arr : html_arr,
             curriculum_ids : response_element.curriculum_ids.map(Number),
             customer_testing_id : response_element.customer_testing_id,
+            result: response_element.result,
             count_correct_answer: parseInt(response_element.count_correct_answer)
         };
         console.log('a', question)

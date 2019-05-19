@@ -20,7 +20,8 @@ class LocalStorageService
                 'topic' => $local_storage_item['topic'],
                 'test_level' => $local_storage['level'],
                 'received_free_package_status' => $local_storage['received_free_package_status'],
-                'count_correct_answer' => $local_storage_item['count_correct_answer']
+                'count_correct_answer' => $local_storage_item['count_correct_answer'],
+                'result' => $local_storage_item['result']
             ];
             CustomerTesting::create([
                 'customer_id' => auth()->guard('customers')->user()->id,
@@ -62,7 +63,8 @@ class LocalStorageService
                 'level' => json_decode($testing_item->content)->test_level,
                 'customer_testing_id' => $testing_item->id,
                 'received_free_package_status' => json_decode($testing_item->content)->received_free_package_status,
-                'count_correct_answer' => json_decode($testing_item->content)->count_correct_answer
+                'count_correct_answer' => json_decode($testing_item->content)->count_correct_answer,
+                'result' => json_decode($testing_item->content)->result
             ]; 
         }
         return $data_response;
@@ -80,7 +82,8 @@ class LocalStorageService
                 'topic' => $local_storage_item['topic'],
                 'test_level' => $local_storage['level'],
                 'received_free_package_status' => $local_storage['received_free_package_status'],
-                'count_correct_answer' => $local_storage_item['count_correct_answer']
+                'count_correct_answer' => $local_storage_item['count_correct_answer'],
+                'result' => $local_storage_item['result']
             ];
             CustomerTesting::updateOrCreate(
                 ['id' => $local_storage_item['customer_testing_id'] ,'customer_id' => $customer->id ],
@@ -106,7 +109,8 @@ class LocalStorageService
             'type' => $local_storage_item['type'],
             'topic' => $local_storage_item['topic'],
             'test_level' => $level,
-            'count_correct_answer' => $local_storage_item['count_correct_answer']
+            'count_correct_answer' => $local_storage_item['count_correct_answer'],
+            'result' => $local_storage_item['result']
         ];
         $this_testing = CustomerTesting::updateOrCreate(
             ['id' => $local_storage_item['customer_testing_id'] ,'customer_id' => $customer->id ],
