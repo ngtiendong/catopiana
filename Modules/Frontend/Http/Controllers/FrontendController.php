@@ -106,6 +106,7 @@ class FrontendController extends Controller
                 'status' => 1,
                 'question_data' => $raw_data['raw_data'],
                 'type' => $raw_data['type'],
+                'result' => $raw_data['result'],
                 'curriculum_id' => $raw_data['curriculum_id']
             ];
         } else {
@@ -140,6 +141,7 @@ class FrontendController extends Controller
                     'status' => 1,
                     'question_data' => $raw_data['raw_data'],
                     'type' => $raw_data['type'],
+                    'result' => $raw_data['result'],
                     'curriculum_id' => $raw_data['curriculum_id']
                 ];
             } else {

@@ -116,47 +116,49 @@
                 // }
             // } 
     // });
-jQuery(document).ready(function($) {
-    let gen_html = '';
-    let style = '';
-    for (var i=1; i<9; i++) {
-        this_question = testing_data.question[i -1];
-        if (this_question.status == 1) {
-            if(parseInt(this_question.type) == 2) {
-                total_question = countTotalPosition(this_question)
-                correct = filterCorrectPosition(this_question);
-            } else {
-                total_question = parseInt(this_question.question_data.length);
-                correct = this_question.answers.filter(answer => answer == 0).length;
+    jQuery(document).ready(function($) {
+        let gen_html = '';
+        let style = '';
+        for (var i=1; i<9; i++) {
+            this_question = testing_data.question[i -1];
+            if (this_question.status == 1) {
+                if(parseInt(this_question.type) == 2) {
+                    total_question = countTotalPosition(this_question)
+                    correct = filterCorrectPosition(this_question);
+                } else {
+                    total_question = parseInt(this_question.question_data.length);
+                    correct = filterCorrectNormal(this_question);
+                }
+               result = correct+'/'+total_question ;
+               topic = parseInt(this_question.topic);
             }
-           result = correct+'/'+total_question ;
-           topic = parseInt(this_question.topic);
+            gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[topic-1] +'<p><b>'+result+'</b></p></div>'
         }
-        gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[topic-1] +'<p><b>'+result+'</b></p></div>'
-    }
-    $('.free_test_result .list_icon').append(gen_html)
-});
+        $('.free_test_result .list_icon').append(gen_html)
+    });
 
-$(document).on('click', '.button-recevie-package', function(event) {
-        // add status đã nhận package to localstorage
-        if(received_free_package_status == 2) {
-            testing_data.received_free_package_status = 1;
-            localStorage.setItem('testing', JSON.stringify(testing_data));
-            url = $(this).data('route');
-            window.location.href = url
-        } else if(received_free_package_status == 1) {
-            url = $(this).data('route');
-            window.location.href = url
-        } else {
-            return false;
-        }
-});
+    $(document).on('click', '.button-recevie-package', function(event) {
+            // add status đã nhận package to localstorage
+            if(received_free_package_status == 2) {
+                testing_data.received_free_package_status = 1;
+                localStorage.setItem('testing', JSON.stringify(testing_data));
+                url = $(this).data('route');
+                window.location.href = url
+            } else if(received_free_package_status == 1) {
+                url = $(this).data('route');
+                window.location.href = url
+            } else {
+                return false;
+            }
+    });
     function filterCorrectPosition(this_question) {
-        let result = 0
-        this_question.answers.forEach(function(value, index){
-            for (var k=0; k<value.length; k++) {
-                if (value[k][0] == value[k][1] ) {
-                    result += 1
+        result = 0
+        this_question.answers.forEach(function(answer, i){
+            result_element = this_question.result[i];
+            for (var k=0; k<answer.length; k++) {
+                ans = answer[k].filter(function(value, index, array){ return index < 2});
+                if (result_element.containsArray(ans)) {
+                    result += 1;
                 }
             }
         })
@@ -168,6 +170,29 @@ $(document).on('click', '.button-recevie-package', function(event) {
             total += value.length
         })
         return total;
+    }
+    Array.prototype.containsArray = function(val) {
+        var hash = {};
+        for(var i=0; i<this.length; i++) {
+            hash[this[i]] = i;
+        }
+        return hash.hasOwnProperty(val);
+    }
+
+    function filterCorrectNormal(this_question) {
+        if(this_question.type === "5" && this_question.topic === "3"){
+            return this_question.answers.length;
+        } else {
+            result = 0
+            result_element = this_question.result;
+            answer_element = this_question.answers;
+            for (var k=0; k<answer_element.length; k++) {
+                if (result_element[k] == answer_element[k]) {
+                    result += 1;
+                }
+            }
+            return result;
+        }
     }
 </script>
 @endsection

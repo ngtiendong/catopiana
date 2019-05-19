@@ -410,7 +410,9 @@ function getNewQuestionData(position) {
                 }
                 var curriculum_ids = [];
                 curriculum_ids.push(response.curriculum_id)
-
+                console.log('tudm')
+                console.log(response.result)
+                console.log('tudmend')
                 this_question = {
                     type: response.type,
                     topic: topic,
@@ -422,6 +424,7 @@ function getNewQuestionData(position) {
                     html_arr : html_arr,
                     curriculum_ids : curriculum_ids,
                     customer_testing_id : '',
+                    result: response.result,
                     count_correct_answer: 0
                 };
                 if (typeof testing_data !== 'undefined') {
@@ -579,6 +582,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
 
                     Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
                     var tab_ = $('.tab');
                     var html_gen_again = '';
                     console.log(tab_, indexIncorrect)
@@ -666,6 +670,7 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 
                     Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
                     Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
                     var tab_ = $('.tab');
                     var html_gen_again = '';
                     for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
@@ -936,8 +941,9 @@ function nextButton() {
         if (current_index_max >= this_question.current_index){
             showTab(this_question.current_index);
         } else {
-            countCorrectAnswer(just_answer);
-
+            if(parseInt(type) != 5 && parseInt(topic) != 3) {
+                countCorrectAnswer(just_answer);
+            }
             current_index_max += 1;
             // dừng việc check20s tránh đuplicate lặp timeout
             // stopTimeToChange()
@@ -1212,14 +1218,27 @@ $(document).on('click', '.button-below.previous', function(event) {
 });
 
 countCorrectAnswer = (just_answer) => {
-    if(just_answer == fakeAnswer) {
+    position_current_answer = this_question.answers.length -1 ;
+    if(checkAnswer(just_answer, this_question, position_current_answer)) {
         this_question.count_correct_answer += 1;
         doubleFalse = false;
     } else {
-        if(this_question.answers.length > 1 && this_question.answers[this_question.answers.length - 2 ] != fakeAnswer) {
+        if(position_current_answer > 0 && !checkAnswer(this_question.answers[position_current_answer -1], this_question, position_current_answer - 1) ) {
             doubleFalse = true;
         }
     }
     console.log('anss:', this_question.count_correct_answer )
     console.log('doubleFalse:', doubleFalse )
+}
+
+checkAnswer = (just_answer, this_question, position_current_answer) => {
+    console.log(just_answer)
+    console.log(position_current_answer)
+    console.log(this_question.result)
+    if(just_answer == this_question.result[position_current_answer]) {
+        console.log('right')
+        return true;
+    }
+    console.log('wrong')
+    return false;
 }

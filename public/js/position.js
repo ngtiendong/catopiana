@@ -283,7 +283,7 @@ function submitPosition() {
 
         let candidate_answers = this_question.answers;
         console.log('answer', candidate_answers, this_question, just_answer)
-        let correct = filterCorrectPosition()
+        
         var login = $('#testForm').data('login');
         if(login) {
             updateDataTesting();
@@ -323,12 +323,13 @@ function convertAnswersPosition()
 }
 
 countCorrectAnswerPosition = (just_answer) => {
-    let correct_just = checkAnswer(just_answer)
+    position_current_answer = this_question.answers.length - 1;
+    let correct_just = checkAnswerPosition(just_answer, position_current_answer)
     if(correct_just == true) {
         this_question.count_correct_answer += 1;
         doubleFalse = false;
     } else {
-        if(this_question.answers.length > 1 && !checkAnswer(this_question.answers[this_question.answers.length - 2 ])) {
+        if(position_current_answer > 0 && !checkAnswerPosition(this_question.answers[position_current_answer - 1 ], position_current_answer - 1)) {
             doubleFalse = true;
         }
     }
@@ -336,13 +337,29 @@ countCorrectAnswerPosition = (just_answer) => {
     console.log('doubleFalse:', doubleFalse )
 }
 
-checkAnswer = (answer) => {
+checkAnswerPosition = (answer, position_current_answer) => {
     let correct = true;
+    result = this_question.result[position_current_answer];
+    // console.log('rrrr ', result);
+    // console.log('aaaa ',answer);
     for (var k=0; k<answer.length; k++) {
-        if (answer[k][0] != answer[k][1] ) {
+        ans = answer[k].filter(function(value, index, array){ return index < 2});
+        // console.log('fite', ans);
+        // console.log('ádasdasd', result.containsArray(ans));
+        if (!result.containsArray(ans)) {
             correct = false;
+            // console.log('false')
             break;
         }
     }
+    // console.log('true')
     return correct;
+}
+
+Array.prototype.containsArray = function(val) {
+    var hash = {};
+    for(var i=0; i<this.length; i++) {
+        hash[this[i]] = i;
+    }
+    return hash.hasOwnProperty(val);
 }
