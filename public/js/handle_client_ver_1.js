@@ -410,9 +410,9 @@ function getNewQuestionData(position) {
                 }
                 var curriculum_ids = [];
                 curriculum_ids.push(response.curriculum_id)
-                console.log('tudm')
+                // console.log('tudm')
                 console.log(response.result)
-                console.log('tudmend')
+                // console.log('tudmend')
                 this_question = {
                     type: response.type,
                     topic: topic,
