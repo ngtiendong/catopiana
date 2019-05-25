@@ -3270,7 +3270,8 @@ button.start_memory:hover {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 100%
+    width: 100%;
+    margin-top: 2%;
 }
 
 #id2 .reset_data {
