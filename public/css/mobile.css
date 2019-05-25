@@ -11,6 +11,9 @@
     font-size: 20px;
 }
 
+.list-test-slide .test-item {
+    height: auto !important;
+}
 .reset_data-mobile {
     display: block;
     padding: 10px 15px;
@@ -90,7 +93,7 @@
     }
     #id2 .container .test-item {
         margin: 20px 20px;
-        width: 100%;
+        /*width: 100%;*/
     }
     #id2 .below-list-test-f .test-item {
         width: 75%;
@@ -461,6 +464,7 @@
     .dot-background-2 {
         bottom: -6.5% !important;
     }
+
     /* padding: 10px 5px; */
 }
 
@@ -469,14 +473,14 @@
         padding: 10px 5px;
     }
     .section-test .dot {
-        bottom: -3%;
+        bottom: -2%;
     }
     .dot-background-2 {
         bottom: -1% !important;
     }
 
     .newTestOverlay {
-        top: 45px;
+        top: 42px;
         height: 270px;
     }
     .background-2 {
