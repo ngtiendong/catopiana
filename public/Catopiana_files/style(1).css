@@ -1924,12 +1924,6 @@ footer .col {
         margin-top: -100px;
     }
 
-    #id2 .container .test-item {
-        margin: 0;
-        padding: 0 10px;
-        width: 120px;
-    }
-
 
 
 #for-parent {
@@ -2222,7 +2216,7 @@ footer .col {
 
 .section-test .dot {
     position: absolute;
-    bottom: 5%;
+    /*bottom: 5%;*/
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);

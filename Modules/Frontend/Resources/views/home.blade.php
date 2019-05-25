@@ -68,6 +68,9 @@
         <div class="list-test-slide">
 
         </div>
+        <div class="button_reset">
+            <button class="reset_data-mobile reset_init_data">Reset Data</button>
+        </div>
     </div>
     <div class="container list-test free_topic container-desktop"><!-- free_topic_here -->
         <div class="row">
