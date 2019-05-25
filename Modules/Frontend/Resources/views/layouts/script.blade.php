@@ -21,7 +21,7 @@
 <script src="{{asset('/js/effect.js?v=1.2')}}"></script>
 <script src="{{asset('/js/waitForImages.js')}}"></script>
 <script src="{{asset('/js/animation-custom.js')}}"></script>
-<script src="{{asset('/js/mobile.js')}}"></script>
+<script src="{{asset('/js/mobile.js?v=1.1')}}"></script>
 
 <script>
 	$('.d-nav').hc_menu({

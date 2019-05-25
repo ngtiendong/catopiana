@@ -243,6 +243,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .newTestOverlay {
+        top: 241px;
+        height: 500px;
+    }
     #id2 .container .test-item {
         width: 12%;
         padding: 0;
@@ -250,13 +254,22 @@
     #id2 .below-list-test-f .test-item {
         width: 65%;
     }
+    .section-test .dot {
+        bottom: 12.5%;
+    }
 
 }
 
 @media screen and (max-width: 668px) {
-
+    .newTestOverlay {
+        top: 151px;
+        height: 450px;
+    }
     .background-2 {
         top: 70px;
+    }
+    .section-test .dot {
+        bottom: 19%;
     }
     .dot-background-2 {
         bottom: 20% !important;
@@ -316,15 +329,15 @@
     Copy doan nay cho moi width khac nhau
      */
     #id2.section-test .container .testOver {
-        height: 40%;
+        height: 55%;
     }
     .fadeOut {
         top: 0px;
     }
     .newTestOverlay {
-        top: 38px;
+        top: 270px;
         width: 80%;
-        height: 270px;
+        height: 450px;
     }
 
     #id2 .container .row.tn h3 {
@@ -343,29 +356,10 @@
         width: 40px;
         border-radius: 5px;
     }
-    .section-test .tab .answer label.no-question-answer img {
-        width: 70px;
-        max-height: 70px;
-    }
+
     .section-test .dot {
-        bottom: -1%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
-    .section-test .dot span {
-        font-size: 10px;
-    }
-    #id2.section-test .test-button {
-        width: 60px;
-        height: auto;
-        font-size: 8px;
-    }
-    #nextBtn, #submitBtn {
-        right: -40px;
-    }
-    #prevBtn {
-        left: -40px;
+        bottom: 5.5%;
+
     }
     #id2 .container .test-item {
         width: 100%;
@@ -405,6 +399,27 @@
 }
 
 @media screen and (max-width: 480px) {
+    #id2.section-test .container .testOver {
+        height: 40%;
+    }
+    .section-test .tab .answer label.no-question-answer img {
+        width: 70px;
+        max-height: 70px;
+    }
+    .section-test .dot span {
+        font-size: 10px;
+    }
+    #id2.section-test .test-button {
+        width: 60px;
+        height: auto;
+        font-size: 8px;
+    }
+    #nextBtn, #submitBtn {
+        right: -40px;
+    }
+    #prevBtn {
+        left: -40px;
+    }
     .d-nav {
         flex-wrap: wrap;
     }
@@ -467,6 +482,27 @@
 
     /* padding: 10px 5px; */
 }
+@media screen and (max-width: 384px) {
+    .d-nav{
+        padding: 10px 5px;
+    }
+    .section-test .dot {
+        bottom: -2%;
+    }
+    .dot-background-2 {
+        bottom: -1% !important;
+    }
+
+    .newTestOverlay {
+        top: 42px;
+        height: 270px;
+    }
+    .background-2 {
+        top: 38px;
+    }
+}
+
+
 
 @media screen and (max-width: 376px) {
     .d-nav{
@@ -485,6 +521,16 @@
     }
     .background-2 {
         top: 38px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .newTestOverlay {
+        top: 40px;
+        height: 250px;
+    }
+    .section-test .dot {
+        bottom: -1%;
     }
 }
 
