@@ -25,7 +25,17 @@ var array_svg = [
     '<a class="test-item global" href="/position" data-topic="8">'+position+'</a>'
 ]
 
+// free topic at home page
+array_svg.forEach((item, key) => {
+    if(key < 4) {
+        $('.free_topic .top').append(item)
+    } else if ( key < 8) {
+        $('.free_topic .bot').append(item)
+    }
+    $('.list-test-slide').append(item)
+})
+
 if(typeof topic !== 'undefined'){
-	console.log(topic)
+	console.log("topic:", topic)
 	$('.bigwhale').append(array_svg[topic-1])
 }

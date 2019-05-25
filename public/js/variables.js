@@ -2,7 +2,13 @@ var tab_number = document.getElementsByClassName("tab");
 var total_question = 0
 var topic = $('#topic').val().toString()
 var type = $('#type').val().toString()
-
+var check_mobile = function() {
+	if ($(window).width() < 700) {
+		return true
+	} else{
+		return false
+	}
+}
 var this_question
 var position_this_question
 var buttonMemoryChecked = true;

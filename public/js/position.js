@@ -221,7 +221,12 @@ function gen_line_from_localstorage(old_line_array, current_tab) {
 }
 
 function createLine(left_element, right_element, start=0) {
-    var first, end, param;
+    var first, end, param, size;
+    if (check_mobile()){
+        size = 1
+    } else{
+        size = 4
+    }
     // console.log(left_element.width, left_element.height, right_element.width, right_element.height)
     if (start == 0) {
         first = LeaderLine.pointAnchor(left_element, {
@@ -232,7 +237,7 @@ function createLine(left_element, right_element, start=0) {
             x: 0,
             y: right_element.height/2
         })
-        param = { size: 4, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+        param = { size: size, dropShadow: true, startSocket: 'right', endSocket: 'left', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
                 startColor: 'rgb(17, 148, 51)',
                 endColor: 'rgb(17, 148, 51)'
             }, hide: true
@@ -246,7 +251,7 @@ function createLine(left_element, right_element, start=0) {
             x: left_element.width,
             y: left_element.height/2
         })
-        param = { size: 4, dropShadow: true, startSocket: 'left', endSocket: 'right', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
+        param = { size: size, dropShadow: true, startSocket: 'left', endSocket: 'right', startPlug: 'arrow3', endPlug: 'arrow3', gradient: {
                 startColor: 'rgb(17, 148, 51)',
                 endColor: 'rgb(17, 148, 51)'
             }, hide: true

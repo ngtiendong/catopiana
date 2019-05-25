@@ -1,14 +1,15 @@
 @extends('frontend::layouts.layout')
 @section('content')
 <section class="psy-section" id="id1">
-    <div class="container">
+    <img class="mobile background-mobile" src="{{asset('./Catopiana_files/images/background-mobile.png')}}" alt="">
+    <div class="container container-desktop">
         <div class="board">
             <img id="bb" src="{{asset('./Catopiana_files/images/bh.png')}}" alt="">
             <div class="row">
-                <div class="col-lg-5 item">
+                <div class="col-xs-5 col-md-5 col-lg-5 item">
                     <h1>CAT</h1>
                 </div>
-                <div class="col-lg-7 item">
+                <div class="col-xs-7 col-md-7 col-lg-7 item">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In aliquam dolore pariatur odit repellendus perspiciatis corrupti dolorem, porro est voluptatibus quo, eum unde rerum enim et animi nisi temporibus necessitatibus debitis! Quis molestias sint quaerat.</p>
                 </div>
             </div>
@@ -24,6 +25,15 @@
                 <a class="psy-btn" href="#id2">Children</a>
             </div>
         </div>
+        <div class="board-mobile">
+            <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
+            <img id="bb" src="{{asset('./Catopiana_files/images/tag-01.png')}}" alt="">
+            <div class="board-list-button">
+                <a href="#" class="board-button linear-button"><button>Parent</button></a>
+                <a href="#" class="board-button linear-button"><button >Children</button></a>
+            </div>
+        </div>
+
     </div>
     <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
     <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
@@ -35,7 +45,7 @@
     <img class="b4 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
 </section>
 <section class="psy-section" id="id2">
-    <div class="container">
+    <div class="container container-desktop">
         <div class="row tn">
             <div class="col-md-6 col-md-offset-3">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur iste sunt explicabo? Doloremque, odio. Quos totam corrupti dignissimos? Consequuntur impedit quaerat non dolorum autem tenetur! Impedit deserunt dignissimos facilis odio.</h3>
@@ -53,9 +63,16 @@
         <img class="boy" src="{{asset('./Catopiana_files/images/boy.png')}}" alt="">
         <img class="whale" src="{{asset('./Catopiana_files/images/wavebg.png')}}" alt="">
     </div>
-    <div ></div>
     {{-- @if (!auth()->guard('customers')->user() || auth()->guard('customers')->user()->test_status == 0) --}}
-    <div class="container list-test free_topic"><!-- free_topic_here -->
+    <div class="container-mobile-test mobile">
+        <div class="list-test-slide">
+
+        </div>
+        <div class="button_reset">
+            <button class="reset_data-mobile reset_init_data">Reset Data</button>
+        </div>
+    </div>
+    <div class="container list-test free_topic container-desktop"><!-- free_topic_here -->
         <div class="row">
             <div class="top">
             </div>
@@ -67,7 +84,7 @@
         </div>
     </div>
     {{-- @else --}}
-    <div class="container list-test package-give-free" style="z-index: 9; text-align: center; display: none">
+    <div class="container list-test package-give-free container-desktop" style="z-index: 9; text-align: center; display: none">
         <div class="row">
 {{--             @if(isset($freePackage) &&  $freePackage != null)
                 <h2 class="text-center" style=" font-size: 30px; margin-bottom: 25px;">Your free curriculum:</h2>
@@ -100,6 +117,8 @@
             </div>
         </div>
     </div>
+
+
     {{-- @endif --}}
     <img class="whale1" src="{{asset('./Catopiana_files/images/whale-1.svg')}}" alt="">
     <img class="f6 fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
@@ -111,16 +130,21 @@
     <img class="b2 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
     <img class="b3 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
     <img class="b4 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b1 b11 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b2 b12 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b3 b13 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b4 b14 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
+    <img class="b5 b15 bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="">
     <img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
     <img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
     <img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-    <img class="new-fish5-1" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
-    <img class="new-fish5-2" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
-    <img class="new-fish5-3" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+    <img class="many-fish1 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish2 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish3 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="many-fish4 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+    <img class="new-fish5-1 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+    <img class="new-fish5-2 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+    <img class="new-fish5-3 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
 </section>
 <section class="psy-section" id="id3">
     <div class="container-fluid">
@@ -147,8 +171,8 @@
         </div>
         <!-- utilities -->
         <div class="testnow-tailieu-wr">
-            <button class="testnow">Test now</button>
-            <button class="tailieu">Tai Lieu</button>
+            <button class="testnow parent-button-mobile">Test now</button>
+            <button class="tailieu parent-button-mobile">Tai Lieu</button>
         </div>
         <div class="above-trynow">
             <p>
@@ -163,8 +187,8 @@
                 Reiciendis, soluta.
             </p>
         </div>
-        <div class="trynow-btn-wr">
-            <button>Try now</button>
+        <div class="trynow-btn-wr ">
+            <button class="parent-button-mobile">Try now</button>
         </div>
         <div class="article-slide-wr">
             <div class="article-slide">

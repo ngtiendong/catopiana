@@ -18,17 +18,17 @@
 <img class="b18 bubble-top bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="" style="left: 25%">
 <img class="b19 bubble-top bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="" style="left: 91%">
 <img class="b20 bubble-top bubble" src="{{asset('./Catopiana_files/images/b1.svg')}}" alt="" style="left: 80%">
-<img class="f6 fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
+<img class="f6 fish flock-fish" src="{{asset('./Catopiana_files/images/f6.svg')}}" alt="">
 {{-- <img class="f7 fish" src="{{asset('./Catopiana_files/images/f7.svg')}}" alt=""> --}}
-<img class="f1 fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
-<img class="f3 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="f4 fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="many-fish1" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="many-fish2" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="many-fish3" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="many-fish4" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
-<img class="bach-tuoc" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
-<img class="con-sua" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
-<img class="new-fish5-1" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
-<img class="new-fish5-2" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
-<img class="new-fish5-3" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+<img class="f1 fish flock-fish" src="{{asset('./Catopiana_files/images/f1.svg')}}" alt="">
+<img class="f3 fish flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="f4 fish flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish1 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish2 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish3 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="many-fish4 flock-fish" src="{{asset('./Catopiana_files/images/f3.svg')}}" alt="">
+<img class="bach-tuoc mobile-ocean-creatures" src="{{asset('./Catopiana_files/images/bach-tuoc.png')}}" alt="">
+<img class="con-sua mobile-ocean-creatures" src="{{asset('./Catopiana_files/images/con-sua.png')}}" alt="">
+<img class="new-fish5-1 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+<img class="new-fish5-2 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">
+<img class="new-fish5-3 flock-fish" src="{{asset('./Catopiana_files/images/new-fish5.png')}}" alt="">

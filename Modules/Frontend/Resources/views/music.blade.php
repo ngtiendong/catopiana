@@ -15,7 +15,7 @@
             </div>
 
             <div class="col-md-12 testOver">
-                <div class="newTestOverlay">
+                <div class="newTestOverlay background-2">
                     {{-- <a class="startBtn">Click To Start!</a> --}}
                     <div class="progress">
                         <div class="bar shadow bars"></div>
@@ -29,7 +29,7 @@
                             <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
                     </form>
                 </div>
-                <div class="dot" style="bottom: 6%">
+                <div class="dot dot-background-2" >
                     <span class="badge badge-pill badge-primary"></span>
                 </div>
 
@@ -49,11 +49,7 @@
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
         <img class="layout-test" src="{{asset('./Catopiana_files/images/position2.png')}}" alt="">
     </div>
-    <div class="container list-test">
-        <div class="row">
 
-        </div>
-    </div>
     {{-- comment image to test not lag --}}
     @include('frontend::layouts.background')
 </section>

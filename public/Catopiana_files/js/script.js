@@ -72,16 +72,38 @@ jQuery(function($) {
 			});
 		},
 		slider: function(){
-			$('.ult-slide').slick({
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				dots: true,
-			});
-			$('.article-slide').slick({
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				dots: true,
-			});
+
+			window_width = $(window).width()
+			if (window_width < 641){
+				$('.article-slide').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					dots: false,
+				});
+				$('.list-test-slide').slick({
+					slidesToShow: 4,
+					slidesToScroll: 4,
+					dots: true,
+				});
+				$('.ult-slide').slick({
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					dots: true,
+				});
+			} else{
+				$('.article-slide').slick({
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					dots: true,
+				});
+				$('.ult-slide').slick({
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					dots: true,
+				});
+			}
+
+
 		},
 		psy: function(){
 			var btn = '.psy-btn', sec = $('.psy-section'), pane = '.psy-pane';
@@ -136,15 +158,7 @@ jQuery(function($) {
 		tl2.restart();
 		tl2.pause();
 	});
-	// free topic at home page
-	array_svg.forEach((item, key) => {
-	  	if(key < 4) {
-	  		$('.free_topic .top').append(item)
-	  	} else if ( key < 8) {
-	  		$('.free_topic .bot').append(item)
-	  	}
 
-	})
 
 	$($('.test-item')).hover(function() {
 		tlgt = new TimelineMax();

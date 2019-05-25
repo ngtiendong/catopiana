@@ -78,7 +78,7 @@ $(function () {
             inputOptions = {'4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10'}
             swal.fire({
                 title: 'Choose your age',
-                width: '40%',
+                // width: '40%',
                 input: 'radio',
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
@@ -207,12 +207,12 @@ function generateUnfinishedTest(current_data) {
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
                 // console.log('i,j', j, i, current_data.answer[i])
                 if (j == current_data.answers[i]) {
-                    answer += '<label class="col-md-4" style="opacity: 1">' +
+                    answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 1">' +
                         '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
                 } else {
-                    answer += '<label class="col-md-4" style="opacity: 0.3"> ' +
+                    answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 0.3"> ' +
                         '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
                         '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
                         '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
@@ -784,7 +784,7 @@ function prev() {
 function render(question, answers) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
-        answerHTML += "<label class='col-md-4'>" +
+        answerHTML += "<label class='col-md-4 col-xs-4 col-lg-4'>" +
             "<input type='radio' value='"+el+index+"' data-position='"+index+"' hidden>" +
             "<img src='" + el + "' alt=''>" +
             "</label>"
@@ -808,7 +808,7 @@ function render(question, answers) {
     return content
 }
 function renderIQ(question, answers) {
-    let layout = 'col-md-4';
+    let layout = 'col-md-4 ';
     if(answers.length == 8) {
         layout = 'col-md-3'; 
     } 
@@ -853,7 +853,7 @@ function renderNoQuestion(answers) {
 function renderAudio(question, answers, question_image, answer_image){
     var answerHTML = "";
     answers.forEach(function(el, index) {
-        answerHTML += "<label class='col-md-4'>" +
+        answerHTML += "<label class='col-md-4 col-xs-4 col-lg-4'>" +
             "<input type='radio' style='z-index: -1;' value='"+el+"' data-position='"+index+"' hidden>" +
             "<img class='audio-image' src='" + answer_image +"' alt=''>" +
             "<audio src='"+ el+"' class='audio'></audio>" +
@@ -909,9 +909,9 @@ function displayTestUnFinishedInit() {
     let style = '';
     for (var i=1; i<9; i++) {
         if (list_test_finished.indexOf(i) > -1) {
-            gen_html += '<div class="col-md-3 below-list-test-f" style="opacity:0.4;">' + array_svg[i-1] + '</div>'
+            gen_html += '<div class="col-md-3 col-xs-3 col-lg-3 below-list-test-f" style="opacity:0.4;">' + array_svg[i-1] + '</div>'
         } else {
-            gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[i-1] + '</div>'
+            gen_html += '<div class="col-md-3 col-xs-3 col-lg-3 below-list-test-f">' + array_svg[i-1] + '</div>'
         }
 
     }
