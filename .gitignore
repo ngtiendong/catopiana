@@ -12,3 +12,4 @@ yarn-error.log
 .env
 .phpunit.result.cache
 .gitconfig
+/public/access.log
