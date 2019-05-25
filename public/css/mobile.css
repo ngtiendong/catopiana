@@ -509,7 +509,7 @@
         padding: 10px 5px;
     }
     .section-test .dot {
-        bottom: -2%;
+        bottom: -1%;
     }
     .dot-background-2 {
         bottom: -1% !important;
@@ -517,7 +517,7 @@
 
     .newTestOverlay {
         top: 42px;
-        height: 270px;
+        height: 250px;
     }
     .background-2 {
         top: 38px;
