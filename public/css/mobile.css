@@ -512,7 +512,7 @@
         bottom: 0%;
     }
     .dot-background-2 {
-        bottom: -1% !important;
+        bottom: 0% !important;
     }
 
     .newTestOverlay {
