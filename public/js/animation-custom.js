@@ -112,6 +112,25 @@
 	b10.from('.b10', 6, {y:300, opacity: 0}, 0.2)
 		.to('.b10', 7, {y:-500, opacity: 1}, 0.2)
 
+
+	b11 = new TimelineMax({ repeat: -1 });
+	b11.from('.b11', 0.5, {y:1000, opacity: 0.5}, 0.1)
+		.to('.b11', 8, {y:400, opacity: 1}, 0.1)
+	b12 = new TimelineMax({ repeat: -1 });
+	b12.from('.b12', 0.5, {y:1500, opacity: 0.5}, 0.1)
+		.to('.b12', 6, {y:300, opacity: 1}, 0.1)
+	b13 = new TimelineMax({ repeat: -1 });
+	b13.from('.b13', 0.5, {y:1500, opacity: 0.5}, 0.3)
+		.to('.b13', 10, {y:350, opacity: 1}, 0.3)
+	b14 = new TimelineMax({ repeat: -1 });
+	b14.from('.b14', 0.5, {y:1500, opacity: 0.5}, 1)
+		.to('.b14', 5, {y:200, opacity: 1}, 1)
+	// new bubble
+	b15 = new TimelineMax({ repeat: -1 });
+	b15.from('.b15', 6, {y:1500, x: 10, opacity: 0.5}, 0.5)
+		.to('.b15', 7, {y:800, opacity: 1}, 0.1)
+
+
 	f4 = new TimelineMax({ repeat: -1, yoyo: false });
 	f4.fromTo('.new-fish1', 80, {css:{'left':'-200px'}}, {css:{'left':'100%'}}, 0)
 	f41 = new TimelineMax({ repeat: -1, yoyo: true });

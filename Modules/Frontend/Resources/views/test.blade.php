@@ -45,11 +45,7 @@
         <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
         <img class="layout-test" src="{{asset('./Catopiana_files/images/test.png')}}" alt="">
     </div>
-    <div class="container list-test">
-        <div class="row">
 
-        </div>
-    </div>
     {{-- comment image to test not lag --}}
     @include('frontend::layouts.background')
 </section>

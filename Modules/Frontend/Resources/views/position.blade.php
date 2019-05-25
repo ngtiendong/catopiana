@@ -28,7 +28,7 @@
                         <button class="test-button button-gradient" type="submit" id="submitBtn" style="display: none">Submit</button>
                     </form>
                 </div>
-                <div class="dot" style="bottom: 6%">
+                <div class="dot" style="bottom: 0.5%">
                     <span class="badge badge-pill badge-primary"></span>
                 </div>
 

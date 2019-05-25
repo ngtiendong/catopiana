@@ -1448,6 +1448,7 @@ footer .col {
 .section-test#id2 .container .row.tn {
     position: absolute;
     height: 100%;
+    left: 15px;
 }
 
 .section-test#id2 .container .bigwhale {
@@ -1691,41 +1692,12 @@ footer .col {
     padding: 10px
 }
 
-.article-slide-wr,
-.ultilities-wr {
-    padding: 20px 30px
-}
-
-.ultilities-wr {
-    margin-top: 80px
-}
-
-.article-slide-wr {
-    background-color: rgba(11, 11, 11, 0.4)
-}
-
 .one-article .slide-content {
     font-family: 'Times New Roman';
     font-size: 14px;
     color: #99ecff;
     text-align: center;
     margin-top: 30px
-}
-
-.slick-next,
-.slick-prev {
-    position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0);
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0);
-    color: rgba(0, 0, 0, 0);
-    background-repeat: no-repeat;
-    width: 20px;
-    height: 24px;
-    background-position: center center;
-    cursor: pointer;
-    padding: 5px;
-    background-origin: padding-box
 }
 
 .slick-next,
@@ -1747,13 +1719,16 @@ footer .col {
 
 .slick-dots {
     list-style-type: none;
-    margin: 10px auto !important;
+    /*margin: 10px auto !important;*/
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 .slick-dots li {
@@ -1894,11 +1869,11 @@ footer .col {
 
 @media all and (max-width:800px) {
     #id1 .board .item.col-lg-5 h1 {
-        font-size: 25px;
+        font-size: 55px;
     }
 
     #id1 .board .item.col-lg-7 {
-        padding: 0 20px 0 200px;
+        /*padding: 0 20px 0 200px;*/
     }
 
     #id1 .cta .item-cta {
@@ -1924,10 +1899,12 @@ footer .col {
         left: -20px;
     }
 
-/*    #id2 .container .boy {
+    #id2 .container .boy {
         width: 200px;
-        right: -20px;
-    }*/
+        left: 75%;
+        top: 350px;
+    }
+    }
 /*
     #id2 .container .row.tn {
         padding-top: 150px;
@@ -1940,6 +1917,7 @@ footer .col {
     #id2 .container .bigwhale .bg {
         width: calc(100% - 20px);
         margin-left: -20px;
+        z-index: -1;
     }
 
     .list-test {
@@ -1949,10 +1927,10 @@ footer .col {
     #id2 .container .test-item {
         margin: 0;
         padding: 0 10px;
-        width: 90px;
+        width: 120px;
     }
 
-}
+
 
 #for-parent {
     position: relative;
@@ -2409,7 +2387,7 @@ footer .col {
 }
 
 .article-slide-wr {
-    background-color: rgba(11, 11, 11, 0.4);
+    background-color: rgba(13, 39, 86, 0.21);
 }
 
 .one-article .slide-content {
@@ -2436,244 +2414,244 @@ footer .col {
     background-origin: padding-box;
 }
 
-.article-slide-wr .slick-next,
-.article-slide-wr .slick-prev {
-    top: var(--imageheight1);
-}
+/*.article-slide-wr .slick-next,*/
+/*.article-slide-wr .slick-prev {*/
+    /*top: var(--imageheight1);*/
+/*}*/
 
-.ultilities-wr .slick-next,
-.ultilities-wr .slick-prev {
+/*.ultilities-wr .slick-next,*/
+/*.ultilities-wr .slick-prev {*/
 
     /*top: var(--imageheight2); }*/
-    .slick-next {
-        right: -20px;
-        background-image: url("/Catopiana_files/images/next-button.png");
+.slick-next {
+    right: -20px;
+    background-image: url("/Catopiana_files/images/next-button.png");
+}
+
+.slick-prev {
+    left: -20px;
+    background-image: url("/Catopiana_files/images/prev-button.png");
+}
+
+.slick-dots {
+    list-style-type: none;
+    margin: 10px auto !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.slick-dots li {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.slick-dots li button {
+    cursor: pointer;
+    display: block;
+    width: 13px;
+    height: 13px;
+    text-indent: -9999px;
+    background: url("/Catopiana_files/images/dot-normal.png") center center/contain no-repeat;
+}
+
+.slick-dots li.slick-active button {
+    background: url("/Catopiana_files/images/dot-active.png") center center/contain no-repeat;
+}
+
+/*end slide articles*/
+.for-parent-title {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.for-parent-content {
+    max-width: 615px;
+    margin: 40px auto;
+    color: white;
+    font-family: "CapriUpright", sans-serif;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.testnow-tailieu-wr {
+    max-width: 800px;
+    margin: 10px auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; /* rat quan trong */
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.testnow,
+.tailieu {
+    background-image: url("/Catopiana_files/images/gradient.png");
+    width: 245px;
+    height: 72px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    outline: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Tw Cen MT Condensed Extra Bold';
+    border-radius: 15px;
+    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 4px 4px 2px #969696;
+}
+
+.above-trynow {
+    background-color: rgba(12, 12, 12, 0.4);
+    padding: 40px 60px;
+    max-width: 700px;
+    margin: 20px auto;
+    color: white;
+    font-family: "CapriUpright", sans-serif;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.trynow-btn-wr {
+    text-align: center;
+    margin: 60px auto 30px auto;
+}
+
+.trynow-btn-wr button {
+    background-image: url("/Catopiana_files/images/trynow-bg.png");
+    width: 294px;
+    height: 86px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    border-radius: 18px;
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Tw Cen MT Condensed Extra Bold';
+    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 4px 4px 2px #969696;
+}
+
+.img-ult-wr {
+    text-align: center;
+}
+
+.img-ult-wr img {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transform: translateX(8px);
+    -ms-transform: translateX(8px);
+    transform: translateX(8px);
+}
+
+.ult-content {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 17px;
+    font-family: 'Times New Roman';
+    color: #ccccff;
+}
+
+@keyframes zoom {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.9)
     }
 
-    .slick-prev {
-        left: -20px;
-        background-image: url("/Catopiana_files/images/prev-button.png");
+    50% {
+        transform: translate(-50%, -50%) scale(1.1)
     }
 
-    .slick-dots {
-        list-style-type: none;
-        margin: 10px auto !important;
-        display: -webkit-box !important;
-        display: -ms-flexbox !important;
-        display: flex !important;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
+}
+
+@media all and (max-width: 1366px) {
+    .d-nav {
+        padding: 5px 30px;
     }
 
-    .slick-dots li {
-        margin: 10px;
-        cursor: pointer;
+    .d-nav .psy-pane li,
+    .d-nav .top-right-menu li {
+        width: 115px;
     }
 
-    .slick-dots li button {
-        cursor: pointer;
-        display: block;
-        width: 13px;
-        height: 13px;
-        text-indent: -9999px;
-        background: url("/Catopiana_files/images/dot-normal.png") center center/contain no-repeat;
+    .d-nav .psy-pane li a,
+    .d-nav .top-right-menu li.sign a {
+        font-size: 11px;
     }
 
-    .slick-dots li.slick-active button {
-        background: url("/Catopiana_files/images/dot-active.png") center center/contain no-repeat;
+    .d-nav .psy-pane li.home a {
+        left: 47px;
     }
 
-    /*end slide articles*/
-    .for-parent-title {
-        text-align: center;
-        padding-top: 20px;
+    .d-nav .psy-pane li.contact a {
+        left: 40px;
     }
 
-    .for-parent-content {
-        max-width: 615px;
-        margin: 40px auto;
-        color: white;
-        font-family: "CapriUpright", sans-serif;
-        font-size: 15px;
-        text-align: justify;
+    .d-nav .psy-pane li:nth-child(3) a {
+        left: 35px;
     }
 
-    .testnow-tailieu-wr {
-        max-width: 800px;
-        margin: 10px auto;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;    /* rat quan trong */
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        margin-bottom: 50px;
-    }
+}
 
-    .testnow,
-    .tailieu {
-        background-image: url("/Catopiana_files/images/gradient.png");
-        width: 245px;
-        height: 72px;
-        border: 1px solid rgba(0, 0, 0, 0);
-        outline: 1px solid rgba(0, 0, 0, 0);
-        cursor: pointer;
-        font-size: 32px;
-        text-transform: uppercase;
-        color: white;
-        font-family: 'Tw Cen MT Condensed Extra Bold';
-        border-radius: 15px;
-        -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-        box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-        text-shadow: 4px 4px 2px #969696;
-    }
+label.col-6.label-matching {
+    margin: 5px;
+}
 
-    .above-trynow {
-        background-color: rgba(12, 12, 12, 0.4);
-        padding: 40px 60px;
-        max-width: 700px;
-        margin: 20px auto;
-        color: white;
-        font-family: "CapriUpright", sans-serif;
-        font-size: 15px;
-        text-align: justify;
-    }
+.matching.row {
+    position: relative;
+}
 
-    .trynow-btn-wr {
-        text-align: center;
-        margin: 60px auto 30px auto;
-    }
+.matching.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
-    .trynow-btn-wr button {
-        background-image: url("/Catopiana_files/images/trynow-bg.png");
-        width: 294px;
-        height: 86px;
-        border: 1px solid rgba(0, 0, 0, 0);
-        cursor: pointer;
-        border-radius: 18px;
-        font-size: 40px;
-        color: white;
-        text-transform: uppercase;
-        font-family: 'Tw Cen MT Condensed Extra Bold';
-        -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-        box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-        text-shadow: 4px 4px 2px #969696;
-    }
+.div-l,
+.div-r {
+    float: left;
+    width: 30%;
+}
 
-    .img-ult-wr {
-        text-align: center;
-    }
+.div-m {
+    float: left;
+    width: 40%;
+}
 
-    .img-ult-wr img {
-        display: inline-block;
-        cursor: pointer;
-        -webkit-transform: translateX(8px);
-        -ms-transform: translateX(8px);
-        transform: translateX(8px);
-    }
+.list-l .list-l-item {
+    margin: 10px;
+    padding: 5px;
+}
 
-    .ult-content {
-        max-width: 300px;
-        margin: 0 auto;
-        text-align: center;
-        margin-top: 30px;
-        cursor: pointer;
-        font-size: 17px;
-        font-family: 'Times New Roman';
-        color: #ccccff;
-    }
+.list-l .list-l-item img {
+    width: 150px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
 
-    @keyframes zoom {
-        0%,
-        100% {
-            transform: translate(-50%, -50%) scale(0.9)
-        }
+.list-r .list-r-item img {
+    width: 150px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
 
-        50% {
-            transform: translate(-50%, -50%) scale(1.1)
-        }
-
-    }
-
-    @media all and (max-width:1366px) {
-        .d-nav {
-            padding: 5px 30px;
-        }
-
-        .d-nav .psy-pane li,
-        .d-nav .top-right-menu li {
-            width: 115px;
-        }
-
-        .d-nav .psy-pane li a,
-        .d-nav .top-right-menu li.sign a {
-            font-size: 11px;
-        }
-
-        .d-nav .psy-pane li.home a {
-            left: 47px;
-        }
-
-        .d-nav .psy-pane li.contact a {
-            left: 40px;
-        }
-
-        .d-nav .psy-pane li:nth-child(3) a {
-            left: 35px;
-        }
-
-    }
-
-    label.col-6.label-matching {
-        margin: 5px;
-    }
-
-    .matching.row {
-        position: relative;
-    }
-
-    .matching.row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .div-l,
-    .div-r {
-        float: left;
-        width: 30%;
-    }
-
-    .div-m {
-        float: left;
-        width: 40%;
-    }
-
-    .list-l .list-l-item {
-        margin: 10px;
-        padding: 5px;
-    }
-
-    .list-l .list-l-item img {
-        width: 150px;
-        border-radius: 10px;
-        border: 1px solid green;
-    }
-
-    .list-r .list-r-item img {
-        width: 150px;
-        border-radius: 10px;
-        border: 1px solid green;
-    }
-
-    .button-recevie-package:hover {
-        margin-top: 0px;
-        box-shadow: 0 0 0;
-    }
+.button-recevie-package:hover {
+    margin-top: 0px;
+    box-shadow: 0 0 0;
+}

@@ -1,0 +1,326 @@
+.board-list-button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.board-button {
+    padding: 5px 20px;
+    border-radius: 30px;
+    margin: 20px 20% 0px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.board-button button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.board-mobile, .mobile {
+    display: none;
+}
+
+.container-mobile-test{
+    /*margin: 0 20px;*/
+    padding: 110px 25px 30px;
+    background: linear-gradient(to bottom,transparent 0%, #9cdbf8 35%, transparent 100%);
+}
+
+@media screen and (max-width: 1366px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+    .section-test#id2 {
+        margin-top: 30px;
+    }
+    .newTestOverlay {
+        top: 280px;
+        width: 75%;
+        height: 680px;
+    }
+    .section-test .dot {
+        bottom: 8.5%;
+    }
+}
+
+@media only screen and (max-width: 993px){
+    #id2.section-test .container .testOver {
+        /*height: 40%;*/
+    }
+    .board-mobile .girl, #id2.section-test .container .girl {
+        top: -4em;
+        left: 0px;
+        width: 250px;
+    }
+    .fadeOut {
+        top: 50px;
+    }
+    .newTestOverlay {
+        top: 250px;
+        height: 500px;
+    }
+    .section-test .row.row-list-below-test {
+        width: 80%;
+        height: 250px;
+        padding: 20px 0;
+    }
+    .section-test .tab img.iq-question{
+        max-width: 250px;
+    }
+    .section-test .tab label.iq-answer.col-md-3 > img {
+        width: 80px;
+    }
+    .section-test .tab .answer label img {
+        width: 80px;
+        border-radius: 5px;
+    }
+    .section-test .dot {
+        bottom: 12%;
+    }
+    .section-test .dot span {
+        font-size: 20px;
+    }
+    #id2 .container .row.tn h3 {
+        padding: 0 90px;
+        font-size: 20px;
+    }
+
+    #id2.section-test .test-button {
+        width: 110px;
+        height: auto;
+        font-size: 15px;
+    }
+    #nextBtn, #submitBtn {
+        right: -70px;
+    }
+    #prevBtn {
+        left: -70px;
+    }
+    #id2 .container .test-item {
+        width: 80%;
+        padding: 0;
+        margin: auto;
+    }
+    .section-test .below-test .button-below {
+        width: 200px;
+        font-size: 17px;
+        height: 50px;
+    }
+    .section-test .row-list-below-test .below-list-test-f, .section-test .free_test_result .below-list-test-f .test-item {
+        margin: 0;
+        padding: 0 10px;
+    }
+    .div-r, .div-l {
+        width: 40%;
+    }
+    .div-m {
+        width: 20%;
+    }
+    .section-test .tab .question {
+        max-width: 120px;
+    }
+    .swal2-popup .swal2-radio label {
+        margin: 0 0.4em !important;
+    }
+    #id2 .container .row.tn {
+        padding-top: 100px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 640px) {
+    .board, #id1 .cta {
+        display: none;
+    }
+    .board-mobile {
+        display: block;
+        width: 85%;
+        margin: auto;
+    }
+    #id2 .container-desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+    .wrap > img {
+        height: 90%;
+        width: auto;
+    }
+    .above-trynow, .for-parent-content {
+        display: none;
+    }
+    .parent-button-mobile, .trynow-btn-wr button {
+        width: 60%;
+        margin: 10px 30px;
+        height: auto;
+        font-size: 20px;
+        padding: 10px 5px;
+        border-radius: 5px;
+    }
+    .testnow-tailieu-wr, .trynow-btn-wr {
+        margin: 0px;
+        justify-content: center;
+    }
+    .container {
+        padding: 10px 0;
+    }
+    .article-slide-wr, .ultilities-wr {
+        margin-top: 30px;
+    }
+    footer {
+        padding: 10px 30px;
+    }
+    .mobile-ocean-creatures {
+        max-width: 100px;
+    }
+
+
+
+    /**
+    Copy doan nay cho moi width khac nhau
+     */
+    #id2.section-test .container .testOver {
+        height: 40%;
+    }
+    .fadeOut {
+        top: 0px;
+    }
+    .newTestOverlay {
+        top: 35px;
+        width: 80%;
+        height: 270px;
+    }
+
+    #id2 .container .row.tn h3 {
+        padding: 0 30px;
+        font-size: 10px;
+    }
+    .section-test .row.row-list-below-test {
+        width: 80%;
+        height: 200px;
+        padding: 20px 0;
+    }
+    .section-test .tab img.iq-question{
+        max-width: 150px;
+    }
+    .section-test .tab .answer label img {
+        width: 50px;
+        border-radius: 5px;
+    }
+    .section-test .dot {
+        bottom: -1%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    .section-test .dot span {
+        font-size: 10px;
+    }
+    #id2.section-test .test-button {
+        width: 60px;
+        height: auto;
+        font-size: 8px;
+    }
+    #nextBtn, #submitBtn {
+        right: -40px;
+    }
+    #prevBtn {
+        left: -40px;
+    }
+    #id2 .container .test-item {
+        width: 100%;
+        padding: 0;
+        margin: auto;
+    }
+    .section-test .below-test .button-below {
+        width: 120px;
+        font-size: 15px;
+        height: 50px;
+    }
+    .section-test .row-list-below-test .below-list-test-f, .section-test .free_test_result .below-list-test-f .test-item {
+        margin: 0;
+        padding: 0 10px;
+    }
+    .div-r, .div-l {
+        width: 40%;
+    }
+    .div-m {
+        width: 20%;
+    }
+    .section-test .tab .question {
+        max-width: 120px;
+    }
+    .swal2-popup .swal2-radio label {
+        margin: 0 0.4em !important;
+    }
+    #id2 .container .row.tn {
+        padding-top: 60px;
+    }
+    .section-test .tab label.iq-answer.col-md-3 > img {
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .d-nav {
+        flex-wrap: wrap;
+    }
+    .top-right-menu {
+        margin: auto;
+    }
+    header {
+        background: url(/Catopiana_files/images/navbg@2x.png) top center/420% fixed no-repeat;
+        height: 150px;
+    }
+    .whale1 {
+        max-width: 90px;
+        height: auto;
+    }
+    .fish, .flock-fish {
+        max-width: 40px;
+    }
+    .bubble {
+        max-width: 25px;
+    }
+    .board-mobile .girl, #id2.section-test .container .girl {
+        position: absolute;
+        top: -3em;
+        left: 0px;
+        width: 150px;
+    }
+    #id1 {
+        padding-bottom: 20px;
+    }
+    .background-mobile {
+        position: absolute;
+        top: 180px;
+        transform: scale(1.3);
+        z-index: -1;
+        background: linear-gradient(to bottom, transparent, #fff 40%,  #9cdbf8 50%);
+    }
+    #id2 .test-item {
+        width: 20px;
+        margin: 0 10px;
+        height: 100%;
+    }
+    #id2 .container .icon-in-test-page .test-item {
+        width: 30%;
+    }
+
+    /* padding: 10px 5px; */
+}
+
+@media screen and (max-width: 376px) {
+    .d-nav{
+        padding: 10px 5px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+
+}
