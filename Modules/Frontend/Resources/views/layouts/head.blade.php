@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="{{asset('/css/manual.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/effect.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/animate.min.css')}}">
-	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.3')}}"/>
+	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.4')}}"/>
 
     <link rel="stylesheet" href="{{asset('/Catopiana_files/jquery-ui.min.css')}}"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
