@@ -509,7 +509,7 @@
         padding: 10px 5px;
     }
     .section-test .dot {
-        bottom: -1%;
+        bottom: 0%;
     }
     .dot-background-2 {
         bottom: -1% !important;
