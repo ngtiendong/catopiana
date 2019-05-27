@@ -157,9 +157,9 @@
 <section id="for-parent">
     <div class="container">
         <div class="for-parent-title">
-            {{--            <img src="{{asset('./Catopiana_files/images/for-parent.png')}}" alt="">--}}
+            <img src="{{asset('./Catopiana_files/images/1x/for-parent.png')}}" alt="">
         </div>
-        <div class="for-parent-content">
+{{--         <div class="for-parent-content">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
                 veniam consequatur provident laudantium voluptates ad blanditiis
@@ -171,13 +171,13 @@
                 vero aut amet quae inventore fugiat in praesentium natus cumque
                 quidem.
             </p>
-        </div>
+        </div> --}}
         <!-- utilities -->
-        <div class="testnow-tailieu-wr">
+{{--         <div class="testnow-tailieu-wr">
             <button class="testnow parent-button-mobile">Test now</button>
             <button class="tailieu parent-button-mobile">Tai Lieu</button>
-        </div>
-        <div class="above-trynow">
+        </div> --}}
+{{--         <div class="above-trynow">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ex in
                 itaque qui tempore minus ducimus magni, quam et consequatur cum
@@ -189,10 +189,10 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Reiciendis, soluta.
             </p>
-        </div>
-        <div class="trynow-btn-wr ">
+        </div> --}}
+{{--         <div class="trynow-btn-wr ">
             <button class="parent-button-mobile">Try now</button>
-        </div>
+        </div> --}}
         <div class="article-slide-wr">
             <div class="article-slide">
                 <div class="one-article">
@@ -276,8 +276,21 @@
                 </div>
             </div>
         </div>
+        <div class="for-parent-content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
+                veniam consequatur provident laudantium voluptates ad blanditiis
+                illo doloremque optio, consectetur veritatis officiis deleniti.
+                Magni impedit, totam odio non exercitationem ut!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed,
+                vero aut amet quae inventore fugiat in praesentium natus cumque
+                quidem.
+            </p>
+        </div>
         <!-- utilities -->
-        <div class="ultilities-wr">
+{{--         <div class="ultilities-wr">
             <div class="ult-slide">
                 <div class="one-ult">
                     <div class="img-ult-wr">
@@ -320,6 +333,9 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+        <div class="button-receive-wr">
+            <a href="{{ route('menu') }}" class="parent-button-mobile">Receive menu</a>
         </div>
     </div>
 </section>

@@ -90,6 +90,10 @@ jQuery(function($) {
 					slidesToScroll: 1,
 					dots: true,
 				});
+				$('.menu-slide').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				});
 			} else{
 				$('.article-slide').slick({
 					slidesToShow: 3,
@@ -100,6 +104,10 @@ jQuery(function($) {
 					slidesToShow: 3,
 					slidesToScroll: 1,
 					dots: true,
+				});
+				$('.menu-slide').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
 				});
 			}
 

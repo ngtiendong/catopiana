@@ -1749,19 +1749,19 @@ footer .col {
     background: url("/Catopiana_files/images/dot-active.png") center center/contain no-repeat
 }
 
-.for-parent-title {
+/*.for-parent-title {
     text-align: center;
     padding-top: 20px
-}
+}*/
 
-.for-parent-content {
+/*.for-parent-content {
     max-width: 615px;
     margin: 40px auto;
     color: white;
     font-family: "CapriUpright", sans-serif;
     font-size: 15px;
     text-align: justify
-}
+}*/
 
 .testnow-tailieu-wr {
     max-width: 800px;
@@ -2457,7 +2457,7 @@ footer .col {
 }
 
 /*end slide articles*/
-.for-parent-title {
+/*.for-parent-title {
     text-align: center;
     padding-top: 20px;
 }
@@ -2469,7 +2469,7 @@ footer .col {
     font-family: "CapriUpright", sans-serif;
     font-size: 15px;
     text-align: justify;
-}
+}*/
 
 .testnow-tailieu-wr {
     max-width: 800px;

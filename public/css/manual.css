@@ -605,3 +605,143 @@ img.image-point-l:hover {
 .dot-background-2 {
     bottom: 6%;
 }
+
+/* MENU 2 
+==========================*/
+
+.form-menu {
+    position: relative;
+    z-index: 9;
+}
+.form-menu .age, .form-menu .weight {
+    margin: 100px 0 150px;
+}
+.form-menu .title {
+    color: white;
+    font-size: 40px;
+    font-family: Hobo;
+}
+.form-menu .list_icon_menu {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 50px;
+    text-align: center;
+}
+.form-menu .list_icon_menu li {
+    cursor: pointer;
+    display: inline-block;
+    background-image: url('../Catopiana_files/images/1x/Asset.png');
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    background-size: 100%;
+    margin: 0 30px;
+    padding: 30px 0;
+    font-size: 45px;
+    color: white;
+    background-repeat: no-repeat;
+    text-shadow: -5px 1px #ccc;
+}
+.form-menu .button {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 10% 0;
+}
+
+.form-menu .menu-slide-wr .img-food {
+    text-align: center;
+}
+
+.form-menu .menu-slide-wr .img-food img {
+    display: inline-block;
+    cursor: pointer;
+    width: 120px;
+}
+
+.form-menu .menu-slide-wr .food-name {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.form-menu .menu-slide-wr {
+    padding: 20px 30px;
+    color: #0d5484 ;
+    font-family: Hobo;
+}
+.form-menu .menu-slide {
+    background: #ccf8ff;
+    border: 4px solid #0d5484;
+    border-radius: 40px;
+}
+
+.form-menu .menu-slide-wr .slick-next {
+    right: -40px;
+}
+.form-menu .menu-slide-wr .slick-prev {
+    left: -40px;
+}
+
+.form-menu .menu-slide-wr .menu-food-catetory {
+    
+    font-size: 50px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.form-menu .button-menu-wr {
+    margin: 20% 0 40% 0;
+    margin-bottom: ;
+}
+.form-menu .button-menu {
+    background-image: url(/Catopiana_files/images/gradient.png);
+    width: 200px;
+    height: 90px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    outline: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Tw Cen MT Condensed Extra Bold';
+    border-radius: 15px;
+    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 4px 4px 2px #969696;
+}
+
+.form-menu .girl {
+    position: absolute;
+    top: -8%;
+    left: 40%;
+    z-index: 3;
+    width: 350px;
+}
+
+.button-receive-wr {
+    margin: 15% 0 20% 0;
+    text-align: center;
+}
+.button-receive-wr a {
+    background-image: url(/Catopiana_files/images/gradient.png);
+    border: 1px solid rgba(0, 0, 0, 0);
+    outline: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    font-size: 45px;
+    text-transform: uppercase;
+    color: white;
+    font-family: Hobo;
+    border-radius: 5px;
+    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 4px 4px 2px #969696;
+    padding: 10px 20px;
+}
+
+.button-receive-wr a:hover {
+    transition: all 0.5s ease-out;
+    transform: scale(1.1);
+}
