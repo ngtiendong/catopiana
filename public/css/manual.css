@@ -696,6 +696,11 @@ img.image-point-l:hover {
     margin: 20% 0 40% 0;
     margin-bottom: ;
 }
+
+.form-menu .button-menu:hover {
+    transition: all 0.5s ease-out;
+    transform: scale(1.1);
+}
 .form-menu .button-menu {
     background-image: url(/Catopiana_files/images/gradient.png);
     width: 200px;
