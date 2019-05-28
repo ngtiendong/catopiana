@@ -1,0 +1,318 @@
+@extends('frontend::layouts.layout')
+
+@section('content')
+<section class="menu">
+    <div class="container">
+        <form action="" class="form-menu">
+            <img class="girl" src="{{asset('./Catopiana_files/images/girl.png')}}" alt="">
+            <div class="age">
+                <div class="title">1.Age: </div>
+                <ol class="list_icon_menu">
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="3" name="age" hidden>3</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>4</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>5</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>6</li>
+                </ol>
+            </div>
+            <div class="weight">
+                <div class="title">2.Weight</div>
+                <ol class="list_icon_menu">
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="10-12" name="weight" hidden>10-12</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="12-14" name="weight" hidden>12-14</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="14-16" name="weight" hidden>14-16</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="16-18" name="weight" hidden>16-18</li>
+                </ol>
+            </div>
+            <div class="slide">
+                <div class="title">3. Select food your children can not eat or does not like to eat:</div>
+                    <div class="menu-slide-wr">
+                        <div class="menu-slide">
+                            <div class="one-article">
+                                <div class="text-center">
+                                    <h3 class="menu-food-catetory">Fruits</h3>
+                                </div>
+                                <div class="food">
+                                    <ol class="list_icon_food">
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Banana</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Apple</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Grape</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Strawberry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Orange</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Watermelon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Lemon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Dragon fruit</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Cherry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="one-article">
+                                <div class="text-center">
+                                    <h3 class="menu-food-catetory">Fruits</h3>
+                                </div>
+                                <div class="food">
+                                    <ol class="list_icon_food">
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Banana</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Apple</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Grape</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Strawberry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Orange</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Watermelon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Lemon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Dragon fruit</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Cherry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="one-article">
+                                <div class="text-center">
+                                    <h3 class="menu-food-catetory">Fruits</h3>
+                                </div>
+                                <div class="food">
+                                    <ol class="list_icon_food">
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Banana</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Apple</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Grape</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Strawberry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Orange</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Watermelon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Lemon</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Dragon fruit</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
+                                        </li>
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>Cherry</p>
+                                            </div>
+                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+            <div class="button-menu-wr text-center">
+                <button type="submit" class="button-menu">OK</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@endsection
+@section('js')
+
+<script type="text/javascript" src="{{asset('/js/local-storage.js?v=1.2')}}" ></script>
+<script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/menu.js')}}"></script>
+@endsection

@@ -1778,16 +1778,19 @@ footer .col {
 
 .for-parent-title {
     text-align: center;
-    padding-top: 20px
+    padding-top: 20px;
+    margin: 12% 0;
 }
 
 .for-parent-content {
     max-width: 615px;
-    margin: 40px auto;
+    margin: 15% auto;
     color: white;
     font-family: "CapriUpright", sans-serif;
     font-size: 15px;
-    text-align: justify
+    text-align: justify;
+    background-color: rgba(1, 1, 2, 0.42);
+    padding: 20px 30px;
 }
 
 .testnow-tailieu-wr {
@@ -2462,7 +2465,7 @@ footer .col {
 }
 
 /*end slide articles*/
-.for-parent-title {
+/*.for-parent-title {
     text-align: center;
     padding-top: 20px;
 }
@@ -2474,7 +2477,7 @@ footer .col {
     font-family: "CapriUpright", sans-serif;
     font-size: 15px;
     text-align: justify;
-}
+}*/
 
 .testnow-tailieu-wr {
     max-width: 800px;
