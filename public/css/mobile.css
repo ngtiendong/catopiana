@@ -275,6 +275,10 @@
         top:-3%;
     }
 
+    .button-receive-wr .button-receive {
+        font-size: 30px;
+        width: 65%;
+    }
 }
 
 @media screen and (max-width: 668px) {
@@ -500,7 +504,7 @@
     .form-menu .list_icon_menu li {
         width: 120px;
         padding: 25px 0;
-        margin: 0 43px;
+        margin: 0 10%;
     }
 
     .form-menu .girl {

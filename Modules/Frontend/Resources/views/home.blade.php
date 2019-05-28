@@ -335,7 +335,9 @@
             </div>
         </div> --}}
         <div class="button-receive-wr">
-            <a href="{{ route('menu') }}" class="parent-button-mobile">Receive menu</a>
+            <div class="button-receive">
+                <a href="{{ route('menu') }}" class="parent-button-mobile">Receive menu</a>
+            </div>
         </div>
     </div>
 </section>
