@@ -576,4 +576,71 @@ class FrontendController extends Controller
 
         }
     }
+
+    public function menu()
+    {
+        $fruits = [
+            'apple' => asset('/food/fruits/apple.png'),
+            'banana' => asset('/food/fruits/banana.png'),
+            'cherry' => asset('/food/fruits/cherry.png'),
+            'dragonfruit' => asset('/food/fruits/dragonfruit.png'),
+            'grape' => asset('/food/fruits/grape.png'),
+            'lemon' => asset('/food/fruits/lemon.png'),
+            'orange' => asset('/food/fruits/orange.png'),
+            'strawberry' => asset('/food/fruits/strawberry.png'),
+            'watermelon' => asset('/food/fruits/watermelon.png'),
+        ];
+
+        $vegetables = [
+            'bellpepper' => asset('/food/vegetables/bellpepper.png'),
+            'blackgarlic' => asset('/food/vegetables/blackgarlic.png'),
+            'cabbage' => asset('/food/vegetables/cabbage.png'),
+            'corn' => asset('/food/vegetables/corn.png'),
+            'matsutake' => asset('/food/vegetables/matsutake.png'),
+            'potato' => asset('/food/vegetables/potato.png'),
+            'onion' => asset('/food/vegetables/onion.png'),
+            'salad' => asset('/food/vegetables/salad.png'),
+            'truffles' => asset('/food/vegetables/truffles.png'),
+        ];
+
+        $grains = [
+            'bulgur' => asset('/food/grains/bulgur.png'),
+            'sago' => asset('/food/grains/sago.png'),
+            'guinoa' => asset('/food/grains/guinoa.png'),
+            'corn' => asset('/food/grains/corn.png'),
+            'ryebread' => asset('/food/grains/ryebread.png'),
+            'oats' => asset('/food/grains/oats.png'),
+            'teff' => asset('/food/grains/teff.png'),
+            'wheat' => asset('/food/grains/wheat.png'),
+            'rice' => asset('/food/grains/rice.png'),
+        ];
+
+        $dairyfood = [
+            'butter' => asset('/food/dairyfood/butter.png'),
+            'cheese' => asset('/food/dairyfood/cheese.png'),
+            'gelato' => asset('/food/dairyfood/gelato.png'),
+            'labneh' => asset('/food/dairyfood/labneh.png'),
+            'milk' => asset('/food/dairyfood/milk.png'),
+            'milkpowder' => asset('/food/dairyfood/milkpowder.png'),
+            'milkprotein' => asset('/food/dairyfood/milkprotein.png'),
+            'wheypowder' => asset('/food/dairyfood/wheypowder.png'),
+            'yogurt' => asset('/food/dairyfood/yogurt.png'),
+        ];
+
+        $proteinfood = [
+            'beef' => asset('/food/proteinfood/beef.png'),
+            'chicken' => asset('/food/proteinfood/chicken.png'),
+            'egg' => asset('/food/proteinfood/egg.png'),
+            'fisheggs' => asset('/food/proteinfood/fisheggs.png'),
+            'kobebeef' => asset('/food/proteinfood/kobebeef.png'),
+            'pork' => asset('/food/proteinfood/pork.png'),
+            'pufferfish' => asset('/food/proteinfood/pufferfish.png'),
+            'salmon' => asset('/food/proteinfood/salmon.png'),
+            'tilapia' => asset('/food/proteinfood/tilapia.png'),
+            'tuna' => asset('/food/proteinfood/tuna.png'),
+            'wagyubeef' => asset('/food/proteinfood/wagyubeef.png'),
+        ];
+
+        return view('frontend::menu', compact('fruits', 'vegetables', 'grains', 'dairyfood', 'proteinfood'));
+    }
 }
