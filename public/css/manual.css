@@ -755,7 +755,7 @@ img.image-point-l:hover {
     font-size: 70px;
     text-align: center;
     color: #fff;
-    text-shadow: -5px 1px #ccc;
+    text-shadow: 6px 1px #ccc;
     margin: 0 auto;
 }
 
@@ -771,10 +771,6 @@ img.image-point-l:hover {
     margin: 20% 0;
 }
 
-.section-chart .button-chart:hover {
-    transition: all 0.5s ease-out;
-    transform: scale(1.1);
-}
 .section-chart .button-chart {
     font-size: 32px;
     padding: 10px 20px;
@@ -791,3 +787,30 @@ img.image-point-l:hover {
     outline: 1px solid rgba(0, 0, 0, 0);
     cursor: pointer;
 }
+
+.gradient-button:hover {
+    transition: all 0.5s ease-out;
+    transform: scale(1.1);
+}
+
+.section-chart #legend {
+    background: #030213a6;
+    width: 40%;
+    margin: 10% auto;
+    padding: 30px;
+    color: white;
+    font-size: 20px;
+}
+
+.section-chart #legend li span {
+    width: 20px;
+    height: 20px;
+    border-radius: 0 100% 0 0;
+    display: inline-block;
+    transform: rotate(-45deg);
+    margin-right: 20%;
+}
+.section-chart #legend ul {
+    margin-left: 10%;
+}
+
