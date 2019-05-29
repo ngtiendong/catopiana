@@ -702,20 +702,10 @@ img.image-point-l:hover {
     transform: scale(1.1);
 }
 .form-menu .button-menu {
-    background-image: url(/Catopiana_files/images/gradient.png);
     width: 200px;
     height: 90px;
-    border: 1px solid rgba(0, 0, 0, 0);
-    outline: 1px solid rgba(0, 0, 0, 0);
-    cursor: pointer;
     font-size: 32px;
     text-transform: uppercase;
-    color: white;
-    font-family: 'Tw Cen MT Condensed Extra Bold';
-    border-radius: 15px;
-    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
-    text-shadow: 4px 4px 2px #969696;
 }
 
 .form-menu .girl {
@@ -753,4 +743,51 @@ img.image-point-l:hover {
 .button-receive-wr .button-receive:hover {
     transition: all 0.5s ease-out;
     transform: scale(1.1);
+}
+
+.section-chart {
+    position: relative;
+    font-family: Hobo;
+    z-index: 9;
+}
+
+.section-chart .title h1{
+    font-size: 70px;
+    text-align: center;
+    color: #fff;
+    text-shadow: -5px 1px #ccc;
+    margin: 0 auto;
+}
+
+.section-chart .chart-wrapper {
+    margin: 10% auto;
+}
+
+.section-chart .container {
+    margin: 20% auto;
+}
+
+.section-chart .button-chart-wr {
+    margin: 20% 0;
+}
+
+.section-chart .button-chart:hover {
+    transition: all 0.5s ease-out;
+    transform: scale(1.1);
+}
+.section-chart .button-chart {
+    font-size: 32px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+.gradient-button {
+    color: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 4px 4px 2px #969696;
+    background-image: url(/Catopiana_files/images/gradient.png);
+    border: 1px solid rgba(0, 0, 0, 0);
+    outline: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
 }

@@ -303,7 +303,7 @@
                     </div>
             </div>
             <div class="button-menu-wr text-center">
-                <button type="submit" class="button-menu">OK</button>
+                <button type="button" onclick="window.location.href='/chart'" class="button-menu gradient-button">OK</button>
             </div>
         </form>
     </div>

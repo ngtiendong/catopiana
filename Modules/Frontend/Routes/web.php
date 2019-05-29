@@ -78,4 +78,8 @@ Route::group(/**
     Route::get('/menu', function(){
         return view('frontend::menu');
     })->name('menu');
+
+    Route::get('/chart', function(){
+        return view('frontend::chart');
+    })->name('chart');
 });
