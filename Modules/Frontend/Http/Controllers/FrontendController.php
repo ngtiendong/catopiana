@@ -10,13 +10,17 @@ use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 use Modules\Frontend\Entities\Question;
 use Modules\Frontend\Services\PackageService;
+use Modules\Frontend\Services\LocalStorageService;
 use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
     protected $packageService;
-    public function __construct(PackageService $packageService)
+    protected $localStorageService;
+
+    public function __construct(LocalStorageService $localStorageService, PackageService $packageService)
     {
+        $this->localStorageService = $localStorageService;
         $this->packageService = $packageService;
     }
     /**
@@ -642,5 +646,16 @@ class FrontendController extends Controller
         ];
 
         return view('frontend::menu', compact('fruits', 'vegetables', 'grains', 'dairyfood', 'proteinfood'));
+    }
+
+    public function saveGuestTesing(Request $request)
+    {
+        $local_storage = $request->input('local_storage');
+        $guest_id = $local_storage['guest_id'];
+        if($local_storage['guest_id'] == '0') {
+            $guest_id = $this->localStorageService->saveNewGuestTesting($local_storage);
+        }
+
+        return  response()->json(['status'=> '1', 'guest_id' => $guest_id ]);
     }
 }

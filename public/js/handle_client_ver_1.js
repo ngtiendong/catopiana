@@ -377,7 +377,8 @@ function getNewQuestionData(position) {
                     testing_data = {
                         level: test_level,
                         question: [],
-                        received_free_package_status: 0
+                        received_free_package_status: 0,
+                        guest_id: '0'
                     };
                 }
                 // save html -> localstorage
@@ -1175,8 +1176,12 @@ redirectAfterSubmit = (topic) => {
         }
         // now use variables topic_arr_free[]
         if (count_free_package == 8) {
-            window.location.href = '/congratulation'
-
+            //save database guest and redirect
+            if(testing_data.guest_id == '0' ) {
+                saveGuestTesting();
+            } else {
+                window.location.href = '/congratulation'
+            }
         }
     } else {
         // free_package_arr = [9,10,11,12];
@@ -1232,13 +1237,41 @@ countCorrectAnswer = (just_answer) => {
 }
 
 checkAnswer = (just_answer, this_question, position_current_answer) => {
-    console.log(just_answer)
-    console.log(position_current_answer)
-    console.log(this_question.result)
+    // console.log(just_answer)
+    // console.log(position_current_answer)
+    // console.log(this_question.result)
     if(just_answer == this_question.result[position_current_answer]) {
-        console.log('right')
+        // console.log('right')
         return true;
     }
-    console.log('wrong')
+    // console.log('wrong')
     return false;
+}
+
+saveGuestTesting = () => {
+    if(typeof type != 'undefined' &&  type === '2' ){
+       convertAnswersPosition()
+    }
+    
+    testing_data.question.forEach((question) => {
+        question.html_arr.length = 0;
+    })
+
+    let data = {
+        'local_storage' : testing_data
+    };
+    $.ajax({
+        url: '/save-guest-testing',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+    })
+    .done(function(response) {
+        testing_data.guest_id = response.guest_id;
+        localStorage.setItem('testing', JSON.stringify(testing_data));
+        window.location.href = '/congratulation'
+    })
+    .fail(function(response) {
+        console.log(response);
+    });
 }

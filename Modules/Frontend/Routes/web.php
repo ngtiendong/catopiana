@@ -76,6 +76,7 @@ Route::group(/**
     Route::get('/payForResult', 'PaymentController@payForResult')->name('payForResult');
 
     Route::get('/menu', 'FrontendController@menu')->name('menu');
+    Route::post('/save-guest-testing', 'FrontendController@saveGuestTesing')->name('save-guest-testing');
 
     Route::get('/chart', function(){
         return view('frontend::chart');

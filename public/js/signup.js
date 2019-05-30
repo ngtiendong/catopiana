@@ -71,6 +71,10 @@ $(document).on('click', '#genButton', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -144,6 +148,10 @@ $('form#form-sign-up').on('submit', function(event) {
     //Check repassword
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -242,7 +250,8 @@ changeLocalStorage = (response) =>
         testing_data = {
             level: response[0].level,
             question: [],
-            received_free_package_status : parseInt(response[0].received_free_package_status)
+            received_free_package_status : parseInt(response[0].received_free_package_status),
+            guest_id : '-1'
         };
 
     // save html -> localstorage
@@ -291,6 +300,10 @@ $(document).on('click', '#logoutBtn', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -331,6 +344,10 @@ $(document).on('click', '.social-link', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
