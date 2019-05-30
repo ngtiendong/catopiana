@@ -516,7 +516,7 @@ img.image-point-l:hover {
 }
 
 #id2.result_test .bigwhale {
-    position: relative; 
+    position: relative;
     display: inline-block;
     height: 250px;
     width: 100%;
@@ -591,7 +591,7 @@ img.image-point-l:hover {
     position: absolute;
     top: -3% !important;
     left: -10%;
-    transform: scaleX(-1); 
+    transform: scaleX(-1);
     z-index: 4;
     width: 60px;
 }
@@ -606,7 +606,7 @@ img.image-point-l:hover {
     bottom: 6%;
 }
 
-/* MENU 2 
+/* MENU 2
 ==========================*/
 
 .form-menu {
@@ -629,15 +629,17 @@ img.image-point-l:hover {
     text-align: center;
 }
 .form-menu .list_icon_menu li {
+    width: 15%;
+    max-width: 150px;
     cursor: pointer;
-    display: inline-block;
+    display: table;
     background-image: url('../Catopiana_files/images/1x/Asset.png');
-    width: 150px;
+    background-size: contain;
+    background-position: center;
+    /*width: 150px;*/
     height: 150px;
-    display: inline-block;
-    background-size: 100%;
-    margin: 0 30px;
-    padding: 30px 0;
+    margin: 0 5%;
+    /*padding: 30px 0;*/
     font-size: 45px;
     color: white;
     background-repeat: no-repeat;
@@ -686,7 +688,7 @@ img.image-point-l:hover {
 }
 
 .form-menu .menu-slide-wr .menu-food-catetory {
-    
+
     font-size: 50px;
     text-align: center;
     margin: 0 auto;
@@ -694,11 +696,11 @@ img.image-point-l:hover {
 
 .form-menu .button-menu-wr {
     margin: 20% 0 40% 0;
-    margin-bottom: ;
+    /*margin-bottom: 10;*/
 }
 
-.form-menu .button-menu:hover {
-    transition: all 0.5s ease-out;
+.form-menu .button-menu:hover, .button-receive:hover, .button-hover:hover {
+    transition: all 0.1s ease;
     transform: scale(1.1);
 }
 .form-menu .button-menu {
@@ -722,14 +724,14 @@ img.image-point-l:hover {
 }
 .button-receive-wr .button-receive {
     display: inline;
-    width: 40%;
+    /*width: 40%;*/
     margin: auto;
-    background-size: 120%; 
+    background-size: 120%;
     background-image: url(/Catopiana_files/images/gradient.png);
     border: 1px solid rgba(0, 0, 0, 0);
     outline: 1px solid rgba(0, 0, 0, 0);
     cursor: pointer;
-    font-size: 45px;
+    font-size: 30px;
     text-transform: uppercase;
     color: white;
     font-family: Hobo;
@@ -737,11 +739,11 @@ img.image-point-l:hover {
     -webkit-box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
     box-shadow: 7px 7px 9px 2px rgba(0, 0, 0, 0.75);
     text-shadow: 4px 4px 2px #969696;
-    padding: 10px 20px;
+    padding: 20px 20px;
 }
 
 .button-receive-wr .button-receive:hover {
-    transition: all 0.5s ease-out;
+    transition: all 0.2s ease-out;
     transform: scale(1.1);
 }
 
@@ -814,3 +816,8 @@ img.image-point-l:hover {
     margin-left: 10%;
 }
 
+.middle-text-inside-li-tag {
+    line-height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
