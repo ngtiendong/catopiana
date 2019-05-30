@@ -75,9 +75,7 @@ Route::group(/**
     Route::get('/executePayForResult', 'PaymentController@executePayForResult');
     Route::get('/payForResult', 'PaymentController@payForResult')->name('payForResult');
 
-    Route::get('/menu', function(){
-        return view('frontend::menu');
-    })->name('menu');
+    Route::get('/menu', 'FrontendController@menu')->name('menu');
 
     Route::get('/chart', function(){
         return view('frontend::chart');

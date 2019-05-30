@@ -34,271 +34,100 @@
                                 </div>
                                 <div class="food">
                                     <ol class="list_icon_food">
+                                        @foreach($fruits as $name => $url)
                                         <li class="col-xs-4 col-sm-4">
                                             <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                                <img src="{{ $url }}" alt="">
                                             </div>
                                             <div class="food-name">
-                                                <p>Banana</p>
+                                                <p>{{ $name }}</p>
                                             </div>
-                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                            <input type="checkbox" name="fruits[]" value="{{ $name }}" hidden>
                                         </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Apple</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Grape</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Strawberry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Orange</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Watermelon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Lemon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Dragon fruit</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Cherry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
-                                        </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>
                             <div class="one-article">
                                 <div class="text-center">
-                                    <h3 class="menu-food-catetory">Fruits</h3>
+                                    <h3 class="menu-food-catetory">Vegetables</h3>
                                 </div>
                                 <div class="food">
                                     <ol class="list_icon_food">
+                                        @foreach($vegetables as $name => $url)
                                         <li class="col-xs-4 col-sm-4">
                                             <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                                <img src="{{ $url }}" alt="">
                                             </div>
                                             <div class="food-name">
-                                                <p>Banana</p>
+                                                <p>{{ $name }}</p>
                                             </div>
-                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                            <input type="checkbox" name="vegetables[]" value="{{ $name }}" hidden>
                                         </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Apple</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Grape</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Strawberry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Orange</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Watermelon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Lemon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Dragon fruit</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Cherry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
-                                        </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>
                             <div class="one-article">
                                 <div class="text-center">
-                                    <h3 class="menu-food-catetory">Fruits</h3>
+                                    <h3 class="menu-food-catetory">Grains</h3>
                                 </div>
                                 <div class="food">
                                     <ol class="list_icon_food">
+                                        @foreach($grains as $name => $url)
                                         <li class="col-xs-4 col-sm-4">
                                             <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
+                                                <img src="{{ $url }}" alt="">
                                             </div>
                                             <div class="food-name">
-                                                <p>Banana</p>
+                                                <p>{{ $name }}</p>
                                             </div>
-                                            <input type="checkbox" name="Fruits[]" value="Banana" hidden>
+                                            <input type="checkbox" name="grains[]" value="{{ $name }}" hidden>
                                         </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Apple</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Apple" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Grape</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Grape" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Strawberry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Strawberry" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Orange</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Orange" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Watermelon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Watermelon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Lemon</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Lemon" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Dragon fruit</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Dragon fruit" hidden>
-                                        </li>
-                                        <li class="col-xs-4 col-sm-4">
-                                            <div class="img-food">
-                                                <img src="{{asset('./Catopiana_files/images/1x/Asset.png')}}" alt="">
-                                            </div>
-                                            <div class="food-name">
-                                                <p>Cherry</p>
-                                            </div>
-                                            <input type="checkbox" name="Fruits[]" value="Cherry" hidden>
-                                        </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>
-
+                            <div class="one-article">
+                                <div class="text-center">
+                                    <h3 class="menu-food-catetory">Dairy Food</h3>
+                                </div>
+                                <div class="food">
+                                    <ol class="list_icon_food">
+                                        @foreach($dairyfood as $name => $url)
+                                        <li class="col-xs-4 col-sm-4">
+                                            <div class="img-food">
+                                                <img src="{{ $url }}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>{{ $name }}</p>
+                                            </div>
+                                            <input type="checkbox" name="dairyfood[]" value="{{ $name }}" hidden>
+                                        </li>
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="one-article">
+                                <div class="text-center">
+                                    <h3 class="menu-food-catetory">Protein Food</h3>
+                                </div>
+                                <div class="food">
+                                    <ol class="list_icon_food">
+                                        @foreach($proteinfood as $name => $url)
+                                        <li class="col-xs-3 col-sm-3">
+                                            <div class="img-food">
+                                                <img src="{{ $url }}" alt="">
+                                            </div>
+                                            <div class="food-name">
+                                                <p>{{ $name }}</p>
+                                            </div>
+                                            <input type="checkbox" name="proteinfood[]" value="{{ $name }}" hidden>
+                                        </li>
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
