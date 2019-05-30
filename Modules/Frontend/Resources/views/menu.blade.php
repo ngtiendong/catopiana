@@ -9,19 +9,39 @@
                 <div class="title">1.Age: </div>
                 <ol class="list_icon_menu">
                     <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                        <input type="radio" value="3" name="age" hidden>3</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>4</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>5</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>6</li>
+                            <input type="radio" value="3" name="age" hidden><div class="middle-text-inside-li-tag">3</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="3" name="age" hidden>
+                        <div class="middle-text-inside-li-tag">4</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>
+                        <div class="middle-text-inside-li-tag">5</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="3" name="age" hidden>
+                        <div class="middle-text-inside-li-tag">6</div>
+                    </li>
                 </ol>
             </div>
             <div class="weight">
                 <div class="title">2.Weight</div>
                 <ol class="list_icon_menu">
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="10-12" name="weight" hidden>10-12</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="12-14" name="weight" hidden>12-14</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="14-16" name="weight" hidden>14-16</li>
-                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3"><input type="radio" value="16-18" name="weight" hidden>16-18</li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="10-12" name="weight" hidden>
+                        <div class="middle-text-inside-li-tag">10-12</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="12-14" name="weight" hidden>
+                        <div class="middle-text-inside-li-tag">12-14</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="14-16" name="weight" hidden>
+                        <div class="middle-text-inside-li-tag">14-16</div>
+                    </li>
+                    <li class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <input type="radio" value="16-18" name="weight" hidden>
+                        <div class="middle-text-inside-li-tag">16-18</div>
+                    </li>
                 </ol>
             </div>
             <div class="slide">
