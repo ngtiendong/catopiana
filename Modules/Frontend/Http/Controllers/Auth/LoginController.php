@@ -42,25 +42,21 @@ class LoginController extends Controller
             $this->localStorageService->updateTesting($request->input('local_storage'));
         }
         $this->guard()->logout();
+
         return response()->json([
             'status' => 200,
-        ],200);    }
-
+        ],200);
+    }
 
     public function login(Request $request)
     {
         $this->validateLogin($request);
         if ($this->attemptLogin($request)) {
             $this->packageService->checkDoneInitAndFree();
-            // $givePackage = false;
-            // if(auth()->guard('customers')->user()->test_status == 0){
-                // $givePackage = $this->packageService->checkDoneFreeQuestion();
-            // }
             $local_storage = $this->localStorageService->getTesting();
             return response()->json([
                 'status' => 200,
                 'local_storage' => $local_storage
-                // 'givePackage' => $givePackage
             ],200);
         }
         return response()->json([
@@ -130,17 +126,13 @@ class LoginController extends Controller
         $customer_testing_id = '';
         if($request->input('local_storage_this_question') != '' || $request->input('local_storage_this_question') != null)
         {
-            $customer_testing_id = $this->localStorageService->updateThisQuestion($request->input('local_storage_this_question'),$request->input('level'));
+            $customer_testing_id = $this->localStorageService->updateThisQuestion($request->input('local_storage_this_question'),$request->input('level'), $request->input('received_free_package_status') );
         }
-        // $givePackage = false;
-        // if(auth()->guard('customers')->user()->test_status == 0){
-            // $givePackage = $this->packageService->checkDoneFreeQuestion();
-            $this->packageService->checkDoneInitAndFree();
-        // }
+        $this->packageService->checkDoneInitAndFree();
+
         return response()->json([
             'status' => 200,
             'customer_testing_id' => $customer_testing_id
-            // 'givePackage' => $givePackage
         ],200);
     }
 }

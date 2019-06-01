@@ -58,6 +58,7 @@ class RegistrationController extends Controller
         $local_storage = $request->local_storage;
         $this->validator($sign_up_data)->validate();
         unset($sign_up_data['password_confirmation']);
+        $sign_up_data['uuid'] = Str::uuid();
         $user = $this->create($sign_up_data);
         if(!$user){
             return response()->json([
@@ -70,21 +71,20 @@ class RegistrationController extends Controller
         // $givePackage = false;
         if(!empty($local_storage))
         {
-            $this->localStorageService->createTesting($local_storage);
+            $guest_id = $local_storage['guest_id'];
+            if($guest_id == '0') { 
+                $this->localStorageService->createTesting($local_storage);
+            } else {
+                $this->localStorageService->changeGuestIntoCustomer($guest_id, $sign_up_data['uuid']);
+            }
             $this->packageService->checkDoneInitAndFree();
-            // if(auth()->guard('customers')->user()->test_status == 0){
-                // $givePackage = $this->packageService->checkDoneFreeQuestion();
-                $local_storage_response = $this->localStorageService->getTesting();
-            // }
+            $local_storage_response = $this->localStorageService->getTesting();
         }
         return response()->json([
                 'status' => 200,
                 'success' => 'registed',
                 'local_storage' => $local_storage_response
-                // 'givePackage' => $givePackage
             ],200);
-
-        // return redirect()->route('home');
     }
 
 
@@ -139,6 +139,8 @@ class RegistrationController extends Controller
             'username' => preg_replace('/\s+/', '' ,$request->input('username')) .'-' . str_random(6),  //substr((string) Str::uuid(), 0, 5),
             'password' => '123456'  //str_random(8)
         ];
+        $data_account['uuid'] = Str::uuid();
+
         $customer = $this->create($data_account);
         if(!$customer){
             return response()->json([
@@ -146,23 +148,30 @@ class RegistrationController extends Controller
                 'errors' => 'Server Error'   
             ],500);
         }
+
         $this->guard()->login($customer);
         // tạo và trả về
         $local_storage = [];
         // $givePackage = false;
         if(!empty($request->input('local_storage')))
         {
-            $this->localStorageService->createTesting($request->input('local_storage'));
+            $storage = $request->input('local_storage');
+            // dd($storage, $storage['guest_id'] );
+            $guest_id = $storage['guest_id'];
+
+            if( $guest_id == '0') {
+                $this->localStorageService->createTesting($storage);
+            } else {
+                $this->localStorageService->changeGuestIntoCustomer($guest_id, $data_account['uuid']);
+            }
             $local_storage = $this->localStorageService->getTesting();
             $this->packageService->checkDoneInitAndFree();
-            // $givePackage = $this->packageService->checkDoneFreeQuestion();
         }
         return response()->json([
             'status' => 200,
             'username' => $data_account['username'],
             'password' => $data_account['password'],
             'local_storage' => $local_storage
-            // 'givePackage' => $givePackage
         ]);
     }
 

@@ -93,12 +93,13 @@
                 }
             }
         } else {
-            free_package_arr = [9,10,11,12];
-            if(free_package_arr.includes(topic) ) {
-                window.location.href = '/free-packages';
-            } else {
-                window.location.href = '/paid-packages';
-            }
+            // free_package_arr = [9,10,11,12];
+            // if(free_package_arr.includes(topic) ) {
+            //     window.location.href = '/free-packages';
+            // } else {
+            //     window.location.href = '/paid-packages';
+            // }
+            window.location.href = '/'
         }
         gen_html += '</div>'
         $('div.list-test-unfinished > h3').text("Next test: ")

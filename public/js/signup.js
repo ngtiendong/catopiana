@@ -71,6 +71,10 @@ $(document).on('click', '#genButton', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -144,6 +148,10 @@ $('form#form-sign-up').on('submit', function(event) {
     //Check repassword
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -233,18 +241,24 @@ $("#modal-sign-in").on("hidden.bs.modal", function () {
     $('.login-errors').addClass('hide');
 });
 
-changeLocalStorage = (response) =>
+changeLocalStorage = (response, guest_id = '' ) =>
 {
     if(response === '[]'){
         return;
     }
-    console.log('res', response)
+    // console.log('res', response)
         testing_data = {
             level: response[0].level,
             question: [],
-            received_free_package_status : parseInt(response[0].received_free_package_status)
+            received_free_package_status : parseInt(response[0].received_free_package_status),
+            guest_id : '-1'
         };
 
+    if(guest_id == '' || guest_id === undefined) {
+        
+    } else {
+        testing_data.guest_id = guest_id;
+    }
     // save html -> localstorage
     response.forEach( function(response_element, index) {
         console.log('for', index)
@@ -270,11 +284,10 @@ changeLocalStorage = (response) =>
             result: response_element.result,
             count_correct_answer: parseInt(response_element.count_correct_answer)
         };
-        console.log('a', question)
+        // console.log('a', question)
         if (typeof testing_data !== 'undefined') {
             testing_data.question.push(question);
         }
-        // total_question = parseInt(this_question.question_data.length)
     });
     console.log('end ', testing_data)
     localStorage.setItem('testing', JSON.stringify(testing_data));
@@ -291,6 +304,10 @@ $(document).on('click', '#logoutBtn', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){
@@ -331,6 +348,10 @@ $(document).on('click', '.social-link', function(event) {
     url = $(this).data('route');
     if(testing_data == undefined){
         testing_data = [];
+    } else {
+        testing_data.question.forEach((question) => {
+            question.html_arr.length = 0;
+        })
     }
     // delete line in postion page
     if(typeof type != 'undefined' &&  type === '2' ){

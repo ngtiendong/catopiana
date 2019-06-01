@@ -52,16 +52,15 @@ $(function () {
             //Save into local storage
             localStorage.setItem('testing', JSON.stringify(testing_data));
 
-            let candidate_answers = this_question.answers;
-            console.log('answer', candidate_answers, this_question, just_answer)
+            // let candidate_answers = this_question.answers;
+            // console.log('answer', candidate_answers, this_question, just_answer)
 
-            let correct = candidate_answers.filter(answer => answer == 0).length
+            // let correct = candidate_answers.filter(answer => answer == 0).length
             // let login = false;
             var login = $(this).data('login');
-            if(login) {
-                updateDataTesting();
-            }
-            
+            updateDataTesting(login);
+
+            // return false;
             if(!list_test_finished.includes(parseInt(topic))){
                 list_test_finished.push(parseInt(topic))
             }
@@ -112,33 +111,6 @@ $(function () {
             for (var i = 0; i < testing_data.question.length; i++) {
                 this_question = testing_data.question[i];
                 if (this_question.topic == topic) {
-                    // Da ton tai bai test type nay trong lich su
-                    // if(!login){ // checklogin thi k reset data
-                    //     Swal.fire({
-                    //         title: 'Do you want to continue?',
-                    //         text: "This test has someone doing it!",
-                    //         type: 'warning',
-                    //         showCancelButton: true,
-                    //         reverseButtons: true,
-                    //         confirmButtonColor: '#3085d6',
-                    //         cancelButtonColor: '#d33',
-                    //         confirmButtonText: 'Continue test!',
-                    //         cancelButtonText: 'Reset data',
-                    //         backdrop: `rgba(0,0,0,0.1)`,
-                    //         allowOutsideClick: false
-                    //     }).then((result) => {
-                    //         if (result.value) {
-                    //             position_this_question = i
-                    //             console.log('current', this_question)
-                    //             // this_question = current_data
-                    //             total_question = parseInt(this_question.question_data.length)
-                    //             generateUnfinishedTest(this_question)
-                    //         } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    //             resetData();
-                    //             window.location.reload(true)
-                    //         }
-                    //     })
-                    // } else {
                         position_this_question = i
                         console.log('current', this_question)
                         // this_question = current_data
@@ -374,10 +346,16 @@ function getNewQuestionData(position) {
         success: function (response) {
             if (response.status === 1) {
                 if (typeof testing_data == 'undefined') {
+                    login = $('#testForm').data('login');
+                    guest_id = '0';
+                    if (login) {
+                        guest_id = '-1';
+                    }
                     testing_data = {
                         level: test_level,
                         question: [],
-                        received_free_package_status: 0
+                        received_free_package_status: 0,
+                        guest_id: guest_id
                     };
                 }
                 // save html -> localstorage
@@ -973,109 +951,45 @@ function nextButton() {
     }
 }
 
-function showDialogScore(correct, total, login = false) {
-    play_sound("sounds/win.mp3")
-    play_sound("sounds/applause3.mp3")
-    const tl = new mojs.Timeline({
-        repeat: 999
-    }).add(fw1, fws1, fw2, fw3, fw4, fw5, burstPolygon, burstCross, swirl, swirl2, swirl3, circ, circ2).play();
-    Swal.fire({
-          title: 'You have completed this test!',
-          padding: '3em',
-          background: 'orange',
-          allowOutsideClick: false,
-          backdrop: `rgba(0,0,0,0.1)`
-        }).then(() => {
-        if(!login){
-            Swal.fire({
-                title: 'Great Job!',
-                text: "Will you do the next lesson?",
-                background: 'orange',
-                type: 'question',
-                showCancelButton: false,
-                confirmButtonText: 'Continue Test',
-                backdrop: `rgba(0,0,0,0.1)`
-                // cancelButtonText: 'Sign up',
-                // cancelButtonColor :'#3085d6',
-                // reverseButtons: true,
-            }).then((result) => {
-                if (result.value) {
-                    continueTest();
-                } 
-                // else if (result.dismiss === Swal.DismissReason.cancel) {
-                //     Swal.fire({
-                //         title: 'Great Job!',
-                //         text: "Do you want to register or sign in?",
-                //         type: 'question',
-                //         background: 'orange',
-                //         showCancelButton: true,
-                //         confirmButtonText: 'Sign In',
-                //         cancelButtonText: 'Sign up',
-                //         cancelButtonColor :'#3085d6',
-                //         backdrop: `rgba(255, 255, 255, 0.61)`
-                //     }).then((result) => {
-                //         if (result.value) {
-                //             $('#modal-sign-in').modal();
-                //         } else if (result.dismiss === Swal.DismissReason.cancel) {
-                //             $('#modal-sign-up').modal();
-                //         }
-                //     });
-                // }
-            })
-
-        } else {
-            // Login roi => Update du lieu len
-            updateDataTesting()
-        }
-    });
-}
-
-function updateDataTesting()
+function updateDataTesting(login)
 {
-    if (type === '2') {
-        this_question.answers.forEach(function(value, index) {
-            for (var i=0; i<3; i++){
-                value[i].splice(2,1)
-            }
-        });
-    }
-    // get local storate
-    var data = {
-        'local_storage_this_question' : this_question,
-        'level' : test_level
-    };
-    $.ajax({
-        url: '/updateDataTesting',
-        type: 'POST',
-        dataType: 'json',
-        data: data,
-    }).done(function(response) {
+    guest_id = testing_data.guest_id;
+    if(login || guest_id != '0') {
+        if(typeof type != 'undefined' &&  type === '2' ){
+           convertAnswersPosition()
+        }
+        // get local storate
+        let data = {
+            'local_storage_this_question' : this_question,
+            'level' : test_level,
+            'guest_id' : guest_id,
+            'received_free_package_status' : testing_data.received_free_package_status,
+        };
+        if (login) {
+            url = '/updateDataTesting'
+        } else {
+            url = '/updateGuestDataTesting'
+        }
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+        })
+        .done(function(response) {
             // update testing_id đã có trên db,
             if(response.customer_testing_id == ''){
                 // somethings wrongs
             }else {
-                // console.log(response);
+                console.log(response);
                 this_question.customer_testing_id  = response.customer_testing_id;
                 localStorage.setItem('testing', JSON.stringify(testing_data));
-                // Swal.fire({
-                //     title: 'Great job!',
-                //     text: 'Will you do the next lesson?',
-                //     background: 'orange',
-                //     type:'question',
-                //     confirmButtonColor: '#3085d6',
-                //     confirmButtonText: 'Continue',
-                //     backdrop: `rgba(0,0,0,0.1)`,
-                //     allowOutsideClick: () => !Swal.isLoading()
-                // }).then((result) => {
-                //     if (result.value) {
-                //         continueTest();
-                //     }
-                // });
             }
         })
         .fail(function(response) {
             console.log(response);
         })
+    }
 }
 
 function continueTest()
@@ -1175,8 +1089,12 @@ redirectAfterSubmit = (topic) => {
         }
         // now use variables topic_arr_free[]
         if (count_free_package == 8) {
-            window.location.href = '/congratulation'
-
+            //save database guest and redirect
+            if(testing_data.guest_id == '0' ) {
+                saveGuestTesting();
+            } else {
+                window.location.href = '/congratulation'
+            }
         }
     } else {
         // free_package_arr = [9,10,11,12];
@@ -1232,13 +1150,43 @@ countCorrectAnswer = (just_answer) => {
 }
 
 checkAnswer = (just_answer, this_question, position_current_answer) => {
-    console.log(just_answer)
-    console.log(position_current_answer)
-    console.log(this_question.result)
     if(just_answer == this_question.result[position_current_answer]) {
-        console.log('right')
         return true;
     }
-    console.log('wrong')
+
     return false;
+}
+
+saveGuestTesting = () => {
+    console.log('create new guest')
+    if(typeof type != 'undefined' &&  type === '2' ){
+       convertAnswersPosition()
+    }
+    
+    testing_data.question.forEach((question) => {
+        question.html_arr.length = 0;
+    })
+
+    let data = {
+        'local_storage' : testing_data
+    };
+    $.ajax({
+        url: '/save-guest-testing',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+    })
+    .done(function(response) {
+        localStorage.removeItem('testing');
+        if(response.local_storage === undefined || response.local_storage.length == 0){
+            alert('somethings wrongs');
+        }else {
+            changeLocalStorage(response.local_storage, response.guest_id);
+            window.location.href = '/congratulation';
+        }
+    })
+    .fail(function(response) {
+        console.log(response);
+        alert('somethings wrongs');
+    });
 }

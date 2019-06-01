@@ -139,16 +139,17 @@
 
     $(document).on('click', '.button-recevie-package', function(event) {
             // add status đã nhận package to localstorage
-            if(received_free_package_status == 2) {
-                testing_data.received_free_package_status = 1;
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                url = $(this).data('route');
-                window.location.href = url
-            } else if(received_free_package_status == 1) {
+            // if(received_free_package_status == 2) {
+            //     testing_data.received_free_package_status = 1;
+            //     localStorage.setItem('testing', JSON.stringify(testing_data));
+            //     url = $(this).data('route');
+            //     window.location.href = url
+            // } else 
+            if (received_free_package_status == 1) {
                 url = $(this).data('route');
                 window.location.href = url
             } else {
-                return false;
+                window.location.href = url
             }
     });
     function filterCorrectPosition(this_question) {

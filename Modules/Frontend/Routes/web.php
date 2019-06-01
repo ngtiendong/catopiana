@@ -59,8 +59,11 @@ Route::group(/**
     Route::post('/sendLocalStorageSocial', 'Auth\SocialAccountController@sendLocalStorageSocial');
 
     Route::post('/updateDataTesting', 'Auth\LoginController@updateDataTesting');
+    Route::post('/updateGuestDataTesting', 'FrontendController@updateGuestDataTesting');
     Route::get('/continue-test/{topic}', 'FrontendController@continueTest');
     Route::get('/congratulation', 'FrontendController@congratulation');
+    Route::post('/resetDataServer', 'FrontendController@resetDataServer');
+    Route::post('/updateReceivePackageStatus', 'FrontendController@updateReceivePackageStatus');
 
 
 
@@ -73,9 +76,10 @@ Route::group(/**
     Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
 
     Route::get('/executePayForResult', 'PaymentController@executePayForResult');
-    Route::get('/payForResult', 'PaymentController@payForResult')->name('payForResult');
+    Route::get('/payForResult/{guest_id}', 'PaymentController@payForResult')->name('payForResult');
 
     Route::get('/menu', 'FrontendController@menu')->name('menu');
+    Route::post('/save-guest-testing', 'FrontendController@saveGuestTesing')->name('save-guest-testing');
 
     Route::get('/chart', function(){
         return view('frontend::chart');

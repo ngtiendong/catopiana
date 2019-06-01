@@ -14,7 +14,7 @@ class Customer extends Model implements AuthenticatableContract
     use Authenticatable;
 
     protected $table = 'customers';
-    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name','test_status'];
+    protected $fillable = ["username", "email", "password", "fullname", "phone",'provider_id','provider_name','test_status','uuid'];
 
     public function setPasswordAttribute($pass)
     {
@@ -55,7 +55,7 @@ class Customer extends Model implements AuthenticatableContract
 
     public function customer_testing()
     {
-        return $this->hasMany(CustomerTesting::class,'customer_id');
+        return $this->hasMany(CustomerTesting::class,'customer_id','uuid');
     }
 
     public function customer_package()
