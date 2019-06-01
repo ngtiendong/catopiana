@@ -13,7 +13,7 @@
                         <h2 class="text-center title2">Get your result and receive free test here</h2>
                         <div  class="final">
                             <button type="button" class="btn-lg button-congratulation btn-share"><i class="fa fa-facebook"></i> Share on facebook</button>
-                            <button type="button" onclick="location.href='{{route('payForResult')}}'"  class=" btn-lg button-congratulation btn-paid">or 1.99$</button>
+                            <button type="button" class=" btn-lg button-congratulation btn-paid">or 1.99$</button>
                         </div>
                     </div>
                 </div>
@@ -79,11 +79,29 @@
             }
       });
     });
+    $(document).on('click', '.btn-paid', function(event) {
+        event.preventDefault();
+        window.location.href = '/payForResult/'+testing_data.guest_id;
+    });
     shared_or_paid = () => {
         if(received_free_package_status == 0) {
-            testing_data.received_free_package_status = 2;
+            testing_data.received_free_package_status = 1;
             localStorage.setItem('testing', JSON.stringify(testing_data));
+            // update receive_package status serrve
+            $.ajax({
+                url: '/updateReceivePackageStatus',
+                type: 'POST',
+                dataType: 'json',
+                data: {'guest_id': testing_data.guest_id},
+            })
+            .done(function() {
+                console.log("success");
+            })
+            .fail(function() {
+                console.log("error");
+            })
         } 
+
         window.location.href = '/free-test-results'
     }
 </script>

@@ -9,6 +9,7 @@ use Modules\Core\Models\User;
 use Modules\Core\Models\Customer;
 use Modules\Frontend\Services\LocalStorageService;
 use Modules\Frontend\Services\PackageService;
+use Illuminate\Support\Str;
 use Socialite;
 
 
@@ -48,12 +49,13 @@ class SocialAccountController extends Controller
             $user = Customer::where('email', $userSocial->getEmail())->first();
 
             if (! $user) {
-                // if no have then create
+                // if don't have then create
                 $user = Customer::create([
                     'email' => $userSocial->getEmail(),
                     'username' => $userSocial->getName(),
                     'provider_id'   => $userSocial->getId(),
                     'provider_name' => $provider,
+                    'uuid' => Str::uuid(),
                 ]);
             } else {
                 session()->forget('local_storage');
@@ -66,7 +68,13 @@ class SocialAccountController extends Controller
 
             if(!empty($local_storage))
             {
-                $this->localStorageService->createTesting($local_storage);
+                //
+                $guest_id = $local_storage['guest_id'];
+                if($guest_id == '0') { 
+                    $this->localStorageService->createTesting($local_storage);
+                } else {
+                    $this->localStorageService->changeGuestIntoCustomer($guest_id, $sign_up_data['uuid']);
+                }
             }
         } else {
             auth()->guard('customers')->login($user, true);

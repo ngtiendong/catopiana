@@ -64,6 +64,9 @@ $(function(){
         }
     }).then((result) => {
         if (result.value) {
+            if(testing_data !== undefined && testing_data.guest_id != 0) {
+                removeDataServerOfcustomer(testing_data.guest_id, 1)
+            }
             localStorage.removeItem('testing');
             window.location.reload(true)
         }
@@ -97,6 +100,9 @@ $(function(){
             if(received_free_package_status == 1) {
                 // clear data except với 4 curri tặng, chưa rõ cách giải quyết, cần dữ liệu chuẩn để thêm vào localstorage -> xác định được các test thuộc loại nào
                 testing_data.question.splice(8, 4); 
+                if(testing_data !== undefined && testing_data.guest_id != 0) {
+                    removeDataServerOfcustomer(testing_data.guest_id, 0)
+                }
                 localStorage.setItem('testing', JSON.stringify(testing_data));
                 // hàm chưa xử lý được khi có cả paid package và freepackage
             }
@@ -104,6 +110,23 @@ $(function(){
         }
      });
  });
+
+removeDataServerOfcustomer = (guest_id, init) => {
+    
+    $.ajax({
+        url: '/resetDataServer',
+        type: 'POST',
+        dataType: 'json',
+        data: {'guest_id': guest_id, 'init' : init},
+    })
+    .done(function() {
+        console.log("success");
+    })
+    .fail(function() {
+        console.log("error");
+    });
+}
+
 /**
  * Event to click button add to cart
  * @param product_id

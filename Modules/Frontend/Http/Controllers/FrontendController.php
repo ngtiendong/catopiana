@@ -652,10 +652,51 @@ class FrontendController extends Controller
     {
         $local_storage = $request->input('local_storage');
         $guest_id = $local_storage['guest_id'];
+        $storage_response = [];
         if($local_storage['guest_id'] == '0') {
             $guest_id = $this->localStorageService->saveNewGuestTesting($local_storage);
+            $storage_response = $this->localStorageService->getTesting($guest_id);
         }
 
-        return  response()->json(['status'=> '1', 'guest_id' => $guest_id ]);
+        return  response()->json([
+                'status'=> '1',
+                'guest_id' => $guest_id,
+                'local_storage' => $storage_response
+                ], 200);
+    }
+
+    public function updateGuestDataTesting(Request $request)
+    {
+        $testing_id = '';
+        if($request->input('local_storage_this_question') != '' || $request->input('local_storage_this_question') != null)
+        {
+            $testing_id = $this->localStorageService->updateThisQuestion($request->input('local_storage_this_question'), $request->input('level'), $request->input('received_free_package_status'), $request->input('guest_id'));
+        }
+
+        return response()->json([
+            'status' => 200,
+            'customer_testing_id' => $testing_id
+        ],200);
+    }
+
+    public function resetDataServer(Request $request)
+    {
+        if ($request->init == 1) {
+            $this->localStorageService->removeLocalStorateDB($request->guest_id);
+        } else {
+            $this->localStorageService->removeLocalStorateFreeTest($request->guest_id);
+        }
+
+        return  response()->json([
+            'status'=> '1',
+            ], 200);
+    }
+    public function updateReceivePackageStatus(Request $request)
+    {
+        $this->localStorageService->updateReceivePackageStatus($request->guest_id);
+
+        return  response()->json([
+            'status'=> '1',
+            ], 200);
     }
 }

@@ -9,15 +9,18 @@ use Modules\Frontend\Entities\CustomerPackage;
 use Modules\Frontend\Paypal\ExecutePayment;
 use Illuminate\Routing\Controller;
 use Modules\Frontend\Services\PaymentService;
+use Modules\Frontend\Services\LocalStorageService;
 
 class PaymentController extends Controller
 {
     protected $payment_service;
+    protected $localStorageService;
 
-    public function __construct(PaymentService $service)
+    public function __construct(PaymentService $service, LocalStorageService $localStorageService)
     {
         $this->middleware('auth:customers')->except('payForResult','executePayForResult');
         $this->payment_service = $service;
+        $this->localStorageService = $localStorageService;
     }
 
     public function buyPackage()
@@ -52,8 +55,9 @@ class PaymentController extends Controller
         return redirect('packages')->with('buy_package_success' ,'You have bought the question package successfully!');
     }
 
-    public function payForResult()
+    public function payForResult($guest_id)
     {   
+        session(['guest_id' => $guest_id]);
         $data = [];
         $data[] = [
             'name'     => 'Pay to Receive Quiz Result',
@@ -74,6 +78,8 @@ class PaymentController extends Controller
     {
         $payment = new ExecutePayment;
         $payment->execute();
+        $this->localStorageService->updateReceivePackageStatus(session('guest_id', 0));
+
         return redirect('free-test-results');
     }
 }
