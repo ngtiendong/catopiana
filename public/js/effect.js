@@ -425,5 +425,6 @@ const circ2 = new mojs.Shape({
     radius: { 0 : 150 },
     top: '-10%',
     left: '20%',
+    zIndex: '-1',
     stroke: 'magenta'
 });

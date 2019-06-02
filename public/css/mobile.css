@@ -91,10 +91,7 @@
     .section-test .dot {
         bottom: 5.5%;
     }
-    #id2 .container .test-item {
-        margin: 20px 20px;
-        /*width: 100%;*/
-    }
+
     #id2 .below-list-test-f .test-item {
         width: 75%;
     }
@@ -198,11 +195,7 @@
     #prevBtn {
         left: -70px;
     }
-    #id2 .container .test-item {
-        width: 80%;
-        padding: 0;
-        margin: auto;
-    }
+
     .section-test .below-test .button-below {
         width: 200px;
         font-size: 17px;
@@ -244,6 +237,19 @@
     }
     .background-2 {
         top: 220px;
+    }
+    .continue_container .continue_test h1, .continue_container .continue_test h2 {
+        font-size: 20px;
+    }
+    .continue_section .boy {
+        width: 200px;
+    }
+    .continue_container .sea-horse1 {
+        width: 60px;
+    }
+    .test-item:hover {
+        transform: scale(1);
+        transition: 0s;
     }
 }
 @media screen and (max-width: 992px) {
@@ -490,7 +496,7 @@
         background: linear-gradient(to bottom, transparent, #fff 40%,  #9cdbf8 50%);
     }
     #id2 .test-item {
-        width: 20px;
+        width: 40px;
         margin: 0 10px;
     }
     #id2 .container .icon-in-test-page .test-item {

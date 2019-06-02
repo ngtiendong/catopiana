@@ -7,7 +7,7 @@
         <div class="continue_row tn">
             <div class="col-md-12">
                 <div class="continue_test" data-topic="{{ $prev_topic }}">
-                    <div class="row">
+                    <div class="row" style="z-index: 999">
                         <h1 class="text-center title1" >You did a great job !</h1>
                         <h2 class="text-center title2" >Do You want to continue?</h2>
                         <div class="continue">
@@ -84,12 +84,12 @@
 
     function displayTestUnFinishedAfterSubmit(topic) {
         console.log(list_test_finished);
-        let gen_html = '<div>'
+        let gen_html = '<div class="row">'
         if(topic < 9){
             for (var i=1; i<9; i++) {
                 if (list_test_finished.indexOf(i) < 0) {
                     //Chua thi
-                    gen_html += array_svg[i-1]
+                    gen_html += '<div class="col-md-3 col-xs-3">'+array_svg[i-1]+'</div>'
                 }
             }
         } else {
