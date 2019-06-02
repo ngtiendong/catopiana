@@ -1493,7 +1493,7 @@ footer .col {
 
 #id2 .container .test-item {
     display: block;
-    width: 120px;
+    width: 10%;
     margin: 0 30px 40px;
     position: relative;
     z-index: 5;
@@ -1514,7 +1514,7 @@ footer .col {
 
 #id2 .test-item {
     display: block;
-    width: 100px;
+    width: 80px;
     height: 100px;
     position: relative;
     z-index: 5;

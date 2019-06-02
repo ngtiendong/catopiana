@@ -3328,19 +3328,20 @@ button.start_memory:hover {
 
 .list-test-unfinished {
     text-align: center;
-    position: absolute;
+    position: relative;
     /*bottom: 50%;*/
     width: 100%;
-    text-align: center;
+    max-width: 750px;
     justify-content: center;
     align-items: center;
     border-radius: 45px;
     /*background: rgb(2,0,36);*/
     background: rgb(24, 96, 150);
-    border: 8px solid rgb(3, 73, 107);
+    border: 5px solid rgb(3, 73, 107);
     margin: 5% auto 0% auto;
-    padding: 5%;
+    padding: 2%;
     display: none;
+    float: none;
 }
 
 .list-test-unfinished h3 {
