@@ -77,7 +77,7 @@ $(function () {
             inputOptions = {'4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '10': '10'}
             swal.fire({
                 title: 'Choose your age',
-                // width: '40%',
+                width: 'auto',
                 input: 'radio',
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
@@ -223,8 +223,8 @@ function generateUnfinishedTest(current_data) {
             for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
                 let layout = 'col-md-4';
                 if(current_data.question_data[i].answers.length == 8){
-                   layout = 'col-md-3'; 
-                } 
+                   layout = 'col-md-3';
+                }
                 if (j == current_data.answers[i]) {
                     answer += '<label class="iq-answer '+ layout +'" style="opacity: 1">' +
                         '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
@@ -788,8 +788,8 @@ function render(question, answers) {
 function renderIQ(question, answers) {
     let layout = 'col-md-4 ';
     if(answers.length == 8) {
-        layout = 'col-md-3'; 
-    } 
+        layout = 'col-md-3';
+    }
     let answerHTML = "";
     answers.forEach(function (el, index) {
         answerHTML += "<label class='iq-answer "+ layout +"'>" +
@@ -809,8 +809,8 @@ function renderIQ(question, answers) {
 function renderNoQuestion(answers) {
     let layout = 'col-md-6';
     // if(answers.length == 8) {
-    //     layout = 'col-md-3'; 
-    // } 
+    //     layout = 'col-md-3';
+    // }
     let answerHTML = "";
     answers.forEach(function (el, index) {
         answerHTML += "<label class='no-question-answer "+ layout +"'>" +
@@ -1065,7 +1065,7 @@ function continueTest()
 resetData = () => {
     if(received_free_package_status == 1) {
         // clear data except với 4 curri tặng, chưa rõ cách giải quyết, cần dữ liệu chuẩn để thêm vào localstorage -> xác định được các test thuộc loại nào
-        testing_data.question.splice(8, 4); 
+        testing_data.question.splice(8, 4);
         localStorage.setItem('testing', JSON.stringify(testing_data));
     } else {
         localStorage.removeItem('testing');
@@ -1079,7 +1079,7 @@ redirectAfterSubmit = (topic) => {
         for (var i=1; i<9; i++) {
             if (list_test_finished.indexOf(i) < 0) {
                 // có bài Chưa thi
-                flag = 1 
+                flag = 1
                 break;
             }
             count_free_package++;
@@ -1162,7 +1162,7 @@ saveGuestTesting = () => {
     if(typeof type != 'undefined' &&  type === '2' ){
        convertAnswersPosition()
     }
-    
+
     testing_data.question.forEach((question) => {
         question.html_arr.length = 0;
     })
