@@ -73,7 +73,7 @@ jQuery(function($) {
 		},
 		slider: function(){
 
-			window_width = $(window).width()
+			var window_width = $(window).width()
 			if (window_width < 641){
 				$('.article-slide').slick({
 					slidesToShow: 1,
@@ -146,7 +146,7 @@ jQuery(function($) {
 
 	UI.init();
 
-	
+
 
 
 	var tl, tl2;
@@ -167,7 +167,7 @@ jQuery(function($) {
 		tl2.pause();
 	});
 
-	if (window.width() > 1024) {
+	if ($(window).width() > 1024) {
 		$($('.test-item')).hover(function() {
 			tlgt = new TimelineMax();
 			tlgt.to($(this), 0.05, {scale: 1.3}, 0.1);
