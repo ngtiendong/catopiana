@@ -70,8 +70,8 @@
 
 <script src="{{asset('/js/variables.js')}}"></script>
 <script src="{{asset('/js/position.js')}}"></script>
-<script src="{{asset('/js/handle_client_ver_1.js')}}"></script>
-<script src="{{asset('/js/svg_variables.js')}}"></script>
+<script src="{{asset('/js/handle_client_ver_1.js?v=1.2')}}"></script>
+<script src="{{asset('/js/svg_variables.js?v=1.2')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 
 {{-- <script src="{{asset('/js/beta_position.js')}}"></script>--}}

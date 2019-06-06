@@ -28,7 +28,7 @@ var position_in_local_storage = -1;
 var disabled_label_click = false;
 var doubleFalse = false;
 
-
+var player
 //Position
 var max_images_in_column = 0
 

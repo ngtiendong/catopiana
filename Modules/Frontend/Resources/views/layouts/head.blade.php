@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="{{asset('/Catopiana_files/slick.css')}}">
 
     <!-- STYLE CSS -->
-	<link rel="stylesheet" href="{{asset('/Catopiana_files/style.css?v=1.3')}}"/>
-    <link rel="stylesheet" href="{{asset('/Catopiana_files/style(1).css?v=1.6')}}" type="text/css" media="all">
-	<link rel="stylesheet" href="{{asset('/css/manual.css')}}"/>
+	<link rel="stylesheet" href="{{asset('/Catopiana_files/style.css?v=1.4')}}"/>
+    <link rel="stylesheet" href="{{asset('/Catopiana_files/style(1).css?v=1.5')}}" type="text/css" media="all">
+	<link rel="stylesheet" href="{{asset('/css/manual.css?v=1.2')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/effect.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/animate.min.css')}}">
-	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.4')}}"/>
+	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.5')}}"/>
+	<link rel="stylesheet" href="https://cdn.plyr.io/3.5.3/plyr.css" />
 
-    <link rel="stylesheet" href="{{asset('/Catopiana_files/jquery-ui.min.css')}}"/>
+
+	<link rel="stylesheet" href="{{asset('/Catopiana_files/jquery-ui.min.css')}}"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
 
 	<style type="text/css">

@@ -3293,7 +3293,7 @@ button.start_memory:hover {
     background-size: 200% auto;
 }
 
-#id2 .reset_data:hover{
+#id2 .reset_data:hover, .introduction-button:hover{
     background-image: linear-gradient(90deg, #03bdef 0%, #682e8c 50%, #03bdef 100%);
     transition: all 0.5s ease;
     z-index: 4;
