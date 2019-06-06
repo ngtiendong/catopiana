@@ -435,6 +435,9 @@
     .dot-background-2 {
         bottom: 0% !important;
     }
+    .introduction-button {
+        margin: 4% 20%;
+    }
 }
 
 @media screen and (max-width: 480px) {

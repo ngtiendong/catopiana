@@ -22,6 +22,7 @@
 <script src="{{asset('/js/waitForImages.js')}}"></script>
 <script src="{{asset('/js/animation-custom.js')}}"></script>
 <script src="{{asset('/js/mobile.js?v=1.1')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.5.4/plyr.js"></script>
 
 <script>
 	$('.d-nav').hc_menu({

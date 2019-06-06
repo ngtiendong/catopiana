@@ -305,6 +305,7 @@ function generateUnfinishedTest(current_data) {
     }
 
     if (length_answered < total_question){
+
         for(var not_answered = length_answered ; not_answered < total_question ; not_answered++ ){
             html += current_data.html_arr[not_answered];
         }
@@ -422,16 +423,19 @@ function getNewQuestionData(position) {
 
 
                 //Display html all
-                var html_gen_all = ''
+                var html_gen_all = ''+renderIntroduction()
                 html_arr.forEach( function(html_arr_element, index) {
                     html_gen_all += html_arr_element;
                 });
+                document.getElementById("nextBtn").style.display = "none";
+                document.getElementById("prevBtn").style.display = "none";
                 $('#prevBtn').before(html_gen_all)
 
                 displayTest()
+                player = new Plyr('#player');
 
                 current_index_max = this_question.current_index;
-                showTab(this_question.current_index)
+                // showTab(this_question.current_index)
                 // if(this_question.level_temp > minLv){
                 //     setTimeToChange(this_question.level_temp - 1 , this_question.current_index + 1 );
                 // }
@@ -449,6 +453,15 @@ function displayTest() {
     $('.startBtn').css('opacity', '0').css('z-index', '-1');
     waiting_element_load()
 }
+
+$(document).on('click', '#introduction_button', function(event){
+    event.preventDefault()
+    play_sound("/sounds/oh-really.mp3")
+    player.stop()
+    $('.video_introduction').css('display', 'none')
+    showTab(this_question.current_index)
+    return false
+})
 
 function showTab(current_index) {
     //Badge
@@ -806,6 +819,7 @@ function renderIQ(question, answers) {
         "</div>";
     return content
 }
+
 function renderNoQuestion(answers) {
     let layout = 'col-md-6';
     // if(answers.length == 8) {
@@ -826,6 +840,14 @@ function renderNoQuestion(answers) {
         "</div>" +
         "</div>";
     return content
+}
+
+function renderIntroduction() {
+    var html = "<div class='video_introduction' style='display: flex; flex-direction: column' >"+
+        "<div class='plyr__video-embed video-player' id='player' data-plyr-provider='youtube' data-plyr-embed-id='ddaEtFOsFeM' >" +
+        "    <iframe width='560' height='315' src='https://www.youtube.com/embed/ddaEtFOsFeM' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+        "</div><button class='introduction-button linear-button' id='introduction_button'>Done</button></div>"
+    return html
 }
 
 function renderAudio(question, answers, question_image, answer_image){
