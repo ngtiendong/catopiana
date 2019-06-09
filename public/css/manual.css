@@ -387,9 +387,9 @@ img.image-point-l:hover {
     height: 30px;
 }
 
-.memoryImage {
-    width: 300px !important;
-}
+/*.memoryImage {*/
+    /*width: 300px !important;*/
+/*}*/
 
 .button-gradient {
     background-image: linear-gradient(to right, #682e8c 0%, #03bdef 50%, #682e8c 100%);
