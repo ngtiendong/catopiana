@@ -28,7 +28,9 @@ $(document).on('click', '.answer label',function (event) {
     // Disable button
     $('.test-button');
     // auto next when click button
-    autonext()
+    if ($(window).width() > 1366 || this_question.type !== '1')  {
+        autonext()
+    }
 
 });
 
