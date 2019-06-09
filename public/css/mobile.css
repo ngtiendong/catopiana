@@ -213,6 +213,7 @@
     }
     .section-test .tab .question {
         max-width: 120px;
+        width: auto;
     }
     .swal2-popup .swal2-radio label {
         margin: 0 0.4em !important;
@@ -269,6 +270,7 @@
     #id2 .container .test-item {
         width: 12%;
         padding: 0;
+        min-width: 10px
     }
     #id2 .below-list-test-f .test-item {
         width: 65%;

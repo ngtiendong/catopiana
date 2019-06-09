@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="{{asset('/css/manual.css?v=1.2')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/effect.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/animate.min.css')}}">
-	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.5')}}"/>
+	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.6')}}"/>
 	<link rel="stylesheet" href="https://cdn.plyr.io/3.5.3/plyr.css" />
 
 
