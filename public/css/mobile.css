@@ -161,6 +161,7 @@
     }
     .section-test .tab img.iq-question{
         max-width: 250px;
+        width: auto;
     }
     .section-test .tab label.iq-answer.col-md-3 > img {
         width: 80px;
