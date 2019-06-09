@@ -167,7 +167,7 @@ jQuery(function($) {
 		tl2.pause();
 	});
 
-	if ($(window).width() > 1024) {
+
 		$($('.test-item')).hover(function() {
 			tlgt = new TimelineMax();
 			tlgt.to($(this), 0.05, {scale: 1.3}, 0.1);
