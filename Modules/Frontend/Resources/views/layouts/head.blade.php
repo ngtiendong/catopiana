@@ -14,7 +14,7 @@
     <!-- STYLE CSS -->
 	<link rel="stylesheet" href="{{asset('/Catopiana_files/style.css?v=1.4')}}"/>
     <link rel="stylesheet" href="{{asset('/Catopiana_files/style(1).css?v=1.6')}}" type="text/css" media="all">
-	<link rel="stylesheet" href="{{asset('/css/manual.css?v=1.2')}}"/>
+	<link rel="stylesheet" href="{{asset('/css/manual.css?v=1.3')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/effect.css')}}"/>
 	<link rel="stylesheet" href="{{asset('/css/animate.min.css')}}">
 	<link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.6')}}"/>
