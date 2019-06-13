@@ -423,7 +423,7 @@ function getNewQuestionData(position) {
 
 
                 //Display html all
-                var html_gen_all = ''+renderIntroduction()
+                var html_gen_all = ''+renderIntroduction(response)
                 html_arr.forEach( function(html_arr_element, index) {
                     html_gen_all += html_arr_element;
                 });
@@ -842,10 +842,10 @@ function renderNoQuestion(answers) {
     return content
 }
 
-function renderIntroduction() {
+function renderIntroduction(response) {
     var html = "<div class='video_introduction' style='display: flex; flex-direction: column' >"+
         "<div class='plyr__video-embed video-player' id='player' data-plyr-provider='youtube' data-plyr-embed-id='ddaEtFOsFeM' >" +
-        "    <iframe width='560' height='315' src='https://www.youtube.com/embed/ddaEtFOsFeM' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+        "    <iframe width='560' height='315' src='"+response.video+"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
         "</div><button class='introduction-button linear-button' id='introduction_button'>Done</button></div>"
     return html
 }

@@ -111,7 +111,8 @@ class FrontendController extends Controller
                 'question_data' => $raw_data['raw_data'],
                 'type' => $raw_data['type'],
                 'result' => $raw_data['result'],
-                'curriculum_id' => $raw_data['curriculum_id']
+                'curriculum_id' => $raw_data['curriculum_id'],
+                'video' => $raw_data['video']
             ];
         } else {
             return [
@@ -337,30 +338,29 @@ class FrontendController extends Controller
         /**
          * IQ
          */
-
-//        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
-//        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
-//        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
-//        $curriculum = [
-//            "id" => 2,
-//            "level" => "1",
-//            "count" => 30
-//        ];
-//        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
-//            $temp = [];
-//            foreach ($all as $value ) {
-//                if ($value !== $correct[$j-1]) {
-//                    $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
-//                }
-//            }
-//            Question::create([
-//                "curriculum_id" => 2,
-//                "index" => $j,
-//                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
-//                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
-//                "wrong_answer" => \GuzzleHttp\json_encode($temp)
-//            ]);
-//        }
+        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
+        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
+        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
+        $curriculum = [
+            "id" => 2,
+            "level" => "1",
+            "count" => 30
+        ];
+        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
+            $temp = [];
+            foreach ($all as $value ) {
+                if ($value !== $correct[$j-1]) {
+                    $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
+                }
+            }
+            Question::create([
+                "curriculum_id" => 2,
+                "index" => $j,
+                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
+                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
+                "wrong_answer" => \GuzzleHttp\json_encode($temp)
+            ]);
+        }
 
         #difference
 //        $all = ["A", "B", "C", "D"];
@@ -548,37 +548,37 @@ class FrontendController extends Controller
          * Creative
          */
 
-        $curriculum = [
-            "id" => 3,
-            "level" => "1",
-            "count" => 10
-        ];
-        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
-
-            DB::beginTransaction();
-            try {
-//                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
-//                for ($t=0; $t < count($questions); $t++) {
-//                    $questions[$t]->question = $questions[$t]->correct_answer;
-//                    $questions[$t]->save();
+//        $curriculum = [
+//            "id" => 3,
+//            "level" => "1",
+//            "count" => 10
+//        ];
+//        for ($j = 1; $j < $curriculum["count"]+1; $j++) {
+//
+//            DB::beginTransaction();
+//            try {
+////                $questions = Question::whereIn('curriculum_id', [4,21,22])->get();
+////                for ($t=0; $t < count($questions); $t++) {
+////                    $questions[$t]->question = $questions[$t]->correct_answer;
+////                    $questions[$t]->save();
+////                }
+////                dd($questions);
+//                $temp = [];
+//                for ($k=1; $k<7; $k++) {
+//                    $temp[] = "/data/creative/1/".$j."/".$k.".jpg";
 //                }
-//                dd($questions);
-                $temp = [];
-                for ($k=1; $k<7; $k++) {
-                    $temp[] = "/data/creative/1/".$j."/".$k.".jpg";
-                }
-                Question::create([
-                    "curriculum_id" => $curriculum["id"], #level3
-                    "index" => $j,
-                    "correct_answer" => \GuzzleHttp\json_encode([]),
-                    "wrong_answer" => \GuzzleHttp\json_encode($temp)
-                ]);
-                DB::commit();
-            } catch(Exception $e) {
-                DB::rollback();
-            }
-
-        }
+//                Question::create([
+//                    "curriculum_id" => $curriculum["id"], #level3
+//                    "index" => $j,
+//                    "correct_answer" => \GuzzleHttp\json_encode([]),
+//                    "wrong_answer" => \GuzzleHttp\json_encode($temp)
+//                ]);
+//                DB::commit();
+//            } catch(Exception $e) {
+//                DB::rollback();
+//            }
+//
+//        }
     }
 
     public function menu()
