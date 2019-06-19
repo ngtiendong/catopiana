@@ -106,8 +106,6 @@ $(function () {
         else {
             //Check history
             let flag = 1;
-            // login = $('#testForm').data('login');
-            // testStatus = $('#testForm').data('testStatus');
             for (var i = 0; i < testing_data.question.length; i++) {
                 this_question = testing_data.question[i];
                 if (this_question.topic == topic) {
@@ -369,9 +367,9 @@ function getNewQuestionData(position) {
                             question_data_element.question_image, question_data_element.answer_image))
                     });
                 } else if (response.type === '2'){
-                    max_images_in_column = response.question_data[0].length
+                    // max_images_in_column = response.question_data[0].length
                     response.question_data.forEach( function(question_data_element, index) {
-                        html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                        html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
                     });
                 } else if(response.type === '4') {
                     response.question_data.forEach( function(question_data_element, index) {
@@ -381,6 +379,24 @@ function getNewQuestionData(position) {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(renderNoQuestion(question_data_element.answers))
                     });
+                } else if(response.type === '-1') {
+                    console.log(response.question_data)
+                    response.question_data.forEach( function(question_data_element, index) {
+                        console.log(question_data_element);
+                        console.log(question_data_element.question_type);
+                        if(question_data_element.question_type === 2) {
+                            html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
+                        } else if(question_data_element.question_type === 1) {
+                            html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
+                            question_data_element.question_image, question_data_element.answer_image))
+                        } else if(question_data_element.question_type === 4) {
+                            html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+                        } else if(question_data_element.question_type === 5) {
+                            html_arr.push(renderNoQuestion(question_data_element.answers))
+                        } else {
+                            html_arr.push(render(question_data_element.question, question_data_element.answers))
+                        }
+                    });
                 }else {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(render(question_data_element.question, question_data_element.answers))
@@ -389,9 +405,7 @@ function getNewQuestionData(position) {
                 }
                 var curriculum_ids = [];
                 curriculum_ids.push(response.curriculum_id)
-                // console.log('tudm')
-                console.log(response.result)
-                // console.log('tudmend')
+                // console.log(response.result)
                 this_question = {
                     type: response.type,
                     topic: topic,
@@ -483,11 +497,6 @@ function showTab(current_index) {
     // console.log(n, currentTab, total_question)
 
     if (current_index === 0) {
-        // if(current_index_max > current_index ) {
-        //     document.getElementById("nextBtn").style.display = "inline";
-        // } else {
-        //     document.getElementById("nextBtn").style.display = "none";
-        // }
         document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
@@ -502,11 +511,6 @@ function showTab(current_index) {
         document.getElementById("submitBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "inline";
         document.getElementById("nextBtn").style.display = "inline";
-        // if(current_index_max > current_index ) {
-        //     document.getElementById("nextBtn").style.display = "inline";
-        // } else {
-        //     document.getElementById("nextBtn").style.display = "none";
-        // }
     }
 
 }
@@ -525,169 +529,172 @@ stopTimeToChange = () => {
 
 
 let changeDynamicQuestion = (test_level, indexIncorrect) => {
-    console.log(type, test_level, indexIncorrect)
-    $.ajax({
-        method: "POST",
-        url: "/get-list-less-level-question",
-        data: {
-            'type' : type,
-            'topic': topic,
-            'level': test_level,
-            'index' : indexIncorrect
-        },
-        success: function (response) {
-            if (response.status === 1) {
-                // ghep cau hoi vao this_question
-                if(response.question_data.length != 0){
-                    // add curriculum_ids
-                    if(!this_question.curriculum_ids.includes(response.curriculum_id)) {
-                        this_question.curriculum_ids.push(response.curriculum_id)
+    if(type !== '-1') {
+        $.ajax({
+            method: "POST",
+            url: "/get-list-less-level-question",
+            data: {
+                'type' : type,
+                'topic': topic,
+                'level': test_level,
+                'index' : indexIncorrect
+            },
+            success: function (response) {
+                if (response.status === 1) {
+                    // ghep cau hoi vao this_question
+                    if(response.question_data.length != 0){
+                        // add curriculum_ids
+                        if(!this_question.curriculum_ids.includes(response.curriculum_id)) {
+                            this_question.curriculum_ids.push(response.curriculum_id)
+                        }
+                        // gen lai html
+                        //
+                        html_arr_gen_again = [];
+                        if (type === '1'){
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
+                                    question_data_element.question_image, question_data_element.answer_image))
+                            });
+                        } else if (type === '2'){
+                            max_images_in_column = response.question_data[0].length
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                            });
+                        } else if (type === '4') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                            });
+                        } else if (type === '5') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
+                            });
+                        } else {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
+                            });
+
+                        }
+
+                        Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
+                        Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                        Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
+                        var tab_ = $('.tab');
+                        var html_gen_again = '';
+                        console.log(tab_, indexIncorrect)
+
+                        for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
+                            tab_.eq(i).remove();
+                        }
+                        html_arr_gen_again.forEach( function(gen_again_element, index) {
+                            html_gen_again += gen_again_element;
+                        });
+
+                        $('#prevBtn').before(html_gen_again)
+                        waiting_element_load()
                     }
-                    // gen lai html
-                    //
-                    html_arr_gen_again = [];
-                    if (type === '1'){
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                                question_data_element.question_image, question_data_element.answer_image))
-                        });
-                    } else if (type === '2'){
-                        max_images_in_column = response.question_data[0].length
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
-                        });
-                    } else if (type === '4') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
-                        });
-                    } else if (type === '5') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
-                        });
-                    } else {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
-                        });
+                    // trừ lv khi sai
+                    this_question.level_temp = test_level
+                    this_question.count_correct_answer = 0
 
-                    }
+                    localStorage.setItem('testing', JSON.stringify(testing_data));
+                    console.log('current: ', indexIncorrect, 'data', this_question)
+                    showTab(indexIncorrect)
 
-                    Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
-                    var tab_ = $('.tab');
-                    var html_gen_again = '';
-                    console.log(tab_, indexIncorrect)
-
-                    for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                        tab_.eq(i).remove();
-                    }
-                    html_arr_gen_again.forEach( function(gen_again_element, index) {
-                        html_gen_again += gen_again_element;
-                    });
-
-                    $('#prevBtn').before(html_gen_again)
-                    waiting_element_load()
+                    flagChange = 0;
+                    // if(this_question.level_temp > minLv){
+                    //     // console.log('vào đây dynamyc')
+                    //     setTimeToChange(this_question.level_temp - 1 , indexIncorrect + 1 );
+                    // }
+                } else {
+                    console.log("error", response)
                 }
-                // trừ lv khi sai
-                this_question.level_temp = test_level
-                this_question.count_correct_answer = 0
 
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                console.log('current: ', indexIncorrect, 'data', this_question)
-                showTab(indexIncorrect)
-
-                flagChange = 0;
-                // if(this_question.level_temp > minLv){
-                //     // console.log('vào đây dynamyc')
-                //     setTimeToChange(this_question.level_temp - 1 , indexIncorrect + 1 );
-                // }
-            } else {
-                console.log("error", response)
             }
 
-        }
-
-    })
+        })
+    }
 }
 
 let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
-    $.ajax({
-        method: "POST",
-        url: "/get-list-less-level-question",
-        data: {
-            'type' : type,
-            'topic': topic,
-            'level': test_level,
-            'index' : indexIncorrect
-        },
-        success: function (response) {
-            if (response.status === 1) {
-                if(response.question_data.length != 0){
-                    // add curriculum_ids
-                    if(!this_question.curriculum_ids.includes(response.curriculum_id)){
-                        this_question.curriculum_ids.push(response.curriculum_id)
-                    }
-                    // gen lai html
+    if(type !== '-1') {
+        $.ajax({
+            method: "POST",
+            url: "/get-list-less-level-question",
+            data: {
+                'type' : type,
+                'topic': topic,
+                'level': test_level,
+                'index' : indexIncorrect
+            },
+            success: function (response) {
+                if (response.status === 1) {
+                    if(response.question_data.length != 0){
+                        // add curriculum_ids
+                        if(!this_question.curriculum_ids.includes(response.curriculum_id)){
+                            this_question.curriculum_ids.push(response.curriculum_id)
+                        }
+                        // gen lai html
 
-                    html_arr_gen_again = [];
-                    if (type === '1'){
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                                question_data_element.question_image, question_data_element.answer_image))
-                        });
-                    } else if (type === '2'){
-                        max_images_in_column = response.question_data[0].length
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
-                        });
-                    } else if (type === '4') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
-                        });
-                    } else if (type === '5') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
-                        });
-                    }
-                    else {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
-                        });
-                    }
-                    console.log('html_arr_gen_again ', html_arr_gen_again)
-                    // console.log('indexIncorrect ', indexIncorrect)
-                    // console.log('current_index ', this_question.current_index)
-                    // console.log('this_questionlength ', this_question.question_data.length)
+                        html_arr_gen_again = [];
+                        if (type === '1'){
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
+                                    question_data_element.question_image, question_data_element.answer_image))
+                            });
+                        } else if (type === '2'){
+                            max_images_in_column = response.question_data[0].length
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                            });
+                        } else if (type === '4') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                            });
+                        } else if (type === '5') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
+                            });
+                        }
+                        else {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
+                            });
+                        }
+                        console.log('html_arr_gen_again ', html_arr_gen_again)
+                        // console.log('indexIncorrect ', indexIncorrect)
+                        // console.log('current_index ', this_question.current_index)
+                        // console.log('this_questionlength ', this_question.question_data.length)
 
-                    Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
-                    var tab_ = $('.tab');
-                    var html_gen_again = '';
-                    for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                        tab_[i].remove();
-                    }
-                    html_arr_gen_again.forEach( function(gen_again_element, index) {
-                        html_gen_again += gen_again_element;
-                    });
+                        Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
+                        Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                        Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
+                        var tab_ = $('.tab');
+                        var html_gen_again = '';
+                        for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
+                            tab_[i].remove();
+                        }
+                        html_arr_gen_again.forEach( function(gen_again_element, index) {
+                            html_gen_again += gen_again_element;
+                        });
 
-                    $('#prevBtn').before(html_gen_again)
+                        $('#prevBtn').before(html_gen_again)
+                    }
+                    // xuwr lyys
+                    // trừ lv khi timeout
+                    this_question.level_temp = test_level
+                    // console.log(response.question_data)
+
+                    // total_question = parseInt(this_question.question_data.length)
+                    localStorage.setItem('testing', JSON.stringify(testing_data));
+                    // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
+                    flagChange = 1;
+                } else {
+                    console.log("error", response)
                 }
-                // xuwr lyys
-                // trừ lv khi timeout
-                this_question.level_temp = test_level
-                // console.log(response.question_data)
-
-                // total_question = parseInt(this_question.question_data.length)
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
-                flagChange = 1;
-            } else {
-                console.log("error", response)
             }
-        }
 
-    })
+        })
+    }
 }
 
 function next() {

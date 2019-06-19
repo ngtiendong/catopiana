@@ -41,6 +41,76 @@ class Question extends Model
         ];
     }
 
+    public static function getListQuestionFree($topic)
+    {
+        $curriculum = Curriculum::where([
+            ['topic_id', $topic] // 15
+        ])->orderBy('level', 'desc')->first();
+        $question = Question::where('curriculum_id', $curriculum->id)->take(200)->get()->toArray();
+        shuffle($question);
+        $video = CurriculumVideo::inRandomOrder()->first();
+        $list_question_video = VideoQuestion::where('curriculum_video_id', $video->id)->get()->toArray();
+        $list_question = array_merge($list_question_video, $question);        
+        $raw_data = [];
+        $result = [];
+        foreach ($list_question as $question) {
+            if($question['question_type'] == 1) {
+                $answers = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+                shuffle($answers);
+                //Save answer
+                array_push($result, array_search($question['correct_answer'], $answers));
+               foreach($answers as $key => $answer){
+                   $answers[$key] = asset($answer);
+               }
+
+               $raw_data[] = [
+                   'question' => $question['question'],
+                   'answers' => $answers,
+                   'question_image' =>  asset($question['question_image']),
+                   'answer_image' =>  asset($question['question_image']),
+                   'question_type' =>  $question['question_type']
+               ];
+           } elseif ($question['question_type'] == 2) {
+                $question_content = \GuzzleHttp\json_decode($question['question'], true);
+                shuffle($question_content['left']);
+                shuffle($question_content['right']);
+                $item = [
+                    'left' => $question_content['left'],
+                    'right' => $question_content['right'],
+                    'question_type' => $question['question_type']
+                ];
+                $raw_data[] = $item;
+                $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
+                $result_item = [];
+                foreach ($correct_answer as $pair) {
+                    array_push($result_item, [array_search($pair[0], $item['left']), array_search($pair[1], $item['right'])]);
+                }
+                array_push($result, $result_item);
+           } else { 
+                if ($question['correct_answer']) {
+                    $answer = array_merge([$question['correct_answer']], \GuzzleHttp\json_decode($question['wrong_answer'], true));
+                } else {
+                    $answer = \GuzzleHttp\json_decode($question['wrong_answer'], true);
+                }
+                shuffle($answer);
+                //Save answer
+                array_push($result, array_search($question['correct_answer'], $answer));
+                $raw_data[] = [
+                    'question' => $question['question'],
+                    'answers' => $answer,
+                    'question_type' =>  $question['question_type']
+                ];
+            } 
+        }
+
+        return [
+            'curriculum_id' => $curriculum->id,
+            'raw_data' => $raw_data,
+            'result' => $result,
+            'type' => $curriculum->type
+        ];
+    }
+
     public static function getListQuestionIq ($topic, $level)
     {
         $curriculum = Curriculum::where([
@@ -117,14 +187,14 @@ class Question extends Model
             shuffle($question_content['left']);
             shuffle($question_content['right']);
             $item = [
-                $question_content['left'],
-                $question_content['right']
+                'left' => $question_content['left'],
+                'right' => $question_content['right']
             ];
             $raw_data[] = $item;
             $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
             $result_item = [];
             foreach ($correct_answer as $pair) {
-                array_push($result_item, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+                array_push($result_item, [array_search($pair[0], $item['left']), array_search($pair[1], $item['right'])]);
             }
             array_push($result, $result_item);
         }
@@ -303,14 +373,14 @@ class Question extends Model
             shuffle($question_content['left']);
             shuffle($question_content['right']);
             $item = [
-                $question_content['left'],
-                $question_content['right']
+                'left' => $question_content['left'],
+                'right' => $question_content['right']
             ];
             $raw_data[] = $item;
             $correct_answer = \GuzzleHttp\json_decode($question['correct_answer'], true);
             $result_item = [];
             foreach ($correct_answer as $pair) {
-                array_push($result_item, [array_search($pair[0], $item[0]), array_search($pair[1], $item[1])]);
+                array_push($result_item, [array_search($pair[0], $item['left']), array_search($pair[1], $item['right'])]);
             }
             array_push($result, $result_item);
         }

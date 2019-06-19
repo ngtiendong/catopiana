@@ -32,6 +32,7 @@ Route::group(/**
     // Route::post('/getTopicOfPackage', 'FrontendController@getTopicOfPackage')->name('getTopicOfPackage');
 
     // free package ->middleware('test');
+    Route::get('/free-test', 'FrontendController@free')->name('free-test');
     Route::get('/physics', 'FrontendController@test')->name('physics');
     Route::get('/chemistry', 'FrontendController@test')->name('chemistry');
     Route::get('/math', 'FrontendController@test')->name('math');

@@ -168,19 +168,19 @@ jQuery(function($) {
 	});
 
 
-		$($('.test-item')).hover(function() {
-			tlgt = new TimelineMax();
-			tlgt.to($(this), 0.05, {scale: 1.3}, 0.1);
-			tlgt1 = new TimelineMax({ repeat: -1, yoyo: true });
-			tlgt1.fromTo($(this), 0.05, {rotation:-10, transformOrigin:"50% 50%"}, {rotation:10, transformOrigin:"50% 50%"}, 0.1);
-		}, function() {
-			tlgt.restart();
-			tlgt.pause();
-			tlgt1.restart();
-			tlgt1.pause();
-		});
-	}
+	$($('.test-item')).hover(function() {
+		tlgt = new TimelineMax();
+		tlgt.to($(this), 0.05, {scale: 1.3}, 0.1);
+		tlgt1 = new TimelineMax({ repeat: -1, yoyo: true });
+		tlgt1.fromTo($(this), 0.05, {rotation:-10, transformOrigin:"50% 50%"}, {rotation:10, transformOrigin:"50% 50%"}, 0.1);
+	}, function() {
+		tlgt.restart();
+		tlgt.pause();
+		tlgt1.restart();
+		tlgt1.pause();
+	});
 
+});
 
 	// end animation
 
@@ -195,6 +195,3 @@ jQuery(function($) {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
 	// });
-});
-
-
