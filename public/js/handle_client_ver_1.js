@@ -133,7 +133,7 @@ $(function () {
 
 function generateUnfinishedTest(current_data) {
     // Chua hoan thanh bai test => gen html dua tren cau hoi va cac dap an da dien truoc do
-    var html = ''
+    var html = '';
     var length_answered = current_data.answers.length;
     console.log('length answer', length_answered, $('.tab').length)
     // gen lai html,
@@ -560,7 +560,7 @@ function getNewQuestionData(position) {
 
 
                 //Display html all
-                var html_gen_all = ''+renderIntroduction(response)
+                var html_gen_all = ''+renderIntroduction(response.video)
                 html_arr.forEach( function(html_arr_element, index) {
                     html_gen_all += html_arr_element;
                 });
@@ -1000,10 +1000,10 @@ function renderNoQuestion(answers) {
     return content
 }
 
-function renderIntroduction(response) {
+function renderIntroduction(video) {
     var html = "<div class='video_introduction' style='display: flex; flex-direction: column' >"+
         "<div class='plyr__video-embed video-player' id='player' data-plyr-provider='youtube' data-plyr-embed-id='ddaEtFOsFeM' >" +
-        "    <iframe width='560' height='315' src='"+response.video+"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+        "    <iframe width='560' height='315' src='"+video+"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
         "</div><button class='introduction-button linear-button' id='introduction_button'>Done</button></div>"
     return html
 }
