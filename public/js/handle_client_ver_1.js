@@ -106,8 +106,6 @@ $(function () {
         else {
             //Check history
             let flag = 1;
-            // login = $('#testForm').data('login');
-            // testStatus = $('#testForm').data('testStatus');
             for (var i = 0; i < testing_data.question.length; i++) {
                 this_question = testing_data.question[i];
                 if (this_question.topic == topic) {
@@ -148,9 +146,9 @@ function generateUnfinishedTest(current_data) {
                     question_data_element.question_image, question_data_element.answer_image))
             });
         } else if (current_data.type === '2'){
-            max_images_in_column = current_data.question_data[0].length
+            // max_images_in_column = current_data.question_data[0].length
             current_data.question_data.forEach( function(question_data_element, index) {
-                current_data.html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                current_data.html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
             });
         } else if(current_data.type === '4') {
             current_data.question_data.forEach( function(question_data_element, index) {
@@ -160,7 +158,25 @@ function generateUnfinishedTest(current_data) {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(renderNoQuestion(question_data_element.answers))
             });
-        }else {
+        } else if(current_data.type === '-1') {
+            current_data.question_data.forEach( function(question_data_element, index) {
+                console.log(question_data_element);
+                console.log(question_data_element.question_type);
+                if(question_data_element.question_type === 2) {
+                    html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
+                } else if(question_data_element.question_type === 1) {
+                    html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
+                    question_data_element.question_image, question_data_element.answer_image))
+                } else if(question_data_element.question_type === 4) {
+                    html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+                } else if(question_data_element.question_type === 5) {
+                    html_arr.push(renderNoQuestion(question_data_element.answers))
+                } else {
+                    html_arr.push(render(question_data_element.question, question_data_element.answers, question_data_element.question_type))
+                }
+            });
+        }
+        else {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(render(question_data_element.question, question_data_element.answers))
             });
@@ -170,7 +186,7 @@ function generateUnfinishedTest(current_data) {
         /**
      * Gen html : Chỗ này code thừa cực nhiều, cần sửa
      */
-    if (type == '1'){
+    if (type == '1' ){
         //Audio
         for (var i = 0; i<length_answered; i++) {
             html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
@@ -197,13 +213,13 @@ function generateUnfinishedTest(current_data) {
     }
 
     else if(type == '2') {
-        max_images_in_column = this_question.question_data[0][0].length
+        // max_images_in_column = this_question.question_data[0][0].length
         all_line_array = current_data.answers.slice();
         // console.log('all line array init', all_line_array)
 
         for (var i = 0; i<length_answered; i++) {
-            var question_left = current_data.question_data[i][0]
-            var question_right = current_data.question_data[i][1]
+            var question_left = current_data.question_data[i]['left']
+            var question_right = current_data.question_data[i]['right']
 
             html += renderPosition(question_left, question_right, "clicked-img", "none")
 
@@ -269,11 +285,119 @@ function generateUnfinishedTest(current_data) {
             // currentTab++
         }
         // console.log(current_data.question_data[length_answered])
-    } else {
+    }  
+    else if(type == '-1') {
+        for (var i = 0; i<length_answered; i++) {
+            if(current_data.question_data[i].question_type == 1) {
+                html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
+                    '<audio src="'+ current_data.question_data[i].question +'" class="audio"></audio>' + '<div class="answer">'
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    // console.log('i,j', j, i, current_data.answer[i])
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 1">' +
+                            '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                            '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
+                    } else {
+                        answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 0.3"> ' +
+                            '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                            '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
+                    }
+                }
+                html += answer
+                html += '</div></div>'
+            } else if(current_data.question_data[i].question_type == 2) {
+                all_line_array = current_data.answers.slice();
+                var question_left = current_data.question_data[i]['left']
+                var question_right = current_data.question_data[i]['right']
+
+                html += renderPosition(question_left, question_right, "clicked-img", "none")
+            } else if(current_data.question_data[i].question_type == 4) {
+                html += '<div class="tab" style="display: none;"><img class="question iq-question" src="'+current_data.question_data[i].question+'" alt="">'
+                + "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    let layout = 'col-md-4';
+                    if(current_data.question_data[i].answers.length == 8){
+                       layout = 'col-md-3';
+                    }
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="iq-answer '+ layout +'" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="iq-answer '+ layout +'" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            } else if(current_data.question_data[i].question_type == 5) {
+                html += '<div class="tab" style="display: none;">'
+                + "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="no-question-answer col-md-6" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="no-question-answer col-md-6" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            } else{
+                var style = '';
+                var classMemory = '';
+                if (current_data.question_data[i].question_type == 3) {
+                    style = 'style ="display: none;"';
+                    classMemory = 'memoryImage';
+                }
+                html += '<div class="tab" style="display: none;"><img class="question ' + classMemory + '" '+style+' src="'+current_data.question_data[i].question+'" alt="">'
+                    + '<button class="start_memory" style ="display: none;">Start</button>' +
+                    "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    // console.log('i,j', j, i, current_data.answer[i])
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="col-md-4" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="col-md-4" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            }
+
+        }
+        // console.log(current_data.question_data[length_answered])
+    }else {
         for (var i = 0; i<length_answered; i++) {
             var style = '';
             var classMemory = '';
-            if (topic == '6') {
+            if (type == 3) {
                 style = 'style ="display: none;"';
                 classMemory = 'memoryImage';
             }
@@ -369,9 +493,9 @@ function getNewQuestionData(position) {
                             question_data_element.question_image, question_data_element.answer_image))
                     });
                 } else if (response.type === '2'){
-                    max_images_in_column = response.question_data[0].length
+                    // max_images_in_column = response.question_data[0].length
                     response.question_data.forEach( function(question_data_element, index) {
-                        html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                        html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
                     });
                 } else if(response.type === '4') {
                     response.question_data.forEach( function(question_data_element, index) {
@@ -381,6 +505,21 @@ function getNewQuestionData(position) {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(renderNoQuestion(question_data_element.answers))
                     });
+                } else if(response.type === '-1') {
+                    response.question_data.forEach( function(question_data_element, index) {
+                        if(question_data_element.question_type === 2) {
+                            html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
+                        } else if(question_data_element.question_type === 1) {
+                            html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
+                            question_data_element.question_image, question_data_element.answer_image))
+                        } else if(question_data_element.question_type === 4) {
+                            html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+                        } else if(question_data_element.question_type === 5) {
+                            html_arr.push(renderNoQuestion(question_data_element.answers))
+                        } else {
+                            html_arr.push(render(question_data_element.question, question_data_element.answers, question_data_element.question_type))
+                        }
+                    });
                 }else {
                     response.question_data.forEach( function(question_data_element, index) {
                         html_arr.push(render(question_data_element.question, question_data_element.answers))
@@ -389,9 +528,7 @@ function getNewQuestionData(position) {
                 }
                 var curriculum_ids = [];
                 curriculum_ids.push(response.curriculum_id)
-                // console.log('tudm')
-                console.log(response.result)
-                // console.log('tudmend')
+                // console.log(response.result)
                 this_question = {
                     type: response.type,
                     topic: topic,
@@ -483,11 +620,6 @@ function showTab(current_index) {
     // console.log(n, currentTab, total_question)
 
     if (current_index === 0) {
-        // if(current_index_max > current_index ) {
-        //     document.getElementById("nextBtn").style.display = "inline";
-        // } else {
-        //     document.getElementById("nextBtn").style.display = "none";
-        // }
         document.getElementById("nextBtn").style.display = "inline";
         document.getElementById("prevBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "none";
@@ -502,11 +634,6 @@ function showTab(current_index) {
         document.getElementById("submitBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "inline";
         document.getElementById("nextBtn").style.display = "inline";
-        // if(current_index_max > current_index ) {
-        //     document.getElementById("nextBtn").style.display = "inline";
-        // } else {
-        //     document.getElementById("nextBtn").style.display = "none";
-        // }
     }
 
 }
@@ -525,169 +652,172 @@ stopTimeToChange = () => {
 
 
 let changeDynamicQuestion = (test_level, indexIncorrect) => {
-    console.log(type, test_level, indexIncorrect)
-    $.ajax({
-        method: "POST",
-        url: "/get-list-less-level-question",
-        data: {
-            'type' : type,
-            'topic': topic,
-            'level': test_level,
-            'index' : indexIncorrect
-        },
-        success: function (response) {
-            if (response.status === 1) {
-                // ghep cau hoi vao this_question
-                if(response.question_data.length != 0){
-                    // add curriculum_ids
-                    if(!this_question.curriculum_ids.includes(response.curriculum_id)) {
-                        this_question.curriculum_ids.push(response.curriculum_id)
+    if(type !== '-1') {
+        $.ajax({
+            method: "POST",
+            url: "/get-list-less-level-question",
+            data: {
+                'type' : type,
+                'topic': topic,
+                'level': test_level,
+                'index' : indexIncorrect
+            },
+            success: function (response) {
+                if (response.status === 1) {
+                    // ghep cau hoi vao this_question
+                    if(response.question_data.length != 0){
+                        // add curriculum_ids
+                        if(!this_question.curriculum_ids.includes(response.curriculum_id)) {
+                            this_question.curriculum_ids.push(response.curriculum_id)
+                        }
+                        // gen lai html
+                        //
+                        html_arr_gen_again = [];
+                        if (type === '1'){
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
+                                    question_data_element.question_image, question_data_element.answer_image))
+                            });
+                        } else if (type === '2'){
+                            max_images_in_column = response.question_data[0].length
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                            });
+                        } else if (type === '4') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                            });
+                        } else if (type === '5') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
+                            });
+                        } else {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
+                            });
+
+                        }
+
+                        Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
+                        Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                        Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
+                        var tab_ = $('.tab');
+                        var html_gen_again = '';
+                        console.log(tab_, indexIncorrect)
+
+                        for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
+                            tab_.eq(i).remove();
+                        }
+                        html_arr_gen_again.forEach( function(gen_again_element, index) {
+                            html_gen_again += gen_again_element;
+                        });
+
+                        $('#prevBtn').before(html_gen_again)
+                        waiting_element_load()
                     }
-                    // gen lai html
-                    //
-                    html_arr_gen_again = [];
-                    if (type === '1'){
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                                question_data_element.question_image, question_data_element.answer_image))
-                        });
-                    } else if (type === '2'){
-                        max_images_in_column = response.question_data[0].length
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
-                        });
-                    } else if (type === '4') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
-                        });
-                    } else if (type === '5') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
-                        });
-                    } else {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
-                        });
+                    // trừ lv khi sai
+                    this_question.level_temp = test_level
+                    this_question.count_correct_answer = 0
 
-                    }
+                    localStorage.setItem('testing', JSON.stringify(testing_data));
+                    console.log('current: ', indexIncorrect, 'data', this_question)
+                    showTab(indexIncorrect)
 
-                    Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
-                    var tab_ = $('.tab');
-                    var html_gen_again = '';
-                    console.log(tab_, indexIncorrect)
-
-                    for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                        tab_.eq(i).remove();
-                    }
-                    html_arr_gen_again.forEach( function(gen_again_element, index) {
-                        html_gen_again += gen_again_element;
-                    });
-
-                    $('#prevBtn').before(html_gen_again)
-                    waiting_element_load()
+                    flagChange = 0;
+                    // if(this_question.level_temp > minLv){
+                    //     // console.log('vào đây dynamyc')
+                    //     setTimeToChange(this_question.level_temp - 1 , indexIncorrect + 1 );
+                    // }
+                } else {
+                    console.log("error", response)
                 }
-                // trừ lv khi sai
-                this_question.level_temp = test_level
-                this_question.count_correct_answer = 0
 
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                console.log('current: ', indexIncorrect, 'data', this_question)
-                showTab(indexIncorrect)
-
-                flagChange = 0;
-                // if(this_question.level_temp > minLv){
-                //     // console.log('vào đây dynamyc')
-                //     setTimeToChange(this_question.level_temp - 1 , indexIncorrect + 1 );
-                // }
-            } else {
-                console.log("error", response)
             }
 
-        }
-
-    })
+        })
+    }
 }
 
 let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
-    $.ajax({
-        method: "POST",
-        url: "/get-list-less-level-question",
-        data: {
-            'type' : type,
-            'topic': topic,
-            'level': test_level,
-            'index' : indexIncorrect
-        },
-        success: function (response) {
-            if (response.status === 1) {
-                if(response.question_data.length != 0){
-                    // add curriculum_ids
-                    if(!this_question.curriculum_ids.includes(response.curriculum_id)){
-                        this_question.curriculum_ids.push(response.curriculum_id)
-                    }
-                    // gen lai html
+    if(type !== '-1') {
+        $.ajax({
+            method: "POST",
+            url: "/get-list-less-level-question",
+            data: {
+                'type' : type,
+                'topic': topic,
+                'level': test_level,
+                'index' : indexIncorrect
+            },
+            success: function (response) {
+                if (response.status === 1) {
+                    if(response.question_data.length != 0){
+                        // add curriculum_ids
+                        if(!this_question.curriculum_ids.includes(response.curriculum_id)){
+                            this_question.curriculum_ids.push(response.curriculum_id)
+                        }
+                        // gen lai html
 
-                    html_arr_gen_again = [];
-                    if (type === '1'){
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
-                                question_data_element.question_image, question_data_element.answer_image))
-                        });
-                    } else if (type === '2'){
-                        max_images_in_column = response.question_data[0].length
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
-                        });
-                    } else if (type === '4') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
-                        });
-                    } else if (type === '5') {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
-                        });
-                    }
-                    else {
-                        response.question_data.forEach( function(question_data_element, index) {
-                            html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
-                        });
-                    }
-                    console.log('html_arr_gen_again ', html_arr_gen_again)
-                    // console.log('indexIncorrect ', indexIncorrect)
-                    // console.log('current_index ', this_question.current_index)
-                    // console.log('this_questionlength ', this_question.question_data.length)
+                        html_arr_gen_again = [];
+                        if (type === '1'){
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderAudio(question_data_element.question, question_data_element.answers,
+                                    question_data_element.question_image, question_data_element.answer_image))
+                            });
+                        } else if (type === '2'){
+                            max_images_in_column = response.question_data[0].length
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                            });
+                        } else if (type === '4') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderIQ(question_data_element.question, question_data_element.answers))
+                            });
+                        } else if (type === '5') {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(renderNoQuestion(question_data_element.answers))
+                            });
+                        }
+                        else {
+                            response.question_data.forEach( function(question_data_element, index) {
+                                html_arr_gen_again.push(render(question_data_element.question, question_data_element.answers))
+                            });
+                        }
+                        console.log('html_arr_gen_again ', html_arr_gen_again)
+                        // console.log('indexIncorrect ', indexIncorrect)
+                        // console.log('current_index ', this_question.current_index)
+                        // console.log('this_questionlength ', this_question.question_data.length)
 
-                    Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
-                    Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
-                    Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
-                    var tab_ = $('.tab');
-                    var html_gen_again = '';
-                    for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
-                        tab_[i].remove();
-                    }
-                    html_arr_gen_again.forEach( function(gen_again_element, index) {
-                        html_gen_again += gen_again_element;
-                    });
+                        Array.prototype.splice.apply(this_question.html_arr, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(html_arr_gen_again));
+                        Array.prototype.splice.apply(this_question.question_data, [indexIncorrect, this_question.question_data.length - indexIncorrect ].concat(response.question_data));
+                        Array.prototype.splice.apply(this_question.result, [indexIncorrect, this_question.result.length - indexIncorrect ].concat(response.result));
+                        var tab_ = $('.tab');
+                        var html_gen_again = '';
+                        for(var i = indexIncorrect; i < this_question.question_data.length; i++ ){
+                            tab_[i].remove();
+                        }
+                        html_arr_gen_again.forEach( function(gen_again_element, index) {
+                            html_gen_again += gen_again_element;
+                        });
 
-                    $('#prevBtn').before(html_gen_again)
+                        $('#prevBtn').before(html_gen_again)
+                    }
+                    // xuwr lyys
+                    // trừ lv khi timeout
+                    this_question.level_temp = test_level
+                    // console.log(response.question_data)
+
+                    // total_question = parseInt(this_question.question_data.length)
+                    localStorage.setItem('testing', JSON.stringify(testing_data));
+                    // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
+                    flagChange = 1;
+                } else {
+                    console.log("error", response)
                 }
-                // xuwr lyys
-                // trừ lv khi timeout
-                this_question.level_temp = test_level
-                // console.log(response.question_data)
-
-                // total_question = parseInt(this_question.question_data.length)
-                localStorage.setItem('testing', JSON.stringify(testing_data));
-                // neu da thay doi cau hoi r thi doi flagchange khong bat doi cau khi tra loi sai nua
-                flagChange = 1;
-            } else {
-                console.log("error", response)
             }
-        }
 
-    })
+        })
+    }
 }
 
 function next() {
@@ -696,7 +826,7 @@ function next() {
     //     // MEMORY
     //     return false;
     // }
-    if(type == '2') {
+    if(type === '2' || (type === '-1' && this_question.question_data[this_question.current_index]['question_type'] == 2)) {
         // POSITION
         nextButtonPosition()
     } else {
@@ -710,12 +840,6 @@ function next() {
 
 function prev() {
     play_sound("/sounds/oh-really.mp3")
-
-    // if(type == '3' && buttonMemoryChecked == false)
-    // {
-    //     // MEMORY
-    //     return false;
-    // }
     var x = document.getElementsByClassName("tab");
 
     if (type == '2') {
@@ -753,7 +877,40 @@ function prev() {
         var currentTab = this_question.current_index
         gen_line_from_localstorage(old_line_array, currentTab)
 
-    } else {
+    } else if (type == '-1') {
+        // POSITION
+        if (line_array && this_question.question_data[this_question.current_index]['question_type'] == 2) {
+            for (var i=0; i < line_array.length; i++) {
+                line_array[i][2].hide()
+            }
+            var old_line_array = this_question.answers.pop()
+
+            let temp_arr = [...line_array]
+
+            if (all_line_array.length > this_question.current_index) {
+                all_line_array[this_question.current_index] = temp_arr
+            } else {
+                all_line_array.push(temp_arr)
+            }
+        }
+
+        x[this_question.current_index].style.display = "none";
+
+        this_question.current_index += -1;
+        while(this_question.answers.length > this_question.current_index){
+            this_question.answers.pop()
+        }
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
+        showTab(this_question.current_index);
+
+        //Show line already in prev
+        var currentTab = this_question.current_index
+        if (line_array && this_question.question_data[currentTab].question_type == 2) {
+            gen_line_from_localstorage(old_line_array, currentTab)
+        }
+    }
+     else {
         x[this_question.current_index].style.display = "none";
 
         this_question.current_index += -1
@@ -772,7 +929,7 @@ function prev() {
 
 }
 
-function render(question, answers) {
+function render(question, answers, question_type = null) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
         answerHTML += "<label class='col-md-4 col-xs-4 col-lg-4'>" +
@@ -782,8 +939,9 @@ function render(question, answers) {
 
     });
     normal = 'style="display : none;"';
-    classMemory = ''
-    if(topic === "6" ){
+    classMemory = '';
+    style = "";
+    if(type === "3" || (type === '-1' && question_type == 3) ) {
         style = 'style="display : none;"';
         normal = 'style="display : inline-block;"'
         classMemory = 'memoryImage'

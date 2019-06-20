@@ -57,7 +57,7 @@ $(document).on('click', '.list-l-item img', function (e) {
             $(this).removeClass('unlock-selection')
         })
     }
-    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
+    if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
         autonext()
     }
 })
@@ -65,7 +65,7 @@ $(document).on('click', '.list-l-item img', function (e) {
 function nextButtonPosition () {
     //Position
     console.log("condition line array / just answer", line_array)
-    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
+    if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
         tab_number[this_question.current_index].style.display = "none";
         this_question.current_index += 1
         var currentTab = parseInt(this_question.current_index)
@@ -77,7 +77,7 @@ function nextButtonPosition () {
 
 
         // Hide all line previous position tab
-        for (var i = 0; i < this_question.question_data[this_question.current_index-1][0].length;  i++) {
+        for (var i = 0; i < this_question.question_data[this_question.current_index-1]['left'].length;  i++) {
             compare_just_answer.push([just_answer[i][0],just_answer[i][1]])
             line_array[i][2].hide()
         }
@@ -276,7 +276,7 @@ function createLine(left_element, right_element, start=0) {
 
 function submitPosition() {
     console.log("condition line array / just answer", line_array)
-    if (line_array.length == this_question.question_data[this_question.current_index][0].length) {
+    if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
         //Lock and save answered
         let just_answer = [...line_array]
         if (this_question.answers.length === this_question.question_data.length) {
