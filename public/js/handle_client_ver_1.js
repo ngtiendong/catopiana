@@ -158,7 +158,25 @@ function generateUnfinishedTest(current_data) {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(renderNoQuestion(question_data_element.answers))
             });
-        }else {
+        } else if(current_data.type === '-1') {
+            current_data.question_data.forEach( function(question_data_element, index) {
+                console.log(question_data_element);
+                console.log(question_data_element.question_type);
+                if(question_data_element.question_type === 2) {
+                    html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
+                } else if(question_data_element.question_type === 1) {
+                    html_arr.push(renderAudio(question_data_element.question, question_data_element.answers,
+                    question_data_element.question_image, question_data_element.answer_image))
+                } else if(question_data_element.question_type === 4) {
+                    html_arr.push(renderIQ(question_data_element.question, question_data_element.answers))
+                } else if(question_data_element.question_type === 5) {
+                    html_arr.push(renderNoQuestion(question_data_element.answers))
+                } else {
+                    html_arr.push(render(question_data_element.question, question_data_element.answers, question_data_element.question_type))
+                }
+            });
+        }
+        else {
             current_data.question_data.forEach( function(question_data_element, index) {
                 current_data.html_arr.push(render(question_data_element.question, question_data_element.answers))
             });
@@ -168,7 +186,7 @@ function generateUnfinishedTest(current_data) {
         /**
      * Gen html : Chỗ này code thừa cực nhiều, cần sửa
      */
-    if (type == '1'){
+    if (type == '1' ){
         //Audio
         for (var i = 0; i<length_answered; i++) {
             html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
@@ -195,13 +213,13 @@ function generateUnfinishedTest(current_data) {
     }
 
     else if(type == '2') {
-        max_images_in_column = this_question.question_data[0][0].length
+        // max_images_in_column = this_question.question_data[0][0].length
         all_line_array = current_data.answers.slice();
         // console.log('all line array init', all_line_array)
 
         for (var i = 0; i<length_answered; i++) {
-            var question_left = current_data.question_data[i][0]
-            var question_right = current_data.question_data[i][1]
+            var question_left = current_data.question_data[i]['left']
+            var question_right = current_data.question_data[i]['right']
 
             html += renderPosition(question_left, question_right, "clicked-img", "none")
 
@@ -267,11 +285,119 @@ function generateUnfinishedTest(current_data) {
             // currentTab++
         }
         // console.log(current_data.question_data[length_answered])
-    } else {
+    }  
+    else if(type == '-1') {
+        for (var i = 0; i<length_answered; i++) {
+            if(current_data.question_data[i].question_type == 1) {
+                html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
+                    '<audio src="'+ current_data.question_data[i].question +'" class="audio"></audio>' + '<div class="answer">'
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    // console.log('i,j', j, i, current_data.answer[i])
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 1">' +
+                            '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                            '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
+                    } else {
+                        answer += '<label class="col-md-4 col-xs-4 col-lg-4" style="opacity: 0.3"> ' +
+                            '<input type="radio" style="z-index: -1;" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img class="audio-image" src="' + current_data.question_data[i].answer_image + '" alt="">' +
+                            '<audio src="'+ current_data.question_data[i].answers[j] +'" class="audio"></label>'
+                    }
+                }
+                html += answer
+                html += '</div></div>'
+            } else if(current_data.question_data[i].question_type == 2) {
+                all_line_array = current_data.answers.slice();
+                var question_left = current_data.question_data[i]['left']
+                var question_right = current_data.question_data[i]['right']
+
+                html += renderPosition(question_left, question_right, "clicked-img", "none")
+            } else if(current_data.question_data[i].question_type == 4) {
+                html += '<div class="tab" style="display: none;"><img class="question iq-question" src="'+current_data.question_data[i].question+'" alt="">'
+                + "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    let layout = 'col-md-4';
+                    if(current_data.question_data[i].answers.length == 8){
+                       layout = 'col-md-3';
+                    }
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="iq-answer '+ layout +'" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="iq-answer '+ layout +'" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            } else if(current_data.question_data[i].question_type == 5) {
+                html += '<div class="tab" style="display: none;">'
+                + "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="no-question-answer col-md-6" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="no-question-answer col-md-6" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            } else{
+                var style = '';
+                var classMemory = '';
+                if (current_data.question_data[i].question_type == 3) {
+                    style = 'style ="display: none;"';
+                    classMemory = 'memoryImage';
+                }
+                html += '<div class="tab" style="display: none;"><img class="question ' + classMemory + '" '+style+' src="'+current_data.question_data[i].question+'" alt="">'
+                    + '<button class="start_memory" style ="display: none;">Start</button>' +
+                    "<div class='answer'>" ;
+
+                var answer = ""
+                for (var j = 0; j < current_data.question_data[i].answers.length; j++) {
+                    // console.log('i,j', j, i, current_data.answer[i])
+                    if (j == current_data.answers[i]) {
+                        answer += '<label class="col-md-4" style="opacity: 1">' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" checked data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    } else {
+                        answer += '<label class="col-md-4" style="opacity: 0.3"> ' +
+                            '<input type="radio" value="' + current_data.question_data[i].answers[j] + '" data-position="'+j+'" hidden>' +
+                            '<img src="' + current_data.question_data[i].answers[j] + '" alt="">' +
+                            '</label>'
+                    }
+                }
+
+                html += answer
+                html += '</div></div>'
+            }
+
+        }
+        // console.log(current_data.question_data[length_answered])
+    }else {
         for (var i = 0; i<length_answered; i++) {
             var style = '';
             var classMemory = '';
-            if (topic == '6') {
+            if (type == 3) {
                 style = 'style ="display: none;"';
                 classMemory = 'memoryImage';
             }
@@ -380,10 +506,7 @@ function getNewQuestionData(position) {
                         html_arr.push(renderNoQuestion(question_data_element.answers))
                     });
                 } else if(response.type === '-1') {
-                    console.log(response.question_data)
                     response.question_data.forEach( function(question_data_element, index) {
-                        console.log(question_data_element);
-                        console.log(question_data_element.question_type);
                         if(question_data_element.question_type === 2) {
                             html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
                         } else if(question_data_element.question_type === 1) {
@@ -394,7 +517,7 @@ function getNewQuestionData(position) {
                         } else if(question_data_element.question_type === 5) {
                             html_arr.push(renderNoQuestion(question_data_element.answers))
                         } else {
-                            html_arr.push(render(question_data_element.question, question_data_element.answers))
+                            html_arr.push(render(question_data_element.question, question_data_element.answers, question_data_element.question_type))
                         }
                     });
                 }else {
@@ -437,7 +560,7 @@ function getNewQuestionData(position) {
 
 
                 //Display html all
-                var html_gen_all = ''+renderIntroduction()
+                var html_gen_all = ''+renderIntroduction(response)
                 html_arr.forEach( function(html_arr_element, index) {
                     html_gen_all += html_arr_element;
                 });
@@ -703,7 +826,7 @@ function next() {
     //     // MEMORY
     //     return false;
     // }
-    if(type == '2') {
+    if(type === '2' || (type === '-1' && this_question.question_data[this_question.current_index]['question_type'] == 2)) {
         // POSITION
         nextButtonPosition()
     } else {
@@ -717,12 +840,6 @@ function next() {
 
 function prev() {
     play_sound("/sounds/oh-really.mp3")
-
-    // if(type == '3' && buttonMemoryChecked == false)
-    // {
-    //     // MEMORY
-    //     return false;
-    // }
     var x = document.getElementsByClassName("tab");
 
     if (type == '2') {
@@ -760,7 +877,40 @@ function prev() {
         var currentTab = this_question.current_index
         gen_line_from_localstorage(old_line_array, currentTab)
 
-    } else {
+    } else if (type == '-1') {
+        // POSITION
+        if (line_array && this_question.question_data[x]['question_type'] == 2) {
+            for (var i=0; i < line_array.length; i++) {
+                line_array[i][2].hide()
+            }
+            var old_line_array = this_question.answers.pop()
+
+            let temp_arr = [...line_array]
+
+            if (all_line_array.length > this_question.current_index) {
+                all_line_array[this_question.current_index] = temp_arr
+            } else {
+                all_line_array.push(temp_arr)
+            }
+        }
+
+        x[this_question.current_index].style.display = "none";
+
+        this_question.current_index += -1;
+        while(this_question.answers.length > this_question.current_index){
+            this_question.answers.pop()
+        }
+        //Save into local storage
+        localStorage.setItem('testing', JSON.stringify(testing_data))
+        showTab(this_question.current_index);
+
+        //Show line already in prev
+        var currentTab = this_question.current_index
+        if (line_array && this_question.question_data[currentTab].question_type == 2) {
+            gen_line_from_localstorage(old_line_array, currentTab)
+        }
+    }
+     else {
         x[this_question.current_index].style.display = "none";
 
         this_question.current_index += -1
@@ -779,7 +929,7 @@ function prev() {
 
 }
 
-function render(question, answers) {
+function render(question, answers, question_type = null) {
     let answerHTML = "";
     answers.forEach(function (el, index) {
         answerHTML += "<label class='col-md-4 col-xs-4 col-lg-4'>" +
@@ -789,8 +939,9 @@ function render(question, answers) {
 
     });
     normal = 'style="display : none;"';
-    classMemory = ''
-    if(topic === "6" ){
+    classMemory = '';
+    style = "";
+    if(type === "3" || (type === '-1' && question_type == 3) ) {
         style = 'style="display : none;"';
         normal = 'style="display : inline-block;"'
         classMemory = 'memoryImage'
@@ -849,10 +1000,10 @@ function renderNoQuestion(answers) {
     return content
 }
 
-function renderIntroduction() {
+function renderIntroduction(response) {
     var html = "<div class='video_introduction' style='display: flex; flex-direction: column' >"+
         "<div class='plyr__video-embed video-player' id='player' data-plyr-provider='youtube' data-plyr-embed-id='ddaEtFOsFeM' >" +
-        "    <iframe width='560' height='315' src='https://www.youtube.com/embed/ddaEtFOsFeM' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
+        "    <iframe width='560' height='315' src='"+response.video+"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
         "</div><button class='introduction-button linear-button' id='introduction_button'>Done</button></div>"
     return html
 }

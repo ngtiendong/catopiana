@@ -11,6 +11,7 @@ class Question extends Model
 
     public static function getListQuestion($topic, $level)
     {
+        $topic_video = Topic::where('id',$topic)->select('introduction_video')->first();
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
             ['level', 1]
@@ -37,7 +38,8 @@ class Question extends Model
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'result' => $result,
-            'type' => $curriculum->type
+            'type' => $curriculum->type,
+            'video' => $topic_video->introduction_video
         ];
     }
 
@@ -107,12 +109,14 @@ class Question extends Model
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'result' => $result,
-            'type' => $curriculum->type
+            'type' => $curriculum->type,
+            'video' => $video->video_url
         ];
     }
 
     public static function getListQuestionIq ($topic, $level)
     {
+        $topic_video = Topic::where('id',$topic)->select('introduction_video')->first();
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
             ['level', 1]
@@ -130,16 +134,19 @@ class Question extends Model
                 'answers' => $answer
             ];
         }
+
         return [
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'result' => $result,
-            'type' => $curriculum->type
+            'type' => $curriculum->type,
+            'video' => $topic_video->introduction_video
         ];
     }
 
     public static function getListQuestionAudio($topic, $level)
     {
+        $topic_video = Topic::where('id',$topic)->first();
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
             ['level', 1]
@@ -168,12 +175,14 @@ class Question extends Model
             'curriculum_id' => $curriculum->id,
             'raw_data' => $raw_data,
             'result' => $result,
-            'type' => $curriculum->type
+            'type' => $curriculum->type,
+            'video' => $topic_video->introduction_video
         ];
     }
 
     public static function getListQuestionPosition($topic, $level)
     {
+        $topic_video = Topic::where('id',$topic)->select('introduction_video')->first();
         $curriculum = Curriculum::where([
             ['topic_id', $topic],
             ['level', 1]
@@ -198,11 +207,13 @@ class Question extends Model
             }
             array_push($result, $result_item);
         }
+
         return [
             'curriculum_id' => $curriculum->id, // fix
             'raw_data' => $raw_data,
             'result' => $result,
-            'type' => 2
+            'type' => 2,
+            'video' => $topic_video->introduction_video
         ];
     }
 

@@ -182,6 +182,7 @@ jQuery(function($) {
 
 });
 
+
 	// end animation
 
 
@@ -195,3 +196,4 @@ jQuery(function($) {
 		// 	TweenMax.to('.list-test', 0.3, {css: {'opacity':'0', 'z-index':'0'}}, 0.1);
 		// }
 	// });
+

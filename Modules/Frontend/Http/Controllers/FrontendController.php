@@ -29,13 +29,6 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        // $freePackage = null;
-        // $paidPackage = null;
-        // if(auth()->guard('customers')->user()){
-        //     $freePackage = $this->packageService->getFreePackage() != null ? $this->packageService->getFreePackage()->take(4) : null;
-        //     $paidPackage = $this->packageService->getPaidPackage() != null ? $this->packageService->getPaidPackage()->take(4) : null;
-        // }
-        // return view('frontend::home',compact('freePackage','paidPackage'));
         $paidPackage = null;
         $freePackage = $this->packageService->getFreePackageWithoutLogin() != null ? $this->packageService->getFreePackageWithoutLogin()->take(4) : null;
         if(auth()->guard('customers')->user()){
@@ -125,7 +118,8 @@ class FrontendController extends Controller
                 'question_data' => $raw_data['raw_data'],
                 'type' => $raw_data['type'],
                 'result' => $raw_data['result'],
-                'curriculum_id' => $raw_data['curriculum_id']
+                'curriculum_id' => $raw_data['curriculum_id'],
+                'video' => $raw_data['video']
             ];
         } else {
             return [
@@ -344,30 +338,29 @@ class FrontendController extends Controller
         /**
          * IQ
          */
-
-//        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
-//        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
-//        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
-//        $curriculum = [
-//            "id" => 2,
-//            "level" => "1",
-//            "count" => 30
-//        ];
-//        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
-//            $temp = [];
-//            foreach ($all as $value ) {
-//                if ($value !== $correct[$j-1]) {
-//                    $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
-//                }
-//            }
-//            Question::create([
-//                "curriculum_id" => 2,
-//                "index" => $j,
-//                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
-//                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
-//                "wrong_answer" => \GuzzleHttp\json_encode($temp)
-//            ]);
-//        }
+        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
+        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
+        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
+        $curriculum = [
+            "id" => 2,
+            "level" => "1",
+            "count" => 30
+        ];
+        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
+            $temp = [];
+            foreach ($all as $value ) {
+                if ($value !== $correct[$j-1]) {
+                    $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
+                }
+            }
+            Question::create([
+                "curriculum_id" => 2,
+                "index" => $j,
+                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
+                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
+                "wrong_answer" => \GuzzleHttp\json_encode($temp)
+            ]);
+        }
 
         #difference
 //        $all = ["A", "B", "C", "D"];
@@ -598,7 +591,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 0,
+    //            "question_type" => 0,
     //            "index" => $j,
     //            "question" => "/data/test_free/common/easy/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/common/easy/" . (string)$j.$correct1[$j-1] . ".png",
@@ -615,7 +608,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //             "curriculum_type" => 0,
+    //             "question_type" => 0,
     //            "index" => 10 + $j,
     //            "question" => "/data/test_free/common/medium/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/common/medium/" . (string)$j.$correct2[$j-1] . ".png",
@@ -633,7 +626,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //                           "curriculum_type" => 0,
+    //                           "question_type" => 0,
     //            "index" => 16 + $j,
     //            "question" => "/data/test_free/common/hard/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/common/hard/" . (string)$j.$correct3[$j-1] . ".png",
@@ -650,7 +643,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //                           "curriculum_type" => 0,
+    //                           "question_type" => 0,
     //            "index" => 26 + $j,
     //            "question" => "/data/test_free/common/mix/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/common/mix/" . (string)$j.$correct4[$j-1] . ".png",
@@ -663,7 +656,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/easy1/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 36 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -675,7 +668,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/easy2/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //          "curriculum_type" => 5,
+      //          "question_type" => 5,
       //          "index" => 41 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -687,7 +680,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/easy3/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 46 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -699,7 +692,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/easy4/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 56 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -710,7 +703,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/medium1/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 66 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -721,7 +714,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/medium2/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 71 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -732,7 +725,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/medium3/medium+/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 81 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -743,7 +736,7 @@ class FrontendController extends Controller
       //      $true = "/data/test_free/difference/medium3/medium++/" . (string)$j.'T.png';
       //      Question::create([
       //          "curriculum_id" => 15,
-      //           "curriculum_type" => 5,
+      //           "question_type" => 5,
       //          "index" => 91 + $j,
       //          "correct_answer" => $true,
       //          "wrong_answer" => \GuzzleHttp\json_encode([$false, $false, $false])
@@ -761,7 +754,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 101+ $j,
     //            "question" => "/data/test_free/memory/easy/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/memory/easy/". (string)$j . $correct[$j-1] . ".png",
@@ -779,7 +772,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 106+ $j,
     //            "question" => "/data/test_free/memory/medium1/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/memory/medium1/". (string)$j . $correct[$j-1] . ".png",
@@ -796,7 +789,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 111 + $j,
     //            "question" => "/data/test_free/memory/medium2/" . (string)$j . ".png",
     //            "correct_answer" => "/data/test_free/memory/medium2/". (string)$j . $correct[$j-1] . ".png",
@@ -809,7 +802,7 @@ class FrontendController extends Controller
     //        $temp = ["/data/test_free/memory/mix/Easy/". (string)$j."c.png", "/data/test_free/memory/mix/Easy/". (string)$j."d.png"];
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 114 + $j,
     //            "question" => "/data/test_free/memory/mix/Easy/" . (string)$j . "a,b.png",
     //            "correct_answer" => "/data/test_free/memory/mix/Easy/". (string)$j . "a,b.png",
@@ -821,7 +814,7 @@ class FrontendController extends Controller
     //        $temp = ["/data/test_free/memory/mix/Master/". (string)$j."c.png", "/data/test_free/memory/mix/Master/". (string)$j."d.png"];
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 126 + $j,
     //            "question" => "/data/test_free/memory/mix/Master/" . (string)$j . "a,b.png",
     //            "correct_answer" => "/data/test_free/memory/mix/Master/". (string)$j . "a,b.png",
@@ -834,7 +827,7 @@ class FrontendController extends Controller
     //        $temp = ["/data/test_free/memory/mix/Medium2/". (string)$j."c.png", "/data/test_free/memory/mix/Medium2/". (string)$j."d.png"];
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 141 + $j,
     //            "question" => "/data/test_free/memory/mix/Medium2/" . (string)$j . "a,b.png",
     //            "correct_answer" => "/data/test_free/memory/mix/Medium2/". (string)$j . "a,b.png",
@@ -853,7 +846,7 @@ class FrontendController extends Controller
     //        }
     //        Question::create([
     //            "curriculum_id" => 15,
-    //            "curriculum_type" => 3,
+    //            "question_type" => 3,
     //            "index" => 156 + $j - 3,
     //            "question" => "/data/test_free/memory/mix/Medium1/" . (string)$j.  ".png",
     //            "correct_answer" => "/data/test_free/memory/mix/Medium1/". (string)$j .$correct[$j-4] . ".png",
@@ -898,7 +891,7 @@ class FrontendController extends Controller
            try {
                Question::create([
                    "curriculum_id" => 15,
-                   "curriculum_type" => 2,
+                   "question_type" => 2,
                    "index" => 168 + $j,
                    "question" => \GuzzleHttp\json_encode($question),
                    "correct_answer" => \GuzzleHttp\json_encode($answer),
@@ -948,7 +941,7 @@ class FrontendController extends Controller
            try {
                Question::create([
                    "curriculum_id" => 15, 
-                   "curriculum_type" => 2,
+                   "question_type" => 2,
                    "index" => 173 + $j,
                    "question" => \GuzzleHttp\json_encode($question),
                    "correct_answer" => \GuzzleHttp\json_encode($answer),
@@ -996,7 +989,7 @@ class FrontendController extends Controller
            try {
                Question::create([
                    "curriculum_id" => 15,
-                   "curriculum_type" => 2,
+                   "question_type" => 2,
                    "index" => 179 + $j,
                    "question" => \GuzzleHttp\json_encode($question),
                    "correct_answer" => \GuzzleHttp\json_encode($answer),
@@ -1044,7 +1037,7 @@ class FrontendController extends Controller
            try {
                Question::create([
                    "curriculum_id" => 15,
-                   "curriculum_type" => 2,
+                   "question_type" => 2,
                    "index" => 185 + $j,
                    "question" => \GuzzleHttp\json_encode($question),
                    "correct_answer" => \GuzzleHttp\json_encode($answer),
@@ -1054,7 +1047,6 @@ class FrontendController extends Controller
                DB::rollback();
            }
        }
-
     }
 
     public function menu()
