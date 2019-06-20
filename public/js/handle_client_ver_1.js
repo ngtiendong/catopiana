@@ -146,9 +146,9 @@ function generateUnfinishedTest(current_data) {
                     question_data_element.question_image, question_data_element.answer_image))
             });
         } else if (current_data.type === '2'){
-            max_images_in_column = current_data.question_data[0].length
+            // max_images_in_column = current_data.question_data[0].length
             current_data.question_data.forEach( function(question_data_element, index) {
-                current_data.html_arr.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                current_data.html_arr.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
             });
         } else if(current_data.type === '4') {
             current_data.question_data.forEach( function(question_data_element, index) {
@@ -879,7 +879,7 @@ function prev() {
 
     } else if (type == '-1') {
         // POSITION
-        if (line_array && this_question.question_data[x]['question_type'] == 2) {
+        if (line_array && this_question.question_data[this_question.current_index]['question_type'] == 2) {
             for (var i=0; i < line_array.length; i++) {
                 line_array[i][2].hide()
             }
