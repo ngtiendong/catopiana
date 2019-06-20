@@ -144,7 +144,7 @@ function waiting_element_load() {
             })
             .progress(function () {
                 var w, w2, bias
-                bias = round(95 / $('#testForm img').length, 0.2)
+                bias = round(95 / $('#testForm img').length, 0.05)
                 if (bias == 0) {bias = 0.1}
                 // console.log("bias", bias, round(95 / $('#testForm img').length, 0.2), 95 / $('#testForm img').length)
                 setTimeout(() => {
