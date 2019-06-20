@@ -102,7 +102,9 @@ function nextButtonPosition () {
         } else {
             current_index_max += 1
             // check answer
-            countCorrectAnswerPosition(just_answer)
+            if(parseInt(type) != -1) {
+                countCorrectAnswerPosition(just_answer)
+            }
              // dừng việc check20s tránh đuplicate lặp timeout
             // stopTimeToChange()
             // compare answer

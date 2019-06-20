@@ -48,7 +48,7 @@ class Question extends Model
         $curriculum = Curriculum::where([
             ['topic_id', $topic] // 15
         ])->orderBy('level', 'desc')->first();
-        $question = Question::where('curriculum_id', $curriculum->id)->take(200)->get()->toArray();
+        $question = Question::where('curriculum_id', $curriculum->id)->inRandomOrder()->take(200)->get()->toArray();
         shuffle($question);
         $video = CurriculumVideo::inRandomOrder()->first();
         $list_question_video = VideoQuestion::where('curriculum_video_id', $video->id)->get()->toArray();
