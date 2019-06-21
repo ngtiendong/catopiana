@@ -85,4 +85,7 @@ Route::group(/**
     Route::get('/chart', function(){
         return view('frontend::chart');
     })->name('chart');
+
+    Route::post('download-report','FrontendController@downloadReport')->name('download-report');
+    Route::get('report','FrontendController@report')->name('report');
 });
