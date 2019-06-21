@@ -1,6 +1,4 @@
-var line_array = []
-var all_line_array = []
-var mix_line_array = []
+
 
 // Variable to solve prev button
 
@@ -291,17 +289,17 @@ function submitPosition() {
 
         let candidate_answers = this_question.answers;
         console.log('answer', candidate_answers, this_question, just_answer)
-        
+
         var login = $('#testForm').data('login');
         if(login) {
             updateDataTesting();
         }
-        
+
         if(!list_test_finished.includes(parseInt(topic))){
             list_test_finished.push(parseInt(topic))
         }
         redirectAfterSubmit(parseInt(topic))
-        
+
     } else {
         errorAnswer();
     }

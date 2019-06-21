@@ -43,6 +43,13 @@ var topic_arr_free = [
 	'position'
 ];
 
+
+//Variables of Position
+var line_array = []
+var all_line_array = []
+var mix_line_array = []
+
+
 const bar = document.querySelector('.bar');
 const progress = document.querySelector('.progress');
 bar.style.width = '0%'
