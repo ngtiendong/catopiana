@@ -215,7 +215,7 @@ function generateUnfinishedTest(current_data) {
     else if(type == '2') {
         // max_images_in_column = this_question.question_data[0][0].length
         all_line_array = current_data.answers.slice();
-        // console.log('all line array init', all_line_array)
+        console.log('all line array init', all_line_array)
 
         for (var i = 0; i<length_answered; i++) {
             var question_left = current_data.question_data[i]['left']
@@ -287,6 +287,7 @@ function generateUnfinishedTest(current_data) {
         // console.log(current_data.question_data[length_answered])
     }  
     else if(type == '-1') {
+        mix_line_array = current_data.answers.slice();
         for (var i = 0; i<length_answered; i++) {
             if(current_data.question_data[i].question_type == 1) {
                 html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
@@ -309,7 +310,6 @@ function generateUnfinishedTest(current_data) {
                 html += answer
                 html += '</div></div>'
             } else if(current_data.question_data[i].question_type == 2) {
-                all_line_array = current_data.answers.slice();
                 var question_left = current_data.question_data[i]['left']
                 var question_right = current_data.question_data[i]['right']
 
@@ -440,7 +440,7 @@ function generateUnfinishedTest(current_data) {
 
     displayTest()
     current_index_max = current_data.current_index;
-    showTab(current_data.current_index)
+    showTab(current_index_max)
     // console.log(current_data.html_arr, 'tuss');
     /**
      * Show line of last Tab Position
@@ -453,6 +453,14 @@ function generateUnfinishedTest(current_data) {
         }, 1000)
 
     }
+
+    // if (type == '-1' && current_data.question_data[current_index_max]['question_type'] == 2) {
+    //     setTimeout(function () {
+    //         line_array.length = 0
+    //         var old_line_array = current_data.answers[current_index_max]
+    //         gen_line_from_localstorage(old_line_array, current_index_max)
+    //     }, 500)
+    // }
 
     // if(current_data.level_temp > minLv){
     //     setTimeToChange(current_data.level_temp - 1 , current_data.current_index + 1 );
@@ -822,13 +830,11 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
 
 function next() {
     play_sound("/sounds/oh-really.mp3")
-    // if(type == "3" && buttonMemoryChecked == false){
-    //     // MEMORY
-    //     return false;
-    // }
-    if(type === '2' || (type === '-1' && this_question.question_data[this_question.current_index]['question_type'] == 2)) {
+    if(type === '2') {
         // POSITION
         nextButtonPosition()
+    } else if(type === '-1') {
+        nextButtonMix()
     } else {
         // AUDIO AND NORMAL
         nextButton()
@@ -836,6 +842,75 @@ function next() {
     // for auto next
     $('#nextBtn').prop('disabled', false);
     disabled_label_click = false;
+}
+
+function nextButtonMix() {
+    
+    if(this_question.question_data[this_question.current_index]['question_type'] == 2) {
+        if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
+            tab_number[this_question.current_index].style.display = "none";
+            this_question.current_index += 1
+            var currentTab = parseInt(this_question.current_index)
+            //Lock and save answered
+            let just_answer = [...line_array]
+            console.log('jjust', just_answer)
+            // Hide all line previous position tab
+            for (var i = 0; i < this_question.question_data[this_question.current_index-1]['left'].length;  i++) {
+                line_array[i][2].hide()
+            }
+            this_question.answers.push(just_answer)
+            console.log('answers', this_question.answers)
+            localStorage.setItem('testing', JSON.stringify(testing_data))
+
+            if (mix_line_array.length  > currentTab - 1){
+                showTab(currentTab);
+                mix_line_array[currentTab-1] = just_answer
+                if(Array.isArray(mix_line_array[currentTab])){
+                    line_array = mix_line_array[currentTab]
+                    for (var j=0; j<mix_line_array[currentTab].length; j++) {
+                        mix_line_array[currentTab][j][2].show()
+                    }
+                }
+            } else {
+                current_index_max += 1
+                mix_line_array.push(just_answer)
+                line_array.length = 0
+                localStorage.setItem('testing', JSON.stringify(testing_data))
+                showTab(currentTab)
+            }
+        } else {
+            errorAnswer();
+        }
+    } else {
+        let just_answer = $('.tab').eq(this_question.current_index).find('input:checked')
+        if (typeof $(just_answer).val() === 'undefined'){
+            errorAnswer();
+        } else {
+            tab_number[this_question.current_index].style.display = "none";
+            this_question.current_index += 1
+            currentTab = parseInt(this_question.current_index)
+            just_answer = just_answer.data('position')
+            this_question.answers.push(just_answer)
+            console.log('answers1', this_question.answers)
+            if (mix_line_array.length > currentTab - 1){
+                showTab(currentTab);
+                mix_line_array[currentTab-1] = just_answer
+                if(Array.isArray(mix_line_array[currentTab])) {
+                    line_array = mix_line_array[currentTab]
+                    for (var j=0; j<mix_line_array[currentTab].length; j++) {
+                        mix_line_array[currentTab][j][2].show()
+                    }
+                }
+            } else {
+                current_index_max += 1
+                mix_line_array.push(just_answer);
+                line_array.length = 0
+                localStorage.setItem('testing', JSON.stringify(testing_data))
+                showTab(currentTab)
+            }
+        }
+    }
+    console.log("mix_line_array: ", mix_line_array);
 }
 
 function prev() {
@@ -878,39 +953,26 @@ function prev() {
         gen_line_from_localstorage(old_line_array, currentTab)
 
     } else if (type == '-1') {
-        // POSITION
         if (line_array && this_question.question_data[this_question.current_index]['question_type'] == 2) {
             for (var i=0; i < line_array.length; i++) {
                 line_array[i][2].hide()
             }
-            var old_line_array = this_question.answers.pop()
-
-            let temp_arr = [...line_array]
-
-            if (all_line_array.length > this_question.current_index) {
-                all_line_array[this_question.current_index] = temp_arr
-            } else {
-                all_line_array.push(temp_arr)
-            }
         }
-
         x[this_question.current_index].style.display = "none";
+        this_question.current_index += -1
+        currentTab = parseInt(this_question.current_index)
 
-        this_question.current_index += -1;
+        if(Array.isArray(mix_line_array[currentTab])) {
+            var old_line_array = this_question.answers.pop()
+            console.log('old_line_array', old_line_array)
+            gen_line_from_localstorage(old_line_array, currentTab)
+        }
         while(this_question.answers.length > this_question.current_index){
             this_question.answers.pop()
         }
-        //Save into local storage
         localStorage.setItem('testing', JSON.stringify(testing_data))
-        showTab(this_question.current_index);
-
-        //Show line already in prev
-        var currentTab = this_question.current_index
-        if (line_array && this_question.question_data[currentTab].question_type == 2) {
-            gen_line_from_localstorage(old_line_array, currentTab)
-        }
-    }
-     else {
+        showTab(currentTab);
+    } else {
         x[this_question.current_index].style.display = "none";
 
         this_question.current_index += -1
@@ -1004,7 +1066,7 @@ function renderIntroduction(response) {
     var html = "<div class='video_introduction' style='display: flex; flex-direction: column' >"+
         "<div class='plyr__video-embed video-player' id='player' data-plyr-provider='youtube' data-plyr-embed-id='ddaEtFOsFeM' >" +
         "    <iframe width='560' height='315' src='"+response.video+"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"+
-        "</div><button class='introduction-button linear-button' id='introduction_button'>Done</button></div>"
+        "</div><button class='introduction-button linear-button' id='introduction_button'>Start</button></div>"
     return html
 }
 
