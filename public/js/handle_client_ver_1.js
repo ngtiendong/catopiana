@@ -285,7 +285,7 @@ function generateUnfinishedTest(current_data) {
             // currentTab++
         }
         // console.log(current_data.question_data[length_answered])
-    }  
+    }
     else if(type == '-1') {
         mix_line_array = current_data.answers.slice();
         for (var i = 0; i<length_answered; i++) {
@@ -845,15 +845,16 @@ function next() {
 }
 
 function nextButtonMix() {
-    
+
     if(this_question.question_data[this_question.current_index]['question_type'] == 2) {
+        console.log(line_array)
         if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
             tab_number[this_question.current_index].style.display = "none";
             this_question.current_index += 1
             var currentTab = parseInt(this_question.current_index)
             //Lock and save answered
             let just_answer = [...line_array]
-            console.log('jjust', just_answer)
+            console.log('just answer: ', just_answer)
             // Hide all line previous position tab
             for (var i = 0; i < this_question.question_data[this_question.current_index-1]['left'].length;  i++) {
                 line_array[i][2].hide()

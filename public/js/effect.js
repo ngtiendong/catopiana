@@ -14,7 +14,7 @@ $(document).on('click', '.answer label',function (event) {
 
     $(this).css('opacity', '1');
     $(this).find('input').eq(0).prop('checked', true);
-    console.log("checked here", $(this))
+    // console.log("checked here", $(this))
 
     $(this).siblings('label').each(function (index, el) {
         $(el).find('input').eq(0).prop('checked', false);
