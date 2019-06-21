@@ -1,5 +1,6 @@
 var line_array = []
 var all_line_array = []
+var mix_line_array = []
 
 // Variable to solve prev button
 
