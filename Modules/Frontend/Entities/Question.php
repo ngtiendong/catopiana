@@ -234,10 +234,11 @@ class Question extends Model
         } else {
             $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
         }
-        if(sizeof($list_question) < $qty_question){
+        while(sizeof($list_question) < $qty_question){
+            $level -= 1;
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
-                ['level','<=', $level - 1]
+                ['level','<=', $level]
             ])->orderBy('level', 'desc')->first();
              $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
             $list_question = array_merge($list_question, $list_question_more);
@@ -279,10 +280,11 @@ class Question extends Model
         } else {
             $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
         }
-        if(sizeof($list_question) < $qty_question){
+        while(sizeof($list_question) < $qty_question){
+            $level -= 1;
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
-                ['level','<=', $level - 1]
+                ['level','<=', $level]
             ])->orderBy('level', 'desc')->first();
              $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
             $list_question = array_merge($list_question, $list_question_more);
@@ -322,10 +324,11 @@ class Question extends Model
         } else {
             $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
         }
-        if(sizeof($list_question) < $qty_question){
+        while(sizeof($list_question) < $qty_question){
+            $level -= 1;
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
-                ['level','<=', $level - 1]
+                ['level','<=', $level]
             ])->orderBy('level', 'desc')->first();
              $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
             $list_question = array_merge($list_question, $list_question_more);
@@ -371,10 +374,11 @@ class Question extends Model
         } else {
             $list_question = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question)->get()->toArray();
         }
-        if(sizeof($list_question) < $qty_question){
+        while(sizeof($list_question) < $qty_question){
+            $level -= 1;
             $curriculum = Curriculum::where([
                 ['topic_id', $topic],
-                ['level','<=', $level - 1]
+                ['level','<=', $level]
             ])->orderBy('level', 'desc')->first();
              $list_question_more = Question::where('curriculum_id', $curriculum->id)->where('index','>',$index)->take($qty_question - sizeof($list_question))->get()->toArray();
             $list_question = array_merge($list_question, $list_question_more);
