@@ -689,7 +689,7 @@ let changeDynamicQuestion = (test_level, indexIncorrect) => {
                         } else if (type === '2'){
                             max_images_in_column = response.question_data[0].length
                             response.question_data.forEach( function(question_data_element, index) {
-                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                                html_arr_gen_again.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
                             });
                         } else if (type === '4') {
                             response.question_data.forEach( function(question_data_element, index) {
@@ -773,9 +773,9 @@ let changeDynamicQuestionTimeOut = (test_level, indexIncorrect) => {
                                     question_data_element.question_image, question_data_element.answer_image))
                             });
                         } else if (type === '2'){
-                            max_images_in_column = response.question_data[0].length
+                            // max_images_in_column = response.question_data[0].length
                             response.question_data.forEach( function(question_data_element, index) {
-                                html_arr_gen_again.push(renderPosition(question_data_element[0],question_data_element[1], "unlock-selection", "none"))
+                                html_arr_gen_again.push(renderPosition(question_data_element['left'],question_data_element['right'], "unlock-selection", "none"))
                             });
                         } else if (type === '4') {
                             response.question_data.forEach( function(question_data_element, index) {
