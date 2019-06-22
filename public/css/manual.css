@@ -835,3 +835,91 @@ img.image-point-l:hover {
     width: 90%;
     margin: auto;
 }
+
+.recevice_report {
+    z-index: 12;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    position: relative;
+    border-radius: 30px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%);
+    border: 4px solid #34318e;
+    margin: 6% auto 0% auto;
+    padding: 5%;
+}
+
+.button-report {
+    position: relative;
+    border: 2px solid rgba(2,0,36,1);
+    background-image: url(/Catopiana_files/images/gradient.png);
+    padding: 10px 30px;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    border: 1px solid #34318e;
+    border-radius: 45px;
+    margin: auto;
+}
+
+.continue_container .recevice_report h2 {
+    color: white;
+    font-size: 40px;
+}
+
+.swal-pop-custom-report {
+    border-radius: 20px !important;
+    border: 4px solid #34318e !important;
+    width: 50% !important;
+    padding: 4.25em !important;
+    background: linear-gradient(90deg, rgb(10, 189, 234) 0%, rgb(96, 6, 134) 100%) !important;
+}
+
+.swal-title-custom-report, .swal-content-custom-report {
+    color: white !important;
+}
+
+.swal-button-confirm-report, .swal-button-cancel-report {
+    background: linear-gradient(to right top, #d8692d, #df7a2b, #e48a2a, #e89b2a, #eaac2d, #eaac2d, #eaac2d, #eaac2d, #e89b2a, #e48a2a, #df7a2b, #d8692d) !important;
+    box-shadow: 2px 2px #343130 !important;
+}
+
+.report_container {
+    background-image: url(http://beta.catopiana.com/./Catopiana_files/images/wavebg.png);
+    width: 60%;
+    height: 650px;
+    background-size: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    margin: 35px auto;
+}
+
+.button-report-container {
+    position: absolute;
+    bottom: 20%;
+    z-index: 16;
+    left: calc(50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.button-report {
+    position: relative;
+    border: 2px solid rgba(2,0,36,1);
+    background: linear-gradient(90deg, rgb(96, 6, 134) 0%, rgb(10, 189, 234) 50%, rgb(96, 6, 134) 100%);
+    padding: 15px 60px;
+    /*padding: 3% 19%;*/
+    display: block;
+    align-items: center;
+    text-transform: uppercase;
+    color: white;
+    border: 4px solid #34318e;
+    border-radius: 25px;
+    margin: 10% auto;
+    transition: all ease 1s;
+}
+
+.button-report:hover { transform: scale(1.1); }

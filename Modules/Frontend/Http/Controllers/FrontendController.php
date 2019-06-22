@@ -9,6 +9,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 use Modules\Frontend\Entities\Question;
+use Modules\Frontend\Entities\Report;
 use Modules\Frontend\Services\PackageService;
 use Modules\Frontend\Services\LocalStorageService;
 use Illuminate\Support\Facades\DB;
@@ -854,199 +855,212 @@ class FrontendController extends Controller
     //        ]);
     //    }
            #position
-       $type = [6,4,4,4,4];
-       $name = [1,2,3,4,5];
+       // $type = [6,4,4,4,4];
+       // $name = [1,2,3,4,5];
 
-       for ($j = 1; $j < 6; $j++) {
-           $str = "/data/test_free/position/1/".(string)$name[$j-1];
-           if ($type[$j-1] == 4) {
-               $left = [$str.".1.jpg", $str.".2.jpg"];
-               $right = [$str."a.jpg", $str."b.jpg"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       // for ($j = 1; $j < 6; $j++) {
+       //     $str = "/data/test_free/position/1/".(string)$name[$j-1];
+       //     if ($type[$j-1] == 4) {
+       //         $left = [$str.".1.jpg", $str.".2.jpg"];
+       //         $right = [$str."a.jpg", $str."b.jpg"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.jpg", $str."a.jpg"],
-                   [$str.".2.jpg", $str."b.jpg"],
-               ];
+       //         $answer = [
+       //             [$str.".1.jpg", $str."a.jpg"],
+       //             [$str.".2.jpg", $str."b.jpg"],
+       //         ];
 
-           } else {
-               $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
-               $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       //     } else {
+       //         $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
+       //         $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.jpg", $str."a.jpg"],
-                   [$str.".2.jpg", $str."b.jpg"],
-                   [$str.".3.jpg", $str."c.jpg"]
-               ];
-           }
+       //         $answer = [
+       //             [$str.".1.jpg", $str."a.jpg"],
+       //             [$str.".2.jpg", $str."b.jpg"],
+       //             [$str.".3.jpg", $str."c.jpg"]
+       //         ];
+       //     }
 
-           DB::beginTransaction();
-           try {
-               Question::create([
-                   "curriculum_id" => 15,
-                   "question_type" => 2,
-                   "index" => 168 + $j,
-                   "question" => \GuzzleHttp\json_encode($question),
-                   "correct_answer" => \GuzzleHttp\json_encode($answer),
-               ]);
-               DB::commit();
-           } catch(Exception $e) {
-               DB::rollback();
-           }
-       }
+       //     DB::beginTransaction();
+       //     try {
+       //         Question::create([
+       //             "curriculum_id" => 15,
+       //             "question_type" => 2,
+       //             "index" => 168 + $j,
+       //             "question" => \GuzzleHttp\json_encode($question),
+       //             "correct_answer" => \GuzzleHttp\json_encode($answer),
+       //         ]);
+       //         DB::commit();
+       //     } catch(Exception $e) {
+       //         DB::rollback();
+       //     }
+       // }
 
        
 
-       $type = [4,4,4,4,4,4,4,4,4,4,4];
-       $name = [1,2,3,4,5,6,7,8,9,10,11];
+       // $type = [4,4,4,4,4,4,4,4,4,4,4];
+       // $name = [1,2,3,4,5,6,7,8,9,10,11];
 
-       for ($j = 1; $j < 6; $j++) {
-           $str = "/data/test_free/position/2/".(string)$name[$j-1];
-           if ($type[$j-1] == 4) {
-               $left = [$str.".1.png", $str.".2.png"];
-               $right = [$str."a.png", $str."b.png"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       // for ($j = 1; $j < 6; $j++) {
+       //     $str = "/data/test_free/position/2/".(string)$name[$j-1];
+       //     if ($type[$j-1] == 4) {
+       //         $left = [$str.".1.png", $str.".2.png"];
+       //         $right = [$str."a.png", $str."b.png"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.png", $str."a.png"],
-                   [$str.".2.png", $str."b.png"],
-               ];
+       //         $answer = [
+       //             [$str.".1.png", $str."a.png"],
+       //             [$str.".2.png", $str."b.png"],
+       //         ];
 
-           } else {
-               $left = [$str.".1.png", $str.".2.png", $str.".3.png"];
-               $right = [$str."a.png", $str."b.png", $str."c.png"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       //     } else {
+       //         $left = [$str.".1.png", $str.".2.png", $str.".3.png"];
+       //         $right = [$str."a.png", $str."b.png", $str."c.png"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.png", $str."a.png"],
-                   [$str.".2.png", $str."b.png"],
-                   [$str.".3.png", $str."c.png"]
-               ];
-           }
+       //         $answer = [
+       //             [$str.".1.png", $str."a.png"],
+       //             [$str.".2.png", $str."b.png"],
+       //             [$str.".3.png", $str."c.png"]
+       //         ];
+       //     }
 
-           DB::beginTransaction();
-           try {
-               Question::create([
-                   "curriculum_id" => 15, 
-                   "question_type" => 2,
-                   "index" => 173 + $j,
-                   "question" => \GuzzleHttp\json_encode($question),
-                   "correct_answer" => \GuzzleHttp\json_encode($answer),
-               ]);
-               DB::commit();
-           } catch(Exception $e) {
-               DB::rollback();
-           }
-       }
+       //     DB::beginTransaction();
+       //     try {
+       //         Question::create([
+       //             "curriculum_id" => 15, 
+       //             "question_type" => 2,
+       //             "index" => 173 + $j,
+       //             "question" => \GuzzleHttp\json_encode($question),
+       //             "correct_answer" => \GuzzleHttp\json_encode($answer),
+       //         ]);
+       //         DB::commit();
+       //     } catch(Exception $e) {
+       //         DB::rollback();
+       //     }
+       // }
 
-        $type = [4,4,4,4,4,4];
-       $name = [1,2,3,4,5,6];
+       //  $type = [4,4,4,4,4,4];
+       // $name = [1,2,3,4,5,6];
 
-       for ($j = 1; $j < 7; $j++) {
-           $str = "/data/test_free/position/3/".(string)$name[$j-1];
-           if ($type[$j-1] == 4) {
-               $left = [$str.".1.jpg", $str.".2.jpg"];
-               $right = [$str."a.jpg", $str."b.jpg"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       // for ($j = 1; $j < 7; $j++) {
+       //     $str = "/data/test_free/position/3/".(string)$name[$j-1];
+       //     if ($type[$j-1] == 4) {
+       //         $left = [$str.".1.jpg", $str.".2.jpg"];
+       //         $right = [$str."a.jpg", $str."b.jpg"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.jpg", $str."a.jpg"],
-                   [$str.".2.jpg", $str."b.jpg"],
-               ];
+       //         $answer = [
+       //             [$str.".1.jpg", $str."a.jpg"],
+       //             [$str.".2.jpg", $str."b.jpg"],
+       //         ];
 
-           } else {
-               $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
-               $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       //     } else {
+       //         $left = [$str.".1.jpg", $str.".2.jpg", $str.".3.jpg"];
+       //         $right = [$str."a.jpg", $str."b.jpg", $str."c.jpg"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.jpg", $str."a.jpg"],
-                   [$str.".2.jpg", $str."b.jpg"],
-                   [$str.".3.jpg", $str."c.jpg"]
-               ];
-           }
+       //         $answer = [
+       //             [$str.".1.jpg", $str."a.jpg"],
+       //             [$str.".2.jpg", $str."b.jpg"],
+       //             [$str.".3.jpg", $str."c.jpg"]
+       //         ];
+       //     }
 
-           DB::beginTransaction();
-           try {
-               Question::create([
-                   "curriculum_id" => 15,
-                   "question_type" => 2,
-                   "index" => 179 + $j,
-                   "question" => \GuzzleHttp\json_encode($question),
-                   "correct_answer" => \GuzzleHttp\json_encode($answer),
-               ]);
-               DB::commit();
-           } catch(Exception $e) {
-               DB::rollback();
-           }
-       }
+       //     DB::beginTransaction();
+       //     try {
+       //         Question::create([
+       //             "curriculum_id" => 15,
+       //             "question_type" => 2,
+       //             "index" => 179 + $j,
+       //             "question" => \GuzzleHttp\json_encode($question),
+       //             "correct_answer" => \GuzzleHttp\json_encode($answer),
+       //         ]);
+       //         DB::commit();
+       //     } catch(Exception $e) {
+       //         DB::rollback();
+       //     }
+       // }
 
-        $type = [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,4,6];
-       $name = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
+       //  $type = [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,4,6];
+       // $name = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
-       for ($j = 1; $j < 18; $j++) {
-           $str = "/data/test_free/position/4/".(string)$name[$j-1];
-           if ($type[$j-1] == 4) {
-               $left = [$str.".1.png", $str.".2.png"];
-               $right = [$str."a.png", $str."b.png"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       // for ($j = 1; $j < 18; $j++) {
+       //     $str = "/data/test_free/position/4/".(string)$name[$j-1];
+       //     if ($type[$j-1] == 4) {
+       //         $left = [$str.".1.png", $str.".2.png"];
+       //         $right = [$str."a.png", $str."b.png"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.png", $str."a.png"],
-                   [$str.".2.png", $str."b.png"],
-               ];
+       //         $answer = [
+       //             [$str.".1.png", $str."a.png"],
+       //             [$str.".2.png", $str."b.png"],
+       //         ];
 
-           } else {
-               $left = [$str.".1.png", $str.".2.png", $str.".3.png"];
-               $right = [$str."a.png", $str."b.png", $str."c.png"];
-               $question = [
-                   "left" => $left,
-                   "right" => $right
-               ];
+       //     } else {
+       //         $left = [$str.".1.png", $str.".2.png", $str.".3.png"];
+       //         $right = [$str."a.png", $str."b.png", $str."c.png"];
+       //         $question = [
+       //             "left" => $left,
+       //             "right" => $right
+       //         ];
 
-               $answer = [
-                   [$str.".1.png", $str."a.png"],
-                   [$str.".2.png", $str."b.png"],
-                   [$str.".3.png", $str."c.png"]
-               ];
-           }
+       //         $answer = [
+       //             [$str.".1.png", $str."a.png"],
+       //             [$str.".2.png", $str."b.png"],
+       //             [$str.".3.png", $str."c.png"]
+       //         ];
+       //     }
 
-           DB::beginTransaction();
-           try {
-               Question::create([
-                   "curriculum_id" => 15,
-                   "question_type" => 2,
-                   "index" => 185 + $j,
-                   "question" => \GuzzleHttp\json_encode($question),
-                   "correct_answer" => \GuzzleHttp\json_encode($answer),
-               ]);
-               DB::commit();
-           } catch(Exception $e) {
-               DB::rollback();
-           }
-       }
+       //     DB::beginTransaction();
+       //     try {
+       //         Question::create([
+       //             "curriculum_id" => 15,
+       //             "question_type" => 2,
+       //             "index" => 185 + $j,
+       //             "question" => \GuzzleHttp\json_encode($question),
+       //             "correct_answer" => \GuzzleHttp\json_encode($answer),
+       //         ]);
+       //         DB::commit();
+       //     } catch(Exception $e) {
+       //         DB::rollback();
+       //     }
+       // }
+        #report
+        // $topic_arr = ['1'=> 'music', '2'=> 'iq', '3'=> 'creative', '4'=> 'difference', '5'=> 'common', '6'=> 'memory', '7'=> 'language', '8'=> 'position'];
+        // $report_type = ['medium', 'great', 'excellent', 'genius'];
+        // foreach($topic_arr as $topic_key => $topic) {
+        //     foreach($report_type as $key => $report) {
+        //         Report::create([
+        //             'report_name' => $report . '_'. $topic . '_report',
+        //             'topic_id' => $topic_key,
+        //             'url_path' => 'reports/'.$topic.'/'.$report.'.pdf',
+        //             'report_type' => $key + 1
+        //         ]);
+        //     }
+        // }
     }
 
     public function menu()
@@ -1166,5 +1180,24 @@ class FrontendController extends Controller
         return  response()->json([
             'status'=> '1',
             ], 200);
+    }
+
+    public function report($topic)
+    {
+        $topic = $topic;
+        return view('frontend::report', compact('topic'));
+    }
+    public function downloadReport(Request $request)
+    {
+        $report = Report::getReport($request->input('total_question'), $request->input('result'), $request->input('topic'));
+        $file = public_path($report->url_path);
+        $headers = array('Content-Type: application/pdf',);
+        return response()->download($file, $report->report_name.'.pdf',$headers);
+    }
+    public function readReport(Request $request)
+    {
+        $report = Report::getReport($request->input('total_question'), $request->input('result'), $request->input('topic'));
+        $file = public_path($report->url_path);
+        return response()->file($file);
     }
 }

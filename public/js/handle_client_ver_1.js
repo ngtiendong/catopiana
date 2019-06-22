@@ -1420,10 +1420,10 @@ saveGuestTesting = () => {
         data: data,
     })
     .done(function(response) {
-        localStorage.removeItem('testing');
         if(response.local_storage === undefined || response.local_storage.length == 0){
             alert('somethings wrongs');
         }else {
+            localStorage.removeItem('testing');
             changeLocalStorage(response.local_storage, response.guest_id);
             window.location.href = '/congratulation';
         }
