@@ -79,43 +79,6 @@
 <script src="{{asset('/js/svg_variables.js')}}"></script>
 <script type="text/javascript" src="{{asset('/js/signup.js')}}"></script>
 <script>
-    // $(document).ready(function() {
-            // var count_free_package = 0;
-            // for (var i=1; i<9; i++) {
-                // if (list_test_finished.indexOf(i) < 0) {
-                //     // có bài Chưa thi
-                //     break;
-                // }
-                // count_free_package++;
-            // }
-            // if (count_free_package == 8) {
-                // for (var i = 0; i < testing_data.question.length; i++) {
-                //     this_question = testing_data.question[i];
-                    // console.log('current', current_data)
-
-                    // if (this_question.status == 1) {
-                        // if(parseInt(this_question.type) == 2) {
-                        //     max_images_in_column = this_question.question_data[0].length
-                        //     total_question = parseInt(this_question.question_data.length) * max_images_in_column;
-                        //     correct = filterCorrectPosition(this_question, max_images_in_column);
-                        // } else {
-                        //     total_question = parseInt(this_question.question_data.length);
-                        //     correct = this_question.answers.filter(answer => answer == 0).length;
-                        // }
-
-
-                       // result = 1;
-                       // topic = parseInt(this_question.topic)
-                       // if(i < 5) {
-                            // $('.free_test_result .top').append('<div>'+array_svg[i-1]+'<p><b>'+result+'</b></p></div>')
-                        // } else if ( i < 9) {
-                            // $('.free_test_result .bot').append('<div>'+array_svg[i-1]+'<p><b>'+result+'</b></p></div>')
-                        // }
-                        // $('.button-recevie-package').removeClass('hidden')
-                    // }
-                // }
-            // } 
-    // });
     jQuery(document).ready(function($) {
         let gen_html = '';
         let style = '';
@@ -132,7 +95,7 @@
                result = correct+'/'+total_question ;
                topic = parseInt(this_question.topic);
             }
-            gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[topic-1] +'<p><b>'+result+'</b></p></div>'
+            gen_html += '<div class="col-md-3 below-list-test-f">' + array_svg[topic-1] +'<p class="result_test" ><b>'+result+'</b></p></div>'
         }
         $('.free_test_result .list_icon').append(gen_html)
     });
@@ -195,5 +158,32 @@
             return result;
         }
     }
+
+$(document).on('click', '.free_test_result .test-item', function(event) {
+    event.preventDefault();
+    let topic = $(this).data('topic');
+    Swal.fire({
+        title: 'Receive report for this test',
+        backdrop: `rgba(255, 255, 255, 0.61)`,
+        animation: false,
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        customClass: {
+            popup: 'swal-pop-custom-report animated zoomIn',
+            title:'swal-title-custom-report',
+            content: 'swal-content-custom-report',
+            confirmButton:'swal-button-confirm-report',
+            cancelButton: 'swal-button-cancel-report'
+        }
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = '/report/'+topic
+        }
+     });
+});
+    
+
+
 </script>
 @endsection
