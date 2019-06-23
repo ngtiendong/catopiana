@@ -20,10 +20,10 @@ Route::group(/**
     Route::get('/creative', 'FrontendController@test')->name('creative');
     Route::get('/difference', 'FrontendController@test')->name('difference');
 
-    Route::get('/common', 'FrontendController@test')->name('common');
+    Route::get('/common', 'FrontendController@position')->name('common');
     Route::get('/memory', 'FrontendController@test')->name('memory');
     Route::get('/language', 'FrontendController@music')->name('language');
-    Route::get('/position', 'FrontendController@position')->name('position');
+    Route::get('/position', 'FrontendController@test')->name('position');
     Route::get('/free-test-results', 'FrontendController@resultFreeTest')->name('free-test-results');
     Route::get('/updateTestStatus', 'FrontendController@updateTestStatus')->name('update-test-status');
     Route::get('/generate_db', 'FrontendController@generate');

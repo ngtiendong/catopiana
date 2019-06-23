@@ -19,10 +19,10 @@ var array_svg = [
     '<a class="test-item brain" href="/iq" data-topic="2">'+iq+'</a>',
     '<a class="test-item lightball" href="/creative" data-topic="3">'+creative+'</a>',
     '<a class="test-item squid" href="/difference" data-topic="4">'+difference+'</a>',
-    '<a class="test-item atom" href="/common" data-topic="5">'+common+'</a>',
+    '<a class="test-item global" href="/position" data-topic="5">'+position+'</a>',
     '<a class="test-item zoom" href="/memory" data-topic="6">'+memory+'</a>',
     '<a class="test-item chat" href="/language" data-topic="7">'+language+'</a>',
-    '<a class="test-item global" href="/position" data-topic="8">'+position+'</a>'
+    '<a class="test-item atom" href="/common" data-topic="8">'+common+'</a>'
 ]
 
 // free topic at home page
