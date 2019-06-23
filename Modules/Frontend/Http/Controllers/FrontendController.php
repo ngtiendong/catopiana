@@ -175,6 +175,7 @@ class FrontendController extends Controller
 
     public function getTopicAndTypeId($name)
     {
+        // sửa lại position <-> common 
         switch ($name) {
             case 'music':
                 return [
@@ -202,8 +203,8 @@ class FrontendController extends Controller
                 break;
             case 'common':
                 return [
-                    'topic' => "5",
-                    'type' => "0"
+                    'topic' => "8",
+                    'type' => "2"
                 ];
                 break;
             case 'memory':
@@ -220,8 +221,8 @@ class FrontendController extends Controller
                 break;
             case 'position':
                 return [
-                    'topic' => "8",
-                    'type' => "2"
+                    'topic' => "5",
+                    'type' => "0"
                 ];
                 break;
             case 'physics':
