@@ -121,7 +121,7 @@ class Question extends Model
             ['topic_id', $topic],
             ['level', 1]
         ])->orderBy('level', 'desc')->first();
-        $list_question = Question::where('curriculum_id', $curriculum->id)->get()->toArray();
+        $list_question = Question::where('curriculum_id', $curriculum->id)->take(30)->get()->toArray();
         $raw_data = [];
         $result = [];
         foreach ($list_question as $question) {
