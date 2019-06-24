@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 use Modules\Frontend\Entities\Question;
 use Modules\Frontend\Entities\Report;
+use Modules\Frontend\Entities\Topic;
 use Modules\Frontend\Services\PackageService;
 use Modules\Frontend\Services\LocalStorageService;
 use Illuminate\Support\Facades\DB;
@@ -1191,14 +1192,12 @@ class FrontendController extends Controller
     public function downloadReport(Request $request)
     {
         $report = Report::getReport($request->input('total_question'), $request->input('result'), $request->input('topic'));
-        $file = public_path($report->url_path);
         $headers = array('Content-Type: application/pdf',);
-        return response()->download($file, $report->report_name.'.pdf',$headers);
+        return response()->download($report->url_path, $report->report_name.'.pdf',$headers);
     }
     public function readReport(Request $request)
     {
         $report = Report::getReport($request->input('total_question'), $request->input('result'), $request->input('topic'));
-        $file = public_path($report->url_path);
-        return response()->file($file);
+        return redirect($report->url_path);
     }
 }
