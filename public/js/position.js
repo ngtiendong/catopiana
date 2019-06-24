@@ -56,6 +56,7 @@ $(document).on('click', '.list-l-item img', function (e) {
             $(this).removeClass('unlock-selection')
         })
     }
+    console.log("line array:", line_array)
     if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
         autonext()
     }
@@ -195,18 +196,21 @@ Array.prototype.compare = function(array) {
 
 function gen_line_from_localstorage(old_line_array, current_tab) {
     line_array.length = 0
+    console.log("length", line_array.length, old_line_array)
     for (var j = 0; j < old_line_array.length; j++) {
         if (jQuery.isEmptyObject(old_line_array[j][2])) {
             //Create line
             var left = old_line_array[j][0]
             var right = old_line_array[j][1]
+
             var left_element = document.getElementsByClassName('tab')[current_tab]
                 .getElementsByClassName('column-left')[0].getElementsByClassName('clicked-img')[left]
             var right_element = document.getElementsByClassName('tab')[current_tab]
                 .getElementsByClassName('column-right')[0].getElementsByClassName('clicked-img')[right]
-
             //Push to line array
-            line_array.push([$(left_element).data('index'), $(right_element).data('index'), createLine(left_element, right_element, 0)])
+            // console.log(left_element, right_element, left, right, old_line_array)
+            let single_line = createLine(left_element, right_element, 0)
+            line_array.push([$(left_element).data('index'), $(right_element).data('index'), single_line])
         }
         else {
             line_array = [...old_line_array]
@@ -228,8 +232,10 @@ function createLine(left_element, right_element, start=0) {
     } else{
         size = 4
     }
+    // console.log(left_element, right_element)
+    // console.log($(left_element), $(left_element).width(), $(left_element).height())
     // console.log(left_element.width, left_element.height, right_element.width, right_element.height)
-    if (start == 0) {
+    if (start === 0) {
         first = LeaderLine.pointAnchor(left_element, {
             x: left_element.width,
             y: left_element.height/2
@@ -270,7 +276,7 @@ function createLine(left_element, right_element, start=0) {
             timing: 'cubic-bezier(.1, -0.6, 0.2, 0)'
         }
     })
-
+    // console.log(first, end)
     return line
 
 }
