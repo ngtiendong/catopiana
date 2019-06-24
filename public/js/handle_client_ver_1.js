@@ -288,6 +288,7 @@ function generateUnfinishedTest(current_data) {
     }
     else if(type == '-1') {
         mix_line_array = current_data.answers.slice();
+        console.log("init mix: ", mix_line_array);
         for (var i = 0; i<length_answered; i++) {
             if(current_data.question_data[i].question_type == 1) {
                 html += '<div class="tab" style="display: none;"><img class="question audio-image" src="'+current_data.question_data[i].question_image+'" alt="">'+
@@ -616,7 +617,7 @@ function showTab(current_index) {
     for (let i = 0; i < tab_number.length; i++) {
         tab_number[i].style.display = "none";
     }
-    if (topic == '8') {
+    if ((topic == '8') || (this_question.question_data[this_question.current_index]['question_type'] == 2)){
         tab_number[current_index].style.display = "block";
         $(tab_number[current_index]).addClass('animated rubberBand')
     } else {
@@ -845,9 +846,8 @@ function next() {
 }
 
 function nextButtonMix() {
-
     if(this_question.question_data[this_question.current_index]['question_type'] == 2) {
-        console.log(line_array)
+        console.log("line array", line_array)
         if (line_array.length == this_question.question_data[this_question.current_index]['left'].length) {
             tab_number[this_question.current_index].style.display = "none";
             this_question.current_index += 1
@@ -855,6 +855,7 @@ function nextButtonMix() {
             //Lock and save answered
             let just_answer = [...line_array]
             console.log('just answer: ', just_answer)
+            console.log("line array:", line_array)
             // Hide all line previous position tab
             for (var i = 0; i < this_question.question_data[this_question.current_index-1]['left'].length;  i++) {
                 line_array[i][2].hide()
@@ -863,14 +864,15 @@ function nextButtonMix() {
             console.log('answers', this_question.answers)
             localStorage.setItem('testing', JSON.stringify(testing_data))
 
-            if (mix_line_array.length  > currentTab - 1){
+            if (current_index_max  > currentTab - 1){
                 showTab(currentTab);
                 mix_line_array[currentTab-1] = just_answer
+                console.log(mix_line_array, currentTab)
+                console.log(mix_line_array[currentTab], Array.isArray(mix_line_array[currentTab]))
                 if(Array.isArray(mix_line_array[currentTab])){
-                    line_array = mix_line_array[currentTab]
-                    for (var j=0; j<mix_line_array[currentTab].length; j++) {
-                        mix_line_array[currentTab][j][2].show()
-                    }
+                    gen_line_from_localstorage(mix_line_array[currentTab], currentTab)
+                } else{
+                    line_array.length = 0
                 }
             } else {
                 current_index_max += 1
@@ -879,6 +881,7 @@ function nextButtonMix() {
                 localStorage.setItem('testing', JSON.stringify(testing_data))
                 showTab(currentTab)
             }
+            console.log("after next button, line array:", line_array)
         } else {
             errorAnswer();
         }
@@ -893,14 +896,17 @@ function nextButtonMix() {
             just_answer = just_answer.data('position')
             this_question.answers.push(just_answer)
             console.log('answers1', this_question.answers)
-            if (mix_line_array.length > currentTab - 1){
+
+            if (current_index_max > currentTab - 1){
+                //Already have in mix line array, because mix line array not pop when prev button
                 showTab(currentTab);
                 mix_line_array[currentTab-1] = just_answer
+                console.log(mix_line_array, currentTab)
+                console.log(mix_line_array[currentTab])
+
                 if(Array.isArray(mix_line_array[currentTab])) {
-                    line_array = mix_line_array[currentTab]
-                    for (var j=0; j<mix_line_array[currentTab].length; j++) {
-                        mix_line_array[currentTab][j][2].show()
-                    }
+                    gen_line_from_localstorage(mix_line_array[currentTab], currentTab)
+                    // line_array = mix_line_array[currentTab]
                 }
             } else {
                 current_index_max += 1
@@ -931,15 +937,16 @@ function prev() {
         var old_line_array = this_question.answers.pop()
 
         console.log('Old line array : ' ,old_line_array);
-        console.log('line array', line_array)
-        console.log('current tag ', this_question.current_index)
-        let temp_arr = [...line_array]
-
-        if (all_line_array.length > this_question.current_index) {
-            all_line_array[this_question.current_index] = temp_arr
-        } else {
-            all_line_array.push(temp_arr)
-        }
+        console.log('line array', line_array);
+        console.log('current tag ', this_question.current_index);
+        // let temp_arr = [...line_array]
+        //
+        // if (all_line_array.length > this_question.current_index) {
+        //     all_line_array[this_question.current_index] = temp_arr
+        // } else {
+        //     all_line_array.push(temp_arr)
+        // }
+        save_temporary_line_array(all_line_array, line_array)
 
         this_question.current_index += -1;
         while(this_question.answers.length > this_question.current_index){
@@ -959,10 +966,27 @@ function prev() {
                 line_array[i][2].hide()
             }
         }
+        console.log('line array: ', line_array);
+        console.log('current tag ', this_question.current_index);
+
         x[this_question.current_index].style.display = "none";
+
+        // let temp_arr = [...line_array]
+        //
+        // if (mix_line_array.length > this_question.current_index) {
+        //     mix_line_array[this_question.current_index] = temp_arr
+        // } else {
+        //     mix_line_array.push(temp_arr)
+        // }
+        save_temporary_line_array(mix_line_array, line_array)
+
         this_question.current_index += -1
         currentTab = parseInt(this_question.current_index)
 
+
+        showTab(currentTab);
+
+        //Show line already in prev
         if(Array.isArray(mix_line_array[currentTab])) {
             var old_line_array = this_question.answers.pop()
             console.log('old_line_array', old_line_array)
@@ -972,7 +996,9 @@ function prev() {
             this_question.answers.pop()
         }
         localStorage.setItem('testing', JSON.stringify(testing_data))
-        showTab(currentTab);
+
+
+
     } else {
         x[this_question.current_index].style.display = "none";
 
@@ -989,7 +1015,17 @@ function prev() {
     }
 
 
+}
 
+
+function save_temporary_line_array(total_line_array, current_line_array){
+    let temp_arr = [...current_line_array]
+
+    if (total_line_array.length > this_question.current_index) {
+        total_line_array[this_question.current_index] = temp_arr
+    } else {
+        total_line_array.push(temp_arr)
+    }
 }
 
 function render(question, answers, question_type = null) {
