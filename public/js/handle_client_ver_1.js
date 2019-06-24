@@ -939,13 +939,14 @@ function prev() {
         console.log('Old line array : ' ,old_line_array);
         console.log('line array', line_array);
         console.log('current tag ', this_question.current_index);
-        let temp_arr = [...line_array]
-
-        if (all_line_array.length > this_question.current_index) {
-            all_line_array[this_question.current_index] = temp_arr
-        } else {
-            all_line_array.push(temp_arr)
-        }
+        // let temp_arr = [...line_array]
+        //
+        // if (all_line_array.length > this_question.current_index) {
+        //     all_line_array[this_question.current_index] = temp_arr
+        // } else {
+        //     all_line_array.push(temp_arr)
+        // }
+        save_temporary_line_array(all_line_array, line_array)
 
         this_question.current_index += -1;
         while(this_question.answers.length > this_question.current_index){
