@@ -136,7 +136,7 @@ function waiting_element_load() {
             setTimeout(()=>{
                 $('.progress').css('display', 'none')
                 $('#testForm').css('display', 'block').css('opacity', '1')
-            }, 200)
+            }, 7000)
 
         }
 
