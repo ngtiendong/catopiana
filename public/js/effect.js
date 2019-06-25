@@ -131,10 +131,13 @@ function waiting_element_load() {
             setTimeout(()=>{
                 // console.log(w, w2, bar.style.width, bias, $('audio').length)
                 bar.style.transitionDuration = `0.5s`;
-                bar.style.width = '20%'
+                bar.style.width = '10%'
+            }, 600)
+            setTimeout(()=>{
+                $('.progress').css('display', 'none')
+                $('#testForm').css('display', 'block').css('opacity', '1')
             }, 200)
-            $('.progress').css('display', 'none')
-            $('#testForm').css('display', 'block').css('opacity', '1')
+
         }
 
 
