@@ -95,51 +95,37 @@ function waiting_element_load() {
     $('#testForm').css('display', 'none')
 
     if ($('audio').length > 0) {
-        if ($(window).width() > 1366) {
-            $('.progress').css('display','block')
-            let audio_not_load =  $('audio')
-            let bias = round(100/$('audio').length, 0.2), w,w2, count=0, total=0
-            // console.log( $('audio').length, document.querySelectorAll('audio:not([readyState="4"])').length)
-            $('audio[readyState!="4"]').each(function(index){
-                if ($(this).prop('readyState') != 4) {
-                    total += 1
-                    document.querySelectorAll('audio')[index].addEventListener('canplaythrough', ()=>{
-                        setTimeout(()=>{
-                            w = (bar.style.width).replace("%", "");
-                            w2 = parseFloat(w) + bias;
-                            // console.log(w, w2, bar.style.width, bias, $('audio').length)
-                            bar.style.transitionDuration = `0.5s`;
-                            bar.style.width = w2 + '%'
-                        }, 1)
-                        count += 1
+        $('.progress').css('display', 'block')
+        let bias = round(100 / $('audio').length, 0.2), w, w2, count = 0, total = 0
+        // console.log( $('audio').length, document.querySelectorAll('audio:not([readyState="4"])').length)
+        $('audio[readyState!="4"]').each(function (index) {
+            if ($(this).prop('readyState') != 4) {
+                total += 1
+                document.querySelectorAll('audio')[index].addEventListener('canplaythrough', () => {
+                    setTimeout(() => {
+                        w = (bar.style.width).replace("%", "");
+                        w2 = parseFloat(w) + bias;
+                        // console.log(w, w2, bar.style.width, bias, $('audio').length)
+                        bar.style.transitionDuration = `0.5s`;
+                        bar.style.width = w2 + '%'
+                    }, 1)
+                    count += 1
 
-                    })
-                }
+                })
+            }
 
-            })
-
-            let loop = setInterval(function(){
-                console.log(count, total)
-                if (count === total) {
-                    $('.progress').css('display', 'none')
-                    $('#testForm').css('display', 'block').css('opacity', '1')
-                    //Reset loading progress bar
-                    bar.style.width = '0%'
-                    clearInterval(loop)
-                }}, 100);
-        } else {
-            setTimeout(()=>{
-                // console.log(w, w2, bar.style.width, bias, $('audio').length)
-                bar.style.transitionDuration = `0.5s`;
-                bar.style.width = '10%'
-            }, 600)
-            setTimeout(()=>{
+        })
+        alert(count, total, bias)
+        let loop = setInterval(function () {
+            console.log(count, total)
+            if (count === total) {
                 $('.progress').css('display', 'none')
                 $('#testForm').css('display', 'block').css('opacity', '1')
-            }, 7000)
-
-        }
-
+                //Reset loading progress bar
+                bar.style.width = '0%'
+                clearInterval(loop)
+            }
+        }, 100);
 
     } else {
         wait_load()
