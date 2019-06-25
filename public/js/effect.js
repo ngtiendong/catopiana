@@ -111,11 +111,12 @@ function waiting_element_load() {
                     }, 1)
                     count += 1
 
-                })
+                }, false)
+                document.querySelectorAll('audio')[index].src = $(this).attr('src')
+                document.querySelectorAll('audio')[index].load()
             }
 
         })
-        alert(count, total, bias)
         let loop = setInterval(function () {
             console.log(count, total)
             if (count === total) {
