@@ -381,16 +381,24 @@ const swirls = {
     repeat: 999
 };
 const swirl = new mojs.ShapeSwirl({
-    ...swirls,
     parent: el6,
+    radius: 5,
+    direction: -1,
+    swirlSize: 85,
+    swirlFrequency: 10,
+    repeat: 999,
     fill: 'papayawhip',
     top: '10%',
     y: { 0: -150 },
     duration: 3000,
 });
 const swirl2 = new mojs.ShapeSwirl({
-    ...swirls,
     parent: el6,
+    radius: 5,
+    direction: -1,
+    swirlSize: 85,
+    swirlFrequency: 10,
+    repeat: 999,
     fill: 'mediumvioletred',
     top: '90%',
     left: '80%',
@@ -398,8 +406,12 @@ const swirl2 = new mojs.ShapeSwirl({
     duration: 3000,
 });
 const swirl3 = new mojs.ShapeSwirl({
-    ...swirls,
     parent: el6,
+    radius: 5,
+    direction: -1,
+    swirlSize: 85,
+    swirlFrequency: 10,
+    repeat: 999,
     fill: 'yellow',
     top: '80%',
     left: '20%',
@@ -414,16 +426,22 @@ const circs = {
     repeat: 999
 };
 const circ = new mojs.Shape({
-    ...circs,
     parent: el6,
+    fill: 'none',
+    opacity: { 1 : 0 },
+    duration: 1800,
+    repeat: 999,
     radius: { 0 : 100 },
     top: '90%',
     left: '80%',
     stroke: 'peachpuff',
 });
 const circ2 = new mojs.Shape({
-    ...circs,
     parent: el6,
+    fill: 'none',
+    opacity: { 1 : 0 },
+    duration: 1800,
+    repeat: 999,
     radius: { 0 : 150 },
     top: '-10%',
     left: '20%',
