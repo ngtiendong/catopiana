@@ -341,29 +341,29 @@ class FrontendController extends Controller
         /**
          * IQ
          */
-        $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
-        $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
-        , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
-        $curriculum = [
-            "id" => 2,
-            "level" => "1",
-            "count" => 30
-        ];
-        for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
-            $temp = [];
-            foreach ($all as $value ) {
-                if ($value !== $correct[$j-1]) {
-                    $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
-                }
-            }
-            Question::create([
-                "curriculum_id" => 2,
-                "index" => $j,
-                "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
-                "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
-                "wrong_answer" => \GuzzleHttp\json_encode($temp)
-            ]);
-        }
+        // $all = ["a", "b", "c", "d", "e", "f", "g", "h"];
+        // $correct = ["c", "e", "a", "b", "c", "e", "f", "d", "a", "c", "c", "d", "b", "d", "a", "e", "d", "b"
+        // , "f", "e", "c", "b", "a", "d", "a", "g", "b", "c", "f", "g"];
+        // $curriculum = [
+        //     "id" => 2,
+        //     "level" => "1",
+        //     "count" => 30
+        // ];
+        // for ($j = 24; $j < $curriculum["count"] + 1; $j++) {
+        //     $temp = [];
+        //     foreach ($all as $value ) {
+        //         if ($value !== $correct[$j-1]) {
+        //             $temp[] = "/data/iq/1/" . (string)$j.$value.".jpg";
+        //         }
+        //     }
+        //     Question::create([
+        //         "curriculum_id" => 2,
+        //         "index" => $j,
+        //         "question" => "/data/iq/". $curriculum["level"] . "/" . (string)$j . ".jpg",
+        //         "correct_answer" => "/data/iq/1". $curriculum["level"] . "/" . (string)$j.$correct[$j-1] . ".jpg",
+        //         "wrong_answer" => \GuzzleHttp\json_encode($temp)
+        //     ]);
+        // }
 
         #difference
 //        $all = ["A", "B", "C", "D"];
